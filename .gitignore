@@ -1,0 +1,141 @@
+## Visual Studio / .NET gitignore
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+*.vsidx
+*.DotSettings.user
+launchSettings.json.user
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+artifacts/
+publish/
+PublishScripts/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+coverage/
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+TestResults/
+.coverage
+*.cobertura.xml
+lcov.info
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+.nuget/
+
+# Build / compiler outputs
+*.dll.config
+*.pdb
+*.ilk
+*.obj
+*.pch
+*.pgc
+*.pgd
+*.tlog
+*.log
+*.tmp
+*.tmp_proj
+*.cache
+*.binlog
+*.msbuildlog
+*_wpftmp.csproj
+ClientBin/
+*.publishsettings
+*.pubxml.user
+
+# Code analysis / profiling
+*.sap
+*.VisualState.xml
+*.psess
+*.vsp
+*.vspx
+_ReSharper*/
+*.[Rr]e[Ss]harper
+_NCrunch_*
+.*crunch*.local.xml
+.sonarqube/
+.sonarlint/
+.scannerwork/
+BenchmarkDotNet.Artifacts/
+
+# Local app settings / secrets
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
+*.pfx
+*.snk
+.env
+.env.*
+!.env.example
+
+# Entity Framework
+*.mdf
+*.ldf
+*.ndf
+
+# SQLite local databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Node (web projects)
+node_modules/
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Backup files
+*.bak
+*.orig
+*.rej
+~$*
