@@ -1,0 +1,10 @@
+using System;
+using System.Runtime.InteropServices;
+
+namespace DenoXfs.Idc.Models.Structs;
+
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public struct XfsSample2
+{
+    int Value1;
+}

@@ -1,0 +1,329 @@
+{
+  "file": "XfsTtu.md",
+  "device_class": "TTU",
+  "part": 10,
+  "toc_line_range": [
+    30,
+    75
+  ],
+  "summary": {
+    "total_entries": 40,
+    "info_commands": 6,
+    "execute_commands": 14,
+    "events": 5
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 4
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 8,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.50",
+          "type": "section",
+          "page": 8,
+          "start_line": 223,
+          "end_line": 236
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 8,
+          "start_line": 237,
+          "end_line": 302
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Text Terminal Units",
+      "type": "section",
+      "page": 10
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 11
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 12,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_TTU_STATUS",
+          "type": "info_command",
+          "page": 12,
+          "start_line": 303,
+          "end_line": 472
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_TTU_CAPABILITIES",
+          "type": "info_command",
+          "page": 15,
+          "start_line": 473,
+          "end_line": 602
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_TTU_FORM_LIST",
+          "type": "info_command",
+          "page": 18,
+          "start_line": 603,
+          "end_line": 614
+        },
+        {
+          "section_id": "4.4",
+          "title": "WFS_INF_TTU_QUERY_FORM",
+          "type": "info_command",
+          "page": 19,
+          "start_line": 615,
+          "end_line": 660
+        },
+        {
+          "section_id": "4.5",
+          "title": "WFS_INF_TTU_QUERY_FIELD",
+          "type": "info_command",
+          "page": 20,
+          "start_line": 661,
+          "end_line": 736
+        },
+        {
+          "section_id": "4.6",
+          "title": "WFS_INF_TTU_KEY_DETAIL",
+          "type": "info_command",
+          "page": 22,
+          "start_line": 737,
+          "end_line": 824
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 24,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_CMD_TTU_BEEP",
+          "type": "execute_command",
+          "page": 24,
+          "start_line": 825,
+          "end_line": 858
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_CMD_TTU_CLEARSCREEN",
+          "type": "execute_command",
+          "page": 25,
+          "start_line": 859,
+          "end_line": 884
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_CMD_TTU_DISPLIGHT",
+          "type": "execute_command",
+          "page": 26,
+          "start_line": 885,
+          "end_line": 900
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_CMD_TTU_SET_LED",
+          "type": "execute_command",
+          "page": 27,
+          "start_line": 901,
+          "end_line": 929
+        },
+        {
+          "section_id": "5.5",
+          "title": "WFS_CMD_TTU_SET_RESOLUTION",
+          "type": "execute_command",
+          "page": 28,
+          "start_line": 930,
+          "end_line": 955
+        },
+        {
+          "section_id": "5.6",
+          "title": "WFS_CMD_TTU_WRITE_FORM",
+          "type": "execute_command",
+          "page": 29,
+          "start_line": 956,
+          "end_line": 1010
+        },
+        {
+          "section_id": "5.7",
+          "title": "WFS_CMD_TTU_READ_FORM",
+          "type": "execute_command",
+          "page": 30,
+          "start_line": 1011,
+          "end_line": 1117
+        },
+        {
+          "section_id": "5.8",
+          "title": "WFS_CMD_TTU_WRITE",
+          "type": "execute_command",
+          "page": 32,
+          "start_line": 1118,
+          "end_line": 1177
+        },
+        {
+          "section_id": "5.9",
+          "title": "WFS_CMD_TTU_READ",
+          "type": "execute_command",
+          "page": 34,
+          "start_line": 1178,
+          "end_line": 1345
+        },
+        {
+          "section_id": "5.10",
+          "title": "WFS_CMD_TTU_RESET",
+          "type": "execute_command",
+          "page": 37,
+          "start_line": 1346,
+          "end_line": 1357
+        },
+        {
+          "section_id": "5.11",
+          "title": "WFS_CMD_TTU_DEFINE_KEYS",
+          "type": "execute_command",
+          "page": 38,
+          "start_line": 1358,
+          "end_line": 1422
+        },
+        {
+          "section_id": "5.12",
+          "title": "WFS_CMD_TTU_POWER_SAVE_CONTROL",
+          "type": "execute_command",
+          "page": 40,
+          "start_line": 1423,
+          "end_line": 1455
+        },
+        {
+          "section_id": "5.13",
+          "title": "WFS_CMD_TTU_SET_LED_EX",
+          "type": "execute_command",
+          "page": 41,
+          "start_line": 1456,
+          "end_line": 1519
+        },
+        {
+          "section_id": "5.14",
+          "title": "WFS_CMD_TTU_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 42,
+          "start_line": 1520,
+          "end_line": 1569
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 43,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_EXEE_TTU_FIELDERROR",
+          "type": "event",
+          "page": 43,
+          "start_line": 1570,
+          "end_line": 1603
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_EXEE_TTU_FIELDWARNING",
+          "type": "event",
+          "page": 44,
+          "start_line": 1604,
+          "end_line": 1611
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_EXEE_TTU_KEY",
+          "type": "event",
+          "page": 45,
+          "start_line": 1612,
+          "end_line": 1640
+        },
+        {
+          "section_id": "6.4",
+          "title": "WFS_SRVE_TTU_DEVICEPOSITION",
+          "type": "event",
+          "page": 46,
+          "start_line": 1641,
+          "end_line": 1660
+        },
+        {
+          "section_id": "6.5",
+          "title": "WFS_SRVE_TTU_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 47,
+          "start_line": 1661,
+          "end_line": 1678
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. Form and Field Definitions",
+      "type": "section",
+      "page": 48,
+      "children": [
+        {
+          "section_id": "7.1",
+          "title": "Definition Syntax",
+          "type": "section",
+          "page": 48,
+          "start_line": 1679,
+          "end_line": 1714
+        },
+        {
+          "section_id": "7.2",
+          "title": "XFS form/media definition files in multi-vendor environments",
+          "type": "section",
+          "page": 49,
+          "start_line": 1715,
+          "end_line": 1727
+        },
+        {
+          "section_id": "7.3",
+          "title": "Form Definition",
+          "type": "section",
+          "page": 50,
+          "start_line": 1728,
+          "end_line": 1756
+        },
+        {
+          "section_id": "7.4",
+          "title": "Field Definition",
+          "type": "section",
+          "page": 51,
+          "start_line": 1761,
+          "end_line": 1813
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "8. C - Header file",
+      "type": "header",
+      "page": 53
+    }
+  ]
+}

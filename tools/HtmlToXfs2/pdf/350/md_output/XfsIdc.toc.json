@@ -1,0 +1,471 @@
+{
+  "file": "XfsIdc.md",
+  "device_class": "IDC",
+  "part": 8,
+  "toc_line_range": [
+    30,
+    93
+  ],
+  "summary": {
+    "total_entries": 58,
+    "info_commands": 6,
+    "execute_commands": 19,
+    "events": 16
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 4
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 8,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.50",
+          "type": "section",
+          "page": 8,
+          "start_line": 243,
+          "end_line": 256
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 8,
+          "start_line": 257,
+          "end_line": 351
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Identification Card Readers and Writers",
+      "type": "section",
+      "page": 10,
+      "children": [
+        {
+          "section_id": "2.1",
+          "title": "Support for EMV Intelligent Contactless Card Readers",
+          "type": "section",
+          "page": 11,
+          "start_line": 352,
+          "end_line": 407
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 12
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 13,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_IDC_STATUS",
+          "type": "info_command",
+          "page": 13,
+          "start_line": 408,
+          "end_line": 725
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_IDC_CAPABILITIES",
+          "type": "info_command",
+          "page": 19,
+          "start_line": 726,
+          "end_line": 1009
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_IDC_FORM_LIST",
+          "type": "info_command",
+          "page": 24,
+          "start_line": 1010,
+          "end_line": 1021
+        },
+        {
+          "section_id": "4.4",
+          "title": "WFS_INF_IDC_QUERY_FORM",
+          "type": "info_command",
+          "page": 25,
+          "start_line": 1022,
+          "end_line": 1100
+        },
+        {
+          "section_id": "4.5",
+          "title": "WFS_INF_IDC_QUERY_IFM_IDENTIFIER",
+          "type": "info_command",
+          "page": 27,
+          "start_line": 1101,
+          "end_line": 1138
+        },
+        {
+          "section_id": "4.6",
+          "title": "WFS_INF_IDC_EMVCLESS_QUERY_APPLICATIONS",
+          "type": "info_command",
+          "page": 28,
+          "start_line": 1139,
+          "end_line": 1165
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 29,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_CMD_IDC_READ_TRACK",
+          "type": "execute_command",
+          "page": 29,
+          "start_line": 1166,
+          "end_line": 1267
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_CMD_IDC_WRITE_TRACK",
+          "type": "execute_command",
+          "page": 31,
+          "start_line": 1268,
+          "end_line": 1370
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_CMD_IDC_EJECT_CARD",
+          "type": "execute_command",
+          "page": 33,
+          "start_line": 1371,
+          "end_line": 1434
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_CMD_IDC_RETAIN_CARD",
+          "type": "execute_command",
+          "page": 35,
+          "start_line": 1435,
+          "end_line": 1485
+        },
+        {
+          "section_id": "5.5",
+          "title": "WFS_CMD_IDC_RESET_COUNT",
+          "type": "execute_command",
+          "page": 36,
+          "start_line": 1486,
+          "end_line": 1502
+        },
+        {
+          "section_id": "5.6",
+          "title": "WFS_CMD_IDC_SETKEY",
+          "type": "execute_command",
+          "page": 37,
+          "start_line": 1503,
+          "end_line": 1526
+        },
+        {
+          "section_id": "5.7",
+          "title": "WFS_CMD_IDC_READ_RAW_DATA",
+          "type": "execute_command",
+          "page": 38,
+          "start_line": 1527,
+          "end_line": 1757
+        },
+        {
+          "section_id": "5.8",
+          "title": "WFS_CMD_IDC_WRITE_RAW_DATA",
+          "type": "execute_command",
+          "page": 42,
+          "start_line": 1758,
+          "end_line": 1864
+        },
+        {
+          "section_id": "5.9",
+          "title": "WFS_CMD_IDC_CHIP_IO",
+          "type": "execute_command",
+          "page": 44,
+          "start_line": 1865,
+          "end_line": 1938
+        },
+        {
+          "section_id": "5.10",
+          "title": "WFS_CMD_IDC_RESET",
+          "type": "execute_command",
+          "page": 46,
+          "start_line": 1939,
+          "end_line": 1984
+        },
+        {
+          "section_id": "5.11",
+          "title": "WFS_CMD_IDC_CHIP_POWER",
+          "type": "execute_command",
+          "page": 47,
+          "start_line": 1985,
+          "end_line": 2035
+        },
+        {
+          "section_id": "5.12",
+          "title": "WFS_CMD_IDC_PARSE_DATA",
+          "type": "execute_command",
+          "page": 48,
+          "start_line": 2036,
+          "end_line": 2090
+        },
+        {
+          "section_id": "5.13",
+          "title": "WFS_CMD_IDC_SET_GUIDANCE_LIGHT",
+          "type": "execute_command",
+          "page": 49,
+          "start_line": 2091,
+          "end_line": 2168
+        },
+        {
+          "section_id": "5.14",
+          "title": "WFS_CMD_IDC_POWER_SAVE_CONTROL",
+          "type": "execute_command",
+          "page": 51,
+          "start_line": 2169,
+          "end_line": 2205
+        },
+        {
+          "section_id": "5.15",
+          "title": "WFS_CMD_IDC_PARK_CARD",
+          "type": "execute_command",
+          "page": 52,
+          "start_line": 2206,
+          "end_line": 2262
+        },
+        {
+          "section_id": "5.16",
+          "title": "WFS_CMD_IDC_EMVCLESS_CONFIGURE",
+          "type": "execute_command",
+          "page": 53,
+          "start_line": 2263,
+          "end_line": 2370
+        },
+        {
+          "section_id": "5.17",
+          "title": "WFS_CMD_IDC_EMVCLESS_PERFORM_TRANSACTION",
+          "type": "execute_command",
+          "page": 55,
+          "start_line": 2371,
+          "end_line": 2663
+        },
+        {
+          "section_id": "5.18",
+          "title": "WFS_CMD_IDC_EMVCLESS_ISSUERUPDATE",
+          "type": "execute_command",
+          "page": 60,
+          "start_line": 2664,
+          "end_line": 2766
+        },
+        {
+          "section_id": "5.19",
+          "title": "WFS_CMD_IDC_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 62,
+          "start_line": 2767,
+          "end_line": 2816
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 63,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_EXEE_IDC_INVALIDTRACKDATA",
+          "type": "event",
+          "page": 63,
+          "start_line": 2817,
+          "end_line": 2841
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_EXEE_IDC_MEDIAINSERTED",
+          "type": "event",
+          "page": 64,
+          "start_line": 2842,
+          "end_line": 2848
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_SRVE_IDC_MEDIAREMOVED",
+          "type": "event",
+          "page": 65,
+          "start_line": 2849,
+          "end_line": 2858
+        },
+        {
+          "section_id": "6.4",
+          "title": "WFS_EXEE_IDC_MEDIARETAINED",
+          "type": "event",
+          "page": 66,
+          "start_line": 2859,
+          "end_line": 2865
+        },
+        {
+          "section_id": "6.5",
+          "title": "WFS_EXEE_IDC_INVALIDMEDIA",
+          "type": "event",
+          "page": 67,
+          "start_line": 2866,
+          "end_line": 2873
+        },
+        {
+          "section_id": "6.6",
+          "title": "WFS_SRVE_IDC_CARDACTION",
+          "type": "event",
+          "page": 68,
+          "start_line": 2874,
+          "end_line": 2900
+        },
+        {
+          "section_id": "6.7",
+          "title": "WFS_USRE_IDC_RETAINBINTHRESHOLD",
+          "type": "event",
+          "page": 69,
+          "start_line": 2901,
+          "end_line": 2916
+        },
+        {
+          "section_id": "6.8",
+          "title": "WFS_SRVE_IDC_MEDIADETECTED",
+          "type": "event",
+          "page": 70,
+          "start_line": 2917,
+          "end_line": 2934
+        },
+        {
+          "section_id": "6.9",
+          "title": "WFS_SRVE_IDC_RETAINBINREMOVED",
+          "type": "event",
+          "page": 71,
+          "start_line": 2935,
+          "end_line": 2941
+        },
+        {
+          "section_id": "6.10",
+          "title": "WFS_SRVE_IDC_RETAINBININSERTED",
+          "type": "event",
+          "page": 72,
+          "start_line": 2942,
+          "end_line": 2948
+        },
+        {
+          "section_id": "6.11",
+          "title": "WFS_EXEE_IDC_INSERTCARD",
+          "type": "event",
+          "page": 73,
+          "start_line": 2949,
+          "end_line": 2956
+        },
+        {
+          "section_id": "6.12",
+          "title": "WFS_SRVE_IDC_DEVICEPOSITION",
+          "type": "event",
+          "page": 74,
+          "start_line": 2957,
+          "end_line": 2976
+        },
+        {
+          "section_id": "6.13",
+          "title": "WFS_SRVE_IDC_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 75,
+          "start_line": 2977,
+          "end_line": 2991
+        },
+        {
+          "section_id": "6.14",
+          "title": "WFS_EXEE_IDC_TRACKDETECTED",
+          "type": "event",
+          "page": 76,
+          "start_line": 2992,
+          "end_line": 3013
+        },
+        {
+          "section_id": "6.15",
+          "title": "WFS_EXEE_IDC_EMVCLESSREADSTATUS",
+          "type": "event",
+          "page": 77,
+          "start_line": 3014,
+          "end_line": 3036
+        },
+        {
+          "section_id": "6.16",
+          "title": "WFS_SRVE_IDC_MEDIARETAINED",
+          "type": "event",
+          "page": 78,
+          "start_line": 3037,
+          "end_line": 3092
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. Form Description",
+      "type": "section",
+      "page": 79
+    },
+    {
+      "section_id": "",
+      "title": "8. C-Header file",
+      "type": "header",
+      "page": 82
+    },
+    {
+      "section_id": "",
+      "title": "9. Intelligent Contactless Card Sequence Diagrams",
+      "type": "section",
+      "page": 93,
+      "children": [
+        {
+          "section_id": "9.1",
+          "title": "Single Tap Transaction Without Issuer Update Processing",
+          "type": "section",
+          "page": 94,
+          "start_line": 3808,
+          "end_line": 3812
+        },
+        {
+          "section_id": "9.2",
+          "title": "Double Tap Transaction With Issuer Update Processing",
+          "type": "section",
+          "page": 95,
+          "start_line": 3813,
+          "end_line": 3817
+        },
+        {
+          "section_id": "9.3",
+          "title": "Card Removed Before Completion",
+          "type": "section",
+          "page": 96,
+          "start_line": 3818,
+          "end_line": 3828
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "Appendix A. Diagram Source",
+      "type": "appendix",
+      "page": 97
+    }
+  ]
+}

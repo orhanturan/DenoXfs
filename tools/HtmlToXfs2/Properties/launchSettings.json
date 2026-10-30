@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "HtmlToXfs2": {
+      "commandName": "Project",
+      "commandLineArgs": "\r\n",
+      "workingDirectory": "C:\\src\\orhanturan\\Tools\\HtmlToXfs2"
+    }
+  }
+}

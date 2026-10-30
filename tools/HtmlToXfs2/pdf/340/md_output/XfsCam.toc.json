@@ -1,0 +1,153 @@
+{
+  "file": "XfsCam.md",
+  "device_class": "CAM",
+  "part": 13,
+  "toc_line_range": [
+    30,
+    50
+  ],
+  "summary": {
+    "total_entries": 18,
+    "info_commands": 2,
+    "execute_commands": 4,
+    "events": 2
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 3
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 7,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.40",
+          "type": "section",
+          "page": 7,
+          "start_line": 197,
+          "end_line": 218
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 7,
+          "start_line": 219,
+          "end_line": 279
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Banking Cameras",
+      "type": "section",
+      "page": 9
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 10
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 11,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_CAM_STATUS",
+          "type": "info_command",
+          "page": 11,
+          "start_line": 280,
+          "end_line": 435
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_CAM_CAPABILITIES",
+          "type": "info_command",
+          "page": 14,
+          "start_line": 436,
+          "end_line": 527
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 16,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_CMD_CAM_TAKE_PICTURE",
+          "type": "execute_command",
+          "page": 16,
+          "start_line": 528,
+          "end_line": 580
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_CMD_CAM_RESET",
+          "type": "execute_command",
+          "page": 17,
+          "start_line": 581,
+          "end_line": 591
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_CMD_CAM_TAKE_PICTURE_EX",
+          "type": "execute_command",
+          "page": 18,
+          "start_line": 592,
+          "end_line": 653
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_CMD_CAM_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 20,
+          "start_line": 654,
+          "end_line": 703
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 21,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_USRE_CAM_MEDIATHRESHOLD",
+          "type": "event",
+          "page": 21,
+          "start_line": 704,
+          "end_line": 716
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_EXEE_CAM_INVALIDDATA",
+          "type": "event",
+          "page": 22,
+          "start_line": 717,
+          "end_line": 732
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. C - Header file",
+      "type": "header",
+      "page": 23
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+# XfsCdm - CDM
+
+Cash Dispenser Device Class Interface
+
+Source: `XfsCdm.pdf` | sections: 83 | split level: 5
+
+| Section | Type | Lines | File |
+|---|---|---|---|
+| Front matter | front_matter | 124 | [000-Front-matter.md](000-Front-matter.md) |
+| European Foreword | section | 149 | [001-European-Foreword.md](001-European-Foreword.md) |
+| 1. Introduction | section | 1 | [002-1-Introduction.md](002-1-Introduction.md) |
+| 1.1 Background to Release 3.50 | section | 14 | [003-1.1-Background-to-Release-3-50.md](003-1.1-Background-to-Release-3-50.md) |
+| 1.2 XFS Service-Specific Programming | section | 41 | [004-1.2-XFS-Service-Specific-Programming.md](004-1.2-XFS-Service-Specific-Programming.md) |
+| 2. Cash Dispensers | section | 40 | [005-2-Cash-Dispensers.md](005-2-Cash-Dispensers.md) |
+| 3. References | section | 8 | [006-3-References.md](006-3-References.md) |
+| 4. Note Classification | section | 46 | [007-4-Note-Classification.md](007-4-Note-Classification.md) |
+| 5. Info Commands | info_commands_section | 1 | [008-5-Info-Commands.md](008-5-Info-Commands.md) |
+| 5.1 WFS_INF_CDM_STATUS | info_command | 285 | [009-5.1-WFS-INF-CDM-STATUS.md](009-5.1-WFS-INF-CDM-STATUS.md) |
+| 5.2 WFS_INF_CDM_CAPABILITIES | info_command | 266 | [010-5.2-WFS-INF-CDM-CAPABILITIES.md](010-5.2-WFS-INF-CDM-CAPABILITIES.md) |
+| 5.3 WFS_INF_CDM_CASH_UNIT_INFO | info_command | 395 | [011-5.3-WFS-INF-CDM-CASH-UNIT-INFO.md](011-5.3-WFS-INF-CDM-CASH-UNIT-INFO.md) |
+| 5.4 WFS_INF_CDM_TELLER_INFO | info_command | 99 | [012-5.4-WFS-INF-CDM-TELLER-INFO.md](012-5.4-WFS-INF-CDM-TELLER-INFO.md) |
+| 5.5 WFS_INF_CDM_CURRENCY_EXP | info_command | 38 | [013-5.5-WFS-INF-CDM-CURRENCY-EXP.md](013-5.5-WFS-INF-CDM-CURRENCY-EXP.md) |
+| 5.6 WFS_INF_CDM_MIX_TYPES | info_command | 50 | [014-5.6-WFS-INF-CDM-MIX-TYPES.md](014-5.6-WFS-INF-CDM-MIX-TYPES.md) |
+| 5.7 WFS_INF_CDM_MIX_TABLE | info_command | 50 | [015-5.7-WFS-INF-CDM-MIX-TABLE.md](015-5.7-WFS-INF-CDM-MIX-TABLE.md) |
+| 5.8 WFS_INF_CDM_PRESENT_STATUS | info_command | 67 | [016-5.8-WFS-INF-CDM-PRESENT-STATUS.md](016-5.8-WFS-INF-CDM-PRESENT-STATUS.md) |
+| 5.9 WFS_INF_CDM_GET_ITEM_INFO | info_command | 108 | [017-5.9-WFS-INF-CDM-GET-ITEM-INFO.md](017-5.9-WFS-INF-CDM-GET-ITEM-INFO.md) |
+| 5.10 WFS_INF_CDM_GET_BLACKLIST | info_command | 40 | [018-5.10-WFS-INF-CDM-GET-BLACKLIST.md](018-5.10-WFS-INF-CDM-GET-BLACKLIST.md) |
+| 5.11 WFS_INF_CDM_GET_ALL_ITEMS_INFO | info_command | 164 | [019-5.11-WFS-INF-CDM-GET-ALL-ITEMS-INFO.md](019-5.11-WFS-INF-CDM-GET-ALL-ITEMS-INFO.md) |
+| 5.12 WFS_INF_CDM_GET_CLASSIFICATION_LIST | info_command | 68 | [020-5.12-WFS-INF-CDM-GET-CLASSIFICATION-LIST.md](020-5.12-WFS-INF-CDM-GET-CLASSIFICATION-LIST.md) |
+| 6. Execute Commands | execute_commands_section | 1 | [021-6-Execute-Commands.md](021-6-Execute-Commands.md) |
+| 6.1 WFS_CMD_CDM_DENOMINATE | execute_command | 135 | [022-6.1-WFS-CMD-CDM-DENOMINATE.md](022-6.1-WFS-CMD-CDM-DENOMINATE.md) |
+| 6.2 WFS_CMD_CDM_DISPENSE | execute_command | 191 | [023-6.2-WFS-CMD-CDM-DISPENSE.md](023-6.2-WFS-CMD-CDM-DISPENSE.md) |
+| 6.3 WFS_CMD_CDM_COUNT | execute_command | 124 | [024-6.3-WFS-CMD-CDM-COUNT.md](024-6.3-WFS-CMD-CDM-COUNT.md) |
+| 6.4 WFS_CMD_CDM_PRESENT | execute_command | 65 | [025-6.4-WFS-CMD-CDM-PRESENT.md](025-6.4-WFS-CMD-CDM-PRESENT.md) |
+| 6.5 WFS_CMD_CDM_REJECT | execute_command | 31 | [026-6.5-WFS-CMD-CDM-REJECT.md](026-6.5-WFS-CMD-CDM-REJECT.md) |
+| 6.6 WFS_CMD_CDM_RETRACT | execute_command | 154 | [027-6.6-WFS-CMD-CDM-RETRACT.md](027-6.6-WFS-CMD-CDM-RETRACT.md) |
+| 6.7 WFS_CMD_CDM_OPEN_SHUTTER | execute_command | 36 | [028-6.7-WFS-CMD-CDM-OPEN-SHUTTER.md](028-6.7-WFS-CMD-CDM-OPEN-SHUTTER.md) |
+| 6.8 WFS_CMD_CDM_CLOSE_SHUTTER | execute_command | 36 | [029-6.8-WFS-CMD-CDM-CLOSE-SHUTTER.md](029-6.8-WFS-CMD-CDM-CLOSE-SHUTTER.md) |
+| 6.9 WFS_CMD_CDM_SET_TELLER_INFO | execute_command | 40 | [030-6.9-WFS-CMD-CDM-SET-TELLER-INFO.md](030-6.9-WFS-CMD-CDM-SET-TELLER-INFO.md) |
+| 6.10 WFS_CMD_CDM_SET_CASH_UNIT_INFO | execute_command | 63 | [031-6.10-WFS-CMD-CDM-SET-CASH-UNIT-INFO.md](031-6.10-WFS-CMD-CDM-SET-CASH-UNIT-INFO.md) |
+| 6.11 WFS_CMD_CDM_START_EXCHANGE | execute_command | 109 | [032-6.11-WFS-CMD-CDM-START-EXCHANGE.md](032-6.11-WFS-CMD-CDM-START-EXCHANGE.md) |
+| 6.12 WFS_CMD_CDM_END_EXCHANGE | execute_command | 63 | [033-6.12-WFS-CMD-CDM-END-EXCHANGE.md](033-6.12-WFS-CMD-CDM-END-EXCHANGE.md) |
+| 6.13 WFS_CMD_CDM_OPEN_SAFE_DOOR | execute_command | 15 | [034-6.13-WFS-CMD-CDM-OPEN-SAFE-DOOR.md](034-6.13-WFS-CMD-CDM-OPEN-SAFE-DOOR.md) |
+| 6.14 WFS_CMD_CDM_CALIBRATE_CASH_UNIT | execute_command | 68 | [035-6.14-WFS-CMD-CDM-CALIBRATE-CASH-UNIT.md](035-6.14-WFS-CMD-CDM-CALIBRATE-CASH-UNIT.md) |
+| 6.15 WFS_CMD_CDM_SET_MIX_TABLE | execute_command | 26 | [036-6.15-WFS-CMD-CDM-SET-MIX-TABLE.md](036-6.15-WFS-CMD-CDM-SET-MIX-TABLE.md) |
+| 6.16 WFS_CMD_CDM_RESET | execute_command | 109 | [037-6.16-WFS-CMD-CDM-RESET.md](037-6.16-WFS-CMD-CDM-RESET.md) |
+| 6.17 WFS_CMD_CDM_TEST_CASH_UNITS | execute_command | 75 | [038-6.17-WFS-CMD-CDM-TEST-CASH-UNITS.md](038-6.17-WFS-CMD-CDM-TEST-CASH-UNITS.md) |
+| 6.18 WFS_CMD_CDM_SET_GUIDANCE_LIGHT | execute_command | 79 | [039-6.18-WFS-CMD-CDM-SET-GUIDANCE-LIGHT.md](039-6.18-WFS-CMD-CDM-SET-GUIDANCE-LIGHT.md) |
+| 6.19 WFS_CMD_CDM_POWER_SAVE_CONTROL | execute_command | 38 | [040-6.19-WFS-CMD-CDM-POWER-SAVE-CONTROL.md](040-6.19-WFS-CMD-CDM-POWER-SAVE-CONTROL.md) |
+| 6.20 WFS_CMD_CDM_PREPARE_DISPENSE | execute_command | 43 | [041-6.20-WFS-CMD-CDM-PREPARE-DISPENSE.md](041-6.20-WFS-CMD-CDM-PREPARE-DISPENSE.md) |
+| 6.21 WFS_CMD_CDM_SET_BLACKLIST | execute_command | 36 | [042-6.21-WFS-CMD-CDM-SET-BLACKLIST.md](042-6.21-WFS-CMD-CDM-SET-BLACKLIST.md) |
+| 6.22 WFS_CMD_CDM_SYNCHRONIZE_COMMAND | execute_command | 50 | [043-6.22-WFS-CMD-CDM-SYNCHRONIZE-COMMAND.md](043-6.22-WFS-CMD-CDM-SYNCHRONIZE-COMMAND.md) |
+| 6.23 WFS_CMD_CDM_SET_CLASSIFICATION_LIST | execute_command | 25 | [044-6.23-WFS-CMD-CDM-SET-CLASSIFICATION-LIST.md](044-6.23-WFS-CMD-CDM-SET-CLASSIFICATION-LIST.md) |
+| 7. Events | events_section | 1 | [045-7-Events.md](045-7-Events.md) |
+| 7.1 WFS_SRVE_CDM_SAFEDOOROPEN | event | 7 | [046-7.1-WFS-SRVE-CDM-SAFEDOOROPEN.md](046-7.1-WFS-SRVE-CDM-SAFEDOOROPEN.md) |
+| 7.2 WFS_SRVE_CDM_SAFEDOORCLOSED | event | 7 | [047-7.2-WFS-SRVE-CDM-SAFEDOORCLOSED.md](047-7.2-WFS-SRVE-CDM-SAFEDOORCLOSED.md) |
+| 7.3 WFS_USRE_CDM_CASHUNITTHRESHOLD | event | 25 | [048-7.3-WFS-USRE-CDM-CASHUNITTHRESHOLD.md](048-7.3-WFS-USRE-CDM-CASHUNITTHRESHOLD.md) |
+| 7.4 WFS_SRVE_CDM_CASHUNITINFOCHANGED | event | 34 | [049-7.4-WFS-SRVE-CDM-CASHUNITINFOCHANGED.md](049-7.4-WFS-SRVE-CDM-CASHUNITINFOCHANGED.md) |
+| 7.5 WFS_SRVE_CDM_TELLERINFOCHANGED | event | 10 | [050-7.5-WFS-SRVE-CDM-TELLERINFOCHANGED.md](050-7.5-WFS-SRVE-CDM-TELLERINFOCHANGED.md) |
+| 7.6 WFS_EXEE_CDM_DELAYEDDISPENSE | event | 10 | [051-7.6-WFS-EXEE-CDM-DELAYEDDISPENSE.md](051-7.6-WFS-EXEE-CDM-DELAYEDDISPENSE.md) |
+| 7.7 WFS_EXEE_CDM_STARTDISPENSE | event | 9 | [052-7.7-WFS-EXEE-CDM-STARTDISPENSE.md](052-7.7-WFS-EXEE-CDM-STARTDISPENSE.md) |
+| 7.8 WFS_EXEE_CDM_CASHUNITERROR | event | 29 | [053-7.8-WFS-EXEE-CDM-CASHUNITERROR.md](053-7.8-WFS-EXEE-CDM-CASHUNITERROR.md) |
+| 7.9 WFS_SRVE_CDM_ITEMSTAKEN | event | 19 | [054-7.9-WFS-SRVE-CDM-ITEMSTAKEN.md](054-7.9-WFS-SRVE-CDM-ITEMSTAKEN.md) |
+| 7.10 WFS_SRVE_CDM_COUNTS_CHANGED | event | 18 | [055-7.10-WFS-SRVE-CDM-COUNTS-CHANGED.md](055-7.10-WFS-SRVE-CDM-COUNTS-CHANGED.md) |
+| 7.11 WFS_EXEE_CDM_PARTIALDISPENSE | event | 11 | [056-7.11-WFS-EXEE-CDM-PARTIALDISPENSE.md](056-7.11-WFS-EXEE-CDM-PARTIALDISPENSE.md) |
+| 7.12 WFS_EXEE_CDM_SUBDISPENSEOK | event | 12 | [057-7.12-WFS-EXEE-CDM-SUBDISPENSEOK.md](057-7.12-WFS-EXEE-CDM-SUBDISPENSEOK.md) |
+| 7.13 WFS_EXEE_CDM_INCOMPLETEDISPENSE | event | 15 | [058-7.13-WFS-EXEE-CDM-INCOMPLETEDISPENSE.md](058-7.13-WFS-EXEE-CDM-INCOMPLETEDISPENSE.md) |
+| 7.14 WFS_EXEE_CDM_NOTEERROR | event | 19 | [059-7.14-WFS-EXEE-CDM-NOTEERROR.md](059-7.14-WFS-EXEE-CDM-NOTEERROR.md) |
+| 7.15 WFS_SRVE_CDM_ITEMSPRESENTED | event | 8 | [060-7.15-WFS-SRVE-CDM-ITEMSPRESENTED.md](060-7.15-WFS-SRVE-CDM-ITEMSPRESENTED.md) |
+| 7.16 WFS_SRVE_CDM_MEDIADETECTED | event | 12 | [061-7.16-WFS-SRVE-CDM-MEDIADETECTED.md](061-7.16-WFS-SRVE-CDM-MEDIADETECTED.md) |
+| 7.17 WFS_EXEE_CDM_INPUT_P6 | event | 8 | [062-7.17-WFS-EXEE-CDM-INPUT-P6.md](062-7.17-WFS-EXEE-CDM-INPUT-P6.md) |
+| 7.18 WFS_SRVE_CDM_DEVICEPOSITION | event | 20 | [063-7.18-WFS-SRVE-CDM-DEVICEPOSITION.md](063-7.18-WFS-SRVE-CDM-DEVICEPOSITION.md) |
+| 7.19 WFS_SRVE_CDM_POWER_SAVE_CHANGE | event | 15 | [064-7.19-WFS-SRVE-CDM-POWER-SAVE-CHANGE.md](064-7.19-WFS-SRVE-CDM-POWER-SAVE-CHANGE.md) |
+| 7.20 WFS_EXEE_CDM_INFO_AVAILABLE | event | 24 | [065-7.20-WFS-EXEE-CDM-INFO-AVAILABLE.md](065-7.20-WFS-EXEE-CDM-INFO-AVAILABLE.md) |
+| 7.21 WFS_EXEE_CDM_INCOMPLETERETRACT | event | 32 | [066-7.21-WFS-EXEE-CDM-INCOMPLETERETRACT.md](066-7.21-WFS-EXEE-CDM-INCOMPLETERETRACT.md) |
+| 7.22 WFS_SRVE_CDM_SHUTTERSTATUSCHANGED | event | 33 | [067-7.22-WFS-SRVE-CDM-SHUTTERSTATUSCHANGED.md](067-7.22-WFS-SRVE-CDM-SHUTTERSTATUSCHANGED.md) |
+| 7.23 WFS_SRVE_CDM_ITEMSINSERTED | event | 20 | [068-7.23-WFS-SRVE-CDM-ITEMSINSERTED.md](068-7.23-WFS-SRVE-CDM-ITEMSINSERTED.md) |
+| 8. Sub-Dispensing Command Flow | section | 189 | [069-8-Sub-Dispensing-Command-Flow.md](069-8-Sub-Dispensing-Command-Flow.md) |
+| 9. Rules for Cash Unit Exchange | section | 20 | [070-9-Rules-for-Cash-Unit-Exchange.md](070-9-Rules-for-Cash-Unit-Exchange.md) |
+| 10. Events Associated with Cash Unit Status Changes | events_section | 3 | [071-10-Events-Associated-with-Cash-Unit-Status-Changes.md](071-10-Events-Associated-with-Cash-Unit-Status-Changes.md) |
+| 10.1 One Physical Cash Unit Goes LOW | section | 18 | [072-10.1-One-Physical-Cash-Unit-Goes-LOW.md](072-10.1-One-Physical-Cash-Unit-Goes-LOW.md) |
+| 10.2 Last Physical Cash Unit Goes LOW | section | 19 | [073-10.2-Last-Physical-Cash-Unit-Goes-LOW.md](073-10.2-Last-Physical-Cash-Unit-Goes-LOW.md) |
+| 10.3 One Physical Cash Unit Goes INOP | section | 24 | [074-10.3-One-Physical-Cash-Unit-Goes-INOP.md](074-10.3-One-Physical-Cash-Unit-Goes-INOP.md) |
+| 10.4 Last Physical Cash Unit Goes EMPTY | section | 18 | [075-10.4-Last-Physical-Cash-Unit-Goes-EMPTY.md](075-10.4-Last-Physical-Cash-Unit-Goes-EMPTY.md) |
+| 11. Multiple Dispense Command Flow | section | 138 | [076-11-Multiple-Dispense-Command-Flow.md](076-11-Multiple-Dispense-Command-Flow.md) |
+| 12. Appendix E – Cash Dispenser E2E Authentication | appendix | 11 | [077-12-Appendix-E-Cash-Dispenser-E2E-Authentication.md](077-12-Appendix-E-Cash-Dispenser-E2E-Authentication.md) |
+| 12.1 Secure Dispense Data Parameter Example Data | section | 71 | [078-12.1-Secure-Dispense-Data-Parameter-Example-Data.md](078-12.1-Secure-Dispense-Data-Parameter-Example-Data.md) |
+| 12.2 Secure Dispense Command Flow: - Dispense and Present | section | 86 | [079-12.2-Secure-Dispense-Command-Flow-Dispense-and-Present.md](079-12.2-Secure-Dispense-Command-Flow-Dispense-and-Present.md) |
+| 12.3 Secure Dispense Command Flow – Dispense Only with no Present | section | 290 | [080-12.3-Secure-Dispense-Command-Flow-Dispense-Only-with-no-Present.md](080-12.3-Secure-Dispense-Command-Flow-Dispense-Only-with-no-Present.md) |
+| 12.6 Secure Dispense Command Flow: - Authentication Process Timeout | section | 61 | [081-12.6-Secure-Dispense-Command-Flow-Authentication-Process-Timeout.md](081-12.6-Secure-Dispense-Command-Flow-Authentication-Process-Timeout.md) |
+| 13. C - Header file | header | 765 | [082-13-C-Header-file.md](082-13-C-Header-file.md) |

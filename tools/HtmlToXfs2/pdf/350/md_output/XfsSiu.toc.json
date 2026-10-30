@@ -1,0 +1,243 @@
+{
+  "file": "XfsSiu.md",
+  "device_class": "SIU",
+  "part": 11,
+  "toc_line_range": [
+    30,
+    61
+  ],
+  "summary": {
+    "total_entries": 29,
+    "info_commands": 3,
+    "execute_commands": 11,
+    "events": 3
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 3
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 7,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.50",
+          "type": "section",
+          "page": 7,
+          "start_line": 211,
+          "end_line": 224
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 7,
+          "start_line": 225,
+          "end_line": 286
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Sensors and Indicators Unit",
+      "type": "section",
+      "page": 9,
+      "children": [
+        {
+          "section_id": "2.1",
+          "title": "Enhanced Audio Controller Overview",
+          "type": "section",
+          "page": 10,
+          "start_line": 287,
+          "end_line": 412
+        },
+        {
+          "section_id": "2.2",
+          "title": "Enhanced Microphone Controller Overview",
+          "type": "section",
+          "page": 14,
+          "start_line": 413,
+          "end_line": 471
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 15
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 16,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_SIU_STATUS",
+          "type": "info_command",
+          "page": 16,
+          "start_line": 472,
+          "end_line": 639
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_SIU_CAPABILITIES",
+          "type": "info_command",
+          "page": 27,
+          "start_line": 1110,
+          "end_line": 1828
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_SIU_GET_AUTOSTARTUP_TIME",
+          "type": "info_command",
+          "page": 38,
+          "start_line": 1829,
+          "end_line": 1888
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 40,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_CMD_SIU_ENABLE_EVENTS",
+          "type": "execute_command",
+          "page": 40,
+          "start_line": 1889,
+          "end_line": 2356
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_CMD_SIU_SET_PORTS",
+          "type": "execute_command",
+          "page": 49,
+          "start_line": 2357,
+          "end_line": 2746
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_CMD_SIU_SET_DOOR",
+          "type": "execute_command",
+          "page": 56,
+          "start_line": 2747,
+          "end_line": 2797
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_CMD_SIU_SET_INDICATOR",
+          "type": "execute_command",
+          "page": 57,
+          "start_line": 2798,
+          "end_line": 2898
+        },
+        {
+          "section_id": "5.5",
+          "title": "WFS_CMD_SIU_SET_AUXILIARY",
+          "type": "execute_command",
+          "page": 59,
+          "start_line": 2899,
+          "end_line": 3025
+        },
+        {
+          "section_id": "5.6",
+          "title": "WFS_CMD_SIU_SET_GUIDLIGHT",
+          "type": "execute_command",
+          "page": 62,
+          "start_line": 3026,
+          "end_line": 3062
+        },
+        {
+          "section_id": "5.7",
+          "title": "WFS_CMD_SIU_RESET",
+          "type": "execute_command",
+          "page": 63,
+          "start_line": 3063,
+          "end_line": 3082
+        },
+        {
+          "section_id": "5.8",
+          "title": "WFS_CMD_SIU_POWER_SAVE_CONTROL",
+          "type": "execute_command",
+          "page": 64,
+          "start_line": 3083,
+          "end_line": 3119
+        },
+        {
+          "section_id": "5.9",
+          "title": "WFS_CMD_SIU_SET_AUTOSTARTUP_TIME",
+          "type": "execute_command",
+          "page": 65,
+          "start_line": 3120,
+          "end_line": 3179
+        },
+        {
+          "section_id": "5.10",
+          "title": "WFS_CMD_SIU_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 67,
+          "start_line": 3180,
+          "end_line": 3228
+        },
+        {
+          "section_id": "5.11",
+          "title": "WFS_CMD_SIU_SET_GUIDLIGHT_EX",
+          "type": "execute_command",
+          "page": 68,
+          "start_line": 3229,
+          "end_line": 3264
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 69,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_SRVE_SIU_PORT_STATUS",
+          "type": "event",
+          "page": 69,
+          "start_line": 3265,
+          "end_line": 3416
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_EXEE_SIU_PORT_ERROR",
+          "type": "event",
+          "page": 72,
+          "start_line": 3417,
+          "end_line": 3576
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_SRVE_SIU_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 75,
+          "start_line": 3577,
+          "end_line": 3598
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. C - Header file",
+      "type": "header",
+      "page": 76
+    }
+  ]
+}

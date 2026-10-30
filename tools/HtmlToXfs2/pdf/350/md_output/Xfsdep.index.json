@@ -1,0 +1,435 @@
+{
+  "file": "Xfsdep.md",
+  "device_class": "DEP",
+  "part": 17,
+  "description": "Depository Device Class Interface",
+  "total_lines": 1631,
+  "sections": [
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 155,
+      "end_line": 156
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 157,
+      "end_line": 200
+    },
+    {
+      "id": "3.00",
+      "name": "October 18, 2000 Initial Release.",
+      "type": "section",
+      "start_line": 201,
+      "end_line": 201
+    },
+    {
+      "id": "3.10",
+      "name": "November 29, 2007 For a description of changes from version 3.00 to version",
+      "type": "section",
+      "start_line": 202,
+      "end_line": 202
+    },
+    {
+      "id": "3.10",
+      "name": "see the DEP 3.10 Migration document.",
+      "type": "section",
+      "start_line": 203,
+      "end_line": 203
+    },
+    {
+      "id": "3.20",
+      "name": "March 2, 2011 For a description of changes from version 3.10 to version",
+      "type": "section",
+      "start_line": 204,
+      "end_line": 204
+    },
+    {
+      "id": "3.20",
+      "name": "see the DEP 3.20 Migration document.",
+      "type": "section",
+      "start_line": 205,
+      "end_line": 205
+    },
+    {
+      "id": "3.30",
+      "name": "March 19, 2015 For a description of changes from version 3.20 to version",
+      "type": "section",
+      "start_line": 206,
+      "end_line": 206
+    },
+    {
+      "id": "3.30",
+      "name": "see the DEP 3.30 Migration document.",
+      "type": "section",
+      "start_line": 207,
+      "end_line": 207
+    },
+    {
+      "id": "3.40",
+      "name": "December 06, 2019 For a description of changes from version 3.30 to version",
+      "type": "section",
+      "start_line": 208,
+      "end_line": 208
+    },
+    {
+      "id": "3.40",
+      "name": "see the DEP 3.40 Migration document.",
+      "type": "section",
+      "start_line": 209,
+      "end_line": 209
+    },
+    {
+      "id": "3.50",
+      "name": "November 18, 2022 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 210,
+      "end_line": 210
+    },
+    {
+      "id": "3.50",
+      "name": "see the DEP 3.50 Migration document.",
+      "type": "section",
+      "start_line": 211,
+      "end_line": 215
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.50",
+      "type": "section",
+      "start_line": 216,
+      "end_line": 229
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 230,
+      "end_line": 298
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_DEP_STATUS",
+      "type": "info",
+      "start_line": 299,
+      "end_line": 572
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_DEP_CAPABILITIES",
+      "type": "info",
+      "start_line": 573,
+      "end_line": 725
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_DEP_ENTRY",
+      "type": "command",
+      "start_line": 726,
+      "end_line": 813
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_DEP_DISPENSE",
+      "type": "command",
+      "start_line": 814,
+      "end_line": 838
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_DEP_RETRACT",
+      "type": "command",
+      "start_line": 839,
+      "end_line": 896
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_DEP_RESET_COUNT",
+      "type": "command",
+      "start_line": 897,
+      "end_line": 912
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_DEP_RESET",
+      "type": "command",
+      "start_line": 913,
+      "end_line": 969
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_DEP_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 970,
+      "end_line": 1050
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_DEP_SUPPLY_REPLENISH",
+      "type": "command",
+      "start_line": 1051,
+      "end_line": 1088
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_DEP_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 1089,
+      "end_line": 1125
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_CMD_DEP_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 1126,
+      "end_line": 1175
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_SRVE_DEP_ENVTAKEN",
+      "type": "event",
+      "start_line": 1176,
+      "end_line": 1182
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_DEP_ENVDEPOSITED",
+      "type": "event",
+      "start_line": 1183,
+      "end_line": 1189
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_EXEE_DEP_DEPOSITERROR",
+      "type": "event",
+      "start_line": 1190,
+      "end_line": 1200
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_USRE_DEP_DEPTHRESHOLD",
+      "type": "event",
+      "start_line": 1201,
+      "end_line": 1214
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_USRE_DEP_TONERTHRESHOLD",
+      "type": "event",
+      "start_line": 1215,
+      "end_line": 1232
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_USRE_DEP_ENVTHRESHOLD",
+      "type": "event",
+      "start_line": 1233,
+      "end_line": 1247
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_SRVE_DEP_CONTINSERTED",
+      "type": "event",
+      "start_line": 1248,
+      "end_line": 1254
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_SRVE_DEP_CONTREMOVED",
+      "type": "event",
+      "start_line": 1255,
+      "end_line": 1261
+    },
+    {
+      "id": "6.9",
+      "name": "WFS_SRVE_DEP_ENVINSERTED",
+      "type": "event",
+      "start_line": 1262,
+      "end_line": 1268
+    },
+    {
+      "id": "6.10",
+      "name": "WFS_SRVE_DEP_MEDIADETECTED",
+      "type": "event",
+      "start_line": 1269,
+      "end_line": 1304
+    },
+    {
+      "id": "6.11",
+      "name": "WFS_EXEE_DEP_INSERTDEPOSIT",
+      "type": "event",
+      "start_line": 1305,
+      "end_line": 1312
+    },
+    {
+      "id": "6.12",
+      "name": "WFS_SRVE_DEP_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 1313,
+      "end_line": 1332
+    },
+    {
+      "id": "6.13",
+      "name": "WFS_SRVE_DEP_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 1333,
+      "end_line": 1355
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSDEP__H",
+      "type": "header",
+      "start_line": 1356,
+      "end_line": 1631
+    }
+  ],
+  "commands": {
+    "WFS_INF_DEP_STATUS": {
+      "section_id": "4.1",
+      "start_line": 299,
+      "end_line": 572,
+      "type": "info"
+    },
+    "WFS_INF_DEP_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 573,
+      "end_line": 725,
+      "type": "info"
+    },
+    "WFS_CMD_DEP_ENTRY": {
+      "section_id": "5.1",
+      "start_line": 726,
+      "end_line": 813,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_DISPENSE": {
+      "section_id": "5.2",
+      "start_line": 814,
+      "end_line": 838,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_RETRACT": {
+      "section_id": "5.3",
+      "start_line": 839,
+      "end_line": 896,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_RESET_COUNT": {
+      "section_id": "5.4",
+      "start_line": 897,
+      "end_line": 912,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_RESET": {
+      "section_id": "5.5",
+      "start_line": 913,
+      "end_line": 969,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_SET_GUIDANCE_LIGHT": {
+      "section_id": "5.6",
+      "start_line": 970,
+      "end_line": 1050,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_SUPPLY_REPLENISH": {
+      "section_id": "5.7",
+      "start_line": 1051,
+      "end_line": 1088,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_POWER_SAVE_CONTROL": {
+      "section_id": "5.8",
+      "start_line": 1089,
+      "end_line": 1125,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.9",
+      "start_line": 1126,
+      "end_line": 1175,
+      "type": "command"
+    },
+    "WFS_SRVE_DEP_ENVTAKEN": {
+      "section_id": "6.1",
+      "start_line": 1176,
+      "end_line": 1182,
+      "type": "event"
+    },
+    "WFS_EXEE_DEP_ENVDEPOSITED": {
+      "section_id": "6.2",
+      "start_line": 1183,
+      "end_line": 1189,
+      "type": "event"
+    },
+    "WFS_EXEE_DEP_DEPOSITERROR": {
+      "section_id": "6.3",
+      "start_line": 1190,
+      "end_line": 1200,
+      "type": "event"
+    },
+    "WFS_USRE_DEP_DEPTHRESHOLD": {
+      "section_id": "6.4",
+      "start_line": 1201,
+      "end_line": 1214,
+      "type": "event"
+    },
+    "WFS_USRE_DEP_TONERTHRESHOLD": {
+      "section_id": "6.5",
+      "start_line": 1215,
+      "end_line": 1232,
+      "type": "event"
+    },
+    "WFS_USRE_DEP_ENVTHRESHOLD": {
+      "section_id": "6.6",
+      "start_line": 1233,
+      "end_line": 1247,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_CONTINSERTED": {
+      "section_id": "6.7",
+      "start_line": 1248,
+      "end_line": 1254,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_CONTREMOVED": {
+      "section_id": "6.8",
+      "start_line": 1255,
+      "end_line": 1261,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_ENVINSERTED": {
+      "section_id": "6.9",
+      "start_line": 1262,
+      "end_line": 1268,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_MEDIADETECTED": {
+      "section_id": "6.10",
+      "start_line": 1269,
+      "end_line": 1304,
+      "type": "event"
+    },
+    "WFS_EXEE_DEP_INSERTDEPOSIT": {
+      "section_id": "6.11",
+      "start_line": 1305,
+      "end_line": 1312,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_DEVICEPOSITION": {
+      "section_id": "6.12",
+      "start_line": 1313,
+      "end_line": 1332,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_POWER_SAVE_CHANGE": {
+      "section_id": "6.13",
+      "start_line": 1333,
+      "end_line": 1355,
+      "type": "event"
+    }
+  }
+}

@@ -1,0 +1,1459 @@
+{
+  "file": "XfsPin.md",
+  "device_class": "PIN",
+  "part": 6,
+  "toc_line_range": [
+    30,
+    222
+  ],
+  "summary": {
+    "total_entries": 177,
+    "info_commands": 13,
+    "execute_commands": 74,
+    "events": 13
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 6
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 10,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.50",
+          "type": "section",
+          "page": 10,
+          "start_line": 372,
+          "end_line": 385
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 10,
+          "start_line": 386,
+          "end_line": 484
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. PIN Keypad",
+      "type": "section",
+      "page": 12,
+      "children": [
+        {
+          "section_id": "2.1",
+          "title": "Encrypting Touch Screen (ETS)",
+          "type": "section",
+          "page": 14,
+          "start_line": 485,
+          "end_line": 650
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 17
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 19,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_PIN_STATUS",
+          "type": "info_command",
+          "page": 19,
+          "start_line": 13543,
+          "end_line": 13578
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_PIN_CAPABILITIES",
+          "type": "info_command",
+          "page": 23,
+          "start_line": 13579,
+          "end_line": 13868
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_PIN_KEY_DETAIL",
+          "type": "info_command",
+          "page": 44,
+          "start_line": 2079,
+          "end_line": 2155
+        },
+        {
+          "section_id": "4.4",
+          "title": "WFS_INF_PIN_FUNCKEY_DETAIL",
+          "type": "info_command",
+          "page": 46,
+          "start_line": 2156,
+          "end_line": 2288
+        },
+        {
+          "section_id": "4.5",
+          "title": "WFS_INF_PIN_HSM_TDATA",
+          "type": "info_command",
+          "page": 49,
+          "start_line": 2289,
+          "end_line": 2301
+        },
+        {
+          "section_id": "4.6",
+          "title": "WFS_INF_PIN_KEY_DETAIL_EX",
+          "type": "info_command",
+          "page": 50,
+          "start_line": 2302,
+          "end_line": 2449
+        },
+        {
+          "section_id": "4.7",
+          "title": "WFS_INF_PIN_SECUREKEY_DETAIL",
+          "type": "info_command",
+          "page": 53,
+          "start_line": 2450,
+          "end_line": 2640
+        },
+        {
+          "section_id": "4.8",
+          "title": "WFS_INF_PIN_QUERY_LOGICAL_HSM_DETAIL",
+          "type": "info_command",
+          "page": 57,
+          "start_line": 2641,
+          "end_line": 2673
+        },
+        {
+          "section_id": "4.9",
+          "title": "WFS_INF_PIN_QUERY_PCIPTS_DEVICE_ID",
+          "type": "info_command",
+          "page": 58,
+          "start_line": 2674,
+          "end_line": 2714
+        },
+        {
+          "section_id": "4.10",
+          "title": "WFS_INF_PIN_GET_LAYOUT",
+          "type": "info_command",
+          "page": 59,
+          "start_line": 2715,
+          "end_line": 2942
+        },
+        {
+          "section_id": "4.11",
+          "title": "WFS_INF_PIN_KEY_DETAIL_340",
+          "type": "info_command",
+          "page": 63,
+          "start_line": 2943,
+          "end_line": 3041
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 65,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "Normal PIN Commands",
+          "type": "section",
+          "page": 65,
+          "start_line": 3042,
+          "end_line": 3043,
+          "children": [
+            {
+              "section_id": "5.1.1",
+              "title": "WFS_CMD_PIN_CRYPT",
+              "type": "execute_command",
+              "page": 65,
+              "start_line": 3044,
+              "end_line": 3166
+            },
+            {
+              "section_id": "5.1.2",
+              "title": "WFS_CMD_PIN_IMPORT_KEY",
+              "type": "execute_command",
+              "page": 68,
+              "start_line": 3167,
+              "end_line": 3302
+            },
+            {
+              "section_id": "5.1.3",
+              "title": "WFS_CMD_PIN_DERIVE_KEY",
+              "type": "execute_command",
+              "page": 71,
+              "start_line": 3303,
+              "end_line": 3372
+            },
+            {
+              "section_id": "5.1.4",
+              "title": "WFS_CMD_PIN_GET_PIN",
+              "type": "execute_command",
+              "page": 73,
+              "start_line": 3373,
+              "end_line": 3536
+            },
+            {
+              "section_id": "5.1.5",
+              "title": "WFS_CMD_PIN_LOCAL_DES",
+              "type": "execute_command",
+              "page": 76,
+              "start_line": 3537,
+              "end_line": 3619
+            },
+            {
+              "section_id": "5.1.6",
+              "title": "WFS_CMD_PIN_CREATE_OFFSET",
+              "type": "execute_command",
+              "page": 78,
+              "start_line": 3620,
+              "end_line": 3694
+            },
+            {
+              "section_id": "5.1.7",
+              "title": "WFS_CMD_PIN_LOCAL_EUROCHEQUE",
+              "type": "execute_command",
+              "page": 80,
+              "start_line": 3695,
+              "end_line": 3766
+            },
+            {
+              "section_id": "5.1.8",
+              "title": "WFS_CMD_PIN_LOCAL_VISA",
+              "type": "execute_command",
+              "page": 82,
+              "start_line": 3767,
+              "end_line": 3827
+            },
+            {
+              "section_id": "5.1.9",
+              "title": "WFS_CMD_PIN_PRESENT_IDC",
+              "type": "execute_command",
+              "page": 84,
+              "start_line": 3828,
+              "end_line": 3913
+            },
+            {
+              "section_id": "5.1.10",
+              "title": "WFS_CMD_PIN_GET_PINBLOCK",
+              "type": "execute_command",
+              "page": 86,
+              "start_line": 3940,
+              "end_line": 4032
+            },
+            {
+              "section_id": "5.1.11",
+              "title": "WFS_CMD_PIN_GET_DATA",
+              "type": "execute_command",
+              "page": 88,
+              "start_line": 4033,
+              "end_line": 4151
+            },
+            {
+              "section_id": "5.1.12",
+              "title": "WFS_CMD_PIN_INITIALIZATION",
+              "type": "execute_command",
+              "page": 91,
+              "start_line": 4152,
+              "end_line": 4222
+            },
+            {
+              "section_id": "5.1.13",
+              "title": "WFS_CMD_PIN_LOCAL_BANKSYS",
+              "type": "execute_command",
+              "page": 93,
+              "start_line": 4223,
+              "end_line": 4260
+            },
+            {
+              "section_id": "5.1.14",
+              "title": "WFS_CMD_PIN_BANKSYS_IO",
+              "type": "execute_command",
+              "page": 94,
+              "start_line": 4261,
+              "end_line": 4292
+            },
+            {
+              "section_id": "5.1.15",
+              "title": "WFS_CMD_PIN_RESET",
+              "type": "execute_command",
+              "page": 95,
+              "start_line": 4293,
+              "end_line": 4305
+            },
+            {
+              "section_id": "5.1.16",
+              "title": "WFS_CMD_PIN_HSM_SET_TDATA",
+              "type": "execute_command",
+              "page": 96,
+              "start_line": 4306,
+              "end_line": 4360
+            },
+            {
+              "section_id": "5.1.17",
+              "title": "WFS_CMD_PIN_SECURE_MSG_SEND",
+              "type": "execute_command",
+              "page": 98,
+              "start_line": 4393,
+              "end_line": 4462
+            },
+            {
+              "section_id": "5.1.18",
+              "title": "WFS_CMD_PIN_SECURE_MSG_RECEIVE",
+              "type": "execute_command",
+              "page": 100,
+              "start_line": 4463,
+              "end_line": 4528
+            },
+            {
+              "section_id": "5.1.19",
+              "title": "WFS_CMD_PIN_GET_JOURNAL",
+              "type": "execute_command",
+              "page": 102,
+              "start_line": 4529,
+              "end_line": 4560
+            },
+            {
+              "section_id": "5.1.20",
+              "title": "WFS_CMD_PIN_IMPORT_KEY_EX",
+              "type": "execute_command",
+              "page": 103,
+              "start_line": 4561,
+              "end_line": 4709
+            },
+            {
+              "section_id": "5.1.21",
+              "title": "WFS_CMD_PIN_ENC_IO",
+              "type": "execute_command",
+              "page": 106,
+              "start_line": 4710,
+              "end_line": 4801
+            },
+            {
+              "section_id": "5.1.22",
+              "title": "WFS_CMD_PIN_HSM_INIT",
+              "type": "execute_command",
+              "page": 108,
+              "start_line": 4802,
+              "end_line": 4842
+            },
+            {
+              "section_id": "5.1.23",
+              "title": "WFS_CMD_PIN_SECUREKEY_ENTRY",
+              "type": "execute_command",
+              "page": 109,
+              "start_line": 4843,
+              "end_line": 5006
+            },
+            {
+              "section_id": "5.1.24",
+              "title": "WFS_CMD_PIN_GENERATE_KCV",
+              "type": "execute_command",
+              "page": 112,
+              "start_line": 5007,
+              "end_line": 5051
+            },
+            {
+              "section_id": "5.1.25",
+              "title": "WFS_CMD_PIN_SET_GUIDANCE_LIGHT",
+              "type": "execute_command",
+              "page": 113,
+              "start_line": 5052,
+              "end_line": 5119
+            },
+            {
+              "section_id": "5.1.26",
+              "title": "WFS_CMD_PIN_MAINTAIN_PIN",
+              "type": "execute_command",
+              "page": 115,
+              "start_line": 5120,
+              "end_line": 5147
+            },
+            {
+              "section_id": "5.1.27",
+              "title": "WFS_CMD_PIN_KEYPRESS_BEEP",
+              "type": "execute_command",
+              "page": 116,
+              "start_line": 5148,
+              "end_line": 5171
+            },
+            {
+              "section_id": "5.1.28",
+              "title": "WFS_CMD_PIN_SET_PINBLOCK_DATA",
+              "type": "execute_command",
+              "page": 117,
+              "start_line": 5172,
+              "end_line": 5210
+            },
+            {
+              "section_id": "5.1.29",
+              "title": "WFS_CMD_PIN_SET_LOGICAL_HSM",
+              "type": "execute_command",
+              "page": 118,
+              "start_line": 5211,
+              "end_line": 5263
+            },
+            {
+              "section_id": "5.1.30",
+              "title": "WFS_CMD_PIN_IMPORT_KEYBLOCK",
+              "type": "execute_command",
+              "page": 119,
+              "start_line": 5264,
+              "end_line": 5319
+            },
+            {
+              "section_id": "5.1.31",
+              "title": "WFS_CMD_PIN_POWER_SAVE_CONTROL",
+              "type": "execute_command",
+              "page": 120,
+              "start_line": 5320,
+              "end_line": 5352
+            },
+            {
+              "section_id": "5.1.32",
+              "title": "WFS_CMD_PIN_DEFINE_LAYOUT",
+              "type": "execute_command",
+              "page": 121,
+              "start_line": 5353,
+              "end_line": 5395
+            },
+            {
+              "section_id": "5.1.33",
+              "title": "WFS_CMD_PIN_START_AUTHENTICATE",
+              "type": "execute_command",
+              "page": 122,
+              "start_line": 5396,
+              "end_line": 5489
+            },
+            {
+              "section_id": "5.1.34",
+              "title": "WFS_CMD_PIN_AUTHENTICATE",
+              "type": "execute_command",
+              "page": 124,
+              "start_line": 5490,
+              "end_line": 5540
+            },
+            {
+              "section_id": "5.1.35",
+              "title": "WFS_CMD_PIN_GET_PINBLOCK_EX",
+              "type": "execute_command",
+              "page": 127,
+              "start_line": 5631,
+              "end_line": 5743
+            },
+            {
+              "section_id": "5.1.36",
+              "title": "WFS_CMD_PIN_SYNCHRONIZE_COMMAND",
+              "type": "execute_command",
+              "page": 129,
+              "start_line": 5744,
+              "end_line": 5792
+            },
+            {
+              "section_id": "5.1.37",
+              "title": "WFS_CMD_PIN_CRYPT_340",
+              "type": "execute_command",
+              "page": 130,
+              "start_line": 5793,
+              "end_line": 5968
+            },
+            {
+              "section_id": "5.1.38",
+              "title": "WFS_CMD_PIN_GET_PINBLOCK_340",
+              "type": "execute_command",
+              "page": 134,
+              "start_line": 5969,
+              "end_line": 6072
+            },
+            {
+              "section_id": "5.1.39",
+              "title": "WFS_CMD_PIN_IMPORT_KEY_340",
+              "type": "execute_command",
+              "page": 136,
+              "start_line": 11677,
+              "end_line": 11746
+            }
+          ]
+        },
+        {
+          "section_id": "5.2",
+          "title": "Common commands for Remote Key Loading Schemes",
+          "type": "section",
+          "page": 139,
+          "start_line": 6218,
+          "end_line": 6222,
+          "children": [
+            {
+              "section_id": "5.2.1",
+              "title": "WFS_CMD_PIN_START_KEY_EXCHANGE",
+              "type": "execute_command",
+              "page": 139,
+              "start_line": 6223,
+              "end_line": 6257
+            }
+          ]
+        },
+        {
+          "section_id": "5.3",
+          "title": "Remote Key Loading Using Signatures",
+          "type": "section",
+          "page": 140,
+          "start_line": 6258,
+          "end_line": 6262,
+          "children": [
+            {
+              "section_id": "5.3.1",
+              "title": "WFS_CMD_PIN_IMPORT_RSA_PUBLIC_KEY",
+              "type": "execute_command",
+              "page": 140,
+              "start_line": 6263,
+              "end_line": 6383
+            },
+            {
+              "section_id": "5.3.2",
+              "title": "WFS_CMD_PIN_EXPORT_RSA_ISSUER_SIGNED_ITEM",
+              "type": "execute_command",
+              "page": 143,
+              "start_line": 6384,
+              "end_line": 6463
+            },
+            {
+              "section_id": "5.3.3",
+              "title": "WFS_CMD_PIN_IMPORT_RSA_SIGNED_DES_KEY",
+              "type": "execute_command",
+              "page": 145,
+              "start_line": 6464,
+              "end_line": 6619
+            },
+            {
+              "section_id": "5.3.4",
+              "title": "WFS_CMD_PIN_GENERATE_RSA_KEY_PAIR",
+              "type": "execute_command",
+              "page": 148,
+              "start_line": 6620,
+              "end_line": 6684
+            },
+            {
+              "section_id": "5.3.5",
+              "title": "WFS_CMD_PIN_EXPORT_RSA_EPP_SIGNED_ITEM",
+              "type": "execute_command",
+              "page": 150,
+              "start_line": 6685,
+              "end_line": 6773
+            }
+          ]
+        },
+        {
+          "section_id": "5.4",
+          "title": "Remote Key Loading with Certificates",
+          "type": "section",
+          "page": 152,
+          "start_line": 6774,
+          "end_line": 6776,
+          "children": [
+            {
+              "section_id": "5.4.1",
+              "title": "WFS_CMD_PIN_LOAD_CERTIFICATE",
+              "type": "execute_command",
+              "page": 152,
+              "start_line": 6777,
+              "end_line": 6818
+            },
+            {
+              "section_id": "5.4.2",
+              "title": "WFS_CMD_PIN_GET_CERTIFICATE",
+              "type": "execute_command",
+              "page": 153,
+              "start_line": 6819,
+              "end_line": 6864
+            },
+            {
+              "section_id": "5.4.3",
+              "title": "WFS_CMD_PIN_REPLACE_CERTIFICATE",
+              "type": "execute_command",
+              "page": 154,
+              "start_line": 6865,
+              "end_line": 6908
+            },
+            {
+              "section_id": "5.4.4",
+              "title": "WFS_CMD_PIN_IMPORT_RSA_ENCIPHERED_PKCS7_KEY",
+              "type": "execute_command",
+              "page": 155,
+              "start_line": 6909,
+              "end_line": 7022
+            },
+            {
+              "section_id": "5.4.5",
+              "title": "WFS_CMD_PIN_LOAD_CERTIFICATE_EX",
+              "type": "execute_command",
+              "page": 157,
+              "start_line": 7023,
+              "end_line": 7128
+            },
+            {
+              "section_id": "5.4.6",
+              "title": "WFS_CMD_PIN_IMPORT_RSA_ENCIPHERED_PKCS7_KEY_EX",
+              "type": "execute_command",
+              "page": 159,
+              "start_line": 7129,
+              "end_line": 7301
+            }
+          ]
+        },
+        {
+          "section_id": "5.5",
+          "title": "EMV",
+          "type": "section",
+          "page": 162,
+          "start_line": 7302,
+          "end_line": 7305,
+          "children": [
+            {
+              "section_id": "5.5.1",
+              "title": "WFS_CMD_PIN_EMV_IMPORT_PUBLIC_KEY",
+              "type": "execute_command",
+              "page": 162,
+              "start_line": 7306,
+              "end_line": 7349
+            },
+            {
+              "section_id": "5.5.2",
+              "title": "WFS_CMD_PIN_DIGEST",
+              "type": "execute_command",
+              "page": 165,
+              "start_line": 7470,
+              "end_line": 7501
+            }
+          ]
+        },
+        {
+          "section_id": "5.6",
+          "title": "Entering and Changing a Password",
+          "type": "section",
+          "page": 166,
+          "start_line": 7502,
+          "end_line": 7502,
+          "children": [
+            {
+              "section_id": "5.6.1",
+              "title": "WFS_CMD_PIN_PASSWORD_ENTRY",
+              "type": "execute_command",
+              "page": 166,
+              "start_line": 7503,
+              "end_line": 7695
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 170,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_EXEE_PIN_KEY",
+          "type": "event",
+          "page": 170,
+          "start_line": 7696,
+          "end_line": 7718
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_SRVE_PIN_INITIALIZED",
+          "type": "event",
+          "page": 171,
+          "start_line": 7719,
+          "end_line": 7730
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_SRVE_PIN_ILLEGAL_KEY_ACCESS",
+          "type": "event",
+          "page": 172,
+          "start_line": 7731,
+          "end_line": 7758
+        },
+        {
+          "section_id": "6.4",
+          "title": "WFS_SRVE_PIN_OPT_REQUIRED",
+          "type": "event",
+          "page": 173,
+          "start_line": 7759,
+          "end_line": 7781
+        },
+        {
+          "section_id": "6.5",
+          "title": "WFS_SRVE_PIN_CERTIFICATE_CHANGE",
+          "type": "event",
+          "page": 174,
+          "start_line": 7782,
+          "end_line": 7794
+        },
+        {
+          "section_id": "6.6",
+          "title": "WFS_SRVE_PIN_HSM_TDATA_CHANGED",
+          "type": "event",
+          "page": 175,
+          "start_line": 7795,
+          "end_line": 7810
+        },
+        {
+          "section_id": "6.7",
+          "title": "WFS_SRVE_PIN_HSM_CHANGED",
+          "type": "event",
+          "page": 176,
+          "start_line": 7811,
+          "end_line": 7827
+        },
+        {
+          "section_id": "6.8",
+          "title": "WFS_EXEE_PIN_ENTERDATA",
+          "type": "event",
+          "page": 177,
+          "start_line": 7828,
+          "end_line": 7835
+        },
+        {
+          "section_id": "6.9",
+          "title": "WFS_SRVE_PIN_DEVICEPOSITION",
+          "type": "event",
+          "page": 178,
+          "start_line": 7836,
+          "end_line": 7855
+        },
+        {
+          "section_id": "6.10",
+          "title": "WFS_SRVE_PIN_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 179,
+          "start_line": 7856,
+          "end_line": 7870
+        },
+        {
+          "section_id": "6.11",
+          "title": "WFS_EXEE_PIN_LAYOUT",
+          "type": "event",
+          "page": 180,
+          "start_line": 7871,
+          "end_line": 7880
+        },
+        {
+          "section_id": "6.12",
+          "title": "WFS_EXEE_PIN_DUKPT_KSN",
+          "type": "event",
+          "page": 181,
+          "start_line": 7881,
+          "end_line": 7897
+        },
+        {
+          "section_id": "6.13",
+          "title": "WFS_SRVE_PIN_PASSWORD_CLEARED",
+          "type": "event",
+          "page": 182,
+          "start_line": 7898,
+          "end_line": 7920
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. C - Header File",
+      "type": "header",
+      "page": 183
+    },
+    {
+      "section_id": "",
+      "title": "8. Appendix-A",
+      "type": "appendix",
+      "page": 206,
+      "children": [
+        {
+          "section_id": "8.1",
+          "title": "Remote Key Loading Using Signatures",
+          "type": "section",
+          "page": 207,
+          "start_line": 9350,
+          "end_line": 9350,
+          "children": [
+            {
+              "section_id": "8.1.1",
+              "title": "RSA Data Authentication and Digital Signatures",
+              "type": "section",
+              "page": 207,
+              "start_line": 9351,
+              "end_line": 9391
+            },
+            {
+              "section_id": "8.1.2",
+              "title": "RSA Secure Key Exchange using Digital Signatures",
+              "type": "section",
+              "page": 208,
+              "start_line": 9392,
+              "end_line": 9483
+            },
+            {
+              "section_id": "8.1.3",
+              "title": "Initialization Phase – Signature Issuer and ATM PIN",
+              "type": "section",
+              "page": 210,
+              "start_line": 9484,
+              "end_line": 9500
+            },
+            {
+              "section_id": "8.1.4",
+              "title": "Initialization Phase – Signature Issuer and Host",
+              "type": "section",
+              "page": 211,
+              "start_line": 9501,
+              "end_line": 9514
+            },
+            {
+              "section_id": "8.1.5",
+              "title": "Key Exchange – Host and ATM PIN",
+              "type": "section",
+              "page": 212,
+              "start_line": 9515,
+              "end_line": 9551
+            },
+            {
+              "section_id": "8.1.6",
+              "title": "Key Exchange (with random number) – Host and ATM PIN",
+              "type": "section",
+              "page": 213,
+              "start_line": 9552,
+              "end_line": 9626
+            },
+            {
+              "section_id": "8.1.7",
+              "title": "Enhanced RKL, Key Exchange (with random number) – Host and ATM PIN",
+              "type": "section",
+              "page": 214,
+              "start_line": 9627,
+              "end_line": 9696
+            },
+            {
+              "section_id": "8.1.8",
+              "title": "Default Keys and Security Item loaded during manufacture",
+              "type": "section",
+              "page": 215,
+              "start_line": 9697,
+              "end_line": 9724
+            }
+          ]
+        },
+        {
+          "section_id": "8.2",
+          "title": "Remote Key Loading Using Certificates",
+          "type": "section",
+          "page": 216,
+          "start_line": 9725,
+          "end_line": 9728,
+          "children": [
+            {
+              "section_id": "8.2.1",
+              "title": "Certificate Exchange and Authentication",
+              "type": "section",
+              "page": 216,
+              "start_line": 9729,
+              "end_line": 9766
+            },
+            {
+              "section_id": "8.2.2",
+              "title": "Remote Key Exchange",
+              "type": "section",
+              "page": 217,
+              "start_line": 9767,
+              "end_line": 9835
+            },
+            {
+              "section_id": "8.2.3",
+              "title": "Replace Certificate",
+              "type": "section",
+              "page": 218,
+              "start_line": 9836,
+              "end_line": 9859
+            },
+            {
+              "section_id": "8.2.4",
+              "title": "Primary and Secondary Certificates",
+              "type": "section",
+              "page": 219,
+              "start_line": 9860,
+              "end_line": 9874
+            },
+            {
+              "section_id": "8.2.5",
+              "title": "TR34 BIND To Host",
+              "type": "section",
+              "page": 220,
+              "start_line": 9875,
+              "end_line": 9891
+            },
+            {
+              "section_id": "8.2.6",
+              "title": "TR34 Key Transport",
+              "type": "section",
+              "page": 221,
+              "start_line": 9892,
+              "end_line": 9896
+            },
+            {
+              "section_id": "8.2.7",
+              "title": "TR34 REBIND To New Host",
+              "type": "section",
+              "page": 223,
+              "start_line": 9927,
+              "end_line": 9943
+            },
+            {
+              "section_id": "8.2.8",
+              "title": "TR34 Force REBIND To New Host",
+              "type": "section",
+              "page": 224,
+              "start_line": 9944,
+              "end_line": 9963
+            },
+            {
+              "section_id": "8.2.9",
+              "title": "TR34 UNBIND From Host",
+              "type": "section",
+              "page": 225,
+              "start_line": 9964,
+              "end_line": 9983
+            },
+            {
+              "section_id": "8.2.10",
+              "title": "TR34 Force UNBIND From Host",
+              "type": "section",
+              "page": 226,
+              "start_line": 9984,
+              "end_line": 10005
+            }
+          ]
+        },
+        {
+          "section_id": "8.3",
+          "title": "German ZKA GeldKarte (Deutsche Kreditwirtschaft)",
+          "type": "section",
+          "page": 227,
+          "start_line": 10006,
+          "end_line": 10010,
+          "children": [
+            {
+              "section_id": "8.3.1",
+              "title": "How to use the SECURE_MSG commands",
+              "type": "section",
+              "page": 227,
+              "start_line": 10011,
+              "end_line": 10035
+            },
+            {
+              "section_id": "8.3.2",
+              "title": "Protocol WFS_PIN_PROTISOAS",
+              "type": "section",
+              "page": 228,
+              "start_line": 10036,
+              "end_line": 10063
+            },
+            {
+              "section_id": "8.3.3",
+              "title": "Protocol WFS_PIN_PROTISOLZ",
+              "type": "section",
+              "page": 229,
+              "start_line": 10064,
+              "end_line": 10091
+            },
+            {
+              "section_id": "8.3.4",
+              "title": "Protocol WFS_PIN_PROTISOPS",
+              "type": "section",
+              "page": 230,
+              "start_line": 10092,
+              "end_line": 10100
+            },
+            {
+              "section_id": "8.3.5",
+              "title": "Protocol WFS_PIN_PROTCHIPZKA",
+              "type": "section",
+              "page": 231,
+              "start_line": 10101,
+              "end_line": 10113
+            },
+            {
+              "section_id": "8.3.6",
+              "title": "Protocol WFS_PIN_PROTRAWDATA",
+              "type": "section",
+              "page": 232,
+              "start_line": 10114,
+              "end_line": 10123
+            },
+            {
+              "section_id": "8.3.7",
+              "title": "Protocol WFS_PIN_PROTPBM",
+              "type": "section",
+              "page": 233,
+              "start_line": 10124,
+              "end_line": 10146
+            },
+            {
+              "section_id": "8.3.8",
+              "title": "Protocol WFS_PIN_PROTHSMLDI",
+              "type": "section",
+              "page": 234,
+              "start_line": 10147,
+              "end_line": 10161
+            },
+            {
+              "section_id": "8.3.9",
+              "title": "Protocol WFS_PIN_PROTGENAS",
+              "type": "section",
+              "page": 235,
+              "start_line": 10170,
+              "end_line": 10208
+            },
+            {
+              "section_id": "8.3.10",
+              "title": "Protocol WFS_PIN_PROTCHIPINCHG",
+              "type": "section",
+              "page": 239,
+              "start_line": 10345,
+              "end_line": 10361
+            },
+            {
+              "section_id": "8.3.11",
+              "title": "Protocol WFS_PIN_PROTPINCMP",
+              "type": "section",
+              "page": 240,
+              "start_line": 10362,
+              "end_line": 10373
+            },
+            {
+              "section_id": "8.3.12",
+              "title": "Protocol WFS_PIN_PROTISOPINCHG",
+              "type": "section",
+              "page": 242,
+              "start_line": 10447,
+              "end_line": 10473
+            },
+            {
+              "section_id": "8.3.13",
+              "title": "Command Sequence",
+              "type": "section",
+              "page": 243,
+              "start_line": 10474,
+              "end_line": 11023
+            }
+          ]
+        },
+        {
+          "section_id": "8.4",
+          "title": "EMV Support",
+          "type": "section",
+          "page": 250,
+          "start_line": 11024,
+          "end_line": 11032,
+          "children": [
+            {
+              "section_id": "8.4.1",
+              "title": "Keys loading",
+              "type": "section",
+              "page": 250,
+              "start_line": 11033,
+              "end_line": 11090
+            },
+            {
+              "section_id": "8.4.2",
+              "title": "PIN Block Management",
+              "type": "section",
+              "page": 252,
+              "start_line": 11091,
+              "end_line": 11100
+            },
+            {
+              "section_id": "8.4.3",
+              "title": "SHA-1 Digest",
+              "type": "section",
+              "page": 253,
+              "start_line": 11101,
+              "end_line": 11108
+            }
+          ]
+        },
+        {
+          "section_id": "8.5",
+          "title": "French Cartes Bancaires",
+          "type": "section",
+          "page": 254,
+          "start_line": 11109,
+          "end_line": 11119,
+          "children": [
+            {
+              "section_id": "8.5.1",
+              "title": "Data Structure for WFS_CMD_PIN_ENC_IO",
+              "type": "execute_command",
+              "page": 254,
+              "start_line": 11120,
+              "end_line": 11128
+            },
+            {
+              "section_id": "8.5.2",
+              "title": "Command Sequence",
+              "type": "section",
+              "page": 256,
+              "start_line": 11204,
+              "end_line": 11276
+            }
+          ]
+        },
+        {
+          "section_id": "8.6",
+          "title": "Secure Key Entry",
+          "type": "section",
+          "page": 258,
+          "start_line": 11277,
+          "end_line": 11279,
+          "children": [
+            {
+              "section_id": "8.6.1",
+              "title": "Keyboard Layout",
+              "type": "section",
+              "page": 258,
+              "start_line": 11280,
+              "end_line": 11290
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "WFS_CMD_PIN_IMPORT_KEY",
+      "type": "execute_command",
+      "page": 262,
+      "start_line": 3167,
+      "end_line": 3302,
+      "children": [
+        {
+          "section_id": "8.7",
+          "title": "WFS_PIN_USERESTRICTEDKEYENCKEY key usage",
+          "type": "api_function",
+          "page": 264,
+          "start_line": 11560,
+          "end_line": 11562,
+          "children": [
+            {
+              "section_id": "8.7.1",
+              "title": "Command Usage",
+              "type": "section",
+              "page": 264,
+              "start_line": 11563,
+              "end_line": 11676
+            }
+          ]
+        },
+        {
+          "section_id": "8.8",
+          "title": "WFS_CMD_PIN_IMPORT_KEY_340 command Input/Output Parameters",
+          "type": "execute_command",
+          "page": 267,
+          "start_line": 11677,
+          "end_line": 11746,
+          "children": [
+            {
+              "section_id": "8.8.2",
+              "title": "Importing a 16-byte DES key for PIN encryption with a key check value in the input",
+              "type": "section",
+              "page": 270,
+              "start_line": 11747,
+              "end_line": 11798
+            },
+            {
+              "section_id": "8.8.3",
+              "title": "Importing a 16-byte DES key for MACing (MAC Algorithm 3)",
+              "type": "section",
+              "page": 272,
+              "start_line": 11799,
+              "end_line": 11847
+            },
+            {
+              "section_id": "8.8.4",
+              "title": "Importing a 2048-bit Host RSA public key",
+              "type": "section",
+              "page": 274,
+              "start_line": 11848,
+              "end_line": 11902
+            },
+            {
+              "section_id": "8.8.5",
+              "title": "Importing a 24-byte DES symmetric data encryption key via X9.143 keyblock",
+              "type": "section",
+              "page": 276,
+              "start_line": 11903,
+              "end_line": 11939
+            }
+          ]
+        },
+        {
+          "section_id": "8.9",
+          "title": "Entering passwords using the WFS_CMD_PIN_PASSWORD_ENTRY command.",
+          "type": "execute_command",
+          "page": 277,
+          "start_line": 11940,
+          "end_line": 11952,
+          "children": [
+            {
+              "section_id": "8.9.1",
+              "title": "Entering passwords individually to allow secure key parts to be loaded",
+              "type": "section",
+              "page": 277,
+              "start_line": 11953,
+              "end_line": 11955
+            },
+            {
+              "section_id": "8.9.2",
+              "title": "Entering and changing a password",
+              "type": "section",
+              "page": 277,
+              "start_line": 11956,
+              "end_line": 11966
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "9. Appendix-B (Country Specific WFS_CMD_PIN_ENC_IO protocols)",
+      "type": "execute_command",
+      "page": 279,
+      "children": [
+        {
+          "section_id": "9.1",
+          "title": "Luxemburg Protocol",
+          "type": "section",
+          "page": 279,
+          "start_line": 11967,
+          "end_line": 12060,
+          "children": [
+            {
+              "section_id": "9.1.1",
+              "title": "WFS_CMD_ENC_IO_LUX_LOAD_APPKEY",
+              "type": "execute_command",
+              "page": 281,
+              "start_line": 12061,
+              "end_line": 12142
+            },
+            {
+              "section_id": "9.1.2",
+              "title": "WFS_CMD_ENC_IO_LUX_GENERATE_MAC",
+              "type": "execute_command",
+              "page": 283,
+              "start_line": 12143,
+              "end_line": 12188
+            },
+            {
+              "section_id": "9.1.3",
+              "title": "WFS_CMD_ENC_IO_LUX_CHECK_MAC",
+              "type": "execute_command",
+              "page": 284,
+              "start_line": 12189,
+              "end_line": 12237
+            },
+            {
+              "section_id": "9.1.4",
+              "title": "WFS_CMD_ENC_IO_LUX_BUILD_PINBLOCK",
+              "type": "execute_command",
+              "page": 285,
+              "start_line": 12238,
+              "end_line": 12285
+            },
+            {
+              "section_id": "9.1.5",
+              "title": "WFS_CMD_ENC_IO_LUX_DECRYPT_TDES",
+              "type": "execute_command",
+              "page": 286,
+              "start_line": 12286,
+              "end_line": 12335
+            },
+            {
+              "section_id": "9.1.6",
+              "title": "WFS_CMD_ENC_IO_LUX_ENCRYPT_TDES",
+              "type": "execute_command",
+              "page": 287,
+              "start_line": 12336,
+              "end_line": 12386
+            },
+            {
+              "section_id": "9.1.7",
+              "title": "Luxemburg-specific Header File",
+              "type": "header",
+              "page": 288,
+              "start_line": 12387,
+              "end_line": 12397
+            }
+          ]
+        },
+        {
+          "section_id": "9.2",
+          "title": "China Protocol",
+          "type": "section",
+          "page": 290,
+          "start_line": 12528,
+          "end_line": 12629,
+          "children": [
+            {
+              "section_id": "9.2.1",
+              "title": "WFS_CMD_ENC_IO_CHN_DIGEST",
+              "type": "execute_command",
+              "page": 293,
+              "start_line": 12630,
+              "end_line": 12672
+            },
+            {
+              "section_id": "9.2.2",
+              "title": "WFS_CMD_ENC_IO_CHN_SET_SM2_PARAM",
+              "type": "execute_command",
+              "page": 294,
+              "start_line": 12673,
+              "end_line": 12734
+            },
+            {
+              "section_id": "9.2.3",
+              "title": "WFS_CMD_ENC_IO_CHN_IMPORT_SM2_PUBLIC_KEY",
+              "type": "execute_command",
+              "page": 295,
+              "start_line": 12735,
+              "end_line": 12843
+            },
+            {
+              "section_id": "9.2.4",
+              "title": "WFS_CMD_ENC_IO_CHN_SIGN",
+              "type": "execute_command",
+              "page": 297,
+              "start_line": 12844,
+              "end_line": 12905
+            },
+            {
+              "section_id": "9.2.5",
+              "title": "WFS_CMD_ENC_IO_CHN_VERIFY",
+              "type": "execute_command",
+              "page": 299,
+              "start_line": 12906,
+              "end_line": 12940
+            },
+            {
+              "section_id": "9.2.6",
+              "title": "WFS_CMD_ENC_IO_CHN_EXPORT_SM2_ISSUER_SIGNED_ITEM",
+              "type": "execute_command",
+              "page": 300,
+              "start_line": 12941,
+              "end_line": 13016
+            },
+            {
+              "section_id": "9.2.7",
+              "title": "WFS_CMD_ENC_IO_CHN_GENERATE_SM2_KEY_PAIR",
+              "type": "execute_command",
+              "page": 302,
+              "start_line": 13017,
+              "end_line": 13072
+            },
+            {
+              "section_id": "9.2.8",
+              "title": "WFS_CMD_ENC_IO_CHN_EXPORT_SM2_EPP_SIGNED_ITEM",
+              "type": "execute_command",
+              "page": 303,
+              "start_line": 13073,
+              "end_line": 13162
+            },
+            {
+              "section_id": "9.2.9",
+              "title": "WFS_CMD_ENC_IO_CHN_IMPORT_SM2_SIGNED_SM4_KEY",
+              "type": "execute_command",
+              "page": 305,
+              "start_line": 13163,
+              "end_line": 13290
+            },
+            {
+              "section_id": "9.2.10",
+              "title": "China-specific Header File",
+              "type": "header",
+              "page": 308,
+              "start_line": 13291,
+              "end_line": 13301
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "10. Appendix–C (Standardized lpszExtra fields)",
+      "type": "appendix",
+      "page": 313,
+      "children": [
+        {
+          "section_id": "10.1",
+          "title": "WFS_INF_PIN_STATUS",
+          "type": "info_command",
+          "page": 313,
+          "start_line": 13543,
+          "end_line": 13578
+        },
+        {
+          "section_id": "10.2",
+          "title": "WFS_INF_PIN_CAPABILITIES",
+          "type": "info_command",
+          "page": 314,
+          "start_line": 13579,
+          "end_line": 13868
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "11. Appendix–D (X9.143 Key Use)",
+      "type": "appendix",
+      "page": 317
+    },
+    {
+      "section_id": "",
+      "title": "12. Appendix-E (DUKPT)",
+      "type": "appendix",
+      "page": 320,
+      "children": [
+        {
+          "section_id": "12.1",
+          "title": "Default Key Name",
+          "type": "section",
+          "page": 320,
+          "start_line": 13869,
+          "end_line": 13884
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "13. Appendix-F Diagram Source",
+      "type": "appendix",
+      "page": 321
+    }
+  ]
+}

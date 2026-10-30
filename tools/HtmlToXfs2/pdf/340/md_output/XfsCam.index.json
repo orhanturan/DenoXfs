@@ -1,0 +1,143 @@
+{
+  "file": "XfsCam.md",
+  "device_class": "CAM",
+  "part": 13,
+  "description": "Camera Device Class Interface",
+  "total_lines": 874,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 160,
+      "end_line": 196
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 197,
+      "end_line": 218
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 219,
+      "end_line": 279
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_CAM_STATUS",
+      "type": "info",
+      "start_line": 280,
+      "end_line": 435
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_CAM_CAPABILITIES",
+      "type": "info",
+      "start_line": 436,
+      "end_line": 527
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_CAM_TAKE_PICTURE",
+      "type": "command",
+      "start_line": 528,
+      "end_line": 580
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_CAM_RESET",
+      "type": "command",
+      "start_line": 581,
+      "end_line": 591
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_CAM_TAKE_PICTURE_EX",
+      "type": "command",
+      "start_line": 592,
+      "end_line": 653
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_CAM_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 654,
+      "end_line": 703
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_USRE_CAM_MEDIATHRESHOLD",
+      "type": "event",
+      "start_line": 704,
+      "end_line": 716
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_CAM_INVALIDDATA",
+      "type": "event",
+      "start_line": 717,
+      "end_line": 732
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSCAM__H",
+      "type": "header",
+      "start_line": 733,
+      "end_line": 874
+    }
+  ],
+  "commands": {
+    "WFS_INF_CAM_STATUS": {
+      "section_id": "4.1",
+      "start_line": 280,
+      "end_line": 435,
+      "type": "info"
+    },
+    "WFS_INF_CAM_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 436,
+      "end_line": 527,
+      "type": "info"
+    },
+    "WFS_CMD_CAM_TAKE_PICTURE": {
+      "section_id": "5.1",
+      "start_line": 528,
+      "end_line": 580,
+      "type": "command"
+    },
+    "WFS_CMD_CAM_RESET": {
+      "section_id": "5.2",
+      "start_line": 581,
+      "end_line": 591,
+      "type": "command"
+    },
+    "WFS_CMD_CAM_TAKE_PICTURE_EX": {
+      "section_id": "5.3",
+      "start_line": 592,
+      "end_line": 653,
+      "type": "command"
+    },
+    "WFS_CMD_CAM_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.4",
+      "start_line": 654,
+      "end_line": 703,
+      "type": "command"
+    },
+    "WFS_USRE_CAM_MEDIATHRESHOLD": {
+      "section_id": "6.1",
+      "start_line": 704,
+      "end_line": 716,
+      "type": "event"
+    },
+    "WFS_EXEE_CAM_INVALIDDATA": {
+      "section_id": "6.2",
+      "start_line": 717,
+      "end_line": 732,
+      "type": "event"
+    }
+  }
+}

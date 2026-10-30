@@ -1,0 +1,607 @@
+{
+  "file": "XfsIdc.md",
+  "device_class": "IDC",
+  "part": 8,
+  "description": "Identification Card Device Class Interface",
+  "total_lines": 3831,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 202,
+      "end_line": 238
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 239,
+      "end_line": 260
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 261,
+      "end_line": 355
+    },
+    {
+      "id": "2.1",
+      "name": "Support for EMV Intelligent Contactless Card Readers",
+      "type": "section",
+      "start_line": 356,
+      "end_line": 410
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_IDC_STATUS",
+      "type": "info",
+      "start_line": 411,
+      "end_line": 728
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_IDC_CAPABILITIES",
+      "type": "info",
+      "start_line": 729,
+      "end_line": 1012
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_IDC_FORM_LIST",
+      "type": "info",
+      "start_line": 1013,
+      "end_line": 1024
+    },
+    {
+      "id": "4.4",
+      "name": "WFS_INF_IDC_QUERY_FORM",
+      "type": "info",
+      "start_line": 1025,
+      "end_line": 1103
+    },
+    {
+      "id": "4.5",
+      "name": "WFS_INF_IDC_QUERY_IFM_IDENTIFIER",
+      "type": "info",
+      "start_line": 1104,
+      "end_line": 1141
+    },
+    {
+      "id": "4.6",
+      "name": "WFS_INF_IDC_EMVCLESS_QUERY_APPLICATIONS",
+      "type": "info",
+      "start_line": 1142,
+      "end_line": 1168
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_IDC_READ_TRACK",
+      "type": "command",
+      "start_line": 1169,
+      "end_line": 1270
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_IDC_WRITE_TRACK",
+      "type": "command",
+      "start_line": 1271,
+      "end_line": 1373
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_IDC_EJECT_CARD",
+      "type": "command",
+      "start_line": 1374,
+      "end_line": 1437
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_IDC_RETAIN_CARD",
+      "type": "command",
+      "start_line": 1438,
+      "end_line": 1488
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_IDC_RESET_COUNT",
+      "type": "command",
+      "start_line": 1489,
+      "end_line": 1505
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_IDC_SETKEY",
+      "type": "command",
+      "start_line": 1506,
+      "end_line": 1529
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_IDC_READ_RAW_DATA",
+      "type": "command",
+      "start_line": 1530,
+      "end_line": 1760
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_IDC_WRITE_RAW_DATA",
+      "type": "command",
+      "start_line": 1761,
+      "end_line": 1867
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_CMD_IDC_CHIP_IO",
+      "type": "command",
+      "start_line": 1868,
+      "end_line": 1941
+    },
+    {
+      "id": "5.10",
+      "name": "WFS_CMD_IDC_RESET",
+      "type": "command",
+      "start_line": 1942,
+      "end_line": 1987
+    },
+    {
+      "id": "5.11",
+      "name": "WFS_CMD_IDC_CHIP_POWER",
+      "type": "command",
+      "start_line": 1988,
+      "end_line": 2038
+    },
+    {
+      "id": "5.12",
+      "name": "WFS_CMD_IDC_PARSE_DATA",
+      "type": "command",
+      "start_line": 2039,
+      "end_line": 2093
+    },
+    {
+      "id": "5.13",
+      "name": "WFS_CMD_IDC_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 2094,
+      "end_line": 2171
+    },
+    {
+      "id": "5.14",
+      "name": "WFS_CMD_IDC_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 2172,
+      "end_line": 2208
+    },
+    {
+      "id": "5.15",
+      "name": "WFS_CMD_IDC_PARK_CARD",
+      "type": "command",
+      "start_line": 2209,
+      "end_line": 2265
+    },
+    {
+      "id": "5.16",
+      "name": "WFS_CMD_IDC_EMVCLESS_CONFIGURE",
+      "type": "command",
+      "start_line": 2266,
+      "end_line": 2373
+    },
+    {
+      "id": "5.17",
+      "name": "WFS_CMD_IDC_EMVCLESS_PERFORM_TRANSACTION",
+      "type": "command",
+      "start_line": 2374,
+      "end_line": 2666
+    },
+    {
+      "id": "5.18",
+      "name": "WFS_CMD_IDC_EMVCLESS_ISSUERUPDATE",
+      "type": "command",
+      "start_line": 2667,
+      "end_line": 2769
+    },
+    {
+      "id": "5.19",
+      "name": "WFS_CMD_IDC_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 2770,
+      "end_line": 2819
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_EXEE_IDC_INVALIDTRACKDATA",
+      "type": "event",
+      "start_line": 2820,
+      "end_line": 2844
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_IDC_MEDIAINSERTED",
+      "type": "event",
+      "start_line": 2845,
+      "end_line": 2851
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_SRVE_IDC_MEDIAREMOVED",
+      "type": "event",
+      "start_line": 2852,
+      "end_line": 2861
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_EXEE_IDC_MEDIARETAINED",
+      "type": "event",
+      "start_line": 2862,
+      "end_line": 2868
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_EXEE_IDC_INVALIDMEDIA",
+      "type": "event",
+      "start_line": 2869,
+      "end_line": 2876
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_SRVE_IDC_CARDACTION",
+      "type": "event",
+      "start_line": 2877,
+      "end_line": 2903
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_USRE_IDC_RETAINBINTHRESHOLD",
+      "type": "event",
+      "start_line": 2904,
+      "end_line": 2919
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_SRVE_IDC_MEDIADETECTED",
+      "type": "event",
+      "start_line": 2920,
+      "end_line": 2937
+    },
+    {
+      "id": "6.9",
+      "name": "WFS_SRVE_IDC_RETAINBINREMOVED",
+      "type": "event",
+      "start_line": 2938,
+      "end_line": 2944
+    },
+    {
+      "id": "6.10",
+      "name": "WFS_SRVE_IDC_RETAINBININSERTED",
+      "type": "event",
+      "start_line": 2945,
+      "end_line": 2951
+    },
+    {
+      "id": "6.11",
+      "name": "WFS_EXEE_IDC_INSERTCARD",
+      "type": "event",
+      "start_line": 2952,
+      "end_line": 2959
+    },
+    {
+      "id": "6.12",
+      "name": "WFS_SRVE_IDC_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 2960,
+      "end_line": 2979
+    },
+    {
+      "id": "6.13",
+      "name": "WFS_SRVE_IDC_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 2980,
+      "end_line": 2994
+    },
+    {
+      "id": "6.14",
+      "name": "WFS_EXEE_IDC_TRACKDETECTED",
+      "type": "event",
+      "start_line": 2995,
+      "end_line": 3016
+    },
+    {
+      "id": "6.15",
+      "name": "WFS_EXEE_IDC_EMVCLESSREADSTATUS",
+      "type": "event",
+      "start_line": 3017,
+      "end_line": 3039
+    },
+    {
+      "id": "6.16",
+      "name": "WFS_SRVE_IDC_MEDIARETAINED",
+      "type": "event",
+      "start_line": 3040,
+      "end_line": 3095
+    },
+    {
+      "id": "1",
+      "name": "Attributes are not required in any mandatory order.",
+      "type": "section",
+      "start_line": 3096,
+      "end_line": 3204
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSIDC__H",
+      "type": "header",
+      "start_line": 3205,
+      "end_line": 3810
+    },
+    {
+      "id": "9.1",
+      "name": "Single Tap Transaction Without Issuer Update Processing",
+      "type": "section",
+      "start_line": 3811,
+      "end_line": 3815
+    },
+    {
+      "id": "9.2",
+      "name": "Double Tap Transaction With Issuer Update Processing",
+      "type": "section",
+      "start_line": 3816,
+      "end_line": 3820
+    },
+    {
+      "id": "9.3",
+      "name": "Card Removed Before Completion",
+      "type": "section",
+      "start_line": 3821,
+      "end_line": 3831
+    }
+  ],
+  "commands": {
+    "WFS_INF_IDC_STATUS": {
+      "section_id": "4.1",
+      "start_line": 411,
+      "end_line": 728,
+      "type": "info"
+    },
+    "WFS_INF_IDC_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 729,
+      "end_line": 1012,
+      "type": "info"
+    },
+    "WFS_INF_IDC_FORM_LIST": {
+      "section_id": "4.3",
+      "start_line": 1013,
+      "end_line": 1024,
+      "type": "info"
+    },
+    "WFS_INF_IDC_QUERY_FORM": {
+      "section_id": "4.4",
+      "start_line": 1025,
+      "end_line": 1103,
+      "type": "info"
+    },
+    "WFS_INF_IDC_QUERY_IFM_IDENTIFIER": {
+      "section_id": "4.5",
+      "start_line": 1104,
+      "end_line": 1141,
+      "type": "info"
+    },
+    "WFS_INF_IDC_EMVCLESS_QUERY_APPLICATIONS": {
+      "section_id": "4.6",
+      "start_line": 1142,
+      "end_line": 1168,
+      "type": "info"
+    },
+    "WFS_CMD_IDC_READ_TRACK": {
+      "section_id": "5.1",
+      "start_line": 1169,
+      "end_line": 1270,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_WRITE_TRACK": {
+      "section_id": "5.2",
+      "start_line": 1271,
+      "end_line": 1373,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_EJECT_CARD": {
+      "section_id": "5.3",
+      "start_line": 1374,
+      "end_line": 1437,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_RETAIN_CARD": {
+      "section_id": "5.4",
+      "start_line": 1438,
+      "end_line": 1488,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_RESET_COUNT": {
+      "section_id": "5.5",
+      "start_line": 1489,
+      "end_line": 1505,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_SETKEY": {
+      "section_id": "5.6",
+      "start_line": 1506,
+      "end_line": 1529,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_READ_RAW_DATA": {
+      "section_id": "5.7",
+      "start_line": 1530,
+      "end_line": 1760,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_WRITE_RAW_DATA": {
+      "section_id": "5.8",
+      "start_line": 1761,
+      "end_line": 1867,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_CHIP_IO": {
+      "section_id": "5.9",
+      "start_line": 1868,
+      "end_line": 1941,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_RESET": {
+      "section_id": "5.10",
+      "start_line": 1942,
+      "end_line": 1987,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_CHIP_POWER": {
+      "section_id": "5.11",
+      "start_line": 1988,
+      "end_line": 2038,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_PARSE_DATA": {
+      "section_id": "5.12",
+      "start_line": 2039,
+      "end_line": 2093,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_SET_GUIDANCE_LIGHT": {
+      "section_id": "5.13",
+      "start_line": 2094,
+      "end_line": 2171,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_POWER_SAVE_CONTROL": {
+      "section_id": "5.14",
+      "start_line": 2172,
+      "end_line": 2208,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_PARK_CARD": {
+      "section_id": "5.15",
+      "start_line": 2209,
+      "end_line": 2265,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_EMVCLESS_CONFIGURE": {
+      "section_id": "5.16",
+      "start_line": 2266,
+      "end_line": 2373,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_EMVCLESS_PERFORM_TRANSACTION": {
+      "section_id": "5.17",
+      "start_line": 2374,
+      "end_line": 2666,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_EMVCLESS_ISSUERUPDATE": {
+      "section_id": "5.18",
+      "start_line": 2667,
+      "end_line": 2769,
+      "type": "command"
+    },
+    "WFS_CMD_IDC_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.19",
+      "start_line": 2770,
+      "end_line": 2819,
+      "type": "command"
+    },
+    "WFS_EXEE_IDC_INVALIDTRACKDATA": {
+      "section_id": "6.1",
+      "start_line": 2820,
+      "end_line": 2844,
+      "type": "event"
+    },
+    "WFS_EXEE_IDC_MEDIAINSERTED": {
+      "section_id": "6.2",
+      "start_line": 2845,
+      "end_line": 2851,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_MEDIAREMOVED": {
+      "section_id": "6.3",
+      "start_line": 2852,
+      "end_line": 2861,
+      "type": "event"
+    },
+    "WFS_EXEE_IDC_MEDIARETAINED": {
+      "section_id": "6.4",
+      "start_line": 2862,
+      "end_line": 2868,
+      "type": "event"
+    },
+    "WFS_EXEE_IDC_INVALIDMEDIA": {
+      "section_id": "6.5",
+      "start_line": 2869,
+      "end_line": 2876,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_CARDACTION": {
+      "section_id": "6.6",
+      "start_line": 2877,
+      "end_line": 2903,
+      "type": "event"
+    },
+    "WFS_USRE_IDC_RETAINBINTHRESHOLD": {
+      "section_id": "6.7",
+      "start_line": 2904,
+      "end_line": 2919,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_MEDIADETECTED": {
+      "section_id": "6.8",
+      "start_line": 2920,
+      "end_line": 2937,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_RETAINBINREMOVED": {
+      "section_id": "6.9",
+      "start_line": 2938,
+      "end_line": 2944,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_RETAINBININSERTED": {
+      "section_id": "6.10",
+      "start_line": 2945,
+      "end_line": 2951,
+      "type": "event"
+    },
+    "WFS_EXEE_IDC_INSERTCARD": {
+      "section_id": "6.11",
+      "start_line": 2952,
+      "end_line": 2959,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_DEVICEPOSITION": {
+      "section_id": "6.12",
+      "start_line": 2960,
+      "end_line": 2979,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_POWER_SAVE_CHANGE": {
+      "section_id": "6.13",
+      "start_line": 2980,
+      "end_line": 2994,
+      "type": "event"
+    },
+    "WFS_EXEE_IDC_TRACKDETECTED": {
+      "section_id": "6.14",
+      "start_line": 2995,
+      "end_line": 3016,
+      "type": "event"
+    },
+    "WFS_EXEE_IDC_EMVCLESSREADSTATUS": {
+      "section_id": "6.15",
+      "start_line": 3017,
+      "end_line": 3039,
+      "type": "event"
+    },
+    "WFS_SRVE_IDC_MEDIARETAINED": {
+      "section_id": "6.16",
+      "start_line": 3040,
+      "end_line": 3095,
+      "type": "event"
+    }
+  }
+}

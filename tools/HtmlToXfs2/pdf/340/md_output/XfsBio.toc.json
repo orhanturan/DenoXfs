@@ -1,0 +1,339 @@
+{
+  "file": "XfsBio.md",
+  "device_class": "BIO",
+  "part": 18,
+  "toc_line_range": [
+    30,
+    76
+  ],
+  "summary": {
+    "total_entries": 41,
+    "info_commands": 4,
+    "execute_commands": 10,
+    "events": 8
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 4
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 7,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.40",
+          "type": "section",
+          "page": 7,
+          "start_line": 220,
+          "end_line": 241
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 7,
+          "start_line": 242,
+          "end_line": 291
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Biometric Devices",
+      "type": "section",
+      "page": 9,
+      "children": [
+        {
+          "section_id": "2.1",
+          "title": "Enrollment",
+          "type": "section",
+          "page": 9,
+          "start_line": 292,
+          "end_line": 298
+        },
+        {
+          "section_id": "2.2",
+          "title": "Biometric Matching",
+          "type": "section",
+          "page": 9,
+          "start_line": 299,
+          "end_line": 320
+        },
+        {
+          "section_id": "2.3",
+          "title": "Biometric Device Types",
+          "type": "section",
+          "page": 10,
+          "start_line": 321,
+          "end_line": 341
+        },
+        {
+          "section_id": "2.4",
+          "title": "Biometric Data Security",
+          "type": "section",
+          "page": 10,
+          "start_line": 342,
+          "end_line": 378
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 11
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 12,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_BIO_STATUS",
+          "type": "info_command",
+          "page": 12,
+          "start_line": 379,
+          "end_line": 545
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_BIO_CAPABILITIES",
+          "type": "info_command",
+          "page": 15,
+          "start_line": 546,
+          "end_line": 794
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_BIO_STORAGE_INFO",
+          "type": "info_command",
+          "page": 20,
+          "start_line": 795,
+          "end_line": 848
+        },
+        {
+          "section_id": "4.4",
+          "title": "WFS_INF_BIO_KEY_INFO",
+          "type": "info_command",
+          "page": 21,
+          "start_line": 849,
+          "end_line": 892
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 22,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_CMD_BIO_READ",
+          "type": "execute_command",
+          "page": 22,
+          "start_line": 893,
+          "end_line": 1022
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_CMD_BIO_IMPORT",
+          "type": "execute_command",
+          "page": 25,
+          "start_line": 1023,
+          "end_line": 1075
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_CMD_BIO_MATCH",
+          "type": "execute_command",
+          "page": 26,
+          "start_line": 1076,
+          "end_line": 1109
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_CMD_BIO_SET_MATCH",
+          "type": "execute_command",
+          "page": 29,
+          "start_line": 1215,
+          "end_line": 1245
+        },
+        {
+          "section_id": "5.5",
+          "title": "WFS_CMD_BIO_CLEAR",
+          "type": "execute_command",
+          "page": 30,
+          "start_line": 1246,
+          "end_line": 1268
+        },
+        {
+          "section_id": "5.6",
+          "title": "WFS_CMD_BIO_RESET",
+          "type": "execute_command",
+          "page": 31,
+          "start_line": 1269,
+          "end_line": 1292
+        },
+        {
+          "section_id": "5.7",
+          "title": "WFS_CMD_BIO_SET_DATA_PERSISTENCE",
+          "type": "execute_command",
+          "page": 32,
+          "start_line": 1293,
+          "end_line": 1318
+        },
+        {
+          "section_id": "5.8",
+          "title": "WFS_CMD_BIO_SET_GUIDANCE_LIGHT",
+          "type": "execute_command",
+          "page": 33,
+          "start_line": 1319,
+          "end_line": 1381
+        },
+        {
+          "section_id": "5.9",
+          "title": "WFS_CMD_BIO_POWER_SAVE_CONTROL",
+          "type": "execute_command",
+          "page": 35,
+          "start_line": 1382,
+          "end_line": 1414
+        },
+        {
+          "section_id": "5.10",
+          "title": "WFS_CMD_BIO_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 36,
+          "start_line": 1415,
+          "end_line": 1464
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 37,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_EXEE_BIO_PRESENTSUBJECT",
+          "type": "event",
+          "page": 37,
+          "start_line": 1465,
+          "end_line": 1473
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_EXEE_BIO_SUBJECTDETECTED",
+          "type": "event",
+          "page": 38,
+          "start_line": 1474,
+          "end_line": 1481
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_EXEE_BIO_REMOVESUBJECT",
+          "type": "event",
+          "page": 39,
+          "start_line": 1482,
+          "end_line": 1489
+        },
+        {
+          "section_id": "6.4",
+          "title": "WFS_SRVE_BIO_SUBJECTREMOVED",
+          "type": "event",
+          "page": 40,
+          "start_line": 1490,
+          "end_line": 1497
+        },
+        {
+          "section_id": "6.5",
+          "title": "WFS_SRVE_BIO_DATACLEARED",
+          "type": "event",
+          "page": 41,
+          "start_line": 1498,
+          "end_line": 1524
+        },
+        {
+          "section_id": "6.6",
+          "title": "WFS_EXEE_BIO_ORIENTATION",
+          "type": "event",
+          "page": 42,
+          "start_line": 1525,
+          "end_line": 1532
+        },
+        {
+          "section_id": "6.7",
+          "title": "WFS_SRVE_BIO_DEVICEPOSITION",
+          "type": "event",
+          "page": 43,
+          "start_line": 1533,
+          "end_line": 1552
+        },
+        {
+          "section_id": "6.8",
+          "title": "WFS_SRVE_BIO_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 44,
+          "start_line": 1553,
+          "end_line": 1570
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. Biometric Device Command Flows – Application Guidelines",
+      "type": "section",
+      "page": 45,
+      "children": [
+        {
+          "section_id": "7.1",
+          "title": "Biometric Enrollment Command Flow",
+          "type": "section",
+          "page": 45,
+          "start_line": 1571,
+          "end_line": 1630
+        },
+        {
+          "section_id": "7.2",
+          "title": "Biometric Match Command Flow – Separate Scan and Match",
+          "type": "section",
+          "page": 46,
+          "start_line": 1631,
+          "end_line": 1686
+        },
+        {
+          "section_id": "7.3",
+          "title": "Biometric Match Command Flow – Combined Scan and Match",
+          "type": "section",
+          "page": 47,
+          "start_line": 1687,
+          "end_line": 1750
+        },
+        {
+          "section_id": "7.4",
+          "title": "Biometric Scan-Only Command Flow",
+          "type": "section",
+          "page": 48,
+          "start_line": 1751,
+          "end_line": 1799
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "8. C - Header file",
+      "type": "header",
+      "page": 49
+    }
+  ]
+}

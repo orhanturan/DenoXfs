@@ -1,0 +1,603 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>Card Embossing Unit (CEU) Specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div style="page-break-before:always; page-break-after:always"><div><p> <br/></p>
+<p> <br/></p>
+<p>  <br/></p>
+<p> EUROPEAN COMMITTEE FOR STANDARDIZATION  C O M I T &#201;  E U R O P &#201; E N  D E  N O R M A L I S A T I O N E U R O P &#196; I S C H E S  K O M I T E E  F &#220; R  N O R M U N G    <br/><b>CEN-CENELEC</b> <b>Management Centre:  Rue de la Science 23,  B-1040 Brussels <br/></b></p>
+<p>&#169; 2020 CEN All rights of exploitation in any form and by any means reserved worldwide for CEN national Members.   Ref. No.:CWA 16926-14:2020 E<br/></p>
+<p><b>CEN  <br/></b></p>
+<p><b>WORKSHOP  <br/></b></p>
+<p><b>AGREEMENT</b>  <br/><b>  <br/> CWA 16926-14 </b>  February 2020     <br/></p>
+<p><b>ICS</b> 35.200; 35.240.15; 35.240.40 <br/>English version   Extensions for Financial Services (XFS) interface specification Release 3.40 - Part 14: Card Embossing Unit Device Class Interface - Programmer's Reference<b> <br/></b></p>
+<p> <br/>This CEN Workshop Agreement has been drafted and approved by a Workshop of representatives of interested parties, the constitution of which is indicated in the foreword of this Workshop Agreement.  The formal process followed by the Workshop in the development of this Workshop Agreement has been endorsed by the National Members of CEN but neither the National Members of CEN nor the CEN-CENELEC Management Centre can be held accountable for the technical content of this CEN Workshop Agreement or possible conflicts with standards or legislation.  This CEN Workshop Agreement can in no way be held as being an official standard developed by CEN and its Members.  This CEN Workshop Agreement is publicly available as a reference document from the CEN Members National Standard Bodies.  CEN members are the national standards bodies of Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Republic of North Macedonia, Romania, Serbia, Slovakia, Slovenia, Spain, Sweden, Switzerland, Turkey and United Kingdom.  </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E) <br/></b></p>
+<p><b>2 <br/></b></p>
+<p><b>Table of Contents <br/>European Foreword ...................................................................................................... 4</b> <br/></p>
+<p><b>1.</b> <b>Introduction .......................................................................................................... 8</b> <br/><b>1.1</b> <b>Background to Release 3.40 ....................................................................................................... 8</b> <br/><b>1.2</b> <b>XFS Service-Specific Programming ........................................................................................... 8</b> <br/></p>
+<p><b>2.</b> <b>Card Embossing Units ...................................................................................... 10</b> <br/></p>
+<p><b>3.</b> <b>References ......................................................................................................... 11</b> <br/></p>
+<p><b>4.</b> <b>Info Commands ................................................................................................. 12</b> <br/><b>4.1</b> <b>WFS_INF_CEU_STATUS ........................................................................................................... 12</b> <br/><b>4.2</b> <b>WFS_INF_CEU_CAPABILITIES ................................................................................................. 16</b> <br/><b>4.3</b> <b>WFS_INF_CEU_FORM_LIST ..................................................................................................... 18</b> <br/><b>4.4</b> <b>WFS_INF_CEU_MEDIA_LIST .................................................................................................... 19</b> <br/><b>4.5</b> <b>WFS_INF_CEU_QUERY_FORM ................................................................................................ 20</b> <br/><b>4.6</b> <b>WFS_INF_CEU_QUERY_MEDIA ............................................................................................... 21</b> <br/><b>4.7</b> <b>WFS_INF_CEU_QUERY_FIELD ................................................................................................ 23</b> <br/></p>
+<p><b>5.</b> <b>Execute Commands .......................................................................................... 25</b> <br/><b>5.1</b> <b>WFS_CMD_CEU_EMBOSS_CARD ........................................................................................... 25</b> <br/><b>5.2</b> <b>WFS_CMD_CEU_RESET ........................................................................................................... 27</b> <br/><b>5.3</b> <b>WFS_CMD_CEU_POWER_SAVE_CONTROL .......................................................................... 28</b> <br/><b>5.4</b> <b>WFS_CMD_CEU_EMBOSS_CARD_EX .................................................................................... 29</b> <br/><b>5.5</b> <b>WFS_CMD_CEU_SUPPLY_REPLENISH .................................................................................. 32</b> <br/><b>5.6</b> <b>WFS_CMD_CEU_SYNCHRONIZE_COMMAND ........................................................................ 33</b> <br/></p>
+<p><b>6.</b> <b>Events ................................................................................................................. 34</b> <br/><b>6.1</b> <b>WFS_SRVE_CEU_INPUTBINTHRESHOLD .............................................................................. 34</b> <br/><b>6.2</b> <b>WFS_SRVE_CEU_OUTPUTBINTHRESHOLD .......................................................................... 35</b> <br/><b>6.3</b> <b>WFS_SRVE_CEU_RETAINBINTHRESHOLD ........................................................................... 36</b> <br/><b>6.4</b> <b>WFS_EXEE_CEU_FIELDERROR .............................................................................................. 37</b> <br/><b>6.5</b> <b>WFS_EXEE_CEU_FIELDWARNING .......................................................................................... 38</b> <br/><b>6.6</b> <b>WFS_SRVE_CEU_MEDIAREMOVED ........................................................................................ 39</b> <br/><b>6.7</b> <b>WFS_SRVE_CEU_MEDIADETECTED....................................................................................... 40</b> <br/><b>6.8</b> <b>WFS_EXEE_CEU_EMBOSS_FAILURE..................................................................................... 41</b> <br/><b>6.9</b> <b>WFS_SRVE_CEU_DEVICEPOSITION ....................................................................................... 42</b> <br/><b>6.10</b> <b>WFS_SRVE_CEU_POWER_SAVE_CHANGE .......................................................................... 43</b> <br/><b>6.11</b> <b>WFS_USRE_CEU_TONERTHRESHOLD .................................................................................. 44</b> <br/></p>
+<p><b>7.</b> <b>Embossing Form, Field and Media Definitions ............................................... 45</b> <br/><b>7.1</b> <b>Definition Syntax ........................................................................................................................ 45</b> <br/><b>7.2</b> <b>Embossing Form and Media Measurements ........................................................................... 46</b> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>3 <br/></b></p>
+<p><b>7.3</b> <b>Embossing Form Definition ...................................................................................................... 47</b> <br/><b>7.4</b> <b>Embossing Field Definition ....................................................................................................... 48</b> <br/><b>7.5</b> <b>Media Definition ......................................................................................................................... 49</b> <br/></p>
+<p><b>8.</b> <b>C-Header file ...................................................................................................... 50</b> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>4 <br/></b></p>
+<p><b>European Foreword <br/></b>This CEN Workshop Agreement has been developed in accordance with the CEN-CENELEC Guide 29 <br/>&#8220;CEN/CENELEC Workshop Agreements &#8211; The way to rapid consensus&#8221; and with the relevant provisions of <br/>CEN/CENELEC Internal Regulations - Part 2. It was approved by a Workshop of representatives of interested <br/>parties on 2019-10-08, the constitution of which was supported by CEN following several public calls for <br/>participation, the first of which was made on 1998-06-24. However, this CEN Workshop Agreement does not <br/>necessarily include all relevant stakeholders.  <br/>The final text of this CEN Workshop Agreement was provided to CEN for publication on 2019-12-12. <br/>The following organizations and individuals developed and approved this CEN Workshop Agreement:  <br/>&#8226; ATM Japan LTD <br/></p>
+<p>&#8226; AURIGA SPA <br/></p>
+<p>&#8226; BANK OF AMERICA <br/></p>
+<p>&#8226; CASHWAY TECHNOLOGY <br/></p>
+<p>&#8226; CHINAL ECTRONIC FINANCIAL EQUIPMENT SYSTEM CO. <br/></p>
+<p>&#8226; CIMA SPA <br/></p>
+<p>&#8226; CLEAR2PAY SCOTLAND LIMITED <br/></p>
+<p>&#8226; DIEBOLD NIXDORF <br/></p>
+<p>&#8226; EASTERN COMMUNICATIONS CO. LTD &#8211; EASTCOM <br/></p>
+<p>&#8226; FINANZ INFORMATIK <br/></p>
+<p>&#8226; FUJITSU FRONTECH LIMITED <br/></p>
+<p>&#8226; FUJITSU TECHNOLOGY <br/></p>
+<p>&#8226; GLORY LTD <br/></p>
+<p>&#8226; GRG BANKING EQUIPMENT HK CO LTD <br/></p>
+<p>&#8226; HESS CASH SYSTEMS GMBH &amp; CO. KG <br/></p>
+<p>&#8226; HITACHI OMRON TS CORP. <br/></p>
+<p>&#8226; HYOSUNG TNS INC <br/></p>
+<p>&#8226; JIANGSU GUOGUANG ELECTRONIC INFORMATION TECHNOLOGY <br/></p>
+<p>&#8226; KAL <br/></p>
+<p>&#8226; KEBA AG <br/></p>
+<p>&#8226; NCR FSG <br/></p>
+<p>&#8226; NEC CORPORATION <br/></p>
+<p>&#8226; OKI ELECTRIC INDUSTRY SHENZHEN <br/></p>
+<p>&#8226; OKI ELECTRONIC INDUSTRY CO <br/></p>
+<p>&#8226; PERTO S/A </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>5 <br/></b></p>
+<p>&#8226; REINER GMBH &amp; CO KG <br/></p>
+<p>&#8226; SALZBURGER BANKEN SOFTWARE <br/></p>
+<p>&#8226; SIGMA SPA <br/></p>
+<p>&#8226; TEB <br/></p>
+<p>&#8226; ZIJIN FULCRUM TECHNOLOGY CO <br/></p>
+<p>It is possible that some elements of this CEN/CWA may be subject to patent rights. The CEN-CENELEC policy on <br/>patent rights is set out in CEN-CENELEC Guide 8 &#8220;Guidelines for Implementation of the Common IPR Policy on <br/>Patents (and other statutory intellectual property rights based on inventions)&#8221;. CEN shall not be held responsible for <br/>identifying any or all such patent rights.  <br/>The Workshop participants have made every effort to ensure the reliability and accuracy of the technical and non-<br/>technical content of CWA 16926-14, but this does not guarantee, either explicitly or implicitly, its correctness. <br/>Users of CWA 16926-14 should be aware that neither the Workshop participants, nor CEN can be held liable for <br/>damages or losses of any kind whatsoever which may arise from its application. Users of CWA 16926-14 do so on <br/>their own responsibility and at their own risk. <br/>The CWA is published as a multi-part document, consisting of: <br/>Part 1: Application Programming Interface (API) - Service Provider Interface (SPI) - Programmer's Reference <br/>Part 2: Service Classes Definition - Programmer's Reference <br/>Part 3: Printer and Scanning Device Class Interface - Programmer's Reference <br/>Part 4: Identification Card Device Class Interface - Programmer's Reference <br/>Part 5: Cash Dispenser Device Class Interface - Programmer's Reference <br/>Part 6: PIN Keypad Device Class Interface - Programmer's Reference <br/>Part 7: Check Reader/Scanner Device Class Interface - Programmer's Reference <br/>Part 8: Depository Device Class Interface - Programmer's Reference <br/>Part 9: Text Terminal Unit Device Class Interface - Programmer's Reference <br/>Part 10: Sensors and Indicators Unit Device Class Interface - Programmer's Reference <br/>Part 11: Vendor Dependent Mode Device Class Interface - Programmer's Reference <br/>Part 12: Camera Device Class Interface - Programmer's Reference <br/>Part 13: Alarm Device Class Interface - Programmer's Reference <br/>Part 14: Card Embossing Unit Device Class Interface - Programmer's Reference <br/>Part 15: Cash-In Module Device Class Interface - Programmer's Reference <br/>Part 16: Card Dispenser Device Class Interface - Programmer's Reference <br/>Part 17: Barcode Reader Device Class Interface - Programmer's Reference <br/>Part 18: Item Processing Module Device Class Interface - Programmer's Reference <br/>Part 19: Biometrics Device Class Interface - Programmer's Reference <br/>Parts 20 - 28: Reserved for future use. <br/>Parts 29 through 47 constitute an optional addendum to this CWA. They define the integration between the SNMP <br/>standard and the set of status and statistical information exported by the Service Providers. <br/>Part 29: XFS MIB Architecture and SNMP Extensions - Programmer&#8217;s Reference <br/>Part 30: XFS MIB Device Specific Definitions - Printer Device Class <br/>Part 31: XFS MIB Device Specific Definitions - Identification Card Device Class <br/>Part 32: XFS MIB Device Specific Definitions - Cash Dispenser Device Class <br/>Part 33: XFS MIB Device Specific Definitions - PIN Keypad Device Class </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>6 <br/></b></p>
+<p>Part 34: XFS MIB Device Specific Definitions - Check Reader/Scanner Device Class <br/>Part 35: XFS MIB Device Specific Definitions - Depository Device Class <br/>Part 36: XFS MIB Device Specific Definitions - Text Terminal Unit Device Class <br/>Part 37: XFS MIB Device Specific Definitions - Sensors and Indicators Unit Device Class <br/>Part 38: XFS MIB Device Specific Definitions - Camera Device Class <br/>Part 39: XFS MIB Device Specific Definitions - Alarm Device Class <br/>Part 40: XFS MIB Device Specific Definitions - Card Embossing Unit Class <br/>Part 41: XFS MIB Device Specific Definitions - Cash-In Module Device Class <br/>Part 42: Reserved for future use. <br/>Part 43: XFS MIB Device Specific Definitions - Vendor Dependent Mode Device Class <br/>Part 44: XFS MIB Application Management <br/>Part 45: XFS MIB Device Specific Definitions - Card Dispenser Device Class <br/>Part 46: XFS MIB Device Specific Definitions - Barcode Reader Device Class <br/>Part 47: XFS MIB Device Specific Definitions - Item Processing Module Device Class <br/>Part 48: XFS MIB Device Specific Definitions - Biometrics Device Class <br/>Parts 49 - 60 are reserved for future use. <br/>Part 61: Application Programming Interface (API) - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Service Provider Interface (SPI) - Programmer's Reference <br/>Part 62: Printer and Scanning Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference <br/>Part 63: Identification Card Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference <br/>Part 64: Cash Dispenser Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 65: PIN Keypad Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 66: Check Reader/Scanner Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version <br/>3.40 (this CWA) - Programmer's Reference <br/>Part 67: Depository Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 68: Text Terminal Unit Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference <br/>Part 69: Sensors and Indicators Unit Device Class Interface - Migration from Version 3.30 (CWA 16926) to <br/>Version 3.40 (this CWA) - Programmer's Reference <br/>Part 70: Vendor Dependent Mode Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version <br/>3.40 (this CWA) - Programmer's Reference <br/>Part 71: Camera Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this CWA) - <br/>Programmer's Reference <br/>Part 72: Alarm Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this CWA) - <br/>Programmer's Reference <br/>Part 73: Card Embossing Unit Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference <br/>Part 74: Cash-In Module Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 75: Card Dispenser Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>7 <br/></b></p>
+<p>Part 76: Barcode Reader Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 77: Item Processing Module Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version <br/>3.40 (this CWA) - Programmer's Reference <br/> <br/>In addition to these Programmer's Reference specifications, the reader of this CWA is also referred to a <br/>complementary document, called Release Notes. The Release Notes contain clarifications and explanations on the <br/>CWA specifications, which are not requiring functional changes. The current version of the Release Notes is <br/>available online from: https://www.cen.eu/work/Sectors/Digital_society/Pages/WSXFS.aspx. <br/>The information in this document represents the Workshop's current views on the issues discussed as of the date of <br/>publication. It is provided for informational purposes only and is subject to change without notice. CEN makes no <br/>warranty, express or implied, with respect to this document. <br/> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>8 <br/></b></p>
+<p><b>1. Introduction <br/></b></p>
+<p><b>1.1 Background to Release 3.40 <br/></b>The CEN/XFS Workshop aims to promote a clear and unambiguous specification defining a multi-vendor software <br/>interface to financial peripheral devices. The XFS (eXtensions for Financial Services) specifications are developed <br/>within the CEN (European Committee for Standardization/Information Society Standardization System) Workshop <br/>environment. CEN Workshops aim to arrive at a European consensus on an issue that can be published as a CEN <br/>Workshop Agreement (CWA). <br/>The CEN/XFS Workshop encourages the participation of both banks and vendors in the deliberations required to <br/>create an industry standard. The CEN/XFS Workshop achieves its goals by focused sub-groups working <br/>electronically and meeting quarterly. <br/>Release 3.40 of the XFS specification is based on a C API and is delivered with the continued promise for the <br/>protection of technical investment for existing applications. This release of the specification extends the <br/>functionality and capabilities of the existing devices covered by the specification. Notable enhancements include: <br/></p>
+<p>&#8226; Common API level based &#8216;Service Information&#8217; command to report Service Provider information, <br/>data and versioning. <br/></p>
+<p>&#8226; Common API level based events to report changes in status and invalid parameters. <br/>&#8226; Support for Advanced Encryption Standard (AES) in PIN. <br/>&#8226; VDM Entry Without Closing XFS Service Providers. <br/>&#8226; Addition of a Biometrics device class. <br/>&#8226; CDM/CIM Note Classification List handling. <br/>&#8226; Support for Derived Unique Key Per Transaction (DUKPT) in PIN. <br/>&#8226; Addition of Transaction Start/End commands. <br/>&#8226; Addition of explicit CIM Prepare/Present commands. <br/></p>
+<p> <br/><b>1.2 XFS Service-Specific Programming <br/></b>The service classes are defined by their service-specific commands and the associated data structures, error codes, <br/>messages, etc. These commands are used to request functions that are specific to one or more classes of Service <br/>Providers, but not all of them, and therefore are not included in the common API for basic or administration <br/>functions. <br/>When a service-specific command is common among two or more classes of Service Providers, the syntax of the <br/>command is as similar as possible across all services, since a major objective of XFS is to standardize function <br/>codes and structures for the broadest variety of services. For example, using the <b>WFSExecute </b>function, the <br/>commands to read data from various services are as similar as possible to each other in their syntax and data <br/>structures. <br/>In general, the specific command set for a service class is defined as a superset of the specific capabilities likely to <br/>be provided by the developers of the services of that class; thus any particular device will normally support only a <br/>subset of the defined command set. <br/>There are three cases in which a Service Provider may receive a service-specific command that it does not support: <br/>The requested capability is defined for the class of Service Providers by the XFS specification, the particular vendor <br/>implementation of that service does not support it, and the unsupported capability is <b><i>not </i></b><i></i>considered to be <br/>fundamental to the service. In this case, the Service Provider returns a successful completion, but does no operation. <br/>An example would be a request from an application to turn on a control indicator on a passbook printer; the Service <br/>Provider recognizes the command, but since the passbook printer it is managing does not include that indicator, the <br/>Service Provider does no operation and returns a successful completion to the application. <br/>The requested capability is defined for the class of Service Providers by the XFS specification, the particular vendor <br/>implementation of that service does not support it, and the unsupported capability <b><i>is</i></b><i></i> considered to be fundamental <br/>to the service. In this case, a WFS_ERR_UNSUPP_COMMAND error for Execute commands or </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>9 <br/></b></p>
+<p>WFS_ERR_UNSUPP_CATEGORY error for Info commands is returned to the calling application. An example <br/>would be a request from an application to a cash dispenser to retract items where the dispenser hardware does not <br/>have that capability; the Service Provider recognizes the command but, since the cash dispenser it is managing is <br/>unable to fulfil the request, returns this error. <br/>The requested capability is <b><i>not</i></b><i></i> defined for the class of Service Providers by the XFS specification. In this case, a <br/>WFS_ERR_INVALID_COMMAND error for Execute commands or WFS_ERR_INVALID_CATEGORY error <br/>for Info commands is returned to the calling application. <br/>This design allows implementation of applications that can be used with a range of services that provide differing <br/>subsets of the functionalities that are defined for their service class. Applications may use the <b>WFSGetInfo</b> and <br/><b>WFSAsyncGetInfo</b> commands to inquire about the capabilities of the service they are about to use, and modify <br/>their behavior accordingly, or they may use functions and then deal with error returns to make decisions as to how <br/>to use the service. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>10 <br/></b></p>
+<p><b>2. Card Embossing Units <br/></b>This section describes the functions provided by a generic card embossing unit (CEU). These descriptions include <br/>definitions of the service-specific commands that can be issued, using the <b>WFSAsyncExecute</b>, <b>WFSExecute</b>, <br/><b>WFSGetInfo</b> and <b>WFSAsyncGetInfo</b> functions. <br/>Embossing card units are generally viewed by XFS as compound devices with the following capabilities and <br/>features: <br/></p>
+<p>&#8226; Embossing or printing of magnetic stripe card/ smart card. <br/>&#8226; Reading/encoding magnetic stripe tracks 1, 2, and 3. <br/>&#8226; Reading/writing smart card. <br/>&#8226; LCD display/ keypad input. <br/></p>
+<p>The XFS services supporting the various embossing card unit components are outlined as follows: <br/>&#8226; Embossing or printing of magnetic stripe card/ smart card - Card Embossing Unit (CEU) service. <br/>&#8226; Reading/encoding magnetic stripe tracks 1, 2, and 3 - ID Card (IDC) service, however when combined <br/></p>
+<p>encoding/ embossing is performed the CEU service class is used. <br/>&#8226; Reading/writing smart cards - ID Card (IDC) service, however when combined writing smart card/ <br/></p>
+<p>embossing is performed the CEU service class is used. <br/>&#8226; LCD display/ keypad input - Text Terminal Unit (TTU) service. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>11 <br/></b></p>
+<p><b>3. References <br/></b>1. XFS Application Programming Interface (API)/Service Provider Interface ( SPI), Programmer&#8217;s Reference <br/>Revision 3.40 </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>12 <br/></b></p>
+<p><b>4. Info Commands <br/></b></p>
+<p><b>4.1 WFS_INF_CEU_STATUS <br/>Description</b> This command reports the full range of information available, including the information that is <br/></p>
+<p>provided either by the Service Provider or directly from the device. <br/><b>Input Param</b> None. <br/><b>Output Param</b> LPWFSCEUSTATUS lpStatus; <br/></p>
+<p>typedef struct _wfs_ceu_status <br/> { <br/> WORD    fwDevice; <br/> WORD    fwMedia; <br/> WORD    fwRetainBin; <br/> WORD    fwOutputBin; <br/> WORD    fwInputBin; <br/> USHORT   usTotalCards; <br/> USHORT   usOutputCards; <br/> USHORT   usRetainCards; <br/> LPSTR   lpszExtra; <br/> WORD    wDevicePosition; <br/> USHORT   usPowerSaveRecoveryTime; <br/> WORD    wToner; <br/> WORD    wAntiFraudModule; <br/> } WFSCEUSTATUS, *LPWFSCEUSTATUS; <br/><i>fwDevice</i> <br/>Specifies the state of the ID card device as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_DEVONLINE The device is present, powered on and online <br/></p>
+<p>(i.e. operational, not busy processing a <br/>request and not in an error state). <br/></p>
+<p>WFS_CEU_DEVOFFLINE The device is offline (e.g. the operator has <br/>taken the device offline by turning a switch). <br/></p>
+<p>WFS_CEU_DEVPOWEROFF The device is powered off or physically not <br/>connected. <br/></p>
+<p>WFS_CEU_DEVNODEVICE There is no device intended to be there; e.g. <br/>this type of self service machine does not <br/>contain such a device or it is internally not <br/>configured. <br/></p>
+<p>WFS_CEU_DEVHWERROR The device is present but inoperable due to a <br/>hardware fault that prevents it from being <br/>used. <br/></p>
+<p>WFS_CEU_DEVUSERERROR The device is present but a person is <br/>preventing proper device operation. The <br/>application should suspend the device <br/>operation or remove the device from service <br/>until the Service Provider generates a device <br/>state change event indicating the condition <br/>of the device has changed e.g. the error is <br/>removed (WFS_CEU_DEVONLINE) or a <br/>permanent error condition has occurred <br/>(WFS_CEU_DEVHWERROR). <br/></p>
+<p>WFS_CEU_DEVBUSY The device is busy and unable to process an <br/>execute command at this time. <br/></p>
+<p>WFS_CEU_DEVFRAUDATTEMPT The device is present but is inoperable <br/>because it has detected a fraud attempt. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>13 <br/></b></p>
+<p>WFS_CEU_DEVPOTENTIALFRAUD The device has detected a potential fraud <br/>attempt and is capable of remaining in <br/>service. In this case the application should <br/>make the decision as to whether to take the <br/>device offline. <br/></p>
+<p><i>fwMedia</i> <br/>Specifies the state of the ID card unit as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_MEDIAPRESENT Media is present in the device, not in the <br/></p>
+<p>entering position and not jammed. <br/>WFS_CEU_MEDIANOTPRESENT Media is not present in the device and not at <br/></p>
+<p>the entering position. <br/>WFS_CEU_MEDIAJAMMED Media is jammed in the device; operator <br/></p>
+<p>intervention is required. <br/>WFS_CEU_MEDIANOTSUPP Capability to report media position is not <br/></p>
+<p>supported by the device. <br/>WFS_CEU_MEDIAUNKNOWN The media state cannot be determined with <br/></p>
+<p>the device in its current state (e.g. the value <br/>of <i>fwDevice</i> is <br/>WFS_CEU_DEVNODEVICE, <br/>WFS_CEU_DEVPOWEROFF, <br/>WFS_CEU_DEVOFFLINE, or <br/>WFS_CEU_DEVHWERROR). <br/></p>
+<p>WFS_CEU_MEDIAENTERING Media is at the entry/exit slot. <br/>WFS_CEU_MEDIATOPPER Topper failure. <br/>WFS_CEU_MEDIAINHOPPER Card is positioned in input bin. <br/>WFS_CEU_MEDIAOUTHOPPER Card is positioned in output bin. <br/>WFS_CEU_MEDIAMSRE Encoding failure. <br/>WFS_CEU_MEDIARETAINED Card is positioned in retain bin. <br/></p>
+<p><i>fwRetainBin</i> <br/>Specifies the state of the CEU retain bin as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_RETAINBINOK The retain bin is in a good state. <br/>WFS_CEU_RETAINBINFULL The retain bin is full. <br/>WFS_CEU_RETAINBINHIGH The retain bin is nearly full. <br/>WFS_CEU_RETAINBINNOTSUPP The retain bin state can not be reported. <br/></p>
+<p><i>fwOutputBin</i> <br/>Specifies the state of the Embossing unit output bin as one of the flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_OUTPUTBINOK The output bin is in a good state. <br/>WFS_CEU_OUTPUTBINFULL The output bin is full. <br/>WFS_CEU_OUTPUTBINHIGH The output bin is nearly full. <br/>WFS_CEU_OUTPUTNOTSUPP The output bin state can not be reported. <br/></p>
+<p><i>fwInputBin</i> <br/>Specifies the state of the Embossing unit input bin as one of the flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_INPUTBINOK The input bin is in a good state. <br/>WFS_CEU_INPUTBINEMPTY The input bin is empty. <br/>WFS_CEU_INPUTBINLOW The input bin is nearly empty. <br/>WFS_CEU_INPUTNOTSUPP The input bin state can not be reported. <br/></p>
+<p><i>usTotalCards <br/></i>The total number of cards, including those in input bin, output bin, and retain bin. <br/><i>usOutputCards</i> <br/>The total number of output bin cards. <br/><i>usRetainCards</i> <br/>The total number of retain bin cards. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>14 <br/></b></p>
+<p><i>lpszExtra</i> <br/>Pointer to a list of vendor-specific, or any other extended, information. The information is <br/>returned as a series of <i>&#8220;key=value&#8221;</i> strings so that it is easily extensible by Service Providers. <br/>Each string is null-terminated, with the final string terminating with two null characters. An <br/>empty list may be indicated by either a NULL pointer or a pointer to two consecutive null <br/>characters. <br/><i>wDevicePosition</i> <br/>Specifies the device position. The device position value is independent of the <i>fwDevice</i> value, e.g. <br/>when the device position is reported as WFS_CEU_DEVICENOTINPOSITION, <i>fwDevice</i> can <br/>have any of the values defined above (including WFS_CEU_DEVONLINE or <br/>WFS_CEU_DEVOFFLINE). If the device is not in its normal operating position (i.e. <br/>WFS_CEU_DEVICEINPOSITION) then media may not be presented through the normal <br/>customer interface. This value is one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_DEVICEINPOSITION The device is in its normal operating <br/></p>
+<p>position, or is fixed in place and cannot be <br/>moved. <br/></p>
+<p>WFS_CEU_DEVICENOTINPOSITION The device has been removed from its <br/>normal operating position. <br/></p>
+<p>WFS_CEU_DEVICEPOSUNKNOWN Due to a hardware error or other condition, <br/>the position of the device cannot be <br/>determined. <br/></p>
+<p>WFS_CEU_DEVICEPOSNOTSUPP The physical device does not have the <br/>capability of detecting the position. <br/></p>
+<p><i>usPowerSaveRecoveryTime</i> <br/>Specifies the actual number of seconds required by the device to resume its normal operational <br/>state from the current power saving mode. This value is zero if either the power saving mode has <br/>not been activated or no power save control is supported. <br/><i>wToner</i> <br/>Specifies the state of the toner or ink supply or the state of the ribbon as one of the following <br/>values: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_TONERFULL The toner or ink supply is full or the ribbon <br/></p>
+<p>is OK. <br/>WFS_CEU_TONERLOW The toner or ink supply is low or the print <br/></p>
+<p>contrast with a ribbon is weak. <br/>WFS_CEU_TONEROUT The toner or ink supply is empty or the print <br/></p>
+<p>contrast with a ribbon is not sufficient any <br/>more. <br/></p>
+<p>WFS_CEU_TONERNOTSUPP The toner or ink supply is not supported by <br/>the device. <br/></p>
+<p>WFS_CEU_TONERUNKNOWN Status of toner or ink supply or the ribbon <br/>cannot be determined with device in its <br/>current state. <br/></p>
+<p><i>wAntiFraudModule</i> <br/>Specifies the state of the anti-fraud module as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_AFMNOTSUPP No anti-fraud module is available. <br/>WFS_CEU_AFMOK Anti-fraud module is in a good state and no <br/></p>
+<p>foreign device is detected. <br/>WFS_CEU_AFMINOP Anti-fraud module is inoperable. <br/>WFS_CEU_AFMDEVICEDETECTED Anti-fraud module detected the presence of a <br/></p>
+<p>foreign device. <br/>WFS_CEU_AFMUNKNOWN The state of the anti-fraud module cannot be <br/></p>
+<p>determined. <br/><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> Applications which require or expect specific information to be present in the <i>lpszExtra<b></b></i><b> </b>parameter </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>15 <br/></b></p>
+<p>may not be device or vendor-independent. <br/>In the case where communications with the device has been lost, the <i>fwDevice</i> field will report <br/>WFS_CEU_DEVPOWEROFF when the device has been removed or <br/>WFS_CEU_DEVHWERROR if the communications are unexpectedly lost. All other fields <br/>should contain a value based on the following rules and priority: <br/></p>
+<p>1. Report the value as unknown. <br/>2. Report the value as a general h/w error. <br/>3. Report the value as the last known value. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>16 <br/></b></p>
+<p><b>4.2 WFS_INF_CEU_CAPABILITIES <br/>Description</b> This command is used to retrieve the capabilities of the Card Embossing Unit. <br/><b>Input Param </b>None.<b> <br/>Output Param</b> LPWFSCEUCAPS lpCaps; <br/></p>
+<p>typedef struct _wfs_ceu_caps <br/> { <br/> WORD    wClass; <br/> BOOL    bCompound; <br/> BOOL    bCompareMagneticStripe; <br/> BOOL    bMagneticStripeRead; <br/> BOOL    bMagneticStripeWrite; <br/> BOOL    bChipIO; <br/> WORD    wChipProtocol; <br/> LPSTR   lpszExtra; <br/> BOOL    bPowerSaveControl; <br/> WORD    fwCharSupport; <br/> WORD    fwType; <br/> BOOL    bAntiFraudModule; <br/> LPDWORD   lpdwSynchronizableCommands; <br/>} WFSCEUCAPS, *LPWFSCEUCAPS; <br/><i>wClass</i> <br/>Specifies the logical service class as WFS_SERVICE_CLASS_CEU. <br/><i>bCompound</i> <br/>Specifies whether the logical device is part of a compound physical device. <br/><i>bCompareMagneticStripe <br/></i>Indicates whether CEU has capability of comparing magnetic stripe contents (TRUE) as a <br/>prerequisite for an encoding or embossing operation. <br/><i>bMagneticStripeRead <br/></i>Indicates whether CEU has magnetic stripe reading capability and is either TRUE or FALSE. <br/><i>bMagneticStripeWrite <br/></i>Indicates whether CEU has magnetic stripe writing capability and is either TRUE or FALSE. <br/><i>bChipIO <br/></i>Indicates whether CEU has smart card updating capability and is either TRUE or FALSE. <br/><i>wChipProtocol <br/></i>Specifies the chip card protocols that are supported by the Service Provider as a combination of <br/>the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_NOTSUPP The CEU card unit can not handle chip <br/></p>
+<p>cards. <br/>WFS_CEU_CHIPT0 The CEU card unit can handle the T=0 <br/></p>
+<p>protocol. <br/>WFS_CEU_CHIPT1 The CEU card unit can handle the T=1 <br/></p>
+<p>protocol. <br/>WFS_CEU_CHIP_PROTOCOL_NOT_REQUIRED <br/></p>
+<p>The CEU card unit is capable of <br/>communicating with a chip card without <br/>requiring the application to specify any <br/>protocol. <br/></p>
+<p><i>lpszExtra</i> <br/>Pointer to a list of vendor-specific, or any other extended, information. The information is <br/>returned as a series of <i>&#8220;key=value&#8221;</i> strings so that it is easily extensible by Service Providers. <br/>Each string is null-terminated, with the final string terminating with two null characters. An <br/>empty list may be indicated by either a NULL pointer or a pointer to two consecutive null <br/>characters. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>17 <br/></b></p>
+<p><i>bPowerSaveControl</i> <br/>Specifies whether power saving control is available. This can either be TRUE if available or <br/>FALSE if not available. <br/><i>fwCharSupport</i> <br/>One or more flags specifying the character sets, in addition to single byte ASCII, that is supported <br/>by the Service Provider: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_ASCII ASCII is supported for XFS forms. <br/>WFS_CEU_UNICODE UNICODE is supported for XFS forms. <br/></p>
+<p>For <i>fwCharSupport, </i>a Service Provider can support ONLY ASCII forms or can support BOTH <br/>ASCII and UNICODE forms. A Service Provider cannot support UNICODE forms without also <br/>supporting ASCII forms. <br/><i>fwType <br/></i>Specifies whether the CEU has a card embossing capability and/or a card printing capability. This <br/>field will be set to a combination of the following flags:<i> <br/></i></p>
+<p>Value Meaning <br/>WFS_CEU_EMBOSS The CEU card unit supports embossing data <br/></p>
+<p>on cards. <br/>WFS_CEU_PRINT The CEU card unit supports printing data on <br/></p>
+<p>cards. <br/><i>bAntiFraudModule <br/></i>Specifies whether the anti-fraud module is available. This can either be TRUE if available or <br/>FALSE if not available. <br/><i>lpdwSynchronizableCommands <br/></i>Pointer to a zero-terminated list of DWORDs which contains the execute command IDs that can <br/>be synchronized. If no execute command can be synchronized then this parameter will be NULL. <br/></p>
+<p><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> Applications which require or expect specific information to be present in the <i>lpszExtra<b></b></i><b> </b>parameter <br/></p>
+<p>may not be device or vendor-independent. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>18 <br/></b></p>
+<p><b>4.3 WFS_INF_CEU_FORM_LIST <br/>Description </b>This command is used to retrieve the list of forms available on the device.<b> <br/>Input Param</b> None. <br/><b>Output Param </b>LPSTR lpszFormList; <br/></p>
+<p><i>lpszFormList<b></b></i><b> <br/></b>Pointer to a list of null-terminated form names, with the final name terminating with two null <br/>characters. <br/></p>
+<p><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>19 <br/></b></p>
+<p><b>4.4 WFS_INF_CEU_MEDIA_LIST <br/>Description </b>This command is used to retrieve the list of media definitions available on the device.<b> <br/>Input Param</b> None. <br/><b>Output Param </b>LPSTR lpszMediaList; <br/></p>
+<p><i>lpszMediaList<b></b></i><b> <br/></b>Pointer to a list of null-terminated media names, with the final name terminating with two null <br/>characters. <br/></p>
+<p><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>20 <br/></b></p>
+<p><b>4.5 WFS_INF_CEU_QUERY_FORM <br/>Description </b>This command is used to retrieve details of the definition of a specified CEU form. The <br/></p>
+<p>WFS_INF_CEU_QUERY_FORM does not currently contain any form attributes, however it is <br/>retained for future expansion.<b> <br/></b></p>
+<p><b>Input Param</b> LPSTR lpszFormName; <br/><i>lpszFormName<b></b></i><b> <br/></b>Points to the null-terminated form name on which to retrieve details. <br/></p>
+<p><b>Output Param </b>LPWFSCEUFORM lpForm; <br/>typedef struct _wfs_ceu_form <br/> { <br/> LPSTR   lpszFormName; <br/> LPSTR   lpszFields; <br/> WORD    fwCharSupport; <br/> WORD    wLanguageID; <br/> } WFSCEUFORM, *LPWFSCEUFORM; <br/><i>lpszFormName</i> <br/>Specifies the null-terminated name of the form. <br/><i>lpszFields<b></b></i><b> <br/></b>Pointer to a list of null-terminated field names, with the final name terminating with two null <br/>characters. <br/><i>fwCharSupport</i> <br/>A single flag specifying the Character Set in which the form is encoded: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_ASCII ASCII is supported for XFS forms initial <br/></p>
+<p>data values and FORMAT strings. <br/>WFS_CEU_UNICODE UNICODE is supported for XFS forms <br/></p>
+<p>initial data values and FORMAT strings. <br/><i>wLanguageID<b></b></i><b> <br/></b>Specifies the language identifier for the form. <br/></p>
+<p><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/>generated by this command: <br/></p>
+<p>Value Meaning <br/>WFS_ERR_CEU_FORMNOTFOUND The specified form cannot be found. <br/>WFS_ERR_CEU_FORMINVALID The specified form is invalid. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>21 <br/></b></p>
+<p><b>4.6 WFS_INF_CEU_QUERY_MEDIA <br/>Description </b>This command is used to retrieve details of the definition of a specified media.<b> <br/>Input Param</b> LPSTR lpszMediaName; <br/></p>
+<p><i>lpszMediaName<b></b></i><b> <br/></b>Pointer to the null-terminated media name about which to retrieve details. <br/></p>
+<p><b>Output Param </b>LPWFSCEUFRMMEDIA lpFormMedia; <br/>typedef struct _wfs_ceu_frm_media <br/> { <br/> WORD    fwMediaType; <br/> WORD    wBase; <br/> WORD    wUnitX; <br/> WORD    wUnitY; <br/> WORD    wSizeWidth; <br/> WORD    wSizeHeight; <br/> WORD    wEmbossAreaX; <br/> WORD    wEmbossAreaY; <br/> WORD    wEmbossAreaWidth; <br/> WORD    wEmbossAreaHeight; <br/> WORD    wRestrictedAreaX; <br/> WORD    wRestrictedAreaY; <br/> WORD    wRestrictedAreaWidth; <br/> WORD    wRestrictedAreaHeight; <br/> } WFSCEUFRMMEDIA, *LPWFSCEUFRMMEDIA; <br/><i>fwMediaType</i> <br/>Specifies the type of media as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_MEDIAECARD Embossible card media. <br/>WFS_CEU_MEDIAPCARD Printable card media. <br/></p>
+<p><i>wBase<b></b></i><b> <br/></b>Specifies the base unit of measurement of the form and can be one of the following: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_INCH The base unit is inches. <br/>WFS_CEU_MM The base unit is millimeters. <br/>WFS_CEU_ROWCOLUMN The base unit is rows and columns. <br/></p>
+<p><i>wUnitX<b></b></i><b> <br/></b>Specifies the horizontal resolution of the base units as a fraction of the <i>wBase</i> value. For example, <br/>a value of 16 applied to the base unit WFS_CEU_INCH means that the base horizontal resolution <br/>is 1/16&quot;. <br/><i>wUnitY<b></b></i><b> <br/></b>Specifies the vertical resolution of the base units as a fraction of the <i>wBase</i> value. For example, a <br/>value of 10 applied to the base unit WFS_CEU_MM means that the base vertical resolution is 0.1 <br/>mm. <br/><i>wSizeWidth<b></b></i><b> <br/></b>Specifies the width of the media in terms of the base horizontal resolution. <br/><i>wSizeHeight<b></b></i><b> <br/></b>Specifies the height of the media in terms of the base vertical resolution. <br/><i>wEmbossAreaX<b></b></i><b> <br/></b>Specifies the horizontal offset of the Card Emboss area relative to the top left corner of the media <br/>in terms of the base horizontal resolution. <br/><i>wEmbossAreaY<b></b></i><b> <br/></b>Specifies the vertical offset of the Card Emboss area relative to the top left corner of the media in <br/>terms of the base vertical resolution. <br/><i>wEmbossAreaWidth<b></b></i><b> <br/></b>Specifies the Card Emboss area width of the media in terms of the base horizontal resolution. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>22 <br/></b></p>
+<p><i>wEmbossAreaHeight<b></b></i><b> <br/></b>Specifies the Card Emboss area height of the media in terms of the base vertical resolution. <br/><i>wRestrictedAreaX<b></b></i><b> <br/></b>Specifies the horizontal offset of the restricted area relative to the top left corner of the media in <br/>terms of the base horizontal resolution. <br/><i>wRestrictedAreaY<b></b></i><b> <br/></b>Specifies the vertical offset of the restricted area relative to the top left corner of the media in <br/>terms of the base vertical resolution. <br/><i>wRestrictedAreaWidth<b></b></i><b> <br/></b>Specifies the restricted area width of the media in terms of the base horizontal resolution. <br/><i>wRestrictedAreaHeight<b></b></i><b> <br/></b>Specifies the restricted area height of the media in terms of the base vertical resolution. <br/></p>
+<p><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/>generated by this command: <br/></p>
+<p>Value Meaning <br/>WFS_ERR_CEU_MEDIANOTFOUND The specified media definition cannot be <br/></p>
+<p>found. <br/>WFS_ERR_CEU_MEDIAINVALID The specified media definition is invalid. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>23 <br/></b></p>
+<p><b>4.7 WFS_INF_CEU_QUERY_FIELD <br/>Description </b>This function is used to retrieve details on the definition of a single or all fields on a specified <br/></p>
+<p>form.<b> <br/>Input Param</b> LPWFSCEUQUERYFIELD lpQueryField; <br/></p>
+<p>typedef struct _wfs_ceu_query_field <br/> { <br/> LPSTR   lpszFormName; <br/> LPSTR   lpszFieldName; <br/> } WFSCEUQUERYFIELD, *LPWFSCEUQUERYFIELD; <br/><i>lpszFormName<b></b></i><b> <br/></b>Points to the null-terminated form name. <br/><i>lpszFieldName</i> <br/>Points to the null-terminated name of the field about which to retrieve details. If this value is <br/>NULL, then retrieve details for all fields on the form. Depending upon whether the form is <br/>encoded in UNICODE representation either the <i>lpszInitialValue</i> or <i>lpszUNICODEInitialValue</i> <br/>output fields are used to retrieve the field Initial Value. <br/></p>
+<p><b>Output Param </b>LPWFSCEUFRMFIELD *lppFields; <br/><i>lppFields<b></b></i><b> <br/></b>Pointer to a NULL-terminated array of pointers to WFSCEUFRMFIELD structures: <br/>typedef struct _wfs_ceu_frm_field <br/> { <br/> LPSTR   lpszFieldName; <br/> WORD    fwType; <br/> WORD    fwClass; <br/> LPSTR   lpszInitialValue; <br/> LPSTR   lpszFormat; <br/> LPWSTR   lpszUNICODEInitialValue; <br/> LPWSTR   lpszUNICODEFormat; <br/> WORD    wLanguageID; <br/> } WFSCEUFRMFIELD, *LPWFSCEUFRMFIELD; <br/><i>lpszFieldName</i> <br/>Pointer to the null-terminated field name. <br/><i>fwType</i> <br/>Specifies the type of field and can be one of the following: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_FIELDTEXT A text field. <br/>WFS_CEU_FIELDOCR An Optical Character Recognition (OCR) <br/></p>
+<p>field. <br/><i>fwClass<b></b></i><b> <br/></b>Specifies the class of the field and can be one of the following: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_CLASSSTATIC The field data cannot be set by the <br/></p>
+<p>application. <br/>WFS_CEU_CLASSOPTIONAL The field data can be set by the application. <br/>WFS_CEU_CLASSREQUIRED The field data must be set by the application. <br/></p>
+<p><i>lpszInitialValue <br/></i>The initial value of the field when the field is written as output. This value can be NULL if the <br/>parameter is not specified in the field definition or the form is encoded in UNICODE. <br/><i>lpszFormat <br/></i>Format string as defined in the form for this field. This value can be NULL if the parameter is not <br/>specified in the field definition or the form is encoded in UNICODE. <br/><i>lpszUNICODEInitialValue <br/></i>The initial value of the field when form is encoded in UNICODE. This value can be NULL if the <br/>parameter is not specified in the field definition or the form is not encoded in UNICODE. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>24 <br/></b></p>
+<p><i>lpszUNICODEFormat <br/></i>Format string as defined in the form for this field when form is encoded in UNICODE. This value <br/>can be NULL if the parameter is not specified in the field definition or the form is not encoded in <br/>UNICODE. <br/><i>wLanguageID<b></b></i><b> <br/></b>Specifies the language identifier for the field. <br/></p>
+<p><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/>generated by this command: <br/></p>
+<p>Value Meaning <br/>WFS_ERR_CEU_FORMNOTFOUND The specified form cannot be found. <br/>WFS_ERR_CEU_FIELDNOTFOUND The specified field cannot be found. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>25 <br/></b></p>
+<p><b>5. Execute Commands <br/></b></p>
+<p><b>5.1 WFS_CMD_CEU_EMBOSS_CARD <br/>Description </b>This command is used to emboss an identification card by merging the supplied variable field <br/></p>
+<p>data with the defined form and field data specified in the form. Optionally the magnetic stripe can <br/>be read and verified before being encoded, or a smart card can be updated. <br/>The ATR of the chip must be obtained before issuing this command by issuing the ID Card class <br/>WFS_CMD_IDC_READ_RAW_DATA command. <br/></p>
+<p><b>Input Param</b> LPWFSCEUEMBOSSCARD lpEmbossCard; <br/>typedef struct _wfs_ceu_emboss_card <br/> { <br/> LPSTR   lpszFormName; <br/> LPSTR   lpszMediaName; <br/> LPSTR   lpszFields; <br/> LPSTR   lpszCompareFormIOFormName; <br/> LPSTR   lpszCompareFormIOTrackData; <br/> LPSTR   lpszFormIOFormName; <br/> LPSTR   lpszFormIOTrackData; <br/> WORD    wChipProtocol; <br/> ULONG   ulChipDataLength; <br/> LPBYTE   lpbChipData; <br/> } WFSCEUEMBOSSCARD, *LPWFSCEUEMBOSSCARD; <br/><i>lpszFormName<b></b></i><b> <br/></b>Pointer to the null-terminated form name. <br/><i>lpszMediaName<b></b></i><b> <br/></b>Pointer to the null-terminated media name. <br/><i>lpszFields</i> <br/>Pointer to a series of &quot;&lt;FieldName&gt;=&lt;FieldValue&gt;&quot; strings, where each string is null-terminated <br/>with the final string terminating with two null characters. <br/><i>lpszCompareFormIOFormName</i> <br/><i>lpszCompareFormIOFormName</i> and <i>lpszCompareFormIOTrackData</i> are used collectively when <br/>the contents of the magnetic stripe are being read and verified before the card is embossed or the <br/>magnetic stripe is encoded. Points to the name of the magnetic stripe form to be used, as defined <br/>in the IDC service class. <br/><i>lpszCompareFormIOTrackData</i> <br/>Points to the data to be used in the form. <br/><i>lpszFormIOFormName</i> <br/><i>lpszFormIOFormName</i> and <i>lpszFormIOTrackData</i> are used collectively when the magnetic stripe <br/>is being encoded (after a successful magnetic stripe compare operation) and during the emboss <br/>operation. Points to the name of the form to be used, as defined in the IDC service class. <br/><i>lpszFormIOTrackData</i> <br/>Points to the data to be used in the form. <br/><i>wChipProtocol <br/>wChipProtocol</i>, <i>ulChipDataLength</i>, and <i>lpbChipData</i> are used collectively when the smart card is <br/>being updated during the emboss operation. If this parameter equals zero then the smart card <br/>should not be updated during the emboss operation. Possible other values are: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_CHIPT0 Use the T=0 protocol to communicate with <br/></p>
+<p>the chip. <br/>WFS_CEU_CHIPT1 Use the T=1 protocol to communicate with <br/></p>
+<p>the chip. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>26 <br/></b></p>
+<p>WFS_CEU_CHIP_PROTOCOL_NOT_REQUIRED <br/>The Service Provider will automatically <br/>determine the protocol used to communicate <br/>with the chip. <br/></p>
+<p><i>ulChipDataLength <br/></i>Specifies the length of the following field <i>lpbChipData</i>. <br/><i>lpbChipData <br/></i>Points to the data sent to the chip. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_CEU_FORMNOTFOUND The specified form definition cannot be <br/></p>
+<p>found. <br/>WFS_ERR_CEU_FORMINVALID The specified form definition is invalid. <br/>WFS_ERR_CEU_MEDIANOTFOUND The specified media definition cannot be <br/></p>
+<p>found. <br/>WFS_ERR_CEU_MEDIAINVALID The specified media definition is invalid. <br/>WFS_ERR_CEU_NOMEDIA There is no card inside the device. <br/>WFS_ERR_CEU_MEDIAOVERFLOW The form overflowed the media. <br/>WFS_ERR_CEU_IDC_FORMNOTFOUND The specified IDC form definition cannot be <br/></p>
+<p>found. <br/>WFS_ERR_CEU_IDC_FORMINVALID The specified IDC form definition is invalid. <br/>WFS_ERR_CEU_INVALIDDATA An error occurred while communicating with <br/></p>
+<p>the chip. <br/>WFS_ERR_CEU_PROTOCOLNOTSUPP The protocol used was not supported by the <br/></p>
+<p>Service Provider. <br/>WFS_ERR_CEU_ATRNOTOBTAINED The ATR was not obtained by issuing the <br/></p>
+<p>IDC class <br/>WFS_CMD_CEU_READ_RAW_DATA <br/>command. <br/></p>
+<p>WFS_ERR_CEU_FIELDSPECFAILURE The syntax of the <i>lpszFields</i> member is <br/>invalid. <br/></p>
+<p>WFS_ERR_CEU_FIELDERROR An error occurred while processing a field, <br/>causing termination of the emboss request. <br/>An execute event <br/>WFS_EXEE_CEU_FIELDERROR is posted <br/>with the details. <br/></p>
+<p>WFS_ERR_CEU_EMBOSSFAILURE A failure has occurred during Emboss <br/>processing. A service event <br/>WFS_EXEE_CEU_EMBOSS_FAILURE is <br/>posted with details. <br/></p>
+<p><b>Events </b>In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/>command: <br/></p>
+<p>Value Meaning <br/>WFS_SRVE_CEU_INPUTBINTHRESHOLD Input bin is nearly empty. <br/>WFS_SRVE_CEU_OUTPUTBINTHRESHOLD Output bin is nearly full. <br/>WFS_SRVE_CEU_RETAINBINTHRESHOLD Retain bin is nearly full. <br/>WFS_EXEE_CEU_EMBOSS_FAILURE A card embossing failure has occurred. <br/>WFS_EXEE_CEU_FIELDERROR A fatal error occurred while processing a <br/></p>
+<p>field. <br/>WFS_EXEE_CEU_FIELDWARNING A non-fatal error occurred while processing <br/></p>
+<p>a field. <br/>WFS_SRVE_CEU_MEDIAREMOVED This event is generated when a card is <br/></p>
+<p>removed before completion of a write <br/>operation. <br/></p>
+<p><b>Comments</b> This command is only supported for backwards compatibility; the <br/>WFS_CMD_CEU_EMBOSS_CARD_EX command should instead be used to emboss cards. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>27 <br/></b></p>
+<p><b>5.2 WFS_CMD_CEU_RESET <br/>Description</b> Sends a service reset to the Service Provider. Any media found in the device will be captured into <br/></p>
+<p>the specified bin (depending on hardware). The WFS_SRVE_CEU_MEDIADETECTED event <br/>will indicate that media was found in the device on reset and will indicate the position and status <br/>of the media following completion of the command. <br/></p>
+<p><b>Input Param</b> LPWORD lpwCeuMediaControl; <br/><i>lpwCeuMediaControl</i> <br/>Specifies the action that should be done if media is detected during the reset operation, as one of <br/>the following values: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_CTRLTOINPUTBIN Any media detected should be moved to the <br/></p>
+<p>input bin. <br/>WFS_CEU_CTRLTOOUTPUTBIN Any media detected should be moved to the <br/></p>
+<p>output bin. <br/>WFS_CEU_CTRLTORETAINBIN Any media detected should be moved to the <br/></p>
+<p>retain bin. <br/><b>Output Param</b> None. <br/><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/></p>
+<p>command: <br/>Value Meaning <br/>WFS_SRVE_CEU_OUTPUTBINTHRESHOLD Output bin is nearly full. <br/>WFS_SRVE_CEU_RETAINBINTHRESHOLD Retain bin is nearly full. <br/>WFS_SRVE_CEU_MEDIADETECTED Media was detected in the device during a <br/></p>
+<p>reset. <br/><b>Comments</b> This command is used by an application control program to cause a device to reset itself to a <br/></p>
+<p>known good condition. <br/>If <i>lpwCeuMediaControl</i> is a NULL pointer the Service Provider will determine where to move <br/>any media found. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>28 <br/></b></p>
+<p><b>5.3 WFS_CMD_CEU_POWER_SAVE_CONTROL <br/>Description </b>This command activates or deactivates the power-saving mode. <br/></p>
+<p>If the Service Provider receives another execute command while in power saving mode, the <br/>Service Provider automatically exits the power saving mode, and executes the requested <br/>command. If the Service Provider receives an information command while in power saving mode, <br/>the Service Provider will not exit the power saving mode. <br/></p>
+<p><b>Input Param</b> LPWFSCEUPOWERSAVECONTROL lpPowerSaveControl; <br/>typedef struct _wfs_ceu_power_save_control <br/> { <br/> USHORT   usMaxPowerSaveRecoveryTime; <br/> } WFSCEUPOWERSAVECONTROL, *LPWFSCEUPOWERSAVECONTROL; <br/><i>usMaxPowerSaveRecoveryTime <br/></i>Specifies the maximum number of seconds in which the device must be able to return to its <br/>normal operating state when exiting power save mode. The device will be set to the highest <br/>possible power save mode within this constraint. If <i>usMaxPowerSaveRecoveryTime</i> is set to zero <br/>then the device will exit the power saving mode. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_CEU_POWERSAVETOOSHORT The power saving mode has not been <br/></p>
+<p>activated because the device is not able to <br/>resume from the power saving mode within <br/>the specified <br/><i>usMaxPowerSaveRecoveryTime</i> value. <br/></p>
+<p>WFS_ERR_CEU_POWERSAVEMEDIAPRESENT <br/>The power saving mode has not been <br/>activated because media is present inside the <br/>device. <br/></p>
+<p><b>Events </b>In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/>command:<b> <br/></b></p>
+<p>Value Meaning <br/>WFS_SRVE_CEU_POWER_SAVE_CHANGE The power save recovery time has changed. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>29 <br/></b></p>
+<p><b>5.4 WFS_CMD_CEU_EMBOSS_CARD_EX <br/>Description </b>This command is used to emboss or print an identification card by merging the supplied variable <br/></p>
+<p>field data with the defined form and field data specified in the form. Optionally the magnetic <br/>stripe can be read and verified before being encoded, or a smart card can be updated. <br/>The ATR of the chip must be obtained before issuing this command by issuing the ID Card class <br/>WFS_CMD_IDC_READ_RAW_DATA command. <br/>For backwards compatibility the WFS_CMD_CEU_EMBOSS_CARD command is provided. <br/></p>
+<p><b>Input Param</b> LPWFSCEUEMBOSSCARDEX lpEmbossCardEx; <br/>typedef struct _wfs_ceu_emboss_card_ex <br/> { <br/> LPSTR   lpszFormName; <br/> LPSTR   lpszMediaName; <br/> LPSTR   lpszFields; <br/> LPSTR   lpszCompareFormIOFormName; <br/> LPSTR   lpszCompareFormIOTrackData; <br/> LPSTR   lpszFormIOFormName; <br/> LPSTR   lpszFormIOTrackData; <br/> WORD    wChipProtocol; <br/> ULONG   ulChipDataLength; <br/> LPBYTE   lpbChipData; <br/> LPWSTR   lpszUNICODEFields; <br/> } WFSCEUEMBOSSCARDEX, *LPWFSCEUEMBOSSCARDEX; <br/><i>lpszFormName<b></b></i><b> <br/></b>Pointer to the null-terminated form name. <br/><i>lpszMediaName<b></b></i><b> <br/></b>Pointer to the null-terminated media name. <br/><i>lpszFields</i> <br/>Pointer to a series of &quot;&lt;FieldName&gt;=&lt;FieldValue&gt;&quot; strings, where each string is null-terminated <br/>with the final string terminating with two null characters. If the field is an index field, then the <br/>syntax of the string is instead &quot;&lt;FieldName&gt;[&lt;index&gt;]=&lt;FieldValue&gt;&quot;, where &lt;index&gt; specifies <br/>the zero-based element of the index field. <br/><i>lpszCompareFormIOFormName</i> <br/><i>lpszCompareFormIOFormName</i> and <i>lpszCompareFormIOTrackData</i> are used collectively when <br/>the contents of the magnetic stripe are being read and verified before the card is embossed or the <br/>magnetic stripe is encoded. Points to the name of the magnetic stripe form to be used, as defined <br/>in the IDC service class. <br/><i>lpszCompareFormIOTrackData</i> <br/>Points to the data to be used in the form. <br/><i>lpszFormIOFormName</i> <br/><i>lpszFormIOFormName</i> and <i>lpszFormIOTrackData</i> are used collectively when the magnetic stripe <br/>is being encoded (after a successful magnetic stripe compare operation) and during the emboss <br/>operation. Points to the name of the form to be used, as defined in the IDC service class. <br/><i>lpszFormIOTrackData</i> <br/>Points to the data to be used in the form. <br/><i>wChipProtocol <br/>wChipProtocol</i>, <i>ulChipDataLength</i>, and <i>lpbChipData</i> are used collectively when the smart card is <br/>being updated during the emboss operation. If this parameter equals zero then the smart card <br/>should not be updated during the emboss operation. Possible other values are: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_CHIPT0 Use the T=0 protocol to communicate with <br/></p>
+<p>the chip. <br/>WFS_CEU_CHIPT1 Use the T=1 protocol to communicate with <br/></p>
+<p>the chip. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>30 <br/></b></p>
+<p>WFS_CEU_CHIP_PROTOCOL_NOT_REQUIRED <br/>The Service Provider will automatically <br/>determine the protocol used to communicate <br/>with the chip. <br/></p>
+<p><i>ulChipDataLength <br/></i>Specifies the length of the following field <i>lpbChipData</i>. <br/><i>lpbChipData <br/></i>Points to the data sent to the chip. <br/><i>lpszUNICODEFields</i> <br/>Pointer to a series of &quot;&lt;FieldName&gt;=&lt;FieldValue&gt;&quot; UNICODE strings, where each string is null-<br/>terminated with the entire field string terminating with two null characters. If the field is an index <br/>field, then the syntax of the string is instead &quot;&lt;FieldName&gt;[&lt;index&gt;]=&lt;FieldValue&gt;&quot;, where <br/>&lt;index&gt; specifies the zero-based element of the index field. <br/>The <i>lpszUNICODEFields</i> field should only be used if the form is encoded in UNICODE <br/>representation. This can be determined with the WFS_INF_CEU_QUERY_FORM command. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_CEU_FORMNOTFOUND The specified form definition cannot be <br/></p>
+<p>found. <br/>WFS_ERR_CEU_FORMINVALID The specified form definition is invalid. <br/>WFS_ERR_CEU_MEDIANOTFOUND The specified media definition cannot be <br/></p>
+<p>found. <br/>WFS_ERR_CEU_MEDIAINVALID The specified media definition is invalid. <br/>WFS_ERR_CEU_NOMEDIA There is no card inside the device. <br/>WFS_ERR_CEU_MEDIAOVERFLOW The form overflowed the media. <br/>WFS_ERR_CEU_IDC_FORMNOTFOUND The specified IDC form definition cannot be <br/></p>
+<p>found. <br/>WFS_ERR_CEU_IDC_FORMINVALID The specified IDC form definition is invalid. <br/>WFS_ERR_CEU_INVALIDDATA An error occurred while communicating with <br/></p>
+<p>the chip. <br/>WFS_ERR_CEU_PROTOCOLNOTSUPP The protocol used was not supported by the <br/></p>
+<p>service provider. <br/>WFS_ERR_CEU_ATRNOTOBTAINED The ATR was not obtained by issuing the <br/></p>
+<p>IDC class <br/>WFS_CMD_IDC_READ_RAW_DATA <br/>command. <br/></p>
+<p>WFS_ERR_CEU_FIELDSPECFAILURE The syntax of the <i>lpszFields</i> member is <br/>invalid. <br/></p>
+<p>WFS_ERR_CEU_FIELDERROR An error occurred while processing a field, <br/>causing termination of the emboss request. <br/>An execute event <br/>WFS_EXEE_CEU_FIELDERROR is posted <br/>with the details. <br/></p>
+<p>WFS_ERR_CEU_EMBOSSFAILURE A failure has occurred during Emboss or <br/>Print processing. A service event <br/>WFS_EXEE_CEU_EMBOSS_FAILURE is <br/>posted with details. <br/></p>
+<p>WFS_ERR_CEU_CHARSETDATA The character set(s) supported by the Service <br/>Provider is inconsistent with the use of the <br/><i>lpszFields</i> or <i>lpszUNICODEFields</i> fields. <br/></p>
+<p><b>Events </b>In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/>command: <br/></p>
+<p>Value Meaning <br/>WFS_SRVE_CEU_INPUTBINTHRESHOLD Input bin is nearly empty. <br/>WFS_SRVE_CEU_OUTPUTBINTHRESHOLD Output bin is nearly full. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>31 <br/></b></p>
+<p>WFS_SRVE_CEU_RETAINBINTHRESHOLD Retain bin is nearly full. <br/>WFS_EXEE_CEU_EMBOSS_FAILURE A card embossing or printing failure has <br/></p>
+<p>occurred. <br/>WFS_EXEE_CEU_FIELDERROR A fatal error occurred while processing a <br/></p>
+<p>field. <br/>WFS_EXEE_CEU_FIELDWARNING A non-fatal error occurred while processing <br/></p>
+<p>a field. <br/>WFS_SRVE_CEU_MEDIAREMOVED This event is generated when a card is <br/></p>
+<p>removed before completion of a write <br/>operation. <br/></p>
+<p>WFS_USRE_CEU_TONERTHRESHOLD The toner or ink supply is low or empty or <br/>the printing contrast with ribbon is weak or <br/>not sufficient, operator intervention is <br/>required. Note that this event is sent only <br/>once, at the point at which the supply <br/>becomes low or empty. It is sent with <br/>WFS_CEU_TONERLOW or <br/>WFS_CEU_TONEROUT status. <br/></p>
+<p><b>Comments</b> The application will use <i>lpszFields</i> or <i>lpszUNICODEFields</i> as an input parameter, depending <br/>upon the Service Provider capabilities. Legacy (non-UNICODE aware) applications will only use <br/>the <i>lpszFields</i> field. UNICODE applications can use either the <i>lpszFields</i> or <i>lpszUNICODEFields</i> <br/>fields, provided the Service Provider is UNICODE compliant. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>32 <br/></b></p>
+<p><b>5.5 WFS_CMD_CEU_SUPPLY_REPLENISH <br/>Description</b> After the supplies have been replenished, this command is used to indicate that one or more <br/></p>
+<p>supplies have been replenished and are expected to be in a healthy state. <br/>Hardware that cannot detect the level of a supply and reports on the supply&#8217;s status using metrics <br/>(or some other means), must assume the supply has been fully replenished after this command is <br/>issued. The appropriate threshold event must be broadcast. <br/>Hardware that can detect the level of a supply must update its status based on its sensors, generate <br/>a threshold event if appropriate, and succeed the command even if the supply has not been <br/>replenished. If it has already detected the level and reported the threshold before this command <br/>was issued, the command must succeed and no threshold event is required. <br/></p>
+<p><b>Input Param</b> LPWFSCEUSUPPLYREPLEN lpSupplyReplen; <br/>typedef struct _wfs_ceu_supply_replen <br/> { <br/> WORD    fwSupplyReplen; <br/> } WFSCEUSUPPLYREPLEN, *LPWFSCEUSUPPLYREPLEN; <br/><i>fwSupplyReplen <br/></i>Specifies the supply that was replenished as a combination of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_REPLEN_TONER The toner supply was replenished. <br/>WFS_CEU_REPLEN_INPUTBIN The input bin supply was replenished. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/></p>
+<p>command: <br/>Value Meaning <br/>WFS_SRVE_CEU_INPUTBINTHRESHOLD This service event is used to specify that the <br/></p>
+<p>state of the input bin supply threshold has <br/>been cleared. <br/></p>
+<p>WFS_USRE_CEU_TONERTHRESHOLD This user event is used to specify that the <br/>state of the toner (or ink) supply threshold <br/>has been cleared. <br/></p>
+<p><b>Comments </b>If any one of the specified supplies is not supported by a Service Provider, <br/>WFS_ERR_UNSUPP_DATA should be returned, and no replenishment actions will be taken by <br/>the Service Provider. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>33 <br/></b></p>
+<p><b>5.6 WFS_CMD_CEU_SYNCHRONIZE_COMMAND <br/>Description</b> This command is used to reduce response time of a command (e.g. for synchronization with <br/></p>
+<p>display) as well as to synchronize actions of the different device classes. This command is <br/>intended to be used only on hardware which is capable of synchronizing functionality within a <br/>single device class or with other device classes. <br/>The list of execute commands which this command supports for synchronization is retrieved in <br/>the <i>lpdwSynchronizableCommands</i> parameter of the WFS_INF_CEU_CAPABILITIES. <br/>This command is optional, i.e. any other command can be called without having to call it in <br/>advance. Any preparation that occurs by calling this command will not affect any other <br/>subsequent command. However, any subsequent execute command other than the one that was <br/>specified in the <i>dwCommand</i> input parameter will execute normally and may invalidate the <br/>pending synchronization. In this case the application should call the <br/>WFS_CMD_CEU_SYNCHRONIZE_COMMAND again in order to start a synchronization. <br/></p>
+<p><b>Input Param</b> LPWFSCEUSYNCHRONIZECOMMAND lpSynchronizeCommand; <br/>typedef struct _wfs_ceu_synchronize_command <br/> { <br/> DWORD    dwCommand; <br/> LPVOID    lpCmdData; <br/> } WFSCEUSYNCHRONIZECOMMAND, *LPWFSCEUSYNCHRONIZECOMMAND; <br/><i>dwCommand</i> <br/>The command ID of the command to be synchronized and executed next. <br/><i>lpCmdData <br/></i>Pointer to data or a data structure that represents the parameter that is normally associated with <br/>the command that is specified in <i>dwCommand</i>. For example, if <i>dwCommand</i> is <br/>WFS_CMD_CEU_RESET then <i>lpCmdData</i> will point to a WORD. This parameter can be NULL <br/>if no command input parameter is needed or if this detail is not needed to synchronize for the <br/>command. <br/>It will be device-dependent whether the synchronization is effective or not in the case where the <br/>application synchronizes for a command with this command specifying a parameter but <br/>subsequently executes the synchronized command with a different parameter. This case should <br/>not result in an error; however, the preparation effect could be different from what the application <br/>expects. The application should, therefore, make sure to use the same parameter between <br/><i>lpCmdData</i> of this command and the subsequent corresponding execute command. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes </b>In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_CEU_COMMANDUNSUPP The command specified in the <i>dwCommand</i> <br/></p>
+<p>field is not supported by the Service <br/>Provider. <br/></p>
+<p>WFS_ERR_CEU_SYNCHRONIZEUNSUPP The preparation for the command specified <br/>in the <i>dwCommand</i> with the parameter <br/>specified in the <i>lpCmdData</i> is not supported <br/>by the Service Provider. <br/></p>
+<p><b>Events</b> Only the generic events defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> For sample flows of this synchronization see the [Ref 1] Appendix C. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>34 <br/></b></p>
+<p><b>6. Events <br/></b> <br/><b>6.1 WFS_SRVE_CEU_INPUTBINTHRESHOLD <br/>Description</b> This event specifies that the status of the input bin has changed. <br/><b>Event Param</b> LPWORD lpwInputBin; <br/></p>
+<p><i>lpwInputBin<b></b></i><b> <br/></b>Specifies the state of the input bin as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_INPUTBINOK The input bin is in a good state. <br/>WFS_CEU_INPUTBINLOW The input bin is nearly empty. <br/>WFS_CEU_INPUTBINEMPTY The input bin is empty. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>35 <br/></b></p>
+<p><b>6.2 WFS_SRVE_CEU_OUTPUTBINTHRESHOLD <br/>Description</b> This event specifies that the status of the output bin has changed. <br/><b>Event Param</b> LPWORD lpwOutputBin; <br/></p>
+<p><i>lpwOutputBin<b></b></i><b> <br/></b>Specifies the state of the output bin as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_OUTPUTBINOK The output bin is in a good state. <br/>WFS_CEU_OUTPUTBINFULL The output bin is full. <br/>WFS_CEU_OUTPUTBINHIGH The output bin is nearly full. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>36 <br/></b></p>
+<p><b>6.3 WFS_SRVE_CEU_RETAINBINTHRESHOLD <br/>Description</b> This event specifies that the status of the retain bin has changed. <br/><b>Event Param</b> LPWORD lpwRetainBin; <br/></p>
+<p><i>lpwRetainBin<b></b></i><b> <br/></b>Specifies the state of the retain bin as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_RETAINBINOK The retain bin is in a good state. <br/>WFS_CEU_RETAINBINFULL The retain bin is full. <br/>WFS_CEU_RETAINBINHIGH The retain bin is nearly full. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>37 <br/></b></p>
+<p><b>6.4 WFS_EXEE_CEU_FIELDERROR <br/>Description </b>This event specifies that a fatal error has occurred while processing a field. <br/><b>Event Param</b> LPWFSCEUFIELDFAIL lpFieldFail; <br/></p>
+<p>typedef struct _wfs_ceu_field_failure <br/> { <br/> LPSTR   lpszFormName; <br/> LPSTR   lpszFieldName; <br/> WORD    wFailure; <br/> } WFSCEUFIELDFAIL, *LPWFSCEUFIELDFAIL; <br/><i>lpszFormName<b></b></i><b> <br/></b>Points to the null-terminated form name. <br/><i>lpszFieldName</i> <br/>Points to the null-terminated field name. <br/><i>wFailure</i> <br/>Specifies the type of failure and can be one of the following: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_FIELDREQUIRED The specified field <i>must</i> be supplied by the <br/></p>
+<p>application. <br/>WFS_CEU_FIELDSTATICOVWR The specified field is static and thus <i>cannot</i> <br/></p>
+<p>be overwritten by the application. <br/>WFS_CEU_FIELDOVERFLOW The value supplied for the specified fields is <br/></p>
+<p>too long. <br/>WFS_CEU_FIELDNOTFOUND The specified field does not exist. <br/>WFS_CEU_FIELDNOTREAD The specified field is not an input field. <br/>WFS_CEU_FIELDNOTWRITE An attempt was made to write to an input <br/></p>
+<p>field. <br/>WFS_CEU_FIELDHWERROR The specified field uses special hardware <br/></p>
+<p>(e.g. OCR) and an error occurred. <br/>WFS_CEU_FIELDTYPENOTSUPPORTED The form field type is not supported with <br/></p>
+<p>device. <br/>WFS_CEU_CHARSETFORM The Service Provider does not support the <br/></p>
+<p>character set specified in the form. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>38 <br/></b></p>
+<p><b>6.5 WFS_EXEE_CEU_FIELDWARNING <br/>Description </b>This event is used to specify that a non-fatal error has occurred while processing a field. <br/><b>Event Param</b> LPWFSCEUFIELDFAIL lpFieldFail; <br/></p>
+<p>As defined in the section describing WFS_EXEE_CEU_FIELDERROR. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>39 <br/></b></p>
+<p><b>6.6 WFS_SRVE_CEU_MEDIAREMOVED <br/>Description </b>This event is generated when a card is removed before completion of a write operation. <br/><b>Event Param</b> None. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>40 <br/></b></p>
+<p><b>6.7 WFS_SRVE_CEU_MEDIADETECTED <br/>Description </b>This event is generated when a media is detected in the device during a reset operation. <br/><b>Event Param</b> LPWORD lpwPosition; <br/></p>
+<p><i>lpwPosition</i> <br/>Specifies the media position after the reset operation, as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_MEDIARETAINED The media was successfully retained during <br/></p>
+<p>the reset operation. <br/>WFS_CEU_MEDIAREMOVED The media was removed during the reset <br/></p>
+<p>operation. <br/>WFS_CEU_MEDIAJAMMED The media is jammed in the device. <br/>WFS_CEU_MEDIAUNKNOWN The media is in an unknown position. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>41 <br/></b></p>
+<p><b>6.8 WFS_EXEE_CEU_EMBOSS_FAILURE <br/>Description</b> This service event is used to specify that an error has occurred during processing of a <br/></p>
+<p>WFS_CMD_CEU_EMBOSS_CARD or WFS_CMD_CEU_EMBOSS_CARD_EX execute <br/>command. <br/></p>
+<p><b>Event Param</b> LPWORD lpwEmbossFailure; <br/><i>lpwEmbossFailure</i> <br/>Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_STEPPER_ERROR Stepper hardware error. <br/>WFS_CEU_TOPPER_FOIL_BREAK Topper foil has broken. <br/>WFS_CEU_CARD_FEED_ERROR Card feed failure. <br/>WFS_CEU_MAGNETIC_STRIPE_ERROR Magnetic stripe read/write error. <br/>WFS_CEU_RETAIN_BIN_FULL Retain bin is full. <br/>WFS_CEU_OUTPUT_BIN_FULL Output bin is full. <br/>WFS_CEU_COVER_OPEN Device cover is open. <br/>WFS_CEU_TOPPER_JAM Topper has jammed. <br/>WFS_CEU_STACKER_ERROR Stacker error either inside device or in output <br/></p>
+<p>bin. <br/>WFS_CEU_SYSTEM_ERROR Unknown system error. <br/>WFS_CEU_OCR_ERROR OCR unit failure. <br/>WFS_CEU_EMBOSS_LIMITS_EXCEEDED Embossing limits exceeded. <br/>WFS_CEU_COMMUNICATIONS_FAILURE Communications failure. <br/>WFS_CEU_DATA_FORMAT_ERROR Communications data format error. <br/>WFS_CEU_BUFFER_OVERRUN Buffer overrun. <br/>WFS_CEU_PRE_ENCODE_READ_ERROR Pre-encode read error. <br/>WFS_CEU_PRE_ENCODE_DATA_MATCH_ERROR <br/></p>
+<p>Data has failed to compare during pre-<br/>encode data match step. <br/></p>
+<p>WFS_CEU_INPUT_BIN_EMPTY Input bin is empty. <br/>WFS_CEU_DEVICE_BUSY Device is busy, unable to emboss card. <br/>WFS_CEU_TONER_OUT_ERROR Toner or ink supply is empty or printing <br/></p>
+<p>contrast with ribbon is not sufficient. <br/>WFS_CEU_MEDIA_JAM The card is jammed. Operator intervention is <br/></p>
+<p>required. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>42 <br/></b></p>
+<p><b>6.9 WFS_SRVE_CEU_DEVICEPOSITION <br/>Description</b> This service event reports that the device has changed its position status. <br/><b>Event Param</b> LPWFSCEUDEVICEPOSITION lpDevicePosition; <br/></p>
+<p>typedef struct _wfs_ceu_device_position <br/> { <br/> WORD    wPosition; <br/> } WFSCEUDEVICEPOSITION, *LPWFSCEUDEVICEPOSITION; <br/><i>wPosition</i> <br/>Position of the device as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_CEU_DEVICEINPOSITION The device is in its normal operating <br/></p>
+<p>position. <br/>WFS_CEU_DEVICENOTINPOSITION The device has been removed from its <br/></p>
+<p>normal operating position. <br/>WFS_CEU_DEVICEPOSUNKNOWN The position of the device cannot be <br/></p>
+<p>determined. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>43 <br/></b></p>
+<p><b>6.10 WFS_SRVE_CEU_POWER_SAVE_CHANGE <br/>Description</b> This service event specifies that the power save recovery time has changed. <br/><b>Event Param</b> LPWFSCEUPOWERSAVECHANGE lpPowerSaveChange; <br/></p>
+<p>typedef struct _wfs_ceu_power_save_change <br/> { <br/> USHORT   usPowerSaveRecoveryTime; <br/> } WFSCEUPOWERSAVECHANGE, *LPWFSCEUPOWERSAVECHANGE; <br/><i>usPowerSaveRecoveryTime</i> <br/>Specifies the actual number of seconds required by the device to resume its normal operational <br/>state. This value is zero if the device exited the power saving mode. <br/></p>
+<p><b>Comments</b> If another device class compound with this device enters into a power saving mode this device <br/>will automatically enter into the same power saving mode and this event will be generated. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>44 <br/></b></p>
+<p><b>6.11 WFS_USRE_CEU_TONERTHRESHOLD <br/>Description</b> This user event is used to specify that the state of the toner or ink supply or the state of the ribbon <br/></p>
+<p>reached a threshold. <br/><b>Event Param</b> LPWFSCEUTONERSTATUS lpTonerStatus; <br/></p>
+<p>typedef struct _wfs_ceu_toner_status <br/> { <br/> LPWORD   lpwTonerThreshold; <br/> } WFSCEUTONERSTATUS, *LPWFSCEUTONERSTATUS; <br/><i>lpwTonerThreshold</i> <br/>Specifies the current state of the toner or ink supply or the state of the ribbon as one of the <br/>following values: <br/></p>
+<p>Value<b> </b>Meaning<b> <br/></b>WFS_CEU_TONERFULL The toner, ink or ribbon in the printer is in a <br/></p>
+<p>good state. <br/>WFS_CEU_TONERLOW The toner or ink in the printer is low or the <br/></p>
+<p>print contrast with a ribbon is weak. <br/>WFS_CEU_TONEROUT The toner or ink in the printer is out or the <br/></p>
+<p>print contrast with a ribbon is not sufficient <br/>any more. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>45 <br/></b></p>
+<p><b>7. Embossing Form, Field and Media Definitions <br/></b>This section outlines the format of the embossing definitions of forms and the fields within them. <br/><b>7.1 Definition Syntax <br/></b>The syntactic rules for form, field and media definitions are as follows: <br/></p>
+<p>&#8226; White space space, tab <br/>&#8226; Line continuation backslash (\) <br/>&#8226; Line termination CR, LF, CR/LF; line termination ends a &#8220;keyword section&#8221; <br/></p>
+<p> (a keyword and its value[s]) <br/>&#8226; Keywords must be all upper case <br/>&#8226; Names (field/media/font names) any case; case is preserved; <br/></p>
+<p> Service Providers are case sensitive <br/>&#8226; Strings all strings must be enclosed in double quote characters (&quot;); <br/></p>
+<p> to include a double quote in a string, &#8220;escape&#8221; with a forward slash (/&quot;) <br/>&#8226; Comments start with two forward slashes (//), end at line termination <br/></p>
+<p>Other notes: <br/>&#8226; If a keyword is present, all its values must be specified; default values are used only if the keyword is <br/></p>
+<p>absent. <br/>&#8226; Values that are character strings are marked with asterisks in the definitions below, and must be quoted <br/></p>
+<p>as specified above. <br/>&#8226; All forms can be represented using either ISO 646 (ANSI) or UNICODE character encoding. If the <br/></p>
+<p>UNICODE representation is used then all Names and Strings are restricted to an internal representation <br/>of ISO 646 (ANSI) characters. Only the INITIALVALUE and FORMAT keyword values can have <br/>double byte values outside of the ISO 646 (ANSI) character set. <br/></p>
+<p>&#8226; If forms character encoding is UNICODE then, consistent with the UNICODE standard, the file prefix <br/>must be in little endian (xFFFE) or big endian (xFEFF) notation, such that UNICODE encoding is <br/>recognized. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>46 <br/></b></p>
+<p><b>7.2 Embossing Form and Media Measurements <br/></b>The UNIT keyword sections of the form and media definitions specify the base horizontal and vertical resolution as <br/>follows: <br/></p>
+<p>&#8226; The <i>base</i> value specifies the base unit of measurement. <br/>&#8226; The x and y values specify the horizontal and vertical resolution as fractions of the base value (e.g. an <i>x</i> <br/></p>
+<p>value of 10 and a base value of MM means that the base horizontal resolution is 0.1mm). <br/>The base resolutions thus defined by the UNIT keyword section of the <i>form</i> definition are used as the units of the <br/>form definition keyword sections: <br/></p>
+<p>&#8226; SIZE (<i>width</i> and <i>height</i> values) <br/>&#8226; ALIGNMENT (<i>xoffset</i> and <i>yoffset</i> values) <br/></p>
+<p>and of the field definition keyword sections: <br/>&#8226; POSITION (<i>x</i> and <i>y</i> values) <br/>&#8226; SIZE (<i>width</i> and <i>height</i> values) <br/></p>
+<p>The base resolutions thus defined by the UNIT keyword section of the <i>media</i> definition are used as the units of the <br/>media definition keyword sections: <br/></p>
+<p>&#8226; SIZE (<i>width</i> and <i>height</i> values) <br/>&#8226; EMBOSSAREA (<i>x</i>, <i>y</i>, <i>width</i> and <i>height</i> values) <br/>&#8226; RESTRICTED (<i>x</i>, <i>y</i>, <i>width</i> and <i>height</i> values) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>47 <br/></b></p>
+<p><b>7.3 Embossing Form Definition <br/>XFSFORM  </b><i>formname </i> <br/><b>BEGIN  </b><i> </i> <br/><b>(required) UNIT </b><i>base, </i>Base resolution unit for form definition <br/></p>
+<p> MM <br/> INCH <br/> ROWCOLUMN <br/></p>
+<p><b>  </b><i>x, </i>Horizontal base unit fraction <br/><b>  </b><i>y </i>Vertical base unit fraction <br/><b>(required) SIZE </b><i>width, </i>Width of form <br/><b>  </b><i>height </i>Height of form <br/><b> ALIGNMENT </b><i>alignment, </i>Alignment of the form on the physical media: <br/></p>
+<p> TOPLEFT (default) <br/> TOPRIGHT <br/> BOTTOMLEFT <br/> BOTTOMRIGHT <br/></p>
+<p><b>  </b><i>xoffset, </i>Horizontal offset relative to the horizontal alignment specified <br/>by alignment. Always specified as a positive value (i.e. if <br/>aligned to the right side of the media, means offset the form to <br/>the left). (default = 0) <br/></p>
+<p><b>  </b><i>yoffset </i>Vertical offset relative to the vertical alignment specified by <br/>alignment. Always specified as a positive value (i.e. if aligned <br/>to the bottom of the media, means offset the form upward). <br/>(default = 0) <br/></p>
+<p><b> VERSION </b><i>major, </i>Major version number <br/><b>  </b><i>minor, </i>Minor version number <br/><b>  </b><i>date*, </i>Creation/modification date <br/><b>  </b><i>author* </i>Author of form <br/><b>(required) LANGUAGE </b><i>languageID </i>Language used in this form - a 16 bit value (LANGID) which <br/></p>
+<p>is a combination of a primary (10 bits) and a secondary (6 bits) <br/>language ID  (This is the standard language ID in the Win32 <br/>API; standard macros support construction and decomposition <br/>of this composite ID) <br/></p>
+<p><b> COPYRIGHT </b><i>copyright* </i>Copyright entry <br/><b> TITLE </b><i>title* </i>Title of form <br/><b> COMMENT </b><i>comment* </i>Comment section <br/><b> USERPROMPT </b><i>prompt* </i>Prompt string for user interaction <br/><b> [ XFSFIELD </b><i>fieldname  </i>One field definition (as defined in the next section) for each <br/></p>
+<p>field in the form <br/><b>  BEGIN <br/></b></p>
+<p><b>  . . .  <br/> END ] <br/></b></p>
+<p><i> </i> <br/></p>
+<p><b>END  </b><i> </i> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>48 <br/></b></p>
+<p><b>7.4 Embossing Field Definition <br/>XFSFIELD  </b><i>fieldname </i> <br/><b>BEGIN  </b><i> </i> <br/><b>(required) POSITION </b><i>x, </i>Horizontal position (relative to left or right side of form, <br/></p>
+<p>depending upon HPOSITION keyword) <br/><b>  </b><i>y </i>Vertical position (relative to top or bottom of form, <br/></p>
+<p>depending upon VPOSITION keyword) <br/><b> HPOSITION </b><i> </i>Horizontal field positioning relative to: <br/></p>
+<p> LEFT (default) <br/> RIGHT <br/></p>
+<p><b> VPOSITION </b><i> </i>Vertical field positioning relative to: <br/> TOP <br/> BOTTOM (default) <br/></p>
+<p><b> SIDE </b><i> </i>Side of card: <br/> FRONT (default) <br/> BACK <br/></p>
+<p><b>(required) SIZE </b><i>width, </i>Field width <br/><b>  </b><i>height </i>Field height <br/><b> TYPE </b><i>fieldtype </i>Type of field: <br/></p>
+<p> TEXT (default) <br/> OCR <br/></p>
+<p><b> CLASS </b><i>class </i>Field class <br/> OPTIONAL (default) <br/> STATIC <br/> REQUIRED <br/></p>
+<p><b> CASE </b><i>case </i>Convert field contents to <br/> NOCHANGE (default) <br/> UPPER <br/> LOWER <br/></p>
+<p><b> HORIZONTAL </b><i>justify </i>Horizontal alignment of field contents <br/> LEFT (default) <br/> RIGHT <br/> CENTER <br/> JUSTIFY <br/></p>
+<p><b> VERTICAL </b><i>justify </i>Vertical alignment of field contents <br/> BOTTOM (default) <br/> CENTER <br/> TOP <br/></p>
+<p><b> FONT </b><i>fontname* </i>Font name; in some cases this predefines the following <br/>parameters: <br/></p>
+<p><b> POINTSIZE </b><i>pointsize </i>Point size <br/><b> CPI </b><i>cpi </i>Characters per inch <br/><b> LPI </b><i>lpi </i>Lines per inch <br/><b> FORMAT </b><i>formatstring* </i>This is an application defined input field describing how the <br/></p>
+<p>application should format the data. This may be interpreted <br/>by the Service Provider. <br/></p>
+<p><b> INITIALVALUE </b><i>value* </i>Initial value <br/><b> LANGUAGE </b><i>languageID </i>Language used in this field &#8211; a 16 bit value (LANGID) <br/></p>
+<p>which is a combination of a primary (10 bits) and a <br/>secondary (6 bits) language ID  (This is the standard <br/>language ID in the Win32 API; standard macros support <br/>construction and decomposition of this composite ID) <br/>If unspecified defaults to form definition LANGUAGE <br/>specification. <br/></p>
+<p><b>END  </b><i> </i> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>49 <br/></b></p>
+<p><b>7.5 Media Definition <br/></b>The media definition determines those characteristics that result from the combination of a particular media type <br/>together with a particular vendor's identification card or smart card. The aim is to make it easy to move forms <br/>between different vendor&#8217;s identification cards or smart cards which might have different constraints on how they <br/>handle a specific media type. It is the Service Provider's responsibility to ensure that the form definition does not <br/>specify the embossing of any fields that conflict with the media definition. An example of such a conflict might be <br/>that the form definition asks for a field to be embossed in an area that the media definition defines as a restricted <br/>area, such as on the chip of a smart card. <br/> <br/><b>XFSMEDIA  </b><i>medianame* </i> <br/><b>BEGIN  </b><i> </i> <br/><b> TYPE </b><i>type </i>Predefined media types are: <br/></p>
+<p>EMBOSSCARD <br/>PRINTCARD <br/></p>
+<p><b>(required) UNIT </b><i>base, </i>Base resolution unit for media definition <br/> MM <br/> INCH <br/> ROWCOLUMN <br/></p>
+<p><b>  </b><i>x, </i>Horizontal base unit fraction <br/><b>  </b><i>y </i>Vertical base unit fraction <br/><b>(required) SIZE </b><i>width, </i>Width of physical media <br/><b>  </b><i>height </i>Height of physical media  <br/><b> EMBOSSAREA </b><i>x, </i>Embossing or Printing area relative <br/><b>  </b><i>y, </i>to top left corner <br/><b>  </b><i>width, </i>of physical media <br/><b>  </b><i>height </i>(default = physical size of media) <br/><b> RESTRICTED </b><i>x, </i>Restricted area relative to <br/><b>  </b><i>y, </i>to top left corner <br/><b>  </b><i>width, </i>of physical media <br/><b>  </b><i>height </i>(default = no restricted area) <br/><b>END  </b><i> </i> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>50 <br/></b></p>
+<p><b>8. C-Header file <br/></b>/****************************************************************************** <br/>*                                                                             * <br/>* xfsceu.h    XFS - Card Embossing Unit (CEU) definitions                     * <br/>*                                                                             * <br/>*             Version 3.40  (December 6 2019)                                 * <br/>*                                                                             * <br/>******************************************************************************/ <br/> <br/>#ifndef __INC_XFSCEU__H <br/>#define __INC_XFSCEU__H <br/> <br/>#ifdef __cplusplus <br/>extern &quot;C&quot; { <br/>#endif <br/> <br/>#include &lt;xfsapi.h&gt; <br/> <br/>/*   be aware of alignment   */ <br/>#pragma pack(push,1) <br/> <br/> <br/>/* values of WFSCEUCAPS.wClass */ <br/> <br/>#define     WFS_SERVICE_CLASS_CEU               (12) <br/>#define     WFS_SERVICE_CLASS_NAME_CEU          &quot;CEU&quot; <br/>#define     WFS_SERVICE_CLASS_VERSION_CEU       (0x2803) /* Version 3.40 */ <br/> <br/>#define     CEU_SERVICE_OFFSET                  (WFS_SERVICE_CLASS_CEU * 100) <br/> <br/>/* CEU Info Commands */ <br/> <br/>#define     WFS_INF_CEU_STATUS                  (CEU_SERVICE_OFFSET + 1) <br/>#define     WFS_INF_CEU_CAPABILITIES            (CEU_SERVICE_OFFSET + 2) <br/>#define     WFS_INF_CEU_FORM_LIST               (CEU_SERVICE_OFFSET + 3) <br/>#define     WFS_INF_CEU_QUERY_FORM              (CEU_SERVICE_OFFSET + 4) <br/>#define     WFS_INF_CEU_MEDIA_LIST              (CEU_SERVICE_OFFSET + 5) <br/>#define     WFS_INF_CEU_QUERY_MEDIA             (CEU_SERVICE_OFFSET + 6) <br/>#define     WFS_INF_CEU_QUERY_FIELD             (CEU_SERVICE_OFFSET + 7) <br/> <br/>/* CEU Execute Commands */ <br/> <br/>#define     WFS_CMD_CEU_EMBOSS_CARD             (CEU_SERVICE_OFFSET + 1) <br/>#define     WFS_CMD_CEU_RESET                   (CEU_SERVICE_OFFSET + 2) <br/>#define     WFS_CMD_CEU_POWER_SAVE_CONTROL      (CEU_SERVICE_OFFSET + 3) <br/>#define     WFS_CMD_CEU_EMBOSS_CARD_EX          (CEU_SERVICE_OFFSET + 4) <br/>#define     WFS_CMD_CEU_SUPPLY_REPLENISH        (CEU_SERVICE_OFFSET + 5) <br/>#define     WFS_CMD_CEU_SYNCHRONIZE_COMMAND     (CEU_SERVICE_OFFSET + 6) <br/> <br/>/* CEU Messages */ <br/> <br/>#define     WFS_SRVE_CEU_INPUTBINTHRESHOLD      (CEU_SERVICE_OFFSET + 1) <br/>#define     WFS_SRVE_CEU_OUTPUTBINTHRESHOLD     (CEU_SERVICE_OFFSET + 2) <br/>#define     WFS_SRVE_CEU_RETAINBINTHRESHOLD     (CEU_SERVICE_OFFSET + 3) <br/>#define     WFS_EXEE_CEU_FIELDERROR             (CEU_SERVICE_OFFSET + 4) <br/>#define     WFS_EXEE_CEU_FIELDWARNING           (CEU_SERVICE_OFFSET + 5) <br/>#define     WFS_EXEE_CEU_EMBOSS_FAILURE         (CEU_SERVICE_OFFSET + 6) <br/>#define     WFS_SRVE_CEU_MEDIAREMOVED           (CEU_SERVICE_OFFSET + 7) <br/>#define     WFS_SRVE_CEU_MEDIADETECTED          (CEU_SERVICE_OFFSET + 8) <br/>#define     WFS_SRVE_CEU_DEVICEPOSITION         (CEU_SERVICE_OFFSET + 9) <br/>#define     WFS_SRVE_CEU_POWER_SAVE_CHANGE      (CEU_SERVICE_OFFSET + 10) <br/>#define     WFS_USRE_CEU_TONERTHRESHOLD         (CEU_SERVICE_OFFSET + 11) <br/> <br/>/* values of WFSCEUSTATUS.fwDevice */ <br/> <br/>#define     WFS_CEU_DEVONLINE                   WFS_STAT_DEVONLINE <br/>#define     WFS_CEU_DEVOFFLINE                  WFS_STAT_DEVOFFLINE <br/>#define     WFS_CEU_DEVPOWEROFF                 WFS_STAT_DEVPOWEROFF </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>51 <br/></b></p>
+<p>#define     WFS_CEU_DEVNODEVICE                 WFS_STAT_DEVNODEVICE <br/>#define     WFS_CEU_DEVHWERROR                  WFS_STAT_DEVHWERROR <br/>#define     WFS_CEU_DEVUSERERROR                WFS_STAT_DEVUSERERROR <br/>#define     WFS_CEU_DEVBUSY                     WFS_STAT_DEVBUSY <br/>#define     WFS_CEU_DEVFRAUDATTEMPT             WFS_STAT_DEVFRAUDATTEMPT <br/>#define     WFS_CEU_DEVPOTENTIALFRAUD           WFS_STAT_DEVPOTENTIALFRAUD <br/> <br/>/* values of WFSCEUSTATUS.fwMedia  */ <br/> <br/>#define     WFS_CEU_MEDIAPRESENT                (1) <br/>#define     WFS_CEU_MEDIANOTPRESENT             (2) <br/>#define     WFS_CEU_MEDIAJAMMED                 (3) <br/>#define     WFS_CEU_MEDIANOTSUPP                (4) <br/>#define     WFS_CEU_MEDIAUNKNOWN                (5) <br/>#define     WFS_CEU_MEDIAENTERING               (6) <br/>#define     WFS_CEU_MEDIATOPPER                 (7) <br/>#define     WFS_CEU_MEDIAINHOPPER               (8) <br/>#define     WFS_CEU_MEDIAOUTHOPPER              (9) <br/>#define     WFS_CEU_MEDIAMSRE                   (10) <br/>#define     WFS_CEU_MEDIARETAINED               (11) <br/>#define     WFS_CEU_MEDIAREMOVED                (12) <br/> <br/>/* values of WFSCEUSTATUS.fwRetainBin  */ <br/> <br/>#define     WFS_CEU_RETAINBINOK                 (1) <br/>#define     WFS_CEU_RETAINBINFULL               (2) <br/>#define     WFS_CEU_RETAINBINHIGH               (3) <br/>#define     WFS_CEU_RETAINBINNOTSUPP            (4) <br/> <br/>/* values of WFSCEUSTATUS.fwOutputBin  */ <br/> <br/>#define     WFS_CEU_OUTPUTBINOK                 (1) <br/>#define     WFS_CEU_OUTPUTBINFULL               (2) <br/>#define     WFS_CEU_OUTPUTBINHIGH               (3) <br/>#define     WFS_CEU_OUTPUTNOTSUPP               (4) <br/> <br/>/* values of WFSCEUSTATUS.fwInputBin  */ <br/> <br/>#define     WFS_CEU_INPUTBINOK                  (1) <br/>#define     WFS_CEU_INPUTBINEMPTY               (2) <br/>#define     WFS_CEU_INPUTBINLOW                 (3) <br/>#define     WFS_CEU_INPUTNOTSUPP                (4) <br/> <br/>/* values of WFSCEUSTATUS.wDevicePosition <br/>             WFSCEUDEVICEPOSITION.wPosition */ <br/> <br/>#define     WFS_CEU_DEVICEINPOSITION            (0) <br/>#define     WFS_CEU_DEVICENOTINPOSITION         (1) <br/>#define     WFS_CEU_DEVICEPOSUNKNOWN            (2) <br/>#define     WFS_CEU_DEVICEPOSNOTSUPP            (3) <br/> <br/>/* values of WFSCEUSTATUS.wToner  */ <br/> <br/>#define     WFS_CEU_TONERFULL                   (1) <br/>#define     WFS_CEU_TONERLOW                    (2) <br/>#define     WFS_CEU_TONEROUT                    (3) <br/>#define     WFS_CEU_TONERNOTSUPP                (4) <br/>#define     WFS_CEU_TONERUNKNOWN                (5) <br/> <br/>/* values of WFSCEUCAPS.fwCharSupport, <br/>             WFSCEUFORM.fwCharSupport  */ <br/> <br/>#define    WFS_CEU_ASCII                        (0x0001) <br/>#define    WFS_CEU_UNICODE                      (0x0002) <br/> <br/>/* values of WFSCEUCAPS.fwType  */ <br/> <br/>#define    WFS_CEU_EMBOSS                       (0x0001) <br/>#define    WFS_CEU_PRINT                        (0x0002) <br/> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>52 <br/></b></p>
+<p>/* values of WFSCEUFRMMEDIA.wBase  */ <br/> <br/>#define     WFS_CEU_INCH                        (1) <br/>#define     WFS_CEU_MM                          (2) <br/>#define     WFS_CEU_ROWCOLUMN                   (3) <br/> <br/>/* values of WFSCEUFRMMEDIA.fwMediaType  */ <br/> <br/>#define     WFS_CEU_MEDIAECARD                  (1) <br/>#define     WFS_CEU_MEDIAPCARD                  (2) <br/> <br/>/* values of WFSCEUFRMFIELD.fwType  */ <br/> <br/>#define     WFS_CEU_FIELDTEXT                   (1) <br/>#define     WFS_CEU_FIELDOCR                    (2) <br/> <br/>/* values of WFSCEUFRMFIELD.fwClass  */ <br/> <br/>#define     WFS_CEU_CLASSSTATIC                 (1) <br/>#define     WFS_CEU_CLASSOPTIONAL               (2) <br/>#define     WFS_CEU_CLASSREQUIRED               (3) <br/> <br/>/* values WFSCEUFIELDFAIL.wFailure */ <br/> <br/>#define     WFS_CEU_FIELDREQUIRED               (1) <br/>#define     WFS_CEU_FIELDSTATICOVWR             (2) <br/>#define     WFS_CEU_FIELDOVERFLOW               (3) <br/>#define     WFS_CEU_FIELDNOTFOUND               (4) <br/>#define     WFS_CEU_FIELDNOTREAD                (5) <br/>#define     WFS_CEU_FIELDNOTWRITE               (6) <br/>#define     WFS_CEU_FIELDHWERROR                (7) <br/>#define     WFS_CEU_FIELDTYPENOTSUPPORTED       (8) <br/>#define     WFS_CEU_CHARSETFORM                 (9) <br/> <br/>/* values of WFSCEUEMBOSSCARD.fwChipProtocols <br/>             WFSCEUEMBOSSCARDEX.fwChipProtocols  */ <br/> <br/>#define     WFS_CEU_NOTSUPP                     (0x0000) <br/>#define     WFS_CEU_CHIPT0                      (0x0001) <br/>#define     WFS_CEU_CHIPT1                      (0x0002) <br/>#define     WFS_CEU_CHIP_PROTOCOL_NOT_REQUIRED  (0x0004) <br/> <br/>/* values of WFSCEUSUPPLYREPLEN.fwSupplyReplen  */ <br/> <br/>#define     WFS_CEU_REPLEN_TONER                (0x0001) <br/>#define     WFS_CEU_REPLEN_INPUTBIN             (0x0002) <br/> <br/>/* WFS_EXEE_CEU_EMBOSS_FAILURE  Flags  */ <br/> <br/>#define     WFS_CEU_STEPPER_ERROR               (1) <br/>#define     WFS_CEU_TOPPER_FOIL_BREAK           (2) <br/>#define     WFS_CEU_CARD_FEED_ERROR             (3) <br/>#define     WFS_CEU_MAGNETIC_STRIPE_ERROR       (4) <br/>#define     WFS_CEU_RETAIN_BIN_FULL             (5) <br/>#define     WFS_CEU_OUTPUT_BIN_FULL             (6) <br/>#define     WFS_CEU_COVER_OPEN                  (7) <br/>#define     WFS_CEU_TOPPER_JAM                  (8) <br/>#define     WFS_CEU_STACKER_ERROR               (9) <br/>#define     WFS_CEU_SYSTEM_ERROR                (10) <br/>#define     WFS_CEU_OCR_ERROR                   (11) <br/>#define     WFS_CEU_EMBOSS_LIMITS_EXCEEDED      (12) <br/>#define     WFS_CEU_COMMUNICATIONS_FAILURE      (13) <br/>#define     WFS_CEU_DATA_FORMAT_ERROR           (14) <br/>#define     WFS_CEU_BUFFER_OVERRUN              (15) <br/>#define     WFS_CEU_PRE_ENCODE_READ_ERROR       (16) <br/>#define     WFS_CEU_PRE_ENCODE_DATA_MATCH_ERROR (17) <br/>#define     WFS_CEU_INPUT_BIN_EMPTY             (18) <br/>#define     WFS_CEU_DEVICE_BUSY                 (19) <br/>#define     WFS_CEU_TONER_OUT_ERROR             (20) <br/>#define     WFS_CEU_MEDIA_JAM                   (21) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>53 <br/></b></p>
+<p> <br/>/* values of lpwCeuMediacontrol parameter of WFS_CMD_CEU_RESET command */ <br/> <br/>#define     WFS_CEU_CTRLTOINPUTBIN              (1) <br/>#define     WFS_CEU_CTRLTOOUTPUTBIN             (2) <br/>#define     WFS_CEU_CTRLTORETAINBIN             (3) <br/> <br/> <br/>/* WOSA/XFS CEU Errors */ <br/> <br/>#define WFS_ERR_CEU_FORMNOTFOUND                (-(CEU_SERVICE_OFFSET + 1)) <br/>#define WFS_ERR_CEU_FORMINVALID                 (-(CEU_SERVICE_OFFSET + 2)) <br/>#define WFS_ERR_CEU_MEDIANOTFOUND               (-(CEU_SERVICE_OFFSET + 3)) <br/>#define WFS_ERR_CEU_MEDIAINVALID                (-(CEU_SERVICE_OFFSET + 4)) <br/>#define WFS_ERR_CEU_NOMEDIA                     (-(CEU_SERVICE_OFFSET + 5)) <br/>#define WFS_ERR_CEU_MEDIAOVERFLOW               (-(CEU_SERVICE_OFFSET + 6)) <br/>#define WFS_ERR_CEU_IDC_FORMNOTFOUND            (-(CEU_SERVICE_OFFSET + 7)) <br/>#define WFS_ERR_CEU_IDC_FORMINVALID             (-(CEU_SERVICE_OFFSET + 8)) <br/>#define WFS_ERR_CEU_INVALIDDATA                 (-(CEU_SERVICE_OFFSET + 9)) <br/>#define WFS_ERR_CEU_PROTOCOLNOTSUPP             (-(CEU_SERVICE_OFFSET + 10)) <br/>#define WFS_ERR_CEU_ATRNOTOBTAINED              (-(CEU_SERVICE_OFFSET + 11)) <br/>#define WFS_ERR_CEU_FIELDSPECFAILURE            (-(CEU_SERVICE_OFFSET + 12)) <br/>#define WFS_ERR_CEU_FIELDERROR                  (-(CEU_SERVICE_OFFSET + 13)) <br/>#define WFS_ERR_CEU_EMBOSSFAILURE               (-(CEU_SERVICE_OFFSET + 14)) <br/>#define WFS_ERR_CEU_FIELDNOTFOUND               (-(CEU_SERVICE_OFFSET + 15)) <br/>#define WFS_ERR_CEU_POWERSAVETOOSHORT           (-(CEU_SERVICE_OFFSET + 16)) <br/>#define WFS_ERR_CEU_POWERSAVEMEDIAPRESENT       (-(CEU_SERVICE_OFFSET + 17)) <br/>#define WFS_ERR_CEU_CHARSETDATA                 (-(CEU_SERVICE_OFFSET + 18)) <br/>#define WFS_ERR_CEU_COMMANDUNSUPP               (-(CEU_SERVICE_OFFSET + 19)) <br/>#define WFS_ERR_CEU_SYNCHRONIZEUNSUPP           (-(CEU_SERVICE_OFFSET + 20)) <br/> <br/>/* values of WFSCEUSTATUS.wAntiFraudModule */ <br/> <br/>#define     WFS_CEU_AFMNOTSUPP                  (0) <br/>#define     WFS_CEU_AFMOK                       (1) <br/>#define     WFS_CEU_AFMINOP                     (2) <br/>#define     WFS_CEU_AFMDEVICEDETECTED           (3) <br/>#define     WFS_CEU_AFMUNKNOWN                  (4) <br/> <br/> <br/>/*=================================================================*/ <br/>/* CEU Info Command Structures and variables */ <br/>/*=================================================================*/ <br/> <br/>typedef struct _wfs_ceu_status <br/>{ <br/>    WORD            fwDevice; <br/>    WORD            fwMedia; <br/>    WORD            fwRetainBin; <br/>    WORD            fwOutputBin; <br/>    WORD            fwInputBin; <br/>    USHORT          usTotalCards; <br/>    USHORT          usOutputCards; <br/>    USHORT          usRetainCards; <br/>    LPSTR           lpszExtra; <br/>    WORD            wDevicePosition; <br/>    USHORT          usPowerSaveRecoveryTime; <br/>    WORD            wToner; <br/>    WORD            wAntiFraudModule; <br/>} WFSCEUSTATUS, *LPWFSCEUSTATUS; <br/> <br/>typedef struct _wfs_ceu_caps <br/>{ <br/>    WORD            wClass; <br/>    BOOL            bCompound; <br/>    BOOL            bCompareMagneticStripe; <br/>    BOOL            bMagneticStripeRead; <br/>    BOOL            bMagneticStripeWrite; <br/>    BOOL            bChipIO; <br/>    WORD            wChipProtocol; </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>54 <br/></b></p>
+<p>    LPSTR           lpszExtra; <br/>    BOOL            bPowerSaveControl; <br/>    WORD            fwCharSupport; <br/>    WORD            fwType; <br/>    BOOL            bAntiFraudModule; <br/>    LPDWORD         lpdwSynchronizableCommands; <br/>} WFSCEUCAPS, *LPWFSCEUCAPS; <br/> <br/>typedef struct _wfs_ceu_form <br/>{ <br/>    LPSTR           lpszFormName; <br/>    LPSTR           lpszFields; <br/>    WORD            fwCharSupport; <br/>    WORD            wLanguageID; <br/>} WFSCEUFORM, *LPWFSCEUFORM; <br/> <br/>typedef struct _wfs_ceu_frm_media <br/>{ <br/>    WORD            fwMediaType; <br/>    WORD            wBase; <br/>    WORD            wUnitX; <br/>    WORD            wUnitY; <br/>    WORD            wSizeWidth; <br/>    WORD            wSizeHeight; <br/>    WORD            wEmbossAreaX; <br/>    WORD            wEmbossAreaY; <br/>    WORD            wEmbossAreaWidth; <br/>    WORD            wEmbossAreaHeight; <br/>    WORD            wRestrictedAreaX; <br/>    WORD            wRestrictedAreaY; <br/>    WORD            wRestrictedAreaWidth; <br/>    WORD            wRestrictedAreaHeight; <br/>} WFSCEUFRMMEDIA, *LPWFSCEUFRMMEDIA; <br/> <br/>typedef struct _wfs_ceu_query_field <br/>{ <br/>    LPSTR           lpszFormName; <br/>    LPSTR           lpszFieldName; <br/>} WFSCEUQUERYFIELD, *LPWFSCEUQUERYFIELD; <br/> <br/>typedef struct _wfs_ceu_frm_field <br/>{ <br/>    LPSTR           lpszFieldName; <br/>    WORD            fwType; <br/>    WORD            fwClass; <br/>    LPSTR           lpszInitialValue; <br/>    LPSTR           lpszFormat; <br/>    LPWSTR          lpszUNICODEInitialValue; <br/>    LPWSTR          lpszUNICODEFormat; <br/>    WORD            wLanguageID; <br/>} WFSCEUFRMFIELD, *LPWFSCEUFRMFIELD; <br/> <br/>/*=================================================================*/ <br/>/* CEU Execute Command Structures */ <br/>/*=================================================================*/ <br/> <br/>typedef struct _wfs_ceu_emboss_card <br/>{ <br/>    LPSTR           lpszFormName; <br/>    LPSTR           lpszMediaName; <br/>    LPSTR           lpszFields; <br/>    LPSTR           lpszCompareFormIOFormName; <br/>    LPSTR           lpszCompareFormIOTrackData; <br/>    LPSTR           lpszFormIOFormName; <br/>    LPSTR           lpszFormIOTrackData; <br/>    WORD            wChipProtocol; <br/>    ULONG           ulChipDataLength; <br/>    LPBYTE          lpbChipData; <br/>} WFSCEUEMBOSSCARD, *LPWFSCEUEMBOSSCARD; <br/> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-14:2020 (E)</b> <br/></p>
+<p><b>55 <br/></b></p>
+<p>typedef struct _wfs_ceu_power_save_control <br/>{ <br/>    USHORT          usMaxPowerSaveRecoveryTime; <br/>} WFSCEUPOWERSAVECONTROL, *LPWFSCEUPOWERSAVECONTROL; <br/> <br/>typedef struct _wfs_ceu_emboss_card_ex <br/>{ <br/>    LPSTR           lpszFormName; <br/>    LPSTR           lpszMediaName; <br/>    LPSTR           lpszFields; <br/>    LPSTR           lpszCompareFormIOFormName; <br/>    LPSTR           lpszCompareFormIOTrackData; <br/>    LPSTR           lpszFormIOFormName; <br/>    LPSTR           lpszFormIOTrackData; <br/>    WORD            wChipProtocol; <br/>    ULONG           ulChipDataLength; <br/>    LPBYTE          lpbChipData; <br/>    LPWSTR          lpszUNICODEFields; <br/>} WFSCEUEMBOSSCARDEX, *LPWFSCEUEMBOSSCARDEX; <br/> <br/>typedef struct _wfs_ceu_supply_replen <br/>{ <br/>    WORD            fwSupplyReplen; <br/>} WFSCEUSUPPLYREPLEN, *LPWFSCEUSUPPLYREPLEN; <br/> <br/>typedef struct _wfs_ceu_synchronize_command <br/>{ <br/>    DWORD           dwCommand; <br/>    LPVOID          lpCmdData; <br/>} WFSCEUSYNCHRONIZECOMMAND, *LPWFSCEUSYNCHRONIZECOMMAND; <br/> <br/>/*=================================================================*/ <br/>/* CEU Message Structures */ <br/>/*=================================================================*/ <br/> <br/>typedef struct _wfs_ceu_field_failure <br/>{ <br/>    LPSTR           lpszFormName; <br/>    LPSTR           lpszFieldName; <br/>    WORD            wFailure; <br/>} WFSCEUFIELDFAIL, *LPWFSCEUFIELDFAIL; <br/> <br/>typedef struct _wfs_ceu_device_position <br/>{ <br/>    WORD            wPosition; <br/>} WFSCEUDEVICEPOSITION, *LPWFSCEUDEVICEPOSITION; <br/> <br/>typedef struct _wfs_ceu_power_save_change <br/>{ <br/>    USHORT          usPowerSaveRecoveryTime; <br/>} WFSCEUPOWERSAVECHANGE, *LPWFSCEUPOWERSAVECHANGE; <br/> <br/>typedef struct _wfs_ceu_toner_status <br/>{ <br/>    LPWORD          lpwTonerThreshold; <br/>} WFSCEUTONERSTATUS, *LPWFSCEUTONERSTATUS; <br/> <br/>/* restore alignment */ <br/>#pragma pack(pop) <br/> <br/>#ifdef __cplusplus <br/>}       /*extern &quot;C&quot;*/ <br/>#endif <br/> <br/>#endif  /* __INC_XFSCEU__H */ <br/> </p>
+
+</div></div>
+</body></html>

@@ -1,0 +1,351 @@
+{
+  "file": "XfsDep.md",
+  "device_class": "DEP",
+  "part": 17,
+  "description": "Depository Device Class Interface",
+  "total_lines": 1639,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 176,
+      "end_line": 212
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 213,
+      "end_line": 234
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 235,
+      "end_line": 303
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_DEP_STATUS",
+      "type": "info",
+      "start_line": 304,
+      "end_line": 577
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_DEP_CAPABILITIES",
+      "type": "info",
+      "start_line": 578,
+      "end_line": 730
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_DEP_ENTRY",
+      "type": "command",
+      "start_line": 731,
+      "end_line": 818
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_DEP_DISPENSE",
+      "type": "command",
+      "start_line": 819,
+      "end_line": 843
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_DEP_RETRACT",
+      "type": "command",
+      "start_line": 844,
+      "end_line": 904
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_DEP_RESET_COUNT",
+      "type": "command",
+      "start_line": 905,
+      "end_line": 920
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_DEP_RESET",
+      "type": "command",
+      "start_line": 921,
+      "end_line": 977
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_DEP_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 978,
+      "end_line": 1058
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_DEP_SUPPLY_REPLENISH",
+      "type": "command",
+      "start_line": 1059,
+      "end_line": 1096
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_DEP_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 1097,
+      "end_line": 1133
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_CMD_DEP_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 1134,
+      "end_line": 1183
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_SRVE_DEP_ENVTAKEN",
+      "type": "event",
+      "start_line": 1184,
+      "end_line": 1190
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_DEP_ENVDEPOSITED",
+      "type": "event",
+      "start_line": 1191,
+      "end_line": 1197
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_EXEE_DEP_DEPOSITERROR",
+      "type": "event",
+      "start_line": 1198,
+      "end_line": 1208
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_USRE_DEP_DEPTHRESHOLD",
+      "type": "event",
+      "start_line": 1209,
+      "end_line": 1222
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_USRE_DEP_TONERTHRESHOLD",
+      "type": "event",
+      "start_line": 1223,
+      "end_line": 1240
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_USRE_DEP_ENVTHRESHOLD",
+      "type": "event",
+      "start_line": 1241,
+      "end_line": 1255
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_SRVE_DEP_CONTINSERTED",
+      "type": "event",
+      "start_line": 1256,
+      "end_line": 1262
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_SRVE_DEP_CONTREMOVED",
+      "type": "event",
+      "start_line": 1263,
+      "end_line": 1269
+    },
+    {
+      "id": "6.9",
+      "name": "WFS_SRVE_DEP_ENVINSERTED",
+      "type": "event",
+      "start_line": 1270,
+      "end_line": 1276
+    },
+    {
+      "id": "6.10",
+      "name": "WFS_SRVE_DEP_MEDIADETECTED",
+      "type": "event",
+      "start_line": 1277,
+      "end_line": 1312
+    },
+    {
+      "id": "6.11",
+      "name": "WFS_EXEE_DEP_INSERTDEPOSIT",
+      "type": "event",
+      "start_line": 1313,
+      "end_line": 1320
+    },
+    {
+      "id": "6.12",
+      "name": "WFS_SRVE_DEP_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 1321,
+      "end_line": 1340
+    },
+    {
+      "id": "6.13",
+      "name": "WFS_SRVE_DEP_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 1341,
+      "end_line": 1363
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSDEP__H",
+      "type": "header",
+      "start_line": 1364,
+      "end_line": 1639
+    }
+  ],
+  "commands": {
+    "WFS_INF_DEP_STATUS": {
+      "section_id": "4.1",
+      "start_line": 304,
+      "end_line": 577,
+      "type": "info"
+    },
+    "WFS_INF_DEP_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 578,
+      "end_line": 730,
+      "type": "info"
+    },
+    "WFS_CMD_DEP_ENTRY": {
+      "section_id": "5.1",
+      "start_line": 731,
+      "end_line": 818,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_DISPENSE": {
+      "section_id": "5.2",
+      "start_line": 819,
+      "end_line": 843,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_RETRACT": {
+      "section_id": "5.3",
+      "start_line": 844,
+      "end_line": 904,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_RESET_COUNT": {
+      "section_id": "5.4",
+      "start_line": 905,
+      "end_line": 920,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_RESET": {
+      "section_id": "5.5",
+      "start_line": 921,
+      "end_line": 977,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_SET_GUIDANCE_LIGHT": {
+      "section_id": "5.6",
+      "start_line": 978,
+      "end_line": 1058,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_SUPPLY_REPLENISH": {
+      "section_id": "5.7",
+      "start_line": 1059,
+      "end_line": 1096,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_POWER_SAVE_CONTROL": {
+      "section_id": "5.8",
+      "start_line": 1097,
+      "end_line": 1133,
+      "type": "command"
+    },
+    "WFS_CMD_DEP_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.9",
+      "start_line": 1134,
+      "end_line": 1183,
+      "type": "command"
+    },
+    "WFS_SRVE_DEP_ENVTAKEN": {
+      "section_id": "6.1",
+      "start_line": 1184,
+      "end_line": 1190,
+      "type": "event"
+    },
+    "WFS_EXEE_DEP_ENVDEPOSITED": {
+      "section_id": "6.2",
+      "start_line": 1191,
+      "end_line": 1197,
+      "type": "event"
+    },
+    "WFS_EXEE_DEP_DEPOSITERROR": {
+      "section_id": "6.3",
+      "start_line": 1198,
+      "end_line": 1208,
+      "type": "event"
+    },
+    "WFS_USRE_DEP_DEPTHRESHOLD": {
+      "section_id": "6.4",
+      "start_line": 1209,
+      "end_line": 1222,
+      "type": "event"
+    },
+    "WFS_USRE_DEP_TONERTHRESHOLD": {
+      "section_id": "6.5",
+      "start_line": 1223,
+      "end_line": 1240,
+      "type": "event"
+    },
+    "WFS_USRE_DEP_ENVTHRESHOLD": {
+      "section_id": "6.6",
+      "start_line": 1241,
+      "end_line": 1255,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_CONTINSERTED": {
+      "section_id": "6.7",
+      "start_line": 1256,
+      "end_line": 1262,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_CONTREMOVED": {
+      "section_id": "6.8",
+      "start_line": 1263,
+      "end_line": 1269,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_ENVINSERTED": {
+      "section_id": "6.9",
+      "start_line": 1270,
+      "end_line": 1276,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_MEDIADETECTED": {
+      "section_id": "6.10",
+      "start_line": 1277,
+      "end_line": 1312,
+      "type": "event"
+    },
+    "WFS_EXEE_DEP_INSERTDEPOSIT": {
+      "section_id": "6.11",
+      "start_line": 1313,
+      "end_line": 1320,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_DEVICEPOSITION": {
+      "section_id": "6.12",
+      "start_line": 1321,
+      "end_line": 1340,
+      "type": "event"
+    },
+    "WFS_SRVE_DEP_POWER_SAVE_CHANGE": {
+      "section_id": "6.13",
+      "start_line": 1341,
+      "end_line": 1363,
+      "type": "event"
+    }
+  }
+}

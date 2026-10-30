@@ -1,0 +1,400 @@
+{
+  "file": "XfsSiu.md",
+  "device_class": "SIU",
+  "part": 11,
+  "description": "Sensors and Indicators Unit Device Class Interface",
+  "total_lines": 4142,
+  "sections": [
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 150,
+      "end_line": 151
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 152,
+      "end_line": 195
+    },
+    {
+      "id": "3.00",
+      "name": "October 18, 2000 Initial Release.",
+      "type": "section",
+      "start_line": 196,
+      "end_line": 196
+    },
+    {
+      "id": "3.10",
+      "name": "November 29, 2007 For a description of changes from version 3.00 to version",
+      "type": "section",
+      "start_line": 197,
+      "end_line": 197
+    },
+    {
+      "id": "3.10",
+      "name": "see the SIU 3.10 Migration document.",
+      "type": "section",
+      "start_line": 198,
+      "end_line": 198
+    },
+    {
+      "id": "3.20",
+      "name": "March 2, 2011 For a description of changes from version 3.10 to version",
+      "type": "section",
+      "start_line": 199,
+      "end_line": 199
+    },
+    {
+      "id": "3.20",
+      "name": "see the SIU 3.20 Migration document.",
+      "type": "section",
+      "start_line": 200,
+      "end_line": 200
+    },
+    {
+      "id": "3.30",
+      "name": "March 19, 2015 For a description of changes from version 3.20 to version",
+      "type": "section",
+      "start_line": 201,
+      "end_line": 201
+    },
+    {
+      "id": "3.30",
+      "name": "see the SIU 3.30 Migration document.",
+      "type": "section",
+      "start_line": 202,
+      "end_line": 202
+    },
+    {
+      "id": "3.40",
+      "name": "December 06, 2019 For a description of changes from version 3.30 to version",
+      "type": "section",
+      "start_line": 203,
+      "end_line": 203
+    },
+    {
+      "id": "3.40",
+      "name": "see the SIU 3.40 Migration document.",
+      "type": "section",
+      "start_line": 204,
+      "end_line": 204
+    },
+    {
+      "id": "3.50",
+      "name": "November 18, 2022 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 205,
+      "end_line": 205
+    },
+    {
+      "id": "3.50",
+      "name": "see the SIU 3.50 Migration document.",
+      "type": "section",
+      "start_line": 206,
+      "end_line": 210
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.50",
+      "type": "section",
+      "start_line": 211,
+      "end_line": 224
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 225,
+      "end_line": 286
+    },
+    {
+      "id": "2.1",
+      "name": "Enhanced Audio Controller Overview",
+      "type": "section",
+      "start_line": 287,
+      "end_line": 412
+    },
+    {
+      "id": "2.2",
+      "name": "Enhanced Microphone Controller Overview",
+      "type": "section",
+      "start_line": 413,
+      "end_line": 471
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_SIU_STATUS",
+      "type": "info",
+      "start_line": 472,
+      "end_line": 639
+    },
+    {
+      "id": "0",
+      "name": "The General-Purpose Input Port is turned",
+      "type": "section",
+      "start_line": 640,
+      "end_line": 641
+    },
+    {
+      "id": "1",
+      "name": "The General-Purpose Input Port is turned on.",
+      "type": "section",
+      "start_line": 642,
+      "end_line": 857
+    },
+    {
+      "id": "0",
+      "name": "The Transaction Indicator is turned off.",
+      "type": "section",
+      "start_line": 858,
+      "end_line": 858
+    },
+    {
+      "id": "1",
+      "name": "The Transaction Indicator is turned on.",
+      "type": "section",
+      "start_line": 859,
+      "end_line": 872
+    },
+    {
+      "id": "0",
+      "name": "The General-Purpose Output Port is turned",
+      "type": "section",
+      "start_line": 873,
+      "end_line": 874
+    },
+    {
+      "id": "1",
+      "name": "The General-Purpose Output Port is turned",
+      "type": "section",
+      "start_line": 875,
+      "end_line": 1109
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_SIU_CAPABILITIES",
+      "type": "info",
+      "start_line": 1110,
+      "end_line": 1828
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_SIU_GET_AUTOSTARTUP_TIME",
+      "type": "info",
+      "start_line": 1829,
+      "end_line": 1888
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_SIU_ENABLE_EVENTS",
+      "type": "command",
+      "start_line": 1889,
+      "end_line": 2356
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_SIU_SET_PORTS",
+      "type": "command",
+      "start_line": 2357,
+      "end_line": 2746
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_SIU_SET_DOOR",
+      "type": "command",
+      "start_line": 2747,
+      "end_line": 2797
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_SIU_SET_INDICATOR",
+      "type": "command",
+      "start_line": 2798,
+      "end_line": 2898
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_SIU_SET_AUXILIARY",
+      "type": "command",
+      "start_line": 2899,
+      "end_line": 3025
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_SIU_SET_GUIDLIGHT",
+      "type": "command",
+      "start_line": 3026,
+      "end_line": 3062
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_SIU_RESET",
+      "type": "command",
+      "start_line": 3063,
+      "end_line": 3082
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_SIU_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 3083,
+      "end_line": 3119
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_CMD_SIU_SET_AUTOSTARTUP_TIME",
+      "type": "command",
+      "start_line": 3120,
+      "end_line": 3179
+    },
+    {
+      "id": "5.10",
+      "name": "WFS_CMD_SIU_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 3180,
+      "end_line": 3228
+    },
+    {
+      "id": "5.11",
+      "name": "WFS_CMD_SIU_SET_GUIDLIGHT_EX",
+      "type": "command",
+      "start_line": 3229,
+      "end_line": 3264
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_SRVE_SIU_PORT_STATUS",
+      "type": "event",
+      "start_line": 3265,
+      "end_line": 3416
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_SIU_PORT_ERROR",
+      "type": "event",
+      "start_line": 3417,
+      "end_line": 3576
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_SRVE_SIU_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 3577,
+      "end_line": 3598
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSSIU__H",
+      "type": "header",
+      "start_line": 3599,
+      "end_line": 4142
+    }
+  ],
+  "commands": {
+    "WFS_INF_SIU_STATUS": {
+      "section_id": "4.1",
+      "start_line": 472,
+      "end_line": 639,
+      "type": "info"
+    },
+    "WFS_INF_SIU_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 1110,
+      "end_line": 1828,
+      "type": "info"
+    },
+    "WFS_INF_SIU_GET_AUTOSTARTUP_TIME": {
+      "section_id": "4.3",
+      "start_line": 1829,
+      "end_line": 1888,
+      "type": "info"
+    },
+    "WFS_CMD_SIU_ENABLE_EVENTS": {
+      "section_id": "5.1",
+      "start_line": 1889,
+      "end_line": 2356,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SET_PORTS": {
+      "section_id": "5.2",
+      "start_line": 2357,
+      "end_line": 2746,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SET_DOOR": {
+      "section_id": "5.3",
+      "start_line": 2747,
+      "end_line": 2797,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SET_INDICATOR": {
+      "section_id": "5.4",
+      "start_line": 2798,
+      "end_line": 2898,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SET_AUXILIARY": {
+      "section_id": "5.5",
+      "start_line": 2899,
+      "end_line": 3025,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SET_GUIDLIGHT": {
+      "section_id": "5.6",
+      "start_line": 3026,
+      "end_line": 3062,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_RESET": {
+      "section_id": "5.7",
+      "start_line": 3063,
+      "end_line": 3082,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_POWER_SAVE_CONTROL": {
+      "section_id": "5.8",
+      "start_line": 3083,
+      "end_line": 3119,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SET_AUTOSTARTUP_TIME": {
+      "section_id": "5.9",
+      "start_line": 3120,
+      "end_line": 3179,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.10",
+      "start_line": 3180,
+      "end_line": 3228,
+      "type": "command"
+    },
+    "WFS_CMD_SIU_SET_GUIDLIGHT_EX": {
+      "section_id": "5.11",
+      "start_line": 3229,
+      "end_line": 3264,
+      "type": "command"
+    },
+    "WFS_SRVE_SIU_PORT_STATUS": {
+      "section_id": "6.1",
+      "start_line": 3265,
+      "end_line": 3416,
+      "type": "event"
+    },
+    "WFS_EXEE_SIU_PORT_ERROR": {
+      "section_id": "6.2",
+      "start_line": 3417,
+      "end_line": 3576,
+      "type": "event"
+    },
+    "WFS_SRVE_SIU_POWER_SAVE_CHANGE": {
+      "section_id": "6.3",
+      "start_line": 3577,
+      "end_line": 3598,
+      "type": "event"
+    }
+  }
+}

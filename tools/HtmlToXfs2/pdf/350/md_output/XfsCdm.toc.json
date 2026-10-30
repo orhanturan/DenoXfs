@@ -1,0 +1,671 @@
+{
+  "file": "XfsCdm.md",
+  "device_class": "CDM",
+  "part": 5,
+  "toc_line_range": [
+    30,
+    124
+  ],
+  "summary": {
+    "total_entries": 84,
+    "info_commands": 12,
+    "execute_commands": 23,
+    "events": 23
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 5
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 9,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.50",
+          "type": "section",
+          "page": 9,
+          "start_line": 275,
+          "end_line": 288
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 9,
+          "start_line": 289,
+          "end_line": 424
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Cash Dispensers",
+      "type": "section",
+      "page": 11
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 12
+    },
+    {
+      "section_id": "",
+      "title": "4. Note Classification",
+      "type": "section",
+      "page": 13
+    },
+    {
+      "section_id": "",
+      "title": "5. Info Commands",
+      "type": "info_commands_section",
+      "page": 14,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_INF_CDM_STATUS",
+          "type": "info_command",
+          "page": 14,
+          "start_line": 425,
+          "end_line": 709
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_INF_CDM_CAPABILITIES",
+          "type": "info_command",
+          "page": 19,
+          "start_line": 710,
+          "end_line": 975
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_INF_CDM_CASH_UNIT_INFO",
+          "type": "info_command",
+          "page": 24,
+          "start_line": 976,
+          "end_line": 1370
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_INF_CDM_TELLER_INFO",
+          "type": "info_command",
+          "page": 31,
+          "start_line": 1371,
+          "end_line": 1469
+        },
+        {
+          "section_id": "5.5",
+          "title": "WFS_INF_CDM_CURRENCY_EXP",
+          "type": "info_command",
+          "page": 33,
+          "start_line": 1470,
+          "end_line": 1503
+        },
+        {
+          "section_id": "5.6",
+          "title": "WFS_INF_CDM_MIX_TYPES",
+          "type": "info_command",
+          "page": 34,
+          "start_line": 1508,
+          "end_line": 1557
+        },
+        {
+          "section_id": "5.7",
+          "title": "WFS_INF_CDM_MIX_TABLE",
+          "type": "info_command",
+          "page": 35,
+          "start_line": 1558,
+          "end_line": 1607
+        },
+        {
+          "section_id": "5.8",
+          "title": "WFS_INF_CDM_PRESENT_STATUS",
+          "type": "info_command",
+          "page": 36,
+          "start_line": 1608,
+          "end_line": 1674
+        },
+        {
+          "section_id": "5.9",
+          "title": "WFS_INF_CDM_GET_ITEM_INFO",
+          "type": "info_command",
+          "page": 38,
+          "start_line": 1675,
+          "end_line": 1745
+        },
+        {
+          "section_id": "5.10",
+          "title": "WFS_INF_CDM_GET_BLACKLIST",
+          "type": "info_command",
+          "page": 40,
+          "start_line": 1783,
+          "end_line": 1822
+        },
+        {
+          "section_id": "5.11",
+          "title": "WFS_INF_CDM_GET_ALL_ITEMS_INFO",
+          "type": "info_command",
+          "page": 41,
+          "start_line": 1823,
+          "end_line": 1986
+        },
+        {
+          "section_id": "5.12",
+          "title": "WFS_INF_CDM_GET_CLASSIFICATION_LIST",
+          "type": "info_command",
+          "page": 44,
+          "start_line": 1987,
+          "end_line": 2055
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 46,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_CMD_CDM_DENOMINATE",
+          "type": "execute_command",
+          "page": 46,
+          "start_line": 2056,
+          "end_line": 2190
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_CMD_CDM_DISPENSE",
+          "type": "execute_command",
+          "page": 49,
+          "start_line": 2191,
+          "end_line": 2381
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_CMD_CDM_COUNT",
+          "type": "execute_command",
+          "page": 53,
+          "start_line": 2382,
+          "end_line": 2505
+        },
+        {
+          "section_id": "6.4",
+          "title": "WFS_CMD_CDM_PRESENT",
+          "type": "execute_command",
+          "page": 56,
+          "start_line": 2506,
+          "end_line": 2570
+        },
+        {
+          "section_id": "6.5",
+          "title": "WFS_CMD_CDM_REJECT",
+          "type": "execute_command",
+          "page": 58,
+          "start_line": 2571,
+          "end_line": 2601
+        },
+        {
+          "section_id": "6.6",
+          "title": "WFS_CMD_CDM_RETRACT",
+          "type": "execute_command",
+          "page": 59,
+          "start_line": 2602,
+          "end_line": 2755
+        },
+        {
+          "section_id": "6.7",
+          "title": "WFS_CMD_CDM_OPEN_SHUTTER",
+          "type": "execute_command",
+          "page": 62,
+          "start_line": 2756,
+          "end_line": 2791
+        },
+        {
+          "section_id": "6.8",
+          "title": "WFS_CMD_CDM_CLOSE_SHUTTER",
+          "type": "execute_command",
+          "page": 63,
+          "start_line": 2792,
+          "end_line": 2827
+        },
+        {
+          "section_id": "6.9",
+          "title": "WFS_CMD_CDM_SET_TELLER_INFO",
+          "type": "execute_command",
+          "page": 64,
+          "start_line": 2828,
+          "end_line": 2867
+        },
+        {
+          "section_id": "6.10",
+          "title": "WFS_CMD_CDM_SET_CASH_UNIT_INFO",
+          "type": "execute_command",
+          "page": 65,
+          "start_line": 2868,
+          "end_line": 2930
+        },
+        {
+          "section_id": "6.11",
+          "title": "WFS_CMD_CDM_START_EXCHANGE",
+          "type": "execute_command",
+          "page": 67,
+          "start_line": 2931,
+          "end_line": 3039
+        },
+        {
+          "section_id": "6.12",
+          "title": "WFS_CMD_CDM_END_EXCHANGE",
+          "type": "execute_command",
+          "page": 69,
+          "start_line": 3040,
+          "end_line": 3102
+        },
+        {
+          "section_id": "6.13",
+          "title": "WFS_CMD_CDM_OPEN_SAFE_DOOR",
+          "type": "execute_command",
+          "page": 71,
+          "start_line": 3103,
+          "end_line": 3117
+        },
+        {
+          "section_id": "6.14",
+          "title": "WFS_CMD_CDM_CALIBRATE_CASH_UNIT",
+          "type": "execute_command",
+          "page": 72,
+          "start_line": 3118,
+          "end_line": 3185
+        },
+        {
+          "section_id": "6.15",
+          "title": "WFS_CMD_CDM_SET_MIX_TABLE",
+          "type": "execute_command",
+          "page": 74,
+          "start_line": 3186,
+          "end_line": 3211
+        },
+        {
+          "section_id": "6.16",
+          "title": "WFS_CMD_CDM_RESET",
+          "type": "execute_command",
+          "page": 75,
+          "start_line": 3212,
+          "end_line": 3320
+        },
+        {
+          "section_id": "6.17",
+          "title": "WFS_CMD_CDM_TEST_CASH_UNITS",
+          "type": "execute_command",
+          "page": 77,
+          "start_line": 3321,
+          "end_line": 3395
+        },
+        {
+          "section_id": "6.18",
+          "title": "WFS_CMD_CDM_SET_GUIDANCE_LIGHT",
+          "type": "execute_command",
+          "page": 79,
+          "start_line": 3396,
+          "end_line": 3474
+        },
+        {
+          "section_id": "6.19",
+          "title": "WFS_CMD_CDM_POWER_SAVE_CONTROL",
+          "type": "execute_command",
+          "page": 81,
+          "start_line": 3475,
+          "end_line": 3512
+        },
+        {
+          "section_id": "6.20",
+          "title": "WFS_CMD_CDM_PREPARE_DISPENSE",
+          "type": "execute_command",
+          "page": 82,
+          "start_line": 3513,
+          "end_line": 3555
+        },
+        {
+          "section_id": "6.21",
+          "title": "WFS_CMD_CDM_SET_BLACKLIST",
+          "type": "execute_command",
+          "page": 83,
+          "start_line": 3556,
+          "end_line": 3591
+        },
+        {
+          "section_id": "6.22",
+          "title": "WFS_CMD_CDM_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 84,
+          "start_line": 3592,
+          "end_line": 3641
+        },
+        {
+          "section_id": "6.23",
+          "title": "WFS_CMD_CDM_SET_CLASSIFICATION_LIST",
+          "type": "execute_command",
+          "page": 85,
+          "start_line": 3642,
+          "end_line": 3667
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. Events",
+      "type": "events_section",
+      "page": 86,
+      "children": [
+        {
+          "section_id": "7.1",
+          "title": "WFS_SRVE_CDM_SAFEDOOROPEN",
+          "type": "event",
+          "page": 86,
+          "start_line": 3668,
+          "end_line": 3674
+        },
+        {
+          "section_id": "7.2",
+          "title": "WFS_SRVE_CDM_SAFEDOORCLOSED",
+          "type": "event",
+          "page": 87,
+          "start_line": 3675,
+          "end_line": 3681
+        },
+        {
+          "section_id": "7.3",
+          "title": "WFS_USRE_CDM_CASHUNITTHRESHOLD",
+          "type": "event",
+          "page": 88,
+          "start_line": 3682,
+          "end_line": 3706
+        },
+        {
+          "section_id": "7.4",
+          "title": "WFS_SRVE_CDM_CASHUNITINFOCHANGED",
+          "type": "event",
+          "page": 89,
+          "start_line": 3707,
+          "end_line": 3740
+        },
+        {
+          "section_id": "7.5",
+          "title": "WFS_SRVE_CDM_TELLERINFOCHANGED",
+          "type": "event",
+          "page": 90,
+          "start_line": 3741,
+          "end_line": 3750
+        },
+        {
+          "section_id": "7.6",
+          "title": "WFS_EXEE_CDM_DELAYEDDISPENSE",
+          "type": "event",
+          "page": 91,
+          "start_line": 3751,
+          "end_line": 3760
+        },
+        {
+          "section_id": "7.7",
+          "title": "WFS_EXEE_CDM_STARTDISPENSE",
+          "type": "event",
+          "page": 92,
+          "start_line": 3761,
+          "end_line": 3769
+        },
+        {
+          "section_id": "7.8",
+          "title": "WFS_EXEE_CDM_CASHUNITERROR",
+          "type": "event",
+          "page": 93,
+          "start_line": 3770,
+          "end_line": 3798
+        },
+        {
+          "section_id": "7.9",
+          "title": "WFS_SRVE_CDM_ITEMSTAKEN",
+          "type": "event",
+          "page": 94,
+          "start_line": 3799,
+          "end_line": 3817
+        },
+        {
+          "section_id": "7.10",
+          "title": "WFS_SRVE_CDM_COUNTS_CHANGED",
+          "type": "event",
+          "page": 95,
+          "start_line": 3818,
+          "end_line": 3835
+        },
+        {
+          "section_id": "7.11",
+          "title": "WFS_EXEE_CDM_PARTIALDISPENSE",
+          "type": "event",
+          "page": 96,
+          "start_line": 3836,
+          "end_line": 3846
+        },
+        {
+          "section_id": "7.12",
+          "title": "WFS_EXEE_CDM_SUBDISPENSEOK",
+          "type": "event",
+          "page": 97,
+          "start_line": 3847,
+          "end_line": 3858
+        },
+        {
+          "section_id": "7.13",
+          "title": "WFS_EXEE_CDM_INCOMPLETEDISPENSE",
+          "type": "event",
+          "page": 98,
+          "start_line": 3859,
+          "end_line": 3873
+        },
+        {
+          "section_id": "7.14",
+          "title": "WFS_EXEE_CDM_NOTEERROR",
+          "type": "event",
+          "page": 99,
+          "start_line": 3874,
+          "end_line": 3892
+        },
+        {
+          "section_id": "7.15",
+          "title": "WFS_SRVE_CDM_ITEMSPRESENTED",
+          "type": "event",
+          "page": 100,
+          "start_line": 3893,
+          "end_line": 3900
+        },
+        {
+          "section_id": "7.16",
+          "title": "WFS_SRVE_CDM_MEDIADETECTED",
+          "type": "event",
+          "page": 101,
+          "start_line": 3901,
+          "end_line": 3912
+        },
+        {
+          "section_id": "7.17",
+          "title": "WFS_EXEE_CDM_INPUT_P6",
+          "type": "event",
+          "page": 102,
+          "start_line": 3913,
+          "end_line": 3920
+        },
+        {
+          "section_id": "7.18",
+          "title": "WFS_SRVE_CDM_DEVICEPOSITION",
+          "type": "event",
+          "page": 103,
+          "start_line": 3921,
+          "end_line": 3940
+        },
+        {
+          "section_id": "7.19",
+          "title": "WFS_SRVE_CDM_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 104,
+          "start_line": 3941,
+          "end_line": 3955
+        },
+        {
+          "section_id": "7.20",
+          "title": "WFS_EXEE_CDM_INFO_AVAILABLE",
+          "type": "event",
+          "page": 105,
+          "start_line": 3956,
+          "end_line": 3979
+        },
+        {
+          "section_id": "7.21",
+          "title": "WFS_EXEE_CDM_INCOMPLETERETRACT",
+          "type": "event",
+          "page": 106,
+          "start_line": 3980,
+          "end_line": 4011
+        },
+        {
+          "section_id": "7.22",
+          "title": "WFS_SRVE_CDM_SHUTTERSTATUSCHANGED",
+          "type": "event",
+          "page": 107,
+          "start_line": 4012,
+          "end_line": 4044
+        },
+        {
+          "section_id": "7.23",
+          "title": "WFS_SRVE_CDM_ITEMSINSERTED",
+          "type": "event",
+          "page": 108,
+          "start_line": 4045,
+          "end_line": 4118
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "8. Sub-Dispensing Command Flow",
+      "type": "section",
+      "page": 109
+    },
+    {
+      "section_id": "",
+      "title": "9. Rules for Cash Unit Exchange",
+      "type": "section",
+      "page": 112
+    },
+    {
+      "section_id": "",
+      "title": "10. Events Associated with Cash Unit Status Changes",
+      "type": "events_section",
+      "page": 113,
+      "children": [
+        {
+          "section_id": "10.1",
+          "title": "One Physical Cash Unit Goes LOW",
+          "type": "section",
+          "page": 113,
+          "start_line": 4277,
+          "end_line": 4294
+        },
+        {
+          "section_id": "10.2",
+          "title": "Last Physical Cash Unit Goes LOW",
+          "type": "section",
+          "page": 114,
+          "start_line": 4295,
+          "end_line": 4313
+        },
+        {
+          "section_id": "10.3",
+          "title": "One Physical Cash Unit Goes INOP",
+          "type": "section",
+          "page": 115,
+          "start_line": 4314,
+          "end_line": 4337
+        },
+        {
+          "section_id": "10.4",
+          "title": "Last Physical Cash Unit Goes EMPTY",
+          "type": "section",
+          "page": 116,
+          "start_line": 4338,
+          "end_line": 4504
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "11. Multiple Dispense Command Flow",
+      "type": "section",
+      "page": 117
+    },
+    {
+      "section_id": "",
+      "title": "12. Appendix E – Cash Dispenser E2E Authentication",
+      "type": "appendix",
+      "page": 119,
+      "children": [
+        {
+          "section_id": "12.1",
+          "title": "Secure Dispense Data Parameter Example Data",
+          "type": "section",
+          "page": 119,
+          "start_line": 4505,
+          "end_line": 4575
+        },
+        {
+          "section_id": "12.2",
+          "title": "Secure Dispense Command Flow: - Dispense and Present",
+          "type": "section",
+          "page": 121,
+          "start_line": 4576,
+          "end_line": 4661
+        },
+        {
+          "section_id": "12.3",
+          "title": "Secure Dispense Command Flow – Dispense Only with no Present",
+          "type": "section",
+          "page": 123,
+          "start_line": 4662,
+          "end_line": 4951
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "Additional Dispense and Present",
+      "type": "section",
+      "page": 124
+    },
+    {
+      "section_id": "",
+      "title": "Retract",
+      "type": "section",
+      "page": 126,
+      "children": [
+        {
+          "section_id": "12.6",
+          "title": "Secure Dispense Command Flow: - Authentication Process Timeout",
+          "type": "section",
+          "page": 128,
+          "start_line": 4952,
+          "end_line": 5020
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "13. C - Header file",
+      "type": "header",
+      "page": 129
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "file": "XfsBcr.md",
+  "device_class": "BCR",
+  "part": 4,
+  "description": "Barcode Reader Device Class Interface",
+  "total_lines": 1075,
+  "sections": [
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 140,
+      "end_line": 141
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 142,
+      "end_line": 186
+    },
+    {
+      "id": "3.10",
+      "name": "November 29, 2007 Initial Release.",
+      "type": "section",
+      "start_line": 187,
+      "end_line": 187
+    },
+    {
+      "id": "3.20",
+      "name": "March 2, 2011 For a description of changes from version 3.10 to version",
+      "type": "section",
+      "start_line": 188,
+      "end_line": 188
+    },
+    {
+      "id": "3.20",
+      "name": "see the BCR 3.20 Migration document.",
+      "type": "section",
+      "start_line": 189,
+      "end_line": 189
+    },
+    {
+      "id": "3.30",
+      "name": "March 19, 2015 For a description of changes from version 3.20 to version",
+      "type": "section",
+      "start_line": 190,
+      "end_line": 190
+    },
+    {
+      "id": "3.30",
+      "name": "see the BCR 3.30 Migration document.",
+      "type": "section",
+      "start_line": 191,
+      "end_line": 191
+    },
+    {
+      "id": "3.40",
+      "name": "December 06, 2019 For a description of changes from version 3.30 to version",
+      "type": "section",
+      "start_line": 192,
+      "end_line": 192
+    },
+    {
+      "id": "3.40",
+      "name": "see the BCR 3.40 Migration document.",
+      "type": "section",
+      "start_line": 193,
+      "end_line": 193
+    },
+    {
+      "id": "3.50",
+      "name": "November 18, 2022 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 194,
+      "end_line": 194
+    },
+    {
+      "id": "3.50",
+      "name": "see the BCR 3.50 Migration document.",
+      "type": "section",
+      "start_line": 195,
+      "end_line": 198
+    },
+    {
+      "id": "1",
+      "name": "Introduction",
+      "type": "section",
+      "start_line": 199,
+      "end_line": 199
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.50",
+      "type": "section",
+      "start_line": 200,
+      "end_line": 213
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 214,
+      "end_line": 276
+    },
+    {
+      "id": "1.1",
+      "name": "WFS_INF_BCR_STATUS",
+      "type": "info",
+      "start_line": 277,
+      "end_line": 411
+    },
+    {
+      "id": "1.2",
+      "name": "WFS_INF_BCR_CAPABILITIES",
+      "type": "info",
+      "start_line": 412,
+      "end_line": 570
+    },
+    {
+      "id": "1.3",
+      "name": "WFS_CMD_BCR_READ",
+      "type": "command",
+      "start_line": 571,
+      "end_line": 636
+    },
+    {
+      "id": "1.4",
+      "name": "WFS_CMD_BCR_RESET",
+      "type": "command",
+      "start_line": 637,
+      "end_line": 647
+    },
+    {
+      "id": "1.5",
+      "name": "WFS_CMD_BCR_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 648,
+      "end_line": 720
+    },
+    {
+      "id": "1.6",
+      "name": "WFS_CMD_BCR_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 721,
+      "end_line": 753
+    },
+    {
+      "id": "1.7",
+      "name": "WFS_CMD_BCR_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 754,
+      "end_line": 803
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_SRVE_BCR_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 804,
+      "end_line": 823
+    },
+    {
+      "id": "1.8",
+      "name": "WFS_SRVE_BCR_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 824,
+      "end_line": 846
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSBCR__H",
+      "type": "header",
+      "start_line": 847,
+      "end_line": 1075
+    }
+  ],
+  "commands": {
+    "WFS_INF_BCR_STATUS": {
+      "section_id": "1.1",
+      "start_line": 277,
+      "end_line": 411,
+      "type": "info"
+    },
+    "WFS_INF_BCR_CAPABILITIES": {
+      "section_id": "1.2",
+      "start_line": 412,
+      "end_line": 570,
+      "type": "info"
+    },
+    "WFS_CMD_BCR_READ": {
+      "section_id": "1.3",
+      "start_line": 571,
+      "end_line": 636,
+      "type": "command"
+    },
+    "WFS_CMD_BCR_RESET": {
+      "section_id": "1.4",
+      "start_line": 637,
+      "end_line": 647,
+      "type": "command"
+    },
+    "WFS_CMD_BCR_SET_GUIDANCE_LIGHT": {
+      "section_id": "1.5",
+      "start_line": 648,
+      "end_line": 720,
+      "type": "command"
+    },
+    "WFS_CMD_BCR_POWER_SAVE_CONTROL": {
+      "section_id": "1.6",
+      "start_line": 721,
+      "end_line": 753,
+      "type": "command"
+    },
+    "WFS_CMD_BCR_SYNCHRONIZE_COMMAND": {
+      "section_id": "1.7",
+      "start_line": 754,
+      "end_line": 803,
+      "type": "command"
+    },
+    "WFS_SRVE_BCR_DEVICEPOSITION": {
+      "section_id": "6.1",
+      "start_line": 804,
+      "end_line": 823,
+      "type": "event"
+    },
+    "WFS_SRVE_BCR_POWER_SAVE_CHANGE": {
+      "section_id": "1.8",
+      "start_line": 824,
+      "end_line": 846,
+      "type": "event"
+    }
+  }
+}

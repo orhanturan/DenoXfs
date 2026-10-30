@@ -1,0 +1,1260 @@
+{
+  "file": "XfsCim.md",
+  "device_class": "CIM",
+  "part": 15,
+  "description": "Cash-In Module Device Class Interface",
+  "total_lines": 9135,
+  "sections": [
+    {
+      "id": "8.5",
+      "name": "OK Transaction (Explicit Shutter Control) - Level 2 and 3 Note classification Supported153",
+      "type": "section",
+      "start_line": 125,
+      "end_line": 125
+    },
+    {
+      "id": "8.6",
+      "name": "Multiple Bunches Returned During WFS_CMD_CIM_CASH_IN Refused Notes (Explicit",
+      "type": "command",
+      "start_line": 126,
+      "end_line": 127
+    },
+    {
+      "id": "8.7",
+      "name": "Multiple Bunches Returned During WFS_CMD_CIM_CASH_IN_ROLLBACK (Explicit",
+      "type": "command",
+      "start_line": 128,
+      "end_line": 130
+    },
+    {
+      "id": "8.9",
+      "name": "Customer Initiates Returning Of Previously Recognized Items (Implicit Shutter Control)159",
+      "type": "section",
+      "start_line": 131,
+      "end_line": 131
+    },
+    {
+      "id": "8.10",
+      "name": "OK Transaction - (Implicit Shutter Control and WFS_EXEE_CIM_SUBCASHIN event",
+      "type": "event",
+      "start_line": 132,
+      "end_line": 133
+    },
+    {
+      "id": "8.11",
+      "name": "Multiple Bunches Returned During WFS_CMD_CIM_CASH_IN (Implicit Shutter Control",
+      "type": "command",
+      "start_line": 134,
+      "end_line": 135
+    },
+    {
+      "id": "8.12",
+      "name": "Multiple Bunches Returned During WFS_CMD_CIM_CASH_IN_ROLLBACK (Implicit",
+      "type": "command",
+      "start_line": 136,
+      "end_line": 137
+    },
+    {
+      "id": "8.13",
+      "name": "Retracting Items When Multiple Bunches Are Returned During WFS_CMD_CIM_CASH_IN",
+      "type": "command",
+      "start_line": 138,
+      "end_line": 140
+    },
+    {
+      "id": "8.15",
+      "name": "Cancellation by Customer (Implicit Shutter Control and",
+      "type": "section",
+      "start_line": 141,
+      "end_line": 147
+    },
+    {
+      "id": "8.18",
+      "name": "Multiple Bunches Returned During WFS_CMD_CIM_CASH_IN Refused Notes (using",
+      "type": "command",
+      "start_line": 148,
+      "end_line": 149
+    },
+    {
+      "id": "8.19",
+      "name": "Multiple Bunches Returned During WFS_CMD_CIM_CASH_IN_ROLLBACK (using",
+      "type": "command",
+      "start_line": 150,
+      "end_line": 278
+    },
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 279,
+      "end_line": 315
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 316,
+      "end_line": 337
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 338,
+      "end_line": 479
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_INF_CIM_STATUS",
+      "type": "info",
+      "start_line": 480,
+      "end_line": 818
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_INF_CIM_CAPABILITIES",
+      "type": "info",
+      "start_line": 819,
+      "end_line": 1220
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_INF_CIM_CASH_UNIT_INFO",
+      "type": "info",
+      "start_line": 1221,
+      "end_line": 1788
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_INF_CIM_TELLER_INFO",
+      "type": "info",
+      "start_line": 1789,
+      "end_line": 1885
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_INF_CIM_CURRENCY_EXP",
+      "type": "info",
+      "start_line": 1886,
+      "end_line": 1919
+    },
+    {
+      "id": "15000",
+      "name": "Yen.",
+      "type": "section",
+      "start_line": 1920,
+      "end_line": 1923
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_INF_CIM_BANKNOTE_TYPES",
+      "type": "info",
+      "start_line": 1924,
+      "end_line": 1966
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_INF_CIM_CASH_IN_STATUS",
+      "type": "info",
+      "start_line": 1967,
+      "end_line": 2046
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_INF_CIM_GET_P6_INFO",
+      "type": "info",
+      "start_line": 2047,
+      "end_line": 2099
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_INF_CIM_GET_P6_SIGNATURE",
+      "type": "info",
+      "start_line": 2100,
+      "end_line": 2199
+    },
+    {
+      "id": "5.10",
+      "name": "WFS_INF_CIM_GET_ITEM_INFO",
+      "type": "info",
+      "start_line": 2200,
+      "end_line": 2237
+    },
+    {
+      "id": "1",
+      "name": "notes.",
+      "type": "section",
+      "start_line": 2238,
+      "end_line": 2297
+    },
+    {
+      "id": "5.11",
+      "name": "WFS_INF_CIM_POSITION_CAPABILITIES",
+      "type": "info",
+      "start_line": 2298,
+      "end_line": 2410
+    },
+    {
+      "id": "5.12",
+      "name": "WFS_INF_CIM_REPLENISH_TARGET",
+      "type": "info",
+      "start_line": 2411,
+      "end_line": 2446
+    },
+    {
+      "id": "5.13",
+      "name": "WFS_INF_CIM_DEVICELOCK_STATUS",
+      "type": "info",
+      "start_line": 2447,
+      "end_line": 2495
+    },
+    {
+      "id": "5.14",
+      "name": "WFS_INF_CIM_CASH_UNIT_CAPABILITIES",
+      "type": "info",
+      "start_line": 2496,
+      "end_line": 2583
+    },
+    {
+      "id": "5.15",
+      "name": "WFS_INF_CIM_DEPLETE_SOURCE",
+      "type": "info",
+      "start_line": 2584,
+      "end_line": 2619
+    },
+    {
+      "id": "5.16",
+      "name": "WFS_INF_CIM_GET_ALL_ITEMS_INFO",
+      "type": "info",
+      "start_line": 2620,
+      "end_line": 2829
+    },
+    {
+      "id": "5.17",
+      "name": "WFS_INF_CIM_GET_BLACKLIST",
+      "type": "info",
+      "start_line": 2830,
+      "end_line": 2869
+    },
+    {
+      "id": "5.18",
+      "name": "WFS_INF_CIM_GET_CLASSIFICATION_LIST",
+      "type": "info",
+      "start_line": 2870,
+      "end_line": 2937
+    },
+    {
+      "id": "5.19",
+      "name": "WFS_INF_CIM_CASH_UNIT_COUNT_STATUS",
+      "type": "info",
+      "start_line": 2938,
+      "end_line": 3032
+    },
+    {
+      "id": "5.20",
+      "name": "WFS_INF_CIM_PRESENT_STATUS",
+      "type": "info",
+      "start_line": 3033,
+      "end_line": 3117
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_CMD_CIM_CASH_IN_START",
+      "type": "command",
+      "start_line": 3118,
+      "end_line": 3216
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_CMD_CIM_CASH_IN",
+      "type": "command",
+      "start_line": 3217,
+      "end_line": 3369
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_CMD_CIM_CASH_IN_END",
+      "type": "command",
+      "start_line": 3370,
+      "end_line": 3457
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_CMD_CIM_CASH_IN_ROLLBACK",
+      "type": "command",
+      "start_line": 3458,
+      "end_line": 3551
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_CMD_CIM_RETRACT",
+      "type": "command",
+      "start_line": 3552,
+      "end_line": 3686
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_CMD_CIM_OPEN_SHUTTER",
+      "type": "command",
+      "start_line": 3687,
+      "end_line": 3749
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_CMD_CIM_CLOSE_SHUTTER",
+      "type": "command",
+      "start_line": 3750,
+      "end_line": 3801
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_CMD_CIM_SET_TELLER_INFO",
+      "type": "command",
+      "start_line": 3802,
+      "end_line": 3839
+    },
+    {
+      "id": "6.9",
+      "name": "WFS_CMD_CIM_SET_CASH_UNIT_INFO",
+      "type": "command",
+      "start_line": 3840,
+      "end_line": 3905
+    },
+    {
+      "id": "6.10",
+      "name": "WFS_CMD_CIM_START_EXCHANGE",
+      "type": "command",
+      "start_line": 3906,
+      "end_line": 3986
+    },
+    {
+      "id": "8.16",
+      "name": "for an example flow.",
+      "type": "section",
+      "start_line": 3987,
+      "end_line": 4064
+    },
+    {
+      "id": "6.11",
+      "name": "WFS_CMD_CIM_END_EXCHANGE",
+      "type": "command",
+      "start_line": 4065,
+      "end_line": 4117
+    },
+    {
+      "id": "6.12",
+      "name": "WFS_CMD_CIM_OPEN_SAFE_DOOR",
+      "type": "command",
+      "start_line": 4118,
+      "end_line": 4132
+    },
+    {
+      "id": "6.13",
+      "name": "WFS_CMD_CIM_RESET",
+      "type": "command",
+      "start_line": 4133,
+      "end_line": 4247
+    },
+    {
+      "id": "6.14",
+      "name": "WFS_CMD_CIM_CONFIGURE_CASH_IN_UNITS",
+      "type": "command",
+      "start_line": 4248,
+      "end_line": 4325
+    },
+    {
+      "id": "6.15",
+      "name": "WFS_CMD_CIM_CONFIGURE_NOTETYPES",
+      "type": "command",
+      "start_line": 4326,
+      "end_line": 4347
+    },
+    {
+      "id": "6.16",
+      "name": "WFS_CMD_CIM_CREATE_P6_SIGNATURE",
+      "type": "command",
+      "start_line": 4348,
+      "end_line": 4471
+    },
+    {
+      "id": "6.17",
+      "name": "WFS_CMD_CIM_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 4472,
+      "end_line": 4550
+    },
+    {
+      "id": "6.18",
+      "name": "WFS_CMD_CIM_CONFIGURE_NOTE_READER",
+      "type": "command",
+      "start_line": 4551,
+      "end_line": 4584
+    },
+    {
+      "id": "6.19",
+      "name": "WFS_CMD_CIM_COMPARE_P6_SIGNATURE",
+      "type": "command",
+      "start_line": 4585,
+      "end_line": 4653
+    },
+    {
+      "id": "100",
+      "name": "is the maximum confidence level. This value is zero if the Service Provider does not",
+      "type": "section",
+      "start_line": 4654,
+      "end_line": 4681
+    },
+    {
+      "id": "6.20",
+      "name": "WFS_CMD_CIM_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 4682,
+      "end_line": 4719
+    },
+    {
+      "id": "6.21",
+      "name": "WFS_CMD_CIM_REPLENISH",
+      "type": "command",
+      "start_line": 4720,
+      "end_line": 4849
+    },
+    {
+      "id": "6.22",
+      "name": "WFS_CMD_CIM_SET_CASH_IN_LIMIT",
+      "type": "command",
+      "start_line": 4850,
+      "end_line": 4969
+    },
+    {
+      "id": "6.23",
+      "name": "WFS_CMD_CIM_CASH_UNIT_COUNT",
+      "type": "command",
+      "start_line": 4970,
+      "end_line": 5045
+    },
+    {
+      "id": "6.24",
+      "name": "WFS_CMD_CIM_DEVICE_LOCK_CONTROL",
+      "type": "command",
+      "start_line": 5046,
+      "end_line": 5160
+    },
+    {
+      "id": "6.25",
+      "name": "WFS_CMD_CIM_SET_MODE",
+      "type": "command",
+      "start_line": 5161,
+      "end_line": 5193
+    },
+    {
+      "id": "6.26",
+      "name": "WFS_CMD_CIM_PRESENT_MEDIA",
+      "type": "command",
+      "start_line": 5194,
+      "end_line": 5266
+    },
+    {
+      "id": "6.27",
+      "name": "WFS_CMD_CIM_DEPLETE",
+      "type": "command",
+      "start_line": 5267,
+      "end_line": 5386
+    },
+    {
+      "id": "6.28",
+      "name": "WFS_CMD_CIM_SET_BLACKLIST",
+      "type": "command",
+      "start_line": 5387,
+      "end_line": 5422
+    },
+    {
+      "id": "6.29",
+      "name": "WFS_CMD_CIM_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 5423,
+      "end_line": 5472
+    },
+    {
+      "id": "6.30",
+      "name": "WFS_CMD_CIM_SET_CLASSIFICATION_LIST",
+      "type": "command",
+      "start_line": 5473,
+      "end_line": 5497
+    },
+    {
+      "id": "6.31",
+      "name": "WFS_CMD_CIM_PREPARE_PRESENT",
+      "type": "command",
+      "start_line": 5498,
+      "end_line": 5547
+    },
+    {
+      "id": "7.1",
+      "name": "WFS_SRVE_CIM_SAFEDOOROPEN",
+      "type": "event",
+      "start_line": 5548,
+      "end_line": 5554
+    },
+    {
+      "id": "7.2",
+      "name": "WFS_SRVE_CIM_SAFEDOORCLOSED",
+      "type": "event",
+      "start_line": 5555,
+      "end_line": 5561
+    },
+    {
+      "id": "7.3",
+      "name": "WFS_USRE_CIM_CASHUNITTHRESHOLD",
+      "type": "event",
+      "start_line": 5562,
+      "end_line": 5591
+    },
+    {
+      "id": "7.4",
+      "name": "WFS_SRVE_CIM_CASHUNITINFOCHANGED",
+      "type": "event",
+      "start_line": 5592,
+      "end_line": 5622
+    },
+    {
+      "id": "7.5",
+      "name": "WFS_SRVE_CIM_TELLERINFOCHANGED",
+      "type": "event",
+      "start_line": 5623,
+      "end_line": 5632
+    },
+    {
+      "id": "7.6",
+      "name": "WFS_EXEE_CIM_CASHUNITERROR",
+      "type": "event",
+      "start_line": 5633,
+      "end_line": 5675
+    },
+    {
+      "id": "7.7",
+      "name": "WFS_SRVE_CIM_ITEMSTAKEN",
+      "type": "event",
+      "start_line": 5676,
+      "end_line": 5710
+    },
+    {
+      "id": "7.8",
+      "name": "WFS_SRVE_CIM_COUNTS_CHANGED",
+      "type": "event",
+      "start_line": 5711,
+      "end_line": 5730
+    },
+    {
+      "id": "7.9",
+      "name": "WFS_EXEE_CIM_INPUTREFUSE",
+      "type": "event",
+      "start_line": 5731,
+      "end_line": 5769
+    },
+    {
+      "id": "7.10",
+      "name": "WFS_SRVE_CIM_ITEMSPRESENTED",
+      "type": "event",
+      "start_line": 5770,
+      "end_line": 5816
+    },
+    {
+      "id": "7.11",
+      "name": "WFS_SRVE_CIM_ITEMSINSERTED",
+      "type": "event",
+      "start_line": 5817,
+      "end_line": 5851
+    },
+    {
+      "id": "7.12",
+      "name": "WFS_EXEE_CIM_NOTEERROR",
+      "type": "event",
+      "start_line": 5852,
+      "end_line": 5870
+    },
+    {
+      "id": "7.13",
+      "name": "WFS_EXEE_CIM_SUBCASHIN",
+      "type": "event",
+      "start_line": 5871,
+      "end_line": 5883
+    },
+    {
+      "id": "7.14",
+      "name": "WFS_SRVE_CIM_MEDIADETECTED",
+      "type": "event",
+      "start_line": 5884,
+      "end_line": 5894
+    },
+    {
+      "id": "7.15",
+      "name": "WFS_EXEE_CIM_INPUT_P6",
+      "type": "event",
+      "start_line": 5895,
+      "end_line": 5912
+    },
+    {
+      "id": "7.16",
+      "name": "WFS_EXEE_CIM_INFO_AVAILABLE",
+      "type": "event",
+      "start_line": 5913,
+      "end_line": 5936
+    },
+    {
+      "id": "7.17",
+      "name": "WFS_EXEE_CIM_INSERTITEMS",
+      "type": "event",
+      "start_line": 5937,
+      "end_line": 5943
+    },
+    {
+      "id": "7.18",
+      "name": "WFS_SRVE_CIM_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 5944,
+      "end_line": 5963
+    },
+    {
+      "id": "7.19",
+      "name": "WFS_SRVE_CIM_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 5964,
+      "end_line": 5978
+    },
+    {
+      "id": "7.20",
+      "name": "WFS_EXEE_CIM_INCOMPLETEREPLENISH",
+      "type": "event",
+      "start_line": 5979,
+      "end_line": 5997
+    },
+    {
+      "id": "7.21",
+      "name": "WFS_EXEE_CIM_INCOMPLETEDEPLETE",
+      "type": "event",
+      "start_line": 5998,
+      "end_line": 6015
+    },
+    {
+      "id": "7.22",
+      "name": "WFS_SRVE_CIM_SHUTTERSTATUSCHANGED",
+      "type": "event",
+      "start_line": 6016,
+      "end_line": 6055
+    },
+    {
+      "id": "7.23",
+      "name": "WFS_SRVE_CIM_COUNTACCURACYCHANGED",
+      "type": "event",
+      "start_line": 6056,
+      "end_line": 6084
+    },
+    {
+      "id": "8.1",
+      "name": "OK Transaction (Explicit Shutter Control)",
+      "type": "section",
+      "start_line": 6085,
+      "end_line": 6148
+    },
+    {
+      "id": "8.2",
+      "name": "Cancellation by Customer (Explicit Shutter Control)",
+      "type": "section",
+      "start_line": 6149,
+      "end_line": 6193
+    },
+    {
+      "id": "8.3",
+      "name": "Stacker Becomes Full (Explicit Shutter Control)",
+      "type": "section",
+      "start_line": 6194,
+      "end_line": 6280
+    },
+    {
+      "id": "8.4",
+      "name": "Bill Recognition Error (Explicit Shutter Control)",
+      "type": "section",
+      "start_line": 6281,
+      "end_line": 6381
+    },
+    {
+      "id": "2",
+      "name": "/ level 3 notes are inserted.",
+      "type": "section",
+      "start_line": 6382,
+      "end_line": 6552
+    },
+    {
+      "id": "8.8",
+      "name": "OK Transaction (Implicit Shutter Control)",
+      "type": "section",
+      "start_line": 6553,
+      "end_line": 6963
+    },
+    {
+      "id": "8.14",
+      "name": "Bill Recognition Error (WFS_CMD_CIM_PRESENT_MEDIA Command",
+      "type": "command",
+      "start_line": 6964,
+      "end_line": 7061
+    },
+    {
+      "id": "8.16",
+      "name": "Multiple Bunch Timeout Handling",
+      "type": "section",
+      "start_line": 7062,
+      "end_line": 7072
+    },
+    {
+      "id": "8.16.1",
+      "name": "No Items Inserted",
+      "type": "section",
+      "start_line": 7073,
+      "end_line": 7104
+    },
+    {
+      "id": "8.16.2",
+      "name": "First Bunch Not Taken",
+      "type": "section",
+      "start_line": 7105,
+      "end_line": 7158
+    },
+    {
+      "id": "8.16.3",
+      "name": "Last Bunch Taken",
+      "type": "section",
+      "start_line": 7159,
+      "end_line": 7222
+    },
+    {
+      "id": "8.17",
+      "name": "Exchange using DEPOSITINTO (Implicit Shutter Control)",
+      "type": "section",
+      "start_line": 7223,
+      "end_line": 7533
+    },
+    {
+      "id": "9.1",
+      "name": "Mixed Media OK Transaction",
+      "type": "section",
+      "start_line": 7534,
+      "end_line": 7638
+    },
+    {
+      "id": "9.2",
+      "name": "Mixed Media Cancellation by Customer",
+      "type": "section",
+      "start_line": 7639,
+      "end_line": 7696
+    },
+    {
+      "id": "9.3",
+      "name": "Mixed Media Cancellation by Customer on Cash Part Only",
+      "type": "section",
+      "start_line": 7697,
+      "end_line": 7748
+    },
+    {
+      "id": "9.4",
+      "name": "Mixed Media Multiple Refused Items",
+      "type": "section",
+      "start_line": 7749,
+      "end_line": 7909
+    },
+    {
+      "id": "1",
+      "name": "The device is replenished by inserting ulCount = 1000 lppPhysical[0]:",
+      "type": "section",
+      "start_line": 7910,
+      "end_line": 7914
+    },
+    {
+      "id": "500",
+      "name": "x usNoteID 1, the second cash",
+      "type": "section",
+      "start_line": 7915,
+      "end_line": 7962
+    },
+    {
+      "id": "11.1",
+      "name": "One Physical Cash Unit Goes HIGH",
+      "type": "section",
+      "start_line": 7963,
+      "end_line": 7980
+    },
+    {
+      "id": "11.2",
+      "name": "Last Physical Cash Unit Goes HIGH",
+      "type": "section",
+      "start_line": 7981,
+      "end_line": 7999
+    },
+    {
+      "id": "11.3",
+      "name": "One Physical Cash Unit Goes INOP",
+      "type": "section",
+      "start_line": 8000,
+      "end_line": 8024
+    },
+    {
+      "id": "11.4",
+      "name": "Last Physical Cash Unit Goes FULL",
+      "type": "section",
+      "start_line": 8025,
+      "end_line": 8050
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSCIM__H",
+      "type": "header",
+      "start_line": 8051,
+      "end_line": 9135
+    }
+  ],
+  "commands": {
+    "WFS_INF_CIM_STATUS": {
+      "section_id": "5.1",
+      "start_line": 480,
+      "end_line": 818,
+      "type": "info"
+    },
+    "WFS_INF_CIM_CAPABILITIES": {
+      "section_id": "5.2",
+      "start_line": 819,
+      "end_line": 1220,
+      "type": "info"
+    },
+    "WFS_INF_CIM_CASH_UNIT_INFO": {
+      "section_id": "5.3",
+      "start_line": 1221,
+      "end_line": 1788,
+      "type": "info"
+    },
+    "WFS_INF_CIM_TELLER_INFO": {
+      "section_id": "5.4",
+      "start_line": 1789,
+      "end_line": 1885,
+      "type": "info"
+    },
+    "WFS_INF_CIM_CURRENCY_EXP": {
+      "section_id": "5.5",
+      "start_line": 1886,
+      "end_line": 1919,
+      "type": "info"
+    },
+    "WFS_INF_CIM_BANKNOTE_TYPES": {
+      "section_id": "5.6",
+      "start_line": 1924,
+      "end_line": 1966,
+      "type": "info"
+    },
+    "WFS_INF_CIM_CASH_IN_STATUS": {
+      "section_id": "5.7",
+      "start_line": 1967,
+      "end_line": 2046,
+      "type": "info"
+    },
+    "WFS_INF_CIM_GET_P6_INFO": {
+      "section_id": "5.8",
+      "start_line": 2047,
+      "end_line": 2099,
+      "type": "info"
+    },
+    "WFS_INF_CIM_GET_P6_SIGNATURE": {
+      "section_id": "5.9",
+      "start_line": 2100,
+      "end_line": 2199,
+      "type": "info"
+    },
+    "WFS_INF_CIM_GET_ITEM_INFO": {
+      "section_id": "5.10",
+      "start_line": 2200,
+      "end_line": 2237,
+      "type": "info"
+    },
+    "WFS_INF_CIM_POSITION_CAPABILITIES": {
+      "section_id": "5.11",
+      "start_line": 2298,
+      "end_line": 2410,
+      "type": "info"
+    },
+    "WFS_INF_CIM_REPLENISH_TARGET": {
+      "section_id": "5.12",
+      "start_line": 2411,
+      "end_line": 2446,
+      "type": "info"
+    },
+    "WFS_INF_CIM_DEVICELOCK_STATUS": {
+      "section_id": "5.13",
+      "start_line": 2447,
+      "end_line": 2495,
+      "type": "info"
+    },
+    "WFS_INF_CIM_CASH_UNIT_CAPABILITIES": {
+      "section_id": "5.14",
+      "start_line": 2496,
+      "end_line": 2583,
+      "type": "info"
+    },
+    "WFS_INF_CIM_DEPLETE_SOURCE": {
+      "section_id": "5.15",
+      "start_line": 2584,
+      "end_line": 2619,
+      "type": "info"
+    },
+    "WFS_INF_CIM_GET_ALL_ITEMS_INFO": {
+      "section_id": "5.16",
+      "start_line": 2620,
+      "end_line": 2829,
+      "type": "info"
+    },
+    "WFS_INF_CIM_GET_BLACKLIST": {
+      "section_id": "5.17",
+      "start_line": 2830,
+      "end_line": 2869,
+      "type": "info"
+    },
+    "WFS_INF_CIM_GET_CLASSIFICATION_LIST": {
+      "section_id": "5.18",
+      "start_line": 2870,
+      "end_line": 2937,
+      "type": "info"
+    },
+    "WFS_INF_CIM_CASH_UNIT_COUNT_STATUS": {
+      "section_id": "5.19",
+      "start_line": 2938,
+      "end_line": 3032,
+      "type": "info"
+    },
+    "WFS_INF_CIM_PRESENT_STATUS": {
+      "section_id": "5.20",
+      "start_line": 3033,
+      "end_line": 3117,
+      "type": "info"
+    },
+    "WFS_CMD_CIM_CASH_IN_START": {
+      "section_id": "6.1",
+      "start_line": 3118,
+      "end_line": 3216,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CASH_IN": {
+      "section_id": "6.2",
+      "start_line": 3217,
+      "end_line": 3369,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CASH_IN_END": {
+      "section_id": "6.3",
+      "start_line": 3370,
+      "end_line": 3457,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CASH_IN_ROLLBACK": {
+      "section_id": "6.4",
+      "start_line": 3458,
+      "end_line": 3551,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_RETRACT": {
+      "section_id": "6.5",
+      "start_line": 3552,
+      "end_line": 3686,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_OPEN_SHUTTER": {
+      "section_id": "6.6",
+      "start_line": 3687,
+      "end_line": 3749,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CLOSE_SHUTTER": {
+      "section_id": "6.7",
+      "start_line": 3750,
+      "end_line": 3801,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SET_TELLER_INFO": {
+      "section_id": "6.8",
+      "start_line": 3802,
+      "end_line": 3839,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SET_CASH_UNIT_INFO": {
+      "section_id": "6.9",
+      "start_line": 3840,
+      "end_line": 3905,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_START_EXCHANGE": {
+      "section_id": "6.10",
+      "start_line": 3906,
+      "end_line": 3986,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_END_EXCHANGE": {
+      "section_id": "6.11",
+      "start_line": 4065,
+      "end_line": 4117,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_OPEN_SAFE_DOOR": {
+      "section_id": "6.12",
+      "start_line": 4118,
+      "end_line": 4132,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_RESET": {
+      "section_id": "6.13",
+      "start_line": 4133,
+      "end_line": 4247,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CONFIGURE_CASH_IN_UNITS": {
+      "section_id": "6.14",
+      "start_line": 4248,
+      "end_line": 4325,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CONFIGURE_NOTETYPES": {
+      "section_id": "6.15",
+      "start_line": 4326,
+      "end_line": 4347,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CREATE_P6_SIGNATURE": {
+      "section_id": "6.16",
+      "start_line": 4348,
+      "end_line": 4471,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SET_GUIDANCE_LIGHT": {
+      "section_id": "6.17",
+      "start_line": 4472,
+      "end_line": 4550,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CONFIGURE_NOTE_READER": {
+      "section_id": "6.18",
+      "start_line": 4551,
+      "end_line": 4584,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_COMPARE_P6_SIGNATURE": {
+      "section_id": "6.19",
+      "start_line": 4585,
+      "end_line": 4653,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_POWER_SAVE_CONTROL": {
+      "section_id": "6.20",
+      "start_line": 4682,
+      "end_line": 4719,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_REPLENISH": {
+      "section_id": "6.21",
+      "start_line": 4720,
+      "end_line": 4849,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SET_CASH_IN_LIMIT": {
+      "section_id": "6.22",
+      "start_line": 4850,
+      "end_line": 4969,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_CASH_UNIT_COUNT": {
+      "section_id": "6.23",
+      "start_line": 4970,
+      "end_line": 5045,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_DEVICE_LOCK_CONTROL": {
+      "section_id": "6.24",
+      "start_line": 5046,
+      "end_line": 5160,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SET_MODE": {
+      "section_id": "6.25",
+      "start_line": 5161,
+      "end_line": 5193,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_PRESENT_MEDIA": {
+      "section_id": "6.26",
+      "start_line": 5194,
+      "end_line": 5266,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_DEPLETE": {
+      "section_id": "6.27",
+      "start_line": 5267,
+      "end_line": 5386,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SET_BLACKLIST": {
+      "section_id": "6.28",
+      "start_line": 5387,
+      "end_line": 5422,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SYNCHRONIZE_COMMAND": {
+      "section_id": "6.29",
+      "start_line": 5423,
+      "end_line": 5472,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_SET_CLASSIFICATION_LIST": {
+      "section_id": "6.30",
+      "start_line": 5473,
+      "end_line": 5497,
+      "type": "command"
+    },
+    "WFS_CMD_CIM_PREPARE_PRESENT": {
+      "section_id": "6.31",
+      "start_line": 5498,
+      "end_line": 5547,
+      "type": "command"
+    },
+    "WFS_SRVE_CIM_SAFEDOOROPEN": {
+      "section_id": "7.1",
+      "start_line": 5548,
+      "end_line": 5554,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_SAFEDOORCLOSED": {
+      "section_id": "7.2",
+      "start_line": 5555,
+      "end_line": 5561,
+      "type": "event"
+    },
+    "WFS_USRE_CIM_CASHUNITTHRESHOLD": {
+      "section_id": "7.3",
+      "start_line": 5562,
+      "end_line": 5591,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_CASHUNITINFOCHANGED": {
+      "section_id": "7.4",
+      "start_line": 5592,
+      "end_line": 5622,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_TELLERINFOCHANGED": {
+      "section_id": "7.5",
+      "start_line": 5623,
+      "end_line": 5632,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_CASHUNITERROR": {
+      "section_id": "7.6",
+      "start_line": 5633,
+      "end_line": 5675,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_ITEMSTAKEN": {
+      "section_id": "7.7",
+      "start_line": 5676,
+      "end_line": 5710,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_COUNTS_CHANGED": {
+      "section_id": "7.8",
+      "start_line": 5711,
+      "end_line": 5730,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_INPUTREFUSE": {
+      "section_id": "7.9",
+      "start_line": 5731,
+      "end_line": 5769,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_ITEMSPRESENTED": {
+      "section_id": "7.10",
+      "start_line": 5770,
+      "end_line": 5816,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_ITEMSINSERTED": {
+      "section_id": "7.11",
+      "start_line": 5817,
+      "end_line": 5851,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_NOTEERROR": {
+      "section_id": "7.12",
+      "start_line": 5852,
+      "end_line": 5870,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_SUBCASHIN": {
+      "section_id": "7.13",
+      "start_line": 5871,
+      "end_line": 5883,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_MEDIADETECTED": {
+      "section_id": "7.14",
+      "start_line": 5884,
+      "end_line": 5894,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_INPUT_P6": {
+      "section_id": "7.15",
+      "start_line": 5895,
+      "end_line": 5912,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_INFO_AVAILABLE": {
+      "section_id": "7.16",
+      "start_line": 5913,
+      "end_line": 5936,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_INSERTITEMS": {
+      "section_id": "7.17",
+      "start_line": 5937,
+      "end_line": 5943,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_DEVICEPOSITION": {
+      "section_id": "7.18",
+      "start_line": 5944,
+      "end_line": 5963,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_POWER_SAVE_CHANGE": {
+      "section_id": "7.19",
+      "start_line": 5964,
+      "end_line": 5978,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_INCOMPLETEREPLENISH": {
+      "section_id": "7.20",
+      "start_line": 5979,
+      "end_line": 5997,
+      "type": "event"
+    },
+    "WFS_EXEE_CIM_INCOMPLETEDEPLETE": {
+      "section_id": "7.21",
+      "start_line": 5998,
+      "end_line": 6015,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_SHUTTERSTATUSCHANGED": {
+      "section_id": "7.22",
+      "start_line": 6016,
+      "end_line": 6055,
+      "type": "event"
+    },
+    "WFS_SRVE_CIM_COUNTACCURACYCHANGED": {
+      "section_id": "7.23",
+      "start_line": 6056,
+      "end_line": 6084,
+      "type": "event"
+    }
+  }
+}

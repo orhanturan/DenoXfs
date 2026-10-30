@@ -1,0 +1,343 @@
+{
+  "file": "XfsCrd.md",
+  "device_class": "CRD",
+  "part": 7,
+  "description": "Card Dispenser Device Class Interface",
+  "total_lines": 1411,
+  "sections": [
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 149,
+      "end_line": 150
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 151,
+      "end_line": 195
+    },
+    {
+      "id": "3.10",
+      "name": "November 29, 2007 Initial Release.",
+      "type": "section",
+      "start_line": 196,
+      "end_line": 196
+    },
+    {
+      "id": "3.20",
+      "name": "March 2, 2011 For a description of changes from version 3.10 to version",
+      "type": "section",
+      "start_line": 197,
+      "end_line": 197
+    },
+    {
+      "id": "3.20",
+      "name": "see the CRD 3.20 Migration document.",
+      "type": "section",
+      "start_line": 198,
+      "end_line": 198
+    },
+    {
+      "id": "3.30",
+      "name": "March 19, 2015 For a description of changes from version 3.20 to version",
+      "type": "section",
+      "start_line": 199,
+      "end_line": 199
+    },
+    {
+      "id": "3.30",
+      "name": "see the CRD 3.30 Migration document.",
+      "type": "section",
+      "start_line": 200,
+      "end_line": 200
+    },
+    {
+      "id": "3.40",
+      "name": "December 06, 2019 For a description of changes from version 3.30 to version",
+      "type": "section",
+      "start_line": 201,
+      "end_line": 201
+    },
+    {
+      "id": "3.40",
+      "name": "see the CRD 3.40 Migration document.",
+      "type": "section",
+      "start_line": 202,
+      "end_line": 202
+    },
+    {
+      "id": "3.50",
+      "name": "November 18, 2022 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 203,
+      "end_line": 203
+    },
+    {
+      "id": "3.50",
+      "name": "see the CRD 3.50 Migration document.",
+      "type": "section",
+      "start_line": 204,
+      "end_line": 208
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.50",
+      "type": "section",
+      "start_line": 209,
+      "end_line": 222
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 223,
+      "end_line": 280
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_CRD_STATUS",
+      "type": "info",
+      "start_line": 281,
+      "end_line": 463
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_CRD_CAPABILITIES",
+      "type": "info",
+      "start_line": 464,
+      "end_line": 583
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_CRD_CARD_UNIT_INFO",
+      "type": "info",
+      "start_line": 584,
+      "end_line": 682
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_CRD_DISPENSE_CARD",
+      "type": "command",
+      "start_line": 683,
+      "end_line": 728
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_CRD_EJECT_CARD",
+      "type": "command",
+      "start_line": 729,
+      "end_line": 755
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_CRD_RETAIN_CARD",
+      "type": "command",
+      "start_line": 756,
+      "end_line": 790
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_CRD_RESET",
+      "type": "command",
+      "start_line": 791,
+      "end_line": 828
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_CRD_SET_CARD_UNIT_INFO",
+      "type": "command",
+      "start_line": 829,
+      "end_line": 861
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_CRD_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 862,
+      "end_line": 937
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_CRD_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 938,
+      "end_line": 974
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_CRD_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 975,
+      "end_line": 1024
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_SRVE_CRD_MEDIAREMOVED",
+      "type": "event",
+      "start_line": 1025,
+      "end_line": 1032
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_SRVE_CRD_MEDIADETECTED",
+      "type": "event",
+      "start_line": 1033,
+      "end_line": 1058
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_USRE_CRD_CARDUNITTHRESHOLD",
+      "type": "event",
+      "start_line": 1059,
+      "end_line": 1070
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_SRVE_CRD_CARDUNITINFOCHANGED",
+      "type": "event",
+      "start_line": 1071,
+      "end_line": 1082
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_EXEE_CRD_CARDUNITERROR",
+      "type": "event",
+      "start_line": 1083,
+      "end_line": 1105
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_SRVE_CRD_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 1106,
+      "end_line": 1125
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_SRVE_CRD_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 1126,
+      "end_line": 1148
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSCRD__H",
+      "type": "header",
+      "start_line": 1149,
+      "end_line": 1411
+    }
+  ],
+  "commands": {
+    "WFS_INF_CRD_STATUS": {
+      "section_id": "4.1",
+      "start_line": 281,
+      "end_line": 463,
+      "type": "info"
+    },
+    "WFS_INF_CRD_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 464,
+      "end_line": 583,
+      "type": "info"
+    },
+    "WFS_INF_CRD_CARD_UNIT_INFO": {
+      "section_id": "4.3",
+      "start_line": 584,
+      "end_line": 682,
+      "type": "info"
+    },
+    "WFS_CMD_CRD_DISPENSE_CARD": {
+      "section_id": "5.1",
+      "start_line": 683,
+      "end_line": 728,
+      "type": "command"
+    },
+    "WFS_CMD_CRD_EJECT_CARD": {
+      "section_id": "5.2",
+      "start_line": 729,
+      "end_line": 755,
+      "type": "command"
+    },
+    "WFS_CMD_CRD_RETAIN_CARD": {
+      "section_id": "5.3",
+      "start_line": 756,
+      "end_line": 790,
+      "type": "command"
+    },
+    "WFS_CMD_CRD_RESET": {
+      "section_id": "5.4",
+      "start_line": 791,
+      "end_line": 828,
+      "type": "command"
+    },
+    "WFS_CMD_CRD_SET_CARD_UNIT_INFO": {
+      "section_id": "5.5",
+      "start_line": 829,
+      "end_line": 861,
+      "type": "command"
+    },
+    "WFS_CMD_CRD_SET_GUIDANCE_LIGHT": {
+      "section_id": "5.6",
+      "start_line": 862,
+      "end_line": 937,
+      "type": "command"
+    },
+    "WFS_CMD_CRD_POWER_SAVE_CONTROL": {
+      "section_id": "5.7",
+      "start_line": 938,
+      "end_line": 974,
+      "type": "command"
+    },
+    "WFS_CMD_CRD_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.8",
+      "start_line": 975,
+      "end_line": 1024,
+      "type": "command"
+    },
+    "WFS_SRVE_CRD_MEDIAREMOVED": {
+      "section_id": "6.1",
+      "start_line": 1025,
+      "end_line": 1032,
+      "type": "event"
+    },
+    "WFS_SRVE_CRD_MEDIADETECTED": {
+      "section_id": "6.2",
+      "start_line": 1033,
+      "end_line": 1058,
+      "type": "event"
+    },
+    "WFS_USRE_CRD_CARDUNITTHRESHOLD": {
+      "section_id": "6.3",
+      "start_line": 1059,
+      "end_line": 1070,
+      "type": "event"
+    },
+    "WFS_SRVE_CRD_CARDUNITINFOCHANGED": {
+      "section_id": "6.4",
+      "start_line": 1071,
+      "end_line": 1082,
+      "type": "event"
+    },
+    "WFS_EXEE_CRD_CARDUNITERROR": {
+      "section_id": "6.5",
+      "start_line": 1083,
+      "end_line": 1105,
+      "type": "event"
+    },
+    "WFS_SRVE_CRD_DEVICEPOSITION": {
+      "section_id": "6.6",
+      "start_line": 1106,
+      "end_line": 1125,
+      "type": "event"
+    },
+    "WFS_SRVE_CRD_POWER_SAVE_CHANGE": {
+      "section_id": "6.7",
+      "start_line": 1126,
+      "end_line": 1148,
+      "type": "event"
+    }
+  }
+}

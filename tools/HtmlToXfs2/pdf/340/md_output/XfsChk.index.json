@@ -1,0 +1,333 @@
+{
+  "file": "XfsChk.md",
+  "device_class": "CHK",
+  "part": 14,
+  "description": "Check Scanner Device Class Interface",
+  "total_lines": 2080,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 182,
+      "end_line": 218
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 219,
+      "end_line": 240
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 241,
+      "end_line": 306
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_CHK_STATUS",
+      "type": "info",
+      "start_line": 307,
+      "end_line": 457
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_CHK_CAPABILITIES",
+      "type": "info",
+      "start_line": 458,
+      "end_line": 605
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_CHK_FORM_LIST",
+      "type": "info",
+      "start_line": 606,
+      "end_line": 616
+    },
+    {
+      "id": "4.4",
+      "name": "WFS_INF_CHK_MEDIA_LIST",
+      "type": "info",
+      "start_line": 617,
+      "end_line": 628
+    },
+    {
+      "id": "4.5",
+      "name": "WFS_INF_CHK_QUERY_FORM",
+      "type": "info",
+      "start_line": 629,
+      "end_line": 714
+    },
+    {
+      "id": "4.6",
+      "name": "WFS_INF_CHK_QUERY_MEDIA",
+      "type": "info",
+      "start_line": 715,
+      "end_line": 792
+    },
+    {
+      "id": "4.7",
+      "name": "WFS_INF_CHK_QUERY_FIELD",
+      "type": "info",
+      "start_line": 793,
+      "end_line": 883
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_CHK_PROCESS_FORM",
+      "type": "command",
+      "start_line": 884,
+      "end_line": 1039
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_CHK_RESET",
+      "type": "command",
+      "start_line": 1040,
+      "end_line": 1077
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_CHK_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 1078,
+      "end_line": 1157
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_CHK_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 1158,
+      "end_line": 1194
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_CHK_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 1195,
+      "end_line": 1244
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_EXEE_CHK_NOMEDIA",
+      "type": "event",
+      "start_line": 1245,
+      "end_line": 1256
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_CHK_MEDIAINSERTED",
+      "type": "event",
+      "start_line": 1257,
+      "end_line": 1264
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_SRVE_CHK_MEDIAINSERTED",
+      "type": "event",
+      "start_line": 1265,
+      "end_line": 1273
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_EXEE_CHK_FIELDERROR",
+      "type": "event",
+      "start_line": 1274,
+      "end_line": 1306
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_EXEE_CHK_FIELDWARNING",
+      "type": "event",
+      "start_line": 1307,
+      "end_line": 1314
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_USRE_CHK_INKTHRESHOLD",
+      "type": "event",
+      "start_line": 1315,
+      "end_line": 1327
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_SRVE_CHK_MEDIADETECTED",
+      "type": "event",
+      "start_line": 1328,
+      "end_line": 1342
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_SRVE_CHK_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 1343,
+      "end_line": 1362
+    },
+    {
+      "id": "6.9",
+      "name": "WFS_SRVE_CHK_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 1363,
+      "end_line": 1400
+    },
+    {
+      "id": "7.1",
+      "name": "Definition Syntax",
+      "type": "section",
+      "start_line": 1401,
+      "end_line": 1426
+    },
+    {
+      "id": "7.2",
+      "name": "XFS form/media definition files in multi-vendor environments",
+      "type": "section",
+      "start_line": 1427,
+      "end_line": 1439
+    },
+    {
+      "id": "7.3",
+      "name": "Form and Media Measurements",
+      "type": "section",
+      "start_line": 1440,
+      "end_line": 1728
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSCHK__H",
+      "type": "header",
+      "start_line": 1729,
+      "end_line": 2080
+    }
+  ],
+  "commands": {
+    "WFS_INF_CHK_STATUS": {
+      "section_id": "4.1",
+      "start_line": 307,
+      "end_line": 457,
+      "type": "info"
+    },
+    "WFS_INF_CHK_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 458,
+      "end_line": 605,
+      "type": "info"
+    },
+    "WFS_INF_CHK_FORM_LIST": {
+      "section_id": "4.3",
+      "start_line": 606,
+      "end_line": 616,
+      "type": "info"
+    },
+    "WFS_INF_CHK_MEDIA_LIST": {
+      "section_id": "4.4",
+      "start_line": 617,
+      "end_line": 628,
+      "type": "info"
+    },
+    "WFS_INF_CHK_QUERY_FORM": {
+      "section_id": "4.5",
+      "start_line": 629,
+      "end_line": 714,
+      "type": "info"
+    },
+    "WFS_INF_CHK_QUERY_MEDIA": {
+      "section_id": "4.6",
+      "start_line": 715,
+      "end_line": 792,
+      "type": "info"
+    },
+    "WFS_INF_CHK_QUERY_FIELD": {
+      "section_id": "4.7",
+      "start_line": 793,
+      "end_line": 883,
+      "type": "info"
+    },
+    "WFS_CMD_CHK_PROCESS_FORM": {
+      "section_id": "5.1",
+      "start_line": 884,
+      "end_line": 1039,
+      "type": "command"
+    },
+    "WFS_CMD_CHK_RESET": {
+      "section_id": "5.2",
+      "start_line": 1040,
+      "end_line": 1077,
+      "type": "command"
+    },
+    "WFS_CMD_CHK_SET_GUIDANCE_LIGHT": {
+      "section_id": "5.3",
+      "start_line": 1078,
+      "end_line": 1157,
+      "type": "command"
+    },
+    "WFS_CMD_CHK_POWER_SAVE_CONTROL": {
+      "section_id": "5.4",
+      "start_line": 1158,
+      "end_line": 1194,
+      "type": "command"
+    },
+    "WFS_CMD_CHK_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.5",
+      "start_line": 1195,
+      "end_line": 1244,
+      "type": "command"
+    },
+    "WFS_EXEE_CHK_NOMEDIA": {
+      "section_id": "6.1",
+      "start_line": 1245,
+      "end_line": 1256,
+      "type": "event"
+    },
+    "WFS_EXEE_CHK_MEDIAINSERTED": {
+      "section_id": "6.2",
+      "start_line": 1257,
+      "end_line": 1264,
+      "type": "event"
+    },
+    "WFS_SRVE_CHK_MEDIAINSERTED": {
+      "section_id": "6.3",
+      "start_line": 1265,
+      "end_line": 1273,
+      "type": "event"
+    },
+    "WFS_EXEE_CHK_FIELDERROR": {
+      "section_id": "6.4",
+      "start_line": 1274,
+      "end_line": 1306,
+      "type": "event"
+    },
+    "WFS_EXEE_CHK_FIELDWARNING": {
+      "section_id": "6.5",
+      "start_line": 1307,
+      "end_line": 1314,
+      "type": "event"
+    },
+    "WFS_USRE_CHK_INKTHRESHOLD": {
+      "section_id": "6.6",
+      "start_line": 1315,
+      "end_line": 1327,
+      "type": "event"
+    },
+    "WFS_SRVE_CHK_MEDIADETECTED": {
+      "section_id": "6.7",
+      "start_line": 1328,
+      "end_line": 1342,
+      "type": "event"
+    },
+    "WFS_SRVE_CHK_DEVICEPOSITION": {
+      "section_id": "6.8",
+      "start_line": 1343,
+      "end_line": 1362,
+      "type": "event"
+    },
+    "WFS_SRVE_CHK_POWER_SAVE_CHANGE": {
+      "section_id": "6.9",
+      "start_line": 1363,
+      "end_line": 1400,
+      "type": "event"
+    }
+  }
+}

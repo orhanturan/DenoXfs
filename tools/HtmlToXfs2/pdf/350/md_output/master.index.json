@@ -1,0 +1,3137 @@
+{
+  "WFS_INF_ALM_CAPABILITIES": {
+    "file": "XfsAlm",
+    "device_class": "ALM",
+    "type": "info"
+  },
+  "WFS_CMD_ALM_RESET_ALARM": {
+    "file": "XfsAlm",
+    "device_class": "ALM",
+    "type": "command"
+  },
+  "WFS_CMD_ALM_RESET": {
+    "file": "XfsAlm",
+    "device_class": "ALM",
+    "type": "command"
+  },
+  "WFS_CMD_ALM_SYNCHRONIZE_COMMAND": {
+    "file": "XfsAlm",
+    "device_class": "ALM",
+    "type": "command"
+  },
+  "WFS_SRVE_ALM_DEVICE_RESET": {
+    "file": "XfsAlm",
+    "device_class": "ALM",
+    "type": "event"
+  },
+  "WFS_SYSE_HARDWARE_ERROR": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSCancelAsyncRequest": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSCancelBlockingCall": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSCleanUp": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSClose": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncClose": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSCreateAppHandle": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSDeregister": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncDeregister": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSDestroyAppHandle": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSExecute": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncExecute": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSFreeResult": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSGetInfo": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncGetInfo": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSIsBlocking": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSLock": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncLock": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSOpen": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncOpen": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSRegister": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncRegister": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSSetBlockingHook": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSStartUp": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSUnhookBlockingHook": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSUnlock": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSAsyncUnlock": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFPCancelAsyncRequest": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPDeregister": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPExecute": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPGetInfo": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPRegister": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPClose": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPLock": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPOpen": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPSetTraceLevel": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPUnloadService": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFPUnlock": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "spi_function"
+  },
+  "WFMAllocateBuffer": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMAllocateMore": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMFreeBuffer": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMGetTraceLevel": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMKillTimer": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMOutputTraceData": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMReleaseDLL": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMSetTimer": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMSetTraceLevel": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMCloseKey": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMCreateKey": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMDeleteKey": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMDeleteValue": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMEnumKey": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMEnumValue": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMOpenKey": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMQueryValue": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFMSetValue": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "support_function"
+  },
+  "WFSRESULT": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFSVERSION": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFS_TIMER_EVENT": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFS_SYSE_DEVICE_STATUS": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFS_SYSE_UNDELIVERABLE_MSG": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFS_SYSE_APP_DISCONNECT": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFS_SYSE_LOCK_REQUESTED": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFS_SYSE_VERSION_ERROR": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "api_function"
+  },
+  "WFS_INF_API_TRANSACTION_STATE": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "info"
+  },
+  "WFS_INF_API_SERVICE_INFO": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "info"
+  },
+  "WFS_INF_API_SECURE_QUERY": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "info"
+  },
+  "WFS_INF_API_SYNC_PICTURE": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "info"
+  },
+  "WFS_CMD_API_SET_TRANSACTION_STATE": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "command"
+  },
+  "WFS_CMD_API_GET_COMMAND_NONCE": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "command"
+  },
+  "WFS_CMD_API_SECURE_COMMAND": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "command"
+  },
+  "WFS_CMD_API_CLEAR_COMMAND_NONCE": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "command"
+  },
+  "WFS_CMD_API_SYNC_PICTURE": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "command"
+  },
+  "WFS_CMD_API_START_SECURE_OPERATION": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "command"
+  },
+  "WFS_SRVE_API_STATUS_CHANGED": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "event"
+  },
+  "WFS_EXEE_API_ERROR_INFO": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "event"
+  },
+  "WFS_SRVE_API_NONCE_CLEARED": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "event"
+  },
+  "WFS_SRVE_API_SYNC_PICTURE": {
+    "file": "XfsApi",
+    "device_class": "API/SPI",
+    "type": "event"
+  },
+  "WFS_INF_BCR_STATUS": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "info"
+  },
+  "WFS_INF_BCR_CAPABILITIES": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "info"
+  },
+  "WFS_CMD_BCR_READ": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "command"
+  },
+  "WFS_CMD_BCR_RESET": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "command"
+  },
+  "WFS_CMD_BCR_SET_GUIDANCE_LIGHT": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "command"
+  },
+  "WFS_CMD_BCR_POWER_SAVE_CONTROL": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "command"
+  },
+  "WFS_CMD_BCR_SYNCHRONIZE_COMMAND": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "command"
+  },
+  "WFS_SRVE_BCR_DEVICEPOSITION": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "event"
+  },
+  "WFS_SRVE_BCR_POWER_SAVE_CHANGE": {
+    "file": "XfsBcr",
+    "device_class": "BCR",
+    "type": "event"
+  },
+  "WFS_INF_BIO_STATUS": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "info"
+  },
+  "WFS_INF_BIO_CAPABILITIES": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "info"
+  },
+  "WFS_INF_BIO_STORAGE_INFO": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "info"
+  },
+  "WFS_INF_BIO_KEY_INFO": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "info"
+  },
+  "WFS_CMD_BIO_READ": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_IMPORT": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_MATCH": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_SET_MATCH": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_CLEAR": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_RESET": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_SET_DATA_PERSISTENCE": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_SET_GUIDANCE_LIGHT": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_POWER_SAVE_CONTROL": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_CMD_BIO_SYNCHRONIZE_COMMAND": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "command"
+  },
+  "WFS_EXEE_BIO_PRESENTSUBJECT": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_EXEE_BIO_SUBJECTDETECTED": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_EXEE_BIO_REMOVESUBJECT": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_SRVE_BIO_SUBJECTREMOVED": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_SRVE_BIO_DATACLEARED": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_EXEE_BIO_ORIENTATION": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_SRVE_BIO_DEVICEPOSITION": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_SRVE_BIO_POWER_SAVE_CHANGE": {
+    "file": "XfsBio",
+    "device_class": "BIO",
+    "type": "event"
+  },
+  "WFS_INF_CAM_STATUS": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "info"
+  },
+  "WFS_INF_CAM_CAPABILITIES": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "info"
+  },
+  "WFS_CMD_CAM_TAKE_PICTURE": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "command"
+  },
+  "WFS_CMD_CAM_RESET": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "command"
+  },
+  "WFS_CMD_CAM_TAKE_PICTURE_EX": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "command"
+  },
+  "WFS_CMD_CAM_SYNCHRONIZE_COMMAND": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "command"
+  },
+  "WFS_CMD_CAM_TAKE_PICTURE_350": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "command"
+  },
+  "WFS_CMD_CAM_TAKE_VIDEO": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "command"
+  },
+  "WFS_USRE_CAM_MEDIATHRESHOLD": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "event"
+  },
+  "WFS_EXEE_CAM_INVALIDDATA": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "event"
+  },
+  "WFS_USRE_CAM_VIDEOSTART": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "event"
+  },
+  "WFS_USRE_CAM_VIDEOEND": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "event"
+  },
+  "WFS_USRE_CAM_VIDEOERROR": {
+    "file": "XfsCam",
+    "device_class": "CAM",
+    "type": "event"
+  },
+  "WFS_INF_CDM_STATUS": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_CAPABILITIES": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_CASH_UNIT_INFO": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_TELLER_INFO": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_CURRENCY_EXP": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_MIX_TYPES": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_MIX_TABLE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_PRESENT_STATUS": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_GET_ITEM_INFO": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_GET_BLACKLIST": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_GET_ALL_ITEMS_INFO": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_INF_CDM_GET_CLASSIFICATION_LIST": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "info"
+  },
+  "WFS_CMD_CDM_DENOMINATE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_DISPENSE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_COUNT": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_PRESENT": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_REJECT": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_RETRACT": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_OPEN_SHUTTER": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_CLOSE_SHUTTER": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_SET_TELLER_INFO": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_SET_CASH_UNIT_INFO": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_START_EXCHANGE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_END_EXCHANGE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_OPEN_SAFE_DOOR": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_CALIBRATE_CASH_UNIT": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_SET_MIX_TABLE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_RESET": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_TEST_CASH_UNITS": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_SET_GUIDANCE_LIGHT": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_POWER_SAVE_CONTROL": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_PREPARE_DISPENSE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_SET_BLACKLIST": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_SYNCHRONIZE_COMMAND": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_CMD_CDM_SET_CLASSIFICATION_LIST": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "command"
+  },
+  "WFS_SRVE_CDM_SAFEDOOROPEN": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_SAFEDOORCLOSED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_USRE_CDM_CASHUNITTHRESHOLD": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_CASHUNITINFOCHANGED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_TELLERINFOCHANGED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_DELAYEDDISPENSE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_STARTDISPENSE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_CASHUNITERROR": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_ITEMSTAKEN": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_COUNTS_CHANGED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_PARTIALDISPENSE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_SUBDISPENSEOK": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_INCOMPLETEDISPENSE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_NOTEERROR": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_ITEMSPRESENTED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_MEDIADETECTED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_INPUT_P6": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_DEVICEPOSITION": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_POWER_SAVE_CHANGE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_INFO_AVAILABLE": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_EXEE_CDM_INCOMPLETERETRACT": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_SHUTTERSTATUSCHANGED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_SRVE_CDM_ITEMSINSERTED": {
+    "file": "XfsCdm",
+    "device_class": "CDM",
+    "type": "event"
+  },
+  "WFS_INF_CEU_STATUS": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "info"
+  },
+  "WFS_INF_CEU_CAPABILITIES": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "info"
+  },
+  "WFS_INF_CEU_FORM_LIST": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "info"
+  },
+  "WFS_INF_CEU_MEDIA_LIST": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "info"
+  },
+  "WFS_INF_CEU_QUERY_FORM": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "info"
+  },
+  "WFS_INF_CEU_QUERY_MEDIA": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "info"
+  },
+  "WFS_INF_CEU_QUERY_FIELD": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "info"
+  },
+  "WFS_CMD_CEU_EMBOSS_CARD": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "command"
+  },
+  "WFS_CMD_CEU_RESET": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "command"
+  },
+  "WFS_CMD_CEU_POWER_SAVE_CONTROL": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "command"
+  },
+  "WFS_CMD_CEU_EMBOSS_CARD_EX": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "command"
+  },
+  "WFS_CMD_CEU_SUPPLY_REPLENISH": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "command"
+  },
+  "WFS_CMD_CEU_SYNCHRONIZE_COMMAND": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "command"
+  },
+  "WFS_SRVE_CEU_INPUTBINTHRESHOLD": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_SRVE_CEU_OUTPUTBINTHRESHOLD": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_SRVE_CEU_RETAINBINTHRESHOLD": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_EXEE_CEU_FIELDERROR": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_EXEE_CEU_FIELDWARNING": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_SRVE_CEU_MEDIAREMOVED": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_SRVE_CEU_MEDIADETECTED": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_EXEE_CEU_EMBOSS_FAILURE": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_SRVE_CEU_DEVICEPOSITION": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_SRVE_CEU_POWER_SAVE_CHANGE": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_USRE_CEU_TONERTHRESHOLD": {
+    "file": "XfsCeu",
+    "device_class": "CEU",
+    "type": "event"
+  },
+  "WFS_INF_CHK_STATUS": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "info"
+  },
+  "WFS_INF_CHK_CAPABILITIES": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "info"
+  },
+  "WFS_INF_CHK_FORM_LIST": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "info"
+  },
+  "WFS_INF_CHK_MEDIA_LIST": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "info"
+  },
+  "WFS_INF_CHK_QUERY_FORM": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "info"
+  },
+  "WFS_INF_CHK_QUERY_MEDIA": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "info"
+  },
+  "WFS_INF_CHK_QUERY_FIELD": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "info"
+  },
+  "WFS_CMD_CHK_PROCESS_FORM": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "command"
+  },
+  "WFS_CMD_CHK_RESET": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "command"
+  },
+  "WFS_CMD_CHK_SET_GUIDANCE_LIGHT": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "command"
+  },
+  "WFS_CMD_CHK_POWER_SAVE_CONTROL": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "command"
+  },
+  "WFS_CMD_CHK_SYNCHRONIZE_COMMAND": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "command"
+  },
+  "WFS_EXEE_CHK_NOMEDIA": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_EXEE_CHK_MEDIAINSERTED": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_SRVE_CHK_MEDIAINSERTED": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_EXEE_CHK_FIELDERROR": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_EXEE_CHK_FIELDWARNING": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_USRE_CHK_INKTHRESHOLD": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_SRVE_CHK_MEDIADETECTED": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_SRVE_CHK_DEVICEPOSITION": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_SRVE_CHK_POWER_SAVE_CHANGE": {
+    "file": "XfsChk",
+    "device_class": "CHK",
+    "type": "event"
+  },
+  "WFS_INF_CIM_STATUS": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_CAPABILITIES": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_CASH_UNIT_INFO": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_TELLER_INFO": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_CURRENCY_EXP": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_BANKNOTE_TYPES": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_CASH_IN_STATUS": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_GET_P6_INFO": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_GET_P6_SIGNATURE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_GET_ITEM_INFO": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_POSITION_CAPABILITIES": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_REPLENISH_TARGET": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_DEVICELOCK_STATUS": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_CASH_UNIT_CAPABILITIES": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_DEPLETE_SOURCE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_GET_ALL_ITEMS_INFO": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_GET_BLACKLIST": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_GET_CLASSIFICATION_LIST": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_CASH_UNIT_COUNT_STATUS": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_INF_CIM_PRESENT_STATUS": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "info"
+  },
+  "WFS_CMD_CIM_CASH_IN_START": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CASH_IN": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CASH_IN_END": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CASH_IN_ROLLBACK": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_RETRACT": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_OPEN_SHUTTER": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CLOSE_SHUTTER": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SET_TELLER_INFO": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SET_CASH_UNIT_INFO": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_START_EXCHANGE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_END_EXCHANGE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_OPEN_SAFE_DOOR": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_RESET": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CONFIGURE_CASH_IN_UNITS": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CONFIGURE_NOTETYPES": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CREATE_P6_SIGNATURE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SET_GUIDANCE_LIGHT": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CONFIGURE_NOTE_READER": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_COMPARE_P6_SIGNATURE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_POWER_SAVE_CONTROL": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_REPLENISH": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SET_CASH_IN_LIMIT": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_CASH_UNIT_COUNT": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_DEVICE_LOCK_CONTROL": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SET_MODE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_PRESENT_MEDIA": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_DEPLETE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SET_BLACKLIST": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SYNCHRONIZE_COMMAND": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_SET_CLASSIFICATION_LIST": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_CMD_CIM_PREPARE_PRESENT": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "command"
+  },
+  "WFS_SRVE_CIM_SAFEDOOROPEN": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_SAFEDOORCLOSED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_USRE_CIM_CASHUNITTHRESHOLD": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_CASHUNITINFOCHANGED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_TELLERINFOCHANGED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_CASHUNITERROR": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_ITEMSTAKEN": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_COUNTS_CHANGED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_INPUTREFUSE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_ITEMSPRESENTED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_ITEMSINSERTED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_NOTEERROR": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_SUBCASHIN": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_MEDIADETECTED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_INPUT_P6": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_INFO_AVAILABLE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_INSERTITEMS": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_DEVICEPOSITION": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_POWER_SAVE_CHANGE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_INCOMPLETEREPLENISH": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_INCOMPLETEDEPLETE": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_SHUTTERSTATUSCHANGED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_SRVE_CIM_COUNTACCURACYCHANGED": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_EXEE_CIM_INCOMPLETERETRACT": {
+    "file": "XfsCim",
+    "device_class": "CIM",
+    "type": "event"
+  },
+  "WFS_INF_CRD_STATUS": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "info"
+  },
+  "WFS_INF_CRD_CAPABILITIES": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "info"
+  },
+  "WFS_INF_CRD_CARD_UNIT_INFO": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "info"
+  },
+  "WFS_CMD_CRD_DISPENSE_CARD": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_CMD_CRD_EJECT_CARD": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_CMD_CRD_RETAIN_CARD": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_CMD_CRD_RESET": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_CMD_CRD_SET_CARD_UNIT_INFO": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_CMD_CRD_SET_GUIDANCE_LIGHT": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_CMD_CRD_POWER_SAVE_CONTROL": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_CMD_CRD_SYNCHRONIZE_COMMAND": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "command"
+  },
+  "WFS_SRVE_CRD_MEDIAREMOVED": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "event"
+  },
+  "WFS_SRVE_CRD_MEDIADETECTED": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "event"
+  },
+  "WFS_USRE_CRD_CARDUNITTHRESHOLD": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "event"
+  },
+  "WFS_SRVE_CRD_CARDUNITINFOCHANGED": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "event"
+  },
+  "WFS_EXEE_CRD_CARDUNITERROR": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "event"
+  },
+  "WFS_SRVE_CRD_DEVICEPOSITION": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "event"
+  },
+  "WFS_SRVE_CRD_POWER_SAVE_CHANGE": {
+    "file": "XfsCrd",
+    "device_class": "CRD",
+    "type": "event"
+  },
+  "WFS_INF_DEP_STATUS": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "info"
+  },
+  "WFS_INF_DEP_CAPABILITIES": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "info"
+  },
+  "WFS_CMD_DEP_ENTRY": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_DISPENSE": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_RETRACT": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_RESET_COUNT": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_RESET": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_SET_GUIDANCE_LIGHT": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_SUPPLY_REPLENISH": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_POWER_SAVE_CONTROL": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_CMD_DEP_SYNCHRONIZE_COMMAND": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "command"
+  },
+  "WFS_SRVE_DEP_ENVTAKEN": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_EXEE_DEP_ENVDEPOSITED": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_EXEE_DEP_DEPOSITERROR": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_USRE_DEP_DEPTHRESHOLD": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_USRE_DEP_TONERTHRESHOLD": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_USRE_DEP_ENVTHRESHOLD": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_SRVE_DEP_CONTINSERTED": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_SRVE_DEP_CONTREMOVED": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_SRVE_DEP_ENVINSERTED": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_SRVE_DEP_MEDIADETECTED": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_EXEE_DEP_INSERTDEPOSIT": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_SRVE_DEP_DEVICEPOSITION": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_SRVE_DEP_POWER_SAVE_CHANGE": {
+    "file": "Xfsdep",
+    "device_class": "DEP",
+    "type": "event"
+  },
+  "WFS_INF_IDC_STATUS": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "info"
+  },
+  "WFS_INF_IDC_CAPABILITIES": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "info"
+  },
+  "WFS_INF_IDC_FORM_LIST": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "info"
+  },
+  "WFS_INF_IDC_QUERY_FORM": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "info"
+  },
+  "WFS_INF_IDC_QUERY_IFM_IDENTIFIER": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "info"
+  },
+  "WFS_INF_IDC_EMVCLESS_QUERY_APPLICATIONS": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "info"
+  },
+  "WFS_CMD_IDC_READ_TRACK": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_WRITE_TRACK": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_EJECT_CARD": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_RETAIN_CARD": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_RESET_COUNT": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_SETKEY": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_READ_RAW_DATA": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_WRITE_RAW_DATA": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_CHIP_IO": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_RESET": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_CHIP_POWER": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_PARSE_DATA": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_SET_GUIDANCE_LIGHT": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_POWER_SAVE_CONTROL": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_PARK_CARD": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_EMVCLESS_CONFIGURE": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_EMVCLESS_PERFORM_TRANSACTION": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_EMVCLESS_ISSUERUPDATE": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_CMD_IDC_SYNCHRONIZE_COMMAND": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "command"
+  },
+  "WFS_EXEE_IDC_INVALIDTRACKDATA": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_EXEE_IDC_MEDIAINSERTED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_MEDIAREMOVED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_EXEE_IDC_MEDIARETAINED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_EXEE_IDC_INVALIDMEDIA": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_CARDACTION": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_USRE_IDC_RETAINBINTHRESHOLD": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_MEDIADETECTED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_RETAINBINREMOVED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_RETAINBININSERTED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_EXEE_IDC_INSERTCARD": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_DEVICEPOSITION": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_POWER_SAVE_CHANGE": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_EXEE_IDC_TRACKDETECTED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_EXEE_IDC_EMVCLESSREADSTATUS": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_SRVE_IDC_MEDIARETAINED": {
+    "file": "XfsIdc",
+    "device_class": "IDC",
+    "type": "event"
+  },
+  "WFS_INF_IPM_STATUS": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "info"
+  },
+  "WFS_INF_IPM_CAPABILITIES": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "info"
+  },
+  "WFS_INF_IPM_CODELINE_MAPPING": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "info"
+  },
+  "WFS_INF_IPM_MEDIA_BIN_INFO": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "info"
+  },
+  "WFS_INF_IPM_TRANSACTION_STATUS": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "info"
+  },
+  "WFS_INF_IPM_MEDIA_BIN_CAPABILITIES": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "info"
+  },
+  "WFS_CMD_IPM_MEDIA_IN": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_MEDIA_IN_END": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_MEDIA_IN_ROLLBACK": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_READ_IMAGE": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_SET_DESTINATION": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_PRESENT_MEDIA": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_RETRACT_MEDIA": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_PRINT_TEXT": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_SET_MEDIA_BIN_INFO": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_RESET": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_SET_GUIDANCE_LIGHT": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_GET_NEXT_ITEM": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_ACTION_ITEM": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_EXPEL_MEDIA": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_GET_IMAGE_AFTER_PRINT": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_ACCEPT_ITEM": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_SUPPLY_REPLENISH": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_POWER_SAVE_CONTROL": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_SET_MODE": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_CMD_IPM_SYNCHRONIZE_COMMAND": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "command"
+  },
+  "WFS_EXEE_IPM_NOMEDIA": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_EXEE_IPM_MEDIAINSERTED": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_USRE_IPM_MEDIABINTHRESHOLD": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_SRVE_IPM_MEDIABININFOCHANGED": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_EXEE_IPM_MEDIABINERROR": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_SRVE_IPM_MEDIATAKEN": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_USRE_IPM_TONERTHRESHOLD": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_USRE_IPM_SCANNERTHRESHOLD": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_USRE_IPM_INKTHRESHOLD": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_SRVE_IPM_MEDIADETECTED": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_EXEE_IPM_MEDIAPRESENTED": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_EXEE_IPM_MEDIAREFUSED": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_EXEE_IPM_MEDIADATA": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_USRE_IPM_MICRTHRESHOLD": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_EXEE_IPM_MEDIAREJECTED": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_SRVE_IPM_DEVICEPOSITION": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_SRVE_IPM_POWER_SAVE_CHANGE": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_SRVE_IPM_SHUTTERSTATUSCHANGED": {
+    "file": "XfsIpm",
+    "device_class": "IPM",
+    "type": "event"
+  },
+  "WFS_INF_PIN_STATUS": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_CAPABILITIES": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_KEY_DETAIL": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_FUNCKEY_DETAIL": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_HSM_TDATA": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_KEY_DETAIL_EX": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_SECUREKEY_DETAIL": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_QUERY_LOGICAL_HSM_DETAIL": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_QUERY_PCIPTS_DEVICE_ID": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_GET_LAYOUT": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_INF_PIN_KEY_DETAIL_340": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "info"
+  },
+  "WFS_CMD_PIN_CRYPT": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_DERIVE_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GET_PIN": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_LOCAL_DES": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_CREATE_OFFSET": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_LOCAL_EUROCHEQUE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_LOCAL_VISA": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_PRESENT_IDC": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GET_PINBLOCK": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GET_DATA": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_INITIALIZATION": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_LOCAL_BANKSYS": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_BANKSYS_IO": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_RESET": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_HSM_SET_TDATA": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_SECURE_MSG_SEND": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_SECURE_MSG_RECEIVE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GET_JOURNAL": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_KEY_EX": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_ENC_IO": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_HSM_INIT": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_SECUREKEY_ENTRY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GENERATE_KCV": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_SET_GUIDANCE_LIGHT": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_MAINTAIN_PIN": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_KEYPRESS_BEEP": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_SET_PINBLOCK_DATA": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_SET_LOGICAL_HSM": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_KEYBLOCK": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_POWER_SAVE_CONTROL": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_DEFINE_LAYOUT": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_START_AUTHENTICATE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_AUTHENTICATE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GET_PINBLOCK_EX": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_SYNCHRONIZE_COMMAND": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_CRYPT_340": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GET_PINBLOCK_340": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_KEY_340": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_START_KEY_EXCHANGE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_RSA_PUBLIC_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_EXPORT_RSA_ISSUER_SIGNED_ITEM": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_RSA_SIGNED_DES_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GENERATE_RSA_KEY_PAIR": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_EXPORT_RSA_EPP_SIGNED_ITEM": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_LOAD_CERTIFICATE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_GET_CERTIFICATE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_REPLACE_CERTIFICATE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_RSA_ENCIPHERED_PKCS7_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_LOAD_CERTIFICATE_EX": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_IMPORT_RSA_ENCIPHERED_PKCS7_KEY_EX": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_EMV_IMPORT_PUBLIC_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_DIGEST": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_PIN_PASSWORD_ENTRY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_EXEE_PIN_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_INITIALIZED": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_ILLEGAL_KEY_ACCESS": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_OPT_REQUIRED": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_CERTIFICATE_CHANGE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_HSM_TDATA_CHANGED": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_HSM_CHANGED": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_EXEE_PIN_ENTERDATA": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_DEVICEPOSITION": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_POWER_SAVE_CHANGE": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_EXEE_PIN_LAYOUT": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_EXEE_PIN_DUKPT_KSN": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_SRVE_PIN_PASSWORD_CLEARED": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "event"
+  },
+  "WFS_PIN_USERESTRICTEDKEYENCKEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "api_function"
+  },
+  "WFS_CMD_ENC_IO_LUX_LOAD_APPKEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_LUX_GENERATE_MAC": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_LUX_CHECK_MAC": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_LUX_BUILD_PINBLOCK": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_LUX_DECRYPT_TDES": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_LUX_ENCRYPT_TDES": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_DIGEST": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_SET_SM2_PARAM": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_IMPORT_SM2_PUBLIC_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_SIGN": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_VERIFY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_EXPORT_SM2_ISSUER_SIGNED_ITEM": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_GENERATE_SM2_KEY_PAIR": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_EXPORT_SM2_EPP_SIGNED_ITEM": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_CMD_ENC_IO_CHN_IMPORT_SM2_SIGNED_SM4_KEY": {
+    "file": "XfsPin",
+    "device_class": "PIN",
+    "type": "command"
+  },
+  "WFS_INF_PTR_STATUS": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_INF_PTR_CAPABILITIES": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_INF_PTR_FORM_LIST": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_INF_PTR_MEDIA_LIST": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_INF_PTR_QUERY_FORM": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_INF_PTR_QUERY_MEDIA": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_INF_PTR_QUERY_FIELD": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_INF_PTR_CODELINE_MAPPING": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "info"
+  },
+  "WFS_CMD_PTR_CONTROL_MEDIA": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_PRINT_FORM": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_READ_FORM": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_RAW_DATA": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_MEDIA_EXTENTS": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_RESET_COUNT": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_READ_IMAGE": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_RESET": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_RETRACT_MEDIA": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_DISPENSE_PAPER": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_SET_GUIDANCE_LIGHT": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_PRINT_RAW_FILE": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_LOAD_DEFINITION": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_SUPPLY_REPLENISH": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_POWER_SAVE_CONTROL": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_CONTROL_PASSBOOK": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_SET_BLACK_MARK_MODE": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_CMD_PTR_SYNCHRONIZE_COMMAND": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "command"
+  },
+  "WFS_EXEE_PTR_NOMEDIA": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_EXEE_PTR_MEDIAINSERTED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_EXEE_PTR_FIELDERROR": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_EXEE_PTR_FIELDWARNING": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_USRE_PTR_RETRACTBINTHRESHOLD": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_MEDIATAKEN": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_USRE_PTR_PAPERTHRESHOLD": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_USRE_PTR_TONERTHRESHOLD": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_MEDIAINSERTED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_USRE_PTR_LAMPTHRESHOLD": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_USRE_PTR_INKTHRESHOLD": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_MEDIADETECTED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_RETRACTBINSTATUS": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_EXEE_PTR_MEDIAPRESENTED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_DEFINITIONLOADED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_EXEE_PTR_MEDIAREJECTED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_MEDIAPRESENTED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_MEDIAAUTORETRACTED": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_DEVICEPOSITION": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_SRVE_PTR_POWER_SAVE_CHANGE": {
+    "file": "XfsPtr",
+    "device_class": "PTR",
+    "type": "event"
+  },
+  "WFS_INF_SIU_STATUS": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "info"
+  },
+  "WFS_INF_SIU_CAPABILITIES": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "info"
+  },
+  "WFS_INF_SIU_GET_AUTOSTARTUP_TIME": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "info"
+  },
+  "WFS_CMD_SIU_ENABLE_EVENTS": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SET_PORTS": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SET_DOOR": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SET_INDICATOR": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SET_AUXILIARY": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SET_GUIDLIGHT": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_RESET": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_POWER_SAVE_CONTROL": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SET_AUTOSTARTUP_TIME": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SYNCHRONIZE_COMMAND": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_CMD_SIU_SET_GUIDLIGHT_EX": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "command"
+  },
+  "WFS_SRVE_SIU_PORT_STATUS": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "event"
+  },
+  "WFS_EXEE_SIU_PORT_ERROR": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "event"
+  },
+  "WFS_SRVE_SIU_POWER_SAVE_CHANGE": {
+    "file": "XfsSiu",
+    "device_class": "SIU",
+    "type": "event"
+  },
+  "WFS_INF_TTU_STATUS": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "info"
+  },
+  "WFS_INF_TTU_CAPABILITIES": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "info"
+  },
+  "WFS_INF_TTU_FORM_LIST": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "info"
+  },
+  "WFS_INF_TTU_QUERY_FORM": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "info"
+  },
+  "WFS_INF_TTU_QUERY_FIELD": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "info"
+  },
+  "WFS_INF_TTU_KEY_DETAIL": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "info"
+  },
+  "WFS_CMD_TTU_BEEP": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_CLEARSCREEN": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_DISPLIGHT": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_SET_LED": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_SET_RESOLUTION": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_WRITE_FORM": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_READ_FORM": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_WRITE": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_READ": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_RESET": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_DEFINE_KEYS": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_POWER_SAVE_CONTROL": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_SET_LED_EX": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_CMD_TTU_SYNCHRONIZE_COMMAND": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "command"
+  },
+  "WFS_EXEE_TTU_FIELDERROR": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "event"
+  },
+  "WFS_EXEE_TTU_FIELDWARNING": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "event"
+  },
+  "WFS_EXEE_TTU_KEY": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "event"
+  },
+  "WFS_SRVE_TTU_DEVICEPOSITION": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "event"
+  },
+  "WFS_SRVE_TTU_POWER_SAVE_CHANGE": {
+    "file": "XfsTtu",
+    "device_class": "TTU",
+    "type": "event"
+  },
+  "WFS_INF_VDM_STATUS": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "info"
+  },
+  "WFS_INF_VDM_CAPABILITIES": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "info"
+  },
+  "WFS_INF_VDM_ACTIVE_INTERFACE": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "info"
+  },
+  "WFS_CMD_VDM_ENTER_MODE_REQ": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "command"
+  },
+  "WFS_CMD_VDM_ENTER_MODE_ACK": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "command"
+  },
+  "WFS_CMD_VDM_EXIT_MODE_REQ": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "command"
+  },
+  "WFS_CMD_VDM_EXIT_MODE_ACK": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "command"
+  },
+  "WFS_CMD_VDM_SET_ACTIVE_INTERFACE": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "command"
+  },
+  "WFS_SRVE_VDM_ENTER_MODE_REQ": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "event"
+  },
+  "WFS_SRVE_VDM_EXIT_MODE_REQ": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "event"
+  },
+  "WFS_SYSE_VDM_MODEENTERED": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "api_function"
+  },
+  "WFS_SYSE_VDM_MODEEXITED": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "api_function"
+  },
+  "WFS_SRVE_VDM_INTERFACE_CHANGED": {
+    "file": "XfsVdm",
+    "device_class": "VDM",
+    "type": "event"
+  }
+}

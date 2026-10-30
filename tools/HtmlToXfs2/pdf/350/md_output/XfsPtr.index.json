@@ -1,0 +1,868 @@
+{
+  "file": "XfsPtr.md",
+  "device_class": "PTR",
+  "part": 9,
+  "description": "Printer Device Class Interface",
+  "total_lines": 5676,
+  "sections": [
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 206,
+      "end_line": 207
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 208,
+      "end_line": 251
+    },
+    {
+      "id": "3.00",
+      "name": "October 18, 2000 Initial Release.",
+      "type": "section",
+      "start_line": 252,
+      "end_line": 252
+    },
+    {
+      "id": "3.10",
+      "name": "November 29, 2007 For a description of changes from version 3.00 to version",
+      "type": "section",
+      "start_line": 253,
+      "end_line": 253
+    },
+    {
+      "id": "3.10",
+      "name": "see the PTR 3.10 Migration document.",
+      "type": "section",
+      "start_line": 254,
+      "end_line": 254
+    },
+    {
+      "id": "3.20",
+      "name": "March 2, 2011 For a description of changes from version 3.10 to version",
+      "type": "section",
+      "start_line": 255,
+      "end_line": 255
+    },
+    {
+      "id": "3.20",
+      "name": "see the PTR 3.20 Migration document.",
+      "type": "section",
+      "start_line": 256,
+      "end_line": 256
+    },
+    {
+      "id": "3.30",
+      "name": "March 19, 2015 For a description of changes from version 3.20 to version",
+      "type": "section",
+      "start_line": 257,
+      "end_line": 257
+    },
+    {
+      "id": "3.30",
+      "name": "see the PTR 3.30 Migration document.",
+      "type": "section",
+      "start_line": 258,
+      "end_line": 258
+    },
+    {
+      "id": "3.40",
+      "name": "December 06, 2019 For a description of changes from version 3.30 to version",
+      "type": "section",
+      "start_line": 259,
+      "end_line": 259
+    },
+    {
+      "id": "3.40",
+      "name": "see the PTR 3.40 Migration document.",
+      "type": "section",
+      "start_line": 260,
+      "end_line": 260
+    },
+    {
+      "id": "3.50",
+      "name": "November 18, 2022 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 261,
+      "end_line": 261
+    },
+    {
+      "id": "3.50",
+      "name": "see the PTR 3.50 Migration document.",
+      "type": "section",
+      "start_line": 262,
+      "end_line": 266
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.50",
+      "type": "section",
+      "start_line": 267,
+      "end_line": 280
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 281,
+      "end_line": 496
+    },
+    {
+      "id": "7.1",
+      "name": "WFS_INF_PTR_STATUS",
+      "type": "info",
+      "start_line": 497,
+      "end_line": 867
+    },
+    {
+      "id": "7.2",
+      "name": "WFS_INF_PTR_CAPABILITIES",
+      "type": "info",
+      "start_line": 868,
+      "end_line": 1263
+    },
+    {
+      "id": "7.3",
+      "name": "WFS_INF_PTR_FORM_LIST",
+      "type": "info",
+      "start_line": 1264,
+      "end_line": 1275
+    },
+    {
+      "id": "7.4",
+      "name": "WFS_INF_PTR_MEDIA_LIST",
+      "type": "info",
+      "start_line": 1276,
+      "end_line": 1287
+    },
+    {
+      "id": "7.5",
+      "name": "WFS_INF_PTR_QUERY_FORM",
+      "type": "info",
+      "start_line": 1288,
+      "end_line": 1390
+    },
+    {
+      "id": "7.6",
+      "name": "WFS_INF_PTR_QUERY_MEDIA",
+      "type": "info",
+      "start_line": 1391,
+      "end_line": 1502
+    },
+    {
+      "id": "7.7",
+      "name": "WFS_INF_PTR_QUERY_FIELD",
+      "type": "info",
+      "start_line": 1503,
+      "end_line": 1627
+    },
+    {
+      "id": "7.8",
+      "name": "WFS_INF_PTR_CODELINE_MAPPING",
+      "type": "info",
+      "start_line": 1628,
+      "end_line": 1686
+    },
+    {
+      "id": "8.1",
+      "name": "WFS_CMD_PTR_CONTROL_MEDIA",
+      "type": "command",
+      "start_line": 1687,
+      "end_line": 1749
+    },
+    {
+      "id": "180",
+      "name": "degrees in the printing plane.",
+      "type": "section",
+      "start_line": 1750,
+      "end_line": 1846
+    },
+    {
+      "id": "8.2",
+      "name": "WFS_CMD_PTR_PRINT_FORM",
+      "type": "command",
+      "start_line": 1847,
+      "end_line": 2075
+    },
+    {
+      "id": "8.3",
+      "name": "WFS_CMD_PTR_READ_FORM",
+      "type": "command",
+      "start_line": 2076,
+      "end_line": 2233
+    },
+    {
+      "id": "8.4",
+      "name": "WFS_CMD_PTR_RAW_DATA",
+      "type": "command",
+      "start_line": 2234,
+      "end_line": 2327
+    },
+    {
+      "id": "8.5",
+      "name": "WFS_CMD_PTR_MEDIA_EXTENTS",
+      "type": "command",
+      "start_line": 2328,
+      "end_line": 2394
+    },
+    {
+      "id": "8.6",
+      "name": "WFS_CMD_PTR_RESET_COUNT",
+      "type": "command",
+      "start_line": 2395,
+      "end_line": 2418
+    },
+    {
+      "id": "8.7",
+      "name": "WFS_CMD_PTR_READ_IMAGE",
+      "type": "command",
+      "start_line": 2419,
+      "end_line": 2612
+    },
+    {
+      "id": "8.8",
+      "name": "WFS_CMD_PTR_RESET",
+      "type": "command",
+      "start_line": 2613,
+      "end_line": 2677
+    },
+    {
+      "id": "8.9",
+      "name": "WFS_CMD_PTR_RETRACT_MEDIA",
+      "type": "command",
+      "start_line": 2678,
+      "end_line": 2719
+    },
+    {
+      "id": "8.10",
+      "name": "WFS_CMD_PTR_DISPENSE_PAPER",
+      "type": "command",
+      "start_line": 2720,
+      "end_line": 2769
+    },
+    {
+      "id": "8.11",
+      "name": "WFS_CMD_PTR_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 2770,
+      "end_line": 2850
+    },
+    {
+      "id": "8.12",
+      "name": "WFS_CMD_PTR_PRINT_RAW_FILE",
+      "type": "command",
+      "start_line": 2851,
+      "end_line": 2991
+    },
+    {
+      "id": "8.13",
+      "name": "WFS_CMD_PTR_LOAD_DEFINITION",
+      "type": "command",
+      "start_line": 2992,
+      "end_line": 3035
+    },
+    {
+      "id": "8.14",
+      "name": "WFS_CMD_PTR_SUPPLY_REPLENISH",
+      "type": "command",
+      "start_line": 3036,
+      "end_line": 3085
+    },
+    {
+      "id": "8.15",
+      "name": "WFS_CMD_PTR_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 3086,
+      "end_line": 3122
+    },
+    {
+      "id": "8.16",
+      "name": "WFS_CMD_PTR_CONTROL_PASSBOOK",
+      "type": "command",
+      "start_line": 3123,
+      "end_line": 3169
+    },
+    {
+      "id": "8.17",
+      "name": "WFS_CMD_PTR_SET_BLACK_MARK_MODE",
+      "type": "command",
+      "start_line": 3170,
+      "end_line": 3193
+    },
+    {
+      "id": "8.18",
+      "name": "WFS_CMD_PTR_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 3194,
+      "end_line": 3243
+    },
+    {
+      "id": "9.1",
+      "name": "WFS_EXEE_PTR_NOMEDIA",
+      "type": "event",
+      "start_line": 3244,
+      "end_line": 3256
+    },
+    {
+      "id": "9.2",
+      "name": "WFS_EXEE_PTR_MEDIAINSERTED",
+      "type": "event",
+      "start_line": 3257,
+      "end_line": 3264
+    },
+    {
+      "id": "9.3",
+      "name": "WFS_EXEE_PTR_FIELDERROR",
+      "type": "event",
+      "start_line": 3265,
+      "end_line": 3303
+    },
+    {
+      "id": "9.4",
+      "name": "WFS_EXEE_PTR_FIELDWARNING",
+      "type": "event",
+      "start_line": 3304,
+      "end_line": 3311
+    },
+    {
+      "id": "9.5",
+      "name": "WFS_USRE_PTR_RETRACTBINTHRESHOLD",
+      "type": "event",
+      "start_line": 3312,
+      "end_line": 3332
+    },
+    {
+      "id": "9.6",
+      "name": "WFS_SRVE_PTR_MEDIATAKEN",
+      "type": "event",
+      "start_line": 3333,
+      "end_line": 3343
+    },
+    {
+      "id": "9.7",
+      "name": "WFS_USRE_PTR_PAPERTHRESHOLD",
+      "type": "event",
+      "start_line": 3344,
+      "end_line": 3374
+    },
+    {
+      "id": "9.8",
+      "name": "WFS_USRE_PTR_TONERTHRESHOLD",
+      "type": "event",
+      "start_line": 3375,
+      "end_line": 3388
+    },
+    {
+      "id": "9.9",
+      "name": "WFS_SRVE_PTR_MEDIAINSERTED",
+      "type": "event",
+      "start_line": 3389,
+      "end_line": 3397
+    },
+    {
+      "id": "9.10",
+      "name": "WFS_USRE_PTR_LAMPTHRESHOLD",
+      "type": "event",
+      "start_line": 3398,
+      "end_line": 3411
+    },
+    {
+      "id": "9.11",
+      "name": "WFS_USRE_PTR_INKTHRESHOLD",
+      "type": "event",
+      "start_line": 3412,
+      "end_line": 3425
+    },
+    {
+      "id": "9.12",
+      "name": "WFS_SRVE_PTR_MEDIADETECTED",
+      "type": "event",
+      "start_line": 3426,
+      "end_line": 3453
+    },
+    {
+      "id": "9.13",
+      "name": "WFS_SRVE_PTR_RETRACTBINSTATUS",
+      "type": "event",
+      "start_line": 3454,
+      "end_line": 3472
+    },
+    {
+      "id": "9.14",
+      "name": "WFS_EXEE_PTR_MEDIAPRESENTED",
+      "type": "event",
+      "start_line": 3473,
+      "end_line": 3489
+    },
+    {
+      "id": "9.15",
+      "name": "WFS_SRVE_PTR_DEFINITIONLOADED",
+      "type": "event",
+      "start_line": 3490,
+      "end_line": 3511
+    },
+    {
+      "id": "9.16",
+      "name": "WFS_EXEE_PTR_MEDIAREJECTED",
+      "type": "event",
+      "start_line": 3512,
+      "end_line": 3544
+    },
+    {
+      "id": "9.17",
+      "name": "WFS_SRVE_PTR_MEDIAPRESENTED",
+      "type": "event",
+      "start_line": 3545,
+      "end_line": 3562
+    },
+    {
+      "id": "9.18",
+      "name": "WFS_SRVE_PTR_MEDIAAUTORETRACTED",
+      "type": "event",
+      "start_line": 3563,
+      "end_line": 3587
+    },
+    {
+      "id": "9.19",
+      "name": "WFS_SRVE_PTR_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 3588,
+      "end_line": 3607
+    },
+    {
+      "id": "9.20",
+      "name": "WFS_SRVE_PTR_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 3608,
+      "end_line": 3625
+    },
+    {
+      "id": "10.1",
+      "name": "Definition Syntax",
+      "type": "section",
+      "start_line": 3626,
+      "end_line": 3660
+    },
+    {
+      "id": "10.2",
+      "name": "Form and Media Measurements",
+      "type": "section",
+      "start_line": 3661,
+      "end_line": 3692
+    },
+    {
+      "id": "10.3",
+      "name": "Form Definition 1",
+      "type": "section",
+      "start_line": 3693,
+      "end_line": 3760
+    },
+    {
+      "id": "1",
+      "name": "Attributes are not required in any mandatory order within a Form definition.",
+      "type": "section",
+      "start_line": 3761,
+      "end_line": 3791
+    },
+    {
+      "id": "10.4",
+      "name": "SubForm Definition 2",
+      "type": "section",
+      "start_line": 3792,
+      "end_line": 3840
+    },
+    {
+      "id": "2",
+      "name": "Attributes are not required in any mandatory order within a SubForm definition.",
+      "type": "section",
+      "start_line": 3841,
+      "end_line": 3844
+    },
+    {
+      "id": "10.5",
+      "name": "Field Definition 3",
+      "type": "section",
+      "start_line": 3845,
+      "end_line": 3898
+    },
+    {
+      "id": "3",
+      "name": "Attributes are not required in any mandatory order within a Field definition.",
+      "type": "section",
+      "start_line": 3899,
+      "end_line": 4049
+    },
+    {
+      "id": "0",
+      "name": "formwidth",
+      "type": "section",
+      "start_line": 4050,
+      "end_line": 4080
+    },
+    {
+      "id": "10.6",
+      "name": "Frame Definition 4",
+      "type": "section",
+      "start_line": 4081,
+      "end_line": 4138
+    },
+    {
+      "id": "4",
+      "name": "Attributes are not required in any mandatory order within a Frame definition.",
+      "type": "section",
+      "start_line": 4139,
+      "end_line": 4231
+    },
+    {
+      "id": "21560",
+      "name": "Hagerty Road",
+      "type": "section",
+      "start_line": 4232,
+      "end_line": 4471
+    },
+    {
+      "id": "10.7",
+      "name": "Media Definition 5",
+      "type": "section",
+      "start_line": 4472,
+      "end_line": 4529
+    },
+    {
+      "id": "5",
+      "name": "Attributes are not required in any mandatory order within a Media definition.",
+      "type": "section",
+      "start_line": 4530,
+      "end_line": 4541
+    },
+    {
+      "id": "10.8",
+      "name": "XFS Form/Media Definition Files in Multi-Vendor Environments",
+      "type": "section",
+      "start_line": 4542,
+      "end_line": 4559
+    },
+    {
+      "id": "11.1",
+      "name": "Single Page / Single Wad Printing with immediate Media Control",
+      "type": "section",
+      "start_line": 4560,
+      "end_line": 4607
+    },
+    {
+      "id": "11.2",
+      "name": "Single Page / Single Wad Printing with separate Media Control",
+      "type": "section",
+      "start_line": 4608,
+      "end_line": 4665
+    },
+    {
+      "id": "11.3",
+      "name": "Multi-Page / Multi-Wad Printing with immediate Media Control",
+      "type": "section",
+      "start_line": 4666,
+      "end_line": 4749
+    },
+    {
+      "id": "11.4",
+      "name": "Multi-Page / Multi-Wad Printing with separate Media Control",
+      "type": "section",
+      "start_line": 4750,
+      "end_line": 4838
+    },
+    {
+      "id": "11.5",
+      "name": "Printing with immediate Media Control and bMediaPresented == FALSE",
+      "type": "section",
+      "start_line": 4839,
+      "end_line": 4891
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSPTR__H",
+      "type": "header",
+      "start_line": 4892,
+      "end_line": 5676
+    }
+  ],
+  "commands": {
+    "WFS_INF_PTR_STATUS": {
+      "section_id": "7.1",
+      "start_line": 497,
+      "end_line": 867,
+      "type": "info"
+    },
+    "WFS_INF_PTR_CAPABILITIES": {
+      "section_id": "7.2",
+      "start_line": 868,
+      "end_line": 1263,
+      "type": "info"
+    },
+    "WFS_INF_PTR_FORM_LIST": {
+      "section_id": "7.3",
+      "start_line": 1264,
+      "end_line": 1275,
+      "type": "info"
+    },
+    "WFS_INF_PTR_MEDIA_LIST": {
+      "section_id": "7.4",
+      "start_line": 1276,
+      "end_line": 1287,
+      "type": "info"
+    },
+    "WFS_INF_PTR_QUERY_FORM": {
+      "section_id": "7.5",
+      "start_line": 1288,
+      "end_line": 1390,
+      "type": "info"
+    },
+    "WFS_INF_PTR_QUERY_MEDIA": {
+      "section_id": "7.6",
+      "start_line": 1391,
+      "end_line": 1502,
+      "type": "info"
+    },
+    "WFS_INF_PTR_QUERY_FIELD": {
+      "section_id": "7.7",
+      "start_line": 1503,
+      "end_line": 1627,
+      "type": "info"
+    },
+    "WFS_INF_PTR_CODELINE_MAPPING": {
+      "section_id": "7.8",
+      "start_line": 1628,
+      "end_line": 1686,
+      "type": "info"
+    },
+    "WFS_CMD_PTR_CONTROL_MEDIA": {
+      "section_id": "8.1",
+      "start_line": 1687,
+      "end_line": 1749,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_PRINT_FORM": {
+      "section_id": "8.2",
+      "start_line": 1847,
+      "end_line": 2075,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_READ_FORM": {
+      "section_id": "8.3",
+      "start_line": 2076,
+      "end_line": 2233,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_RAW_DATA": {
+      "section_id": "8.4",
+      "start_line": 2234,
+      "end_line": 2327,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_MEDIA_EXTENTS": {
+      "section_id": "8.5",
+      "start_line": 2328,
+      "end_line": 2394,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_RESET_COUNT": {
+      "section_id": "8.6",
+      "start_line": 2395,
+      "end_line": 2418,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_READ_IMAGE": {
+      "section_id": "8.7",
+      "start_line": 2419,
+      "end_line": 2612,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_RESET": {
+      "section_id": "8.8",
+      "start_line": 2613,
+      "end_line": 2677,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_RETRACT_MEDIA": {
+      "section_id": "8.9",
+      "start_line": 2678,
+      "end_line": 2719,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_DISPENSE_PAPER": {
+      "section_id": "8.10",
+      "start_line": 2720,
+      "end_line": 2769,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_SET_GUIDANCE_LIGHT": {
+      "section_id": "8.11",
+      "start_line": 2770,
+      "end_line": 2850,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_PRINT_RAW_FILE": {
+      "section_id": "8.12",
+      "start_line": 2851,
+      "end_line": 2991,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_LOAD_DEFINITION": {
+      "section_id": "8.13",
+      "start_line": 2992,
+      "end_line": 3035,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_SUPPLY_REPLENISH": {
+      "section_id": "8.14",
+      "start_line": 3036,
+      "end_line": 3085,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_POWER_SAVE_CONTROL": {
+      "section_id": "8.15",
+      "start_line": 3086,
+      "end_line": 3122,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_CONTROL_PASSBOOK": {
+      "section_id": "8.16",
+      "start_line": 3123,
+      "end_line": 3169,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_SET_BLACK_MARK_MODE": {
+      "section_id": "8.17",
+      "start_line": 3170,
+      "end_line": 3193,
+      "type": "command"
+    },
+    "WFS_CMD_PTR_SYNCHRONIZE_COMMAND": {
+      "section_id": "8.18",
+      "start_line": 3194,
+      "end_line": 3243,
+      "type": "command"
+    },
+    "WFS_EXEE_PTR_NOMEDIA": {
+      "section_id": "9.1",
+      "start_line": 3244,
+      "end_line": 3256,
+      "type": "event"
+    },
+    "WFS_EXEE_PTR_MEDIAINSERTED": {
+      "section_id": "9.2",
+      "start_line": 3257,
+      "end_line": 3264,
+      "type": "event"
+    },
+    "WFS_EXEE_PTR_FIELDERROR": {
+      "section_id": "9.3",
+      "start_line": 3265,
+      "end_line": 3303,
+      "type": "event"
+    },
+    "WFS_EXEE_PTR_FIELDWARNING": {
+      "section_id": "9.4",
+      "start_line": 3304,
+      "end_line": 3311,
+      "type": "event"
+    },
+    "WFS_USRE_PTR_RETRACTBINTHRESHOLD": {
+      "section_id": "9.5",
+      "start_line": 3312,
+      "end_line": 3332,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_MEDIATAKEN": {
+      "section_id": "9.6",
+      "start_line": 3333,
+      "end_line": 3343,
+      "type": "event"
+    },
+    "WFS_USRE_PTR_PAPERTHRESHOLD": {
+      "section_id": "9.7",
+      "start_line": 3344,
+      "end_line": 3374,
+      "type": "event"
+    },
+    "WFS_USRE_PTR_TONERTHRESHOLD": {
+      "section_id": "9.8",
+      "start_line": 3375,
+      "end_line": 3388,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_MEDIAINSERTED": {
+      "section_id": "9.9",
+      "start_line": 3389,
+      "end_line": 3397,
+      "type": "event"
+    },
+    "WFS_USRE_PTR_LAMPTHRESHOLD": {
+      "section_id": "9.10",
+      "start_line": 3398,
+      "end_line": 3411,
+      "type": "event"
+    },
+    "WFS_USRE_PTR_INKTHRESHOLD": {
+      "section_id": "9.11",
+      "start_line": 3412,
+      "end_line": 3425,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_MEDIADETECTED": {
+      "section_id": "9.12",
+      "start_line": 3426,
+      "end_line": 3453,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_RETRACTBINSTATUS": {
+      "section_id": "9.13",
+      "start_line": 3454,
+      "end_line": 3472,
+      "type": "event"
+    },
+    "WFS_EXEE_PTR_MEDIAPRESENTED": {
+      "section_id": "9.14",
+      "start_line": 3473,
+      "end_line": 3489,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_DEFINITIONLOADED": {
+      "section_id": "9.15",
+      "start_line": 3490,
+      "end_line": 3511,
+      "type": "event"
+    },
+    "WFS_EXEE_PTR_MEDIAREJECTED": {
+      "section_id": "9.16",
+      "start_line": 3512,
+      "end_line": 3544,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_MEDIAPRESENTED": {
+      "section_id": "9.17",
+      "start_line": 3545,
+      "end_line": 3562,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_MEDIAAUTORETRACTED": {
+      "section_id": "9.18",
+      "start_line": 3563,
+      "end_line": 3587,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_DEVICEPOSITION": {
+      "section_id": "9.19",
+      "start_line": 3588,
+      "end_line": 3607,
+      "type": "event"
+    },
+    "WFS_SRVE_PTR_POWER_SAVE_CHANGE": {
+      "section_id": "9.20",
+      "start_line": 3608,
+      "end_line": 3625,
+      "type": "event"
+    }
+  }
+}

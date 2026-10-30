@@ -1,0 +1,1809 @@
+{
+  "file": "XfsApi.md",
+  "device_class": "API/SPI",
+  "part": 1,
+  "description": "Application Programming Interface / Service Provider Interface",
+  "total_lines": 6202,
+  "sections": [
+    {
+      "id": "10.6",
+      "name": "WFS_SYSE_HARDWARE_ERROR, WFS_SYSE_SOFTWARE_ERROR,",
+      "type": "api_function",
+      "start_line": 140,
+      "end_line": 262
+    },
+    {
+      "id": "3.51",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 263,
+      "end_line": 266
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 267,
+      "end_line": 288
+    },
+    {
+      "id": "3.51",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 289,
+      "end_line": 309
+    },
+    {
+      "id": "3.00",
+      "name": "October 18, 2000 Initial Release.",
+      "type": "section",
+      "start_line": 310,
+      "end_line": 310
+    },
+    {
+      "id": "3.10",
+      "name": "November 29, 2007 For a description of changes from version 3.00 to version",
+      "type": "section",
+      "start_line": 311,
+      "end_line": 311
+    },
+    {
+      "id": "3.10",
+      "name": "see the API 3.10 Migration document.",
+      "type": "section",
+      "start_line": 312,
+      "end_line": 312
+    },
+    {
+      "id": "3.20",
+      "name": "March 2, 2011 For a description of changes from version 3.10 to version",
+      "type": "section",
+      "start_line": 313,
+      "end_line": 313
+    },
+    {
+      "id": "3.20",
+      "name": "see the API 3.20 Migration document.",
+      "type": "section",
+      "start_line": 314,
+      "end_line": 314
+    },
+    {
+      "id": "3.30",
+      "name": "March 19, 2015 For a description of changes from version 3.20 to version",
+      "type": "section",
+      "start_line": 315,
+      "end_line": 315
+    },
+    {
+      "id": "3.30",
+      "name": "see the API 3.30 Migration document.",
+      "type": "section",
+      "start_line": 316,
+      "end_line": 316
+    },
+    {
+      "id": "3.40",
+      "name": "December 06, 2019 For a description of changes from version 3.30 to version",
+      "type": "section",
+      "start_line": 317,
+      "end_line": 317
+    },
+    {
+      "id": "3.40",
+      "name": "see the API 3.40 Migration document.",
+      "type": "section",
+      "start_line": 318,
+      "end_line": 318
+    },
+    {
+      "id": "3.50",
+      "name": "November 18, 2022 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 319,
+      "end_line": 319
+    },
+    {
+      "id": "3.50",
+      "name": "see the API 3.50 Migration document.",
+      "type": "section",
+      "start_line": 320,
+      "end_line": 320
+    },
+    {
+      "id": "3.51",
+      "name": "October 12, 2023 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 321,
+      "end_line": 321
+    },
+    {
+      "id": "3.51",
+      "name": "see the API 3.51 Migration document.",
+      "type": "section",
+      "start_line": 322,
+      "end_line": 337
+    },
+    {
+      "id": "1",
+      "name": "Introduction",
+      "type": "section",
+      "start_line": 338,
+      "end_line": 338
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.51",
+      "type": "section",
+      "start_line": 339,
+      "end_line": 354
+    },
+    {
+      "id": "2",
+      "name": "References",
+      "type": "section",
+      "start_line": 355,
+      "end_line": 361
+    },
+    {
+      "id": "3",
+      "name": "XFS (eXtensions for Financial Services) Overview",
+      "type": "section",
+      "start_line": 362,
+      "end_line": 378
+    },
+    {
+      "id": "3.1",
+      "name": "Architecture",
+      "type": "section",
+      "start_line": 379,
+      "end_line": 473
+    },
+    {
+      "id": "3.2",
+      "name": "API and SPI Summary",
+      "type": "section",
+      "start_line": 474,
+      "end_line": 517
+    },
+    {
+      "id": "3.3",
+      "name": "Device Classes",
+      "type": "section",
+      "start_line": 518,
+      "end_line": 523
+    },
+    {
+      "id": "3.4",
+      "name": "Unicode Encoding Summary",
+      "type": "section",
+      "start_line": 524,
+      "end_line": 533
+    },
+    {
+      "id": "4",
+      "name": "Architectural and Implementation Issues",
+      "type": "section",
+      "start_line": 534,
+      "end_line": 575
+    },
+    {
+      "id": "4.1",
+      "name": "The XFS Manager",
+      "type": "section",
+      "start_line": 576,
+      "end_line": 598
+    },
+    {
+      "id": "4.2",
+      "name": "Service Providers",
+      "type": "section",
+      "start_line": 599,
+      "end_line": 603
+    },
+    {
+      "id": "4.2.1",
+      "name": "Service Provider Functionality",
+      "type": "section",
+      "start_line": 604,
+      "end_line": 632
+    },
+    {
+      "id": "4.2.2",
+      "name": "Service Provider “Packaging”",
+      "type": "section",
+      "start_line": 633,
+      "end_line": 642
+    },
+    {
+      "id": "4.3",
+      "name": "Asynchronous, Synchronous and Immediate Functions",
+      "type": "section",
+      "start_line": 643,
+      "end_line": 652
+    },
+    {
+      "id": "4.3.1",
+      "name": "Asynchronous Functions",
+      "type": "section",
+      "start_line": 653,
+      "end_line": 669
+    },
+    {
+      "id": "4.3.2",
+      "name": "Synchronous Functions",
+      "type": "section",
+      "start_line": 670,
+      "end_line": 696
+    },
+    {
+      "id": "4.3.3",
+      "name": "Immediate Functions",
+      "type": "section",
+      "start_line": 697,
+      "end_line": 708
+    },
+    {
+      "id": "4.4",
+      "name": "Processing API Functions",
+      "type": "section",
+      "start_line": 709,
+      "end_line": 727
+    },
+    {
+      "id": "4.5",
+      "name": "Opening a Session",
+      "type": "section",
+      "start_line": 728,
+      "end_line": 781
+    },
+    {
+      "id": "4.6",
+      "name": "Closing a Session",
+      "type": "section",
+      "start_line": 782,
+      "end_line": 808
+    },
+    {
+      "id": "4.7",
+      "name": "Configuration Information",
+      "type": "section",
+      "start_line": 809,
+      "end_line": 972
+    },
+    {
+      "id": "4.8",
+      "name": "Exclusive Service and Device Access",
+      "type": "section",
+      "start_line": 973,
+      "end_line": 1006
+    },
+    {
+      "id": "4.8.1",
+      "name": "Lock Policy for Independent Devices",
+      "type": "section",
+      "start_line": 1007,
+      "end_line": 1051
+    },
+    {
+      "id": "4.8.2",
+      "name": "Compound Devices",
+      "type": "section",
+      "start_line": 1052,
+      "end_line": 1117
+    },
+    {
+      "id": "4.9",
+      "name": "Timeout",
+      "type": "section",
+      "start_line": 1118,
+      "end_line": 1133
+    },
+    {
+      "id": "4.10",
+      "name": "Function Status Return",
+      "type": "section",
+      "start_line": 1134,
+      "end_line": 1174
+    },
+    {
+      "id": "4.11",
+      "name": "Notification Mechanisms - Registering for Events",
+      "type": "section",
+      "start_line": 1175,
+      "end_line": 1234
+    },
+    {
+      "id": "4.12",
+      "name": "Application Processes, Threads and Blocking Functions",
+      "type": "section",
+      "start_line": 1235,
+      "end_line": 1313
+    },
+    {
+      "id": "4.13",
+      "name": "Vendor Dependent Mode",
+      "type": "section",
+      "start_line": 1314,
+      "end_line": 1327
+    },
+    {
+      "id": "4.14",
+      "name": "Memory Management",
+      "type": "section",
+      "start_line": 1328,
+      "end_line": 1404
+    },
+    {
+      "id": "4.15",
+      "name": "Command Synchronization",
+      "type": "section",
+      "start_line": 1405,
+      "end_line": 1415
+    },
+    {
+      "id": "4.16",
+      "name": "Binary Interface",
+      "type": "section",
+      "start_line": 1416,
+      "end_line": 1474
+    },
+    {
+      "id": "5",
+      "name": "Application Programming Interface (API) Functions",
+      "type": "section",
+      "start_line": 1475,
+      "end_line": 1498
+    },
+    {
+      "id": "5.1",
+      "name": "WFSCancelAsyncRequest Immediate Cancel an outstanding asynchronous request",
+      "type": "api_function",
+      "start_line": 1499,
+      "end_line": 1499
+    },
+    {
+      "id": "5.2",
+      "name": "WFSCancelBlockingCall Immediate Cancel an outstanding blocking operation",
+      "type": "api_function",
+      "start_line": 1500,
+      "end_line": 1500
+    },
+    {
+      "id": "5.3",
+      "name": "WFSCleanUp Synchronous Terminate a connection between an application",
+      "type": "api_function",
+      "start_line": 1501,
+      "end_line": 1502
+    },
+    {
+      "id": "5.4",
+      "name": "WFSClose Synchronous Close a session between an application and a",
+      "type": "api_function",
+      "start_line": 1503,
+      "end_line": 1504
+    },
+    {
+      "id": "5.5",
+      "name": "WFSAsyncClose Asynchronous The asynchronous version of WFSClose",
+      "type": "api_function",
+      "start_line": 1505,
+      "end_line": 1505
+    },
+    {
+      "id": "5.6",
+      "name": "WFSCreateAppHandle Immediate Create a new application handle to be used in a",
+      "type": "api_function",
+      "start_line": 1506,
+      "end_line": 1507
+    },
+    {
+      "id": "5.7",
+      "name": "WFSDeregister Synchronous Disable monitoring of a class of events by an",
+      "type": "api_function",
+      "start_line": 1508,
+      "end_line": 1509
+    },
+    {
+      "id": "5.8",
+      "name": "WFSAsyncDeregister Asynchronous The asynchronous version of WFSDeregister",
+      "type": "api_function",
+      "start_line": 1510,
+      "end_line": 1510
+    },
+    {
+      "id": "5.9",
+      "name": "WFSDestroyAppHandle Immediate Destroy the specified application handle",
+      "type": "api_function",
+      "start_line": 1511,
+      "end_line": 1511
+    },
+    {
+      "id": "5.10",
+      "name": "WFSExecute Synchronous Send service-specific commands to a Service",
+      "type": "api_function",
+      "start_line": 1512,
+      "end_line": 1513
+    },
+    {
+      "id": "5.11",
+      "name": "WFSAsyncExecute Asynchronous The asynchronous version of WFSExecute",
+      "type": "api_function",
+      "start_line": 1514,
+      "end_line": 1514
+    },
+    {
+      "id": "5.12",
+      "name": "WFSFreeResult Immediate Request the XFS Manager to free a result buffer",
+      "type": "api_function",
+      "start_line": 1515,
+      "end_line": 1515
+    },
+    {
+      "id": "5.13",
+      "name": "WFSGetInfo Synchronous Retrieve service-specific information from a",
+      "type": "api_function",
+      "start_line": 1516,
+      "end_line": 1517
+    },
+    {
+      "id": "5.14",
+      "name": "WFSAsyncGetInfo Asynchronous The asynchronous version of WFSGetInfo",
+      "type": "api_function",
+      "start_line": 1518,
+      "end_line": 1518
+    },
+    {
+      "id": "5.15",
+      "name": "WFSIsBlocking Immediate Determine if a blocking call is in progress",
+      "type": "api_function",
+      "start_line": 1519,
+      "end_line": 1519
+    },
+    {
+      "id": "5.16",
+      "name": "WFSLock Synchronous Establish exclusive control by an application of a",
+      "type": "api_function",
+      "start_line": 1520,
+      "end_line": 1521
+    },
+    {
+      "id": "5.17",
+      "name": "WFSAsyncLock Asynchronous The asynchronous version of WFSLock",
+      "type": "api_function",
+      "start_line": 1522,
+      "end_line": 1522
+    },
+    {
+      "id": "5.18",
+      "name": "WFSOpen Synchronous Open a session between an application and a",
+      "type": "api_function",
+      "start_line": 1523,
+      "end_line": 1524
+    },
+    {
+      "id": "5.19",
+      "name": "WFSAsyncOpen Asynchronous The asynchronous version of WFSOpen",
+      "type": "api_function",
+      "start_line": 1525,
+      "end_line": 1525
+    },
+    {
+      "id": "5.20",
+      "name": "WFSRegister Synchronous Enable monitoring of a class of events by an",
+      "type": "api_function",
+      "start_line": 1526,
+      "end_line": 1527
+    },
+    {
+      "id": "5.21",
+      "name": "WFSAsyncRegister Asynchronous The asynchronous version of WFSRegister",
+      "type": "api_function",
+      "start_line": 1528,
+      "end_line": 1528
+    },
+    {
+      "id": "5.22",
+      "name": "WFSSetBlockingHook Immediate Install an application-specific blocking routine",
+      "type": "api_function",
+      "start_line": 1529,
+      "end_line": 1529
+    },
+    {
+      "id": "5.23",
+      "name": "WFSStartUp Immediate Initiate a connection between an application and",
+      "type": "api_function",
+      "start_line": 1530,
+      "end_line": 1531
+    },
+    {
+      "id": "5.24",
+      "name": "WFSUnhookBlockingHook Immediate Restore the default blocking routine",
+      "type": "api_function",
+      "start_line": 1532,
+      "end_line": 1532
+    },
+    {
+      "id": "5.25",
+      "name": "WFSUnlock Synchronous Release exclusive control by an application of a",
+      "type": "api_function",
+      "start_line": 1533,
+      "end_line": 1534
+    },
+    {
+      "id": "5.26",
+      "name": "WFSAsyncUnlock Asynchronous The asynchronous version of WFSUnlock",
+      "type": "api_function",
+      "start_line": 1535,
+      "end_line": 1538
+    },
+    {
+      "id": "5.1",
+      "name": "WFSCancelAsyncRequest",
+      "type": "api_function",
+      "start_line": 1539,
+      "end_line": 1582
+    },
+    {
+      "id": "5.2",
+      "name": "WFSCancelBlockingCall",
+      "type": "api_function",
+      "start_line": 1583,
+      "end_line": 1617
+    },
+    {
+      "id": "5.3",
+      "name": "WFSCleanUp",
+      "type": "api_function",
+      "start_line": 1618,
+      "end_line": 1640
+    },
+    {
+      "id": "5.4",
+      "name": "WFSClose",
+      "type": "api_function",
+      "start_line": 1641,
+      "end_line": 1672
+    },
+    {
+      "id": "5.5",
+      "name": "WFSAsyncClose",
+      "type": "api_function",
+      "start_line": 1673,
+      "end_line": 1716
+    },
+    {
+      "id": "5.6",
+      "name": "WFSCreateAppHandle",
+      "type": "api_function",
+      "start_line": 1717,
+      "end_line": 1738
+    },
+    {
+      "id": "5.7",
+      "name": "WFSDeregister",
+      "type": "api_function",
+      "start_line": 1739,
+      "end_line": 1782
+    },
+    {
+      "id": "5.8",
+      "name": "WFSAsyncDeregister",
+      "type": "api_function",
+      "start_line": 1783,
+      "end_line": 1845
+    },
+    {
+      "id": "5.9",
+      "name": "WFSDestroyAppHandle",
+      "type": "api_function",
+      "start_line": 1846,
+      "end_line": 1865
+    },
+    {
+      "id": "5.10",
+      "name": "WFSExecute",
+      "type": "api_function",
+      "start_line": 1866,
+      "end_line": 1946
+    },
+    {
+      "id": "5.11",
+      "name": "WFSAsyncExecute",
+      "type": "api_function",
+      "start_line": 1947,
+      "end_line": 2035
+    },
+    {
+      "id": "5.12",
+      "name": "WFSFreeResult",
+      "type": "api_function",
+      "start_line": 2036,
+      "end_line": 2057
+    },
+    {
+      "id": "5.13",
+      "name": "WFSGetInfo",
+      "type": "api_function",
+      "start_line": 2058,
+      "end_line": 2136
+    },
+    {
+      "id": "5.14",
+      "name": "WFSAsyncGetInfo",
+      "type": "api_function",
+      "start_line": 2137,
+      "end_line": 2214
+    },
+    {
+      "id": "5.15",
+      "name": "WFSIsBlocking",
+      "type": "api_function",
+      "start_line": 2215,
+      "end_line": 2235
+    },
+    {
+      "id": "5.16",
+      "name": "WFSLock",
+      "type": "api_function",
+      "start_line": 2236,
+      "end_line": 2290
+    },
+    {
+      "id": "5.17",
+      "name": "WFSAsyncLock",
+      "type": "api_function",
+      "start_line": 2291,
+      "end_line": 2343
+    },
+    {
+      "id": "5.18",
+      "name": "WFSOpen",
+      "type": "api_function",
+      "start_line": 2344,
+      "end_line": 2499
+    },
+    {
+      "id": "5.19",
+      "name": "WFSAsyncOpen",
+      "type": "api_function",
+      "start_line": 2500,
+      "end_line": 2608
+    },
+    {
+      "id": "5.20",
+      "name": "WFSRegister",
+      "type": "api_function",
+      "start_line": 2609,
+      "end_line": 2658
+    },
+    {
+      "id": "5.21",
+      "name": "WFSAsyncRegister",
+      "type": "api_function",
+      "start_line": 2659,
+      "end_line": 2712
+    },
+    {
+      "id": "5.22",
+      "name": "WFSSetBlockingHook",
+      "type": "api_function",
+      "start_line": 2713,
+      "end_line": 2740
+    },
+    {
+      "id": "5.23",
+      "name": "WFSStartUp",
+      "type": "api_function",
+      "start_line": 2741,
+      "end_line": 2819
+    },
+    {
+      "id": "5.24",
+      "name": "WFSUnhookBlockingHook",
+      "type": "api_function",
+      "start_line": 2820,
+      "end_line": 2840
+    },
+    {
+      "id": "5.25",
+      "name": "WFSUnlock",
+      "type": "api_function",
+      "start_line": 2841,
+      "end_line": 2869
+    },
+    {
+      "id": "5.26",
+      "name": "WFSAsyncUnlock",
+      "type": "api_function",
+      "start_line": 2870,
+      "end_line": 2916
+    },
+    {
+      "id": "6",
+      "name": "Service Provider Interface (SPI) Functions",
+      "type": "section",
+      "start_line": 2917,
+      "end_line": 2928
+    },
+    {
+      "id": "6.1",
+      "name": "WFPCancelAsyncRequest  Immediate  WFSCancelAsyncRequest  Immediate",
+      "type": "spi_function",
+      "start_line": 2929,
+      "end_line": 2935
+    },
+    {
+      "id": "6.3",
+      "name": "WFPDeregister  Asynchronous  WFSDeregister  Synchronous",
+      "type": "spi_function",
+      "start_line": 2936,
+      "end_line": 2936
+    },
+    {
+      "id": "6.3",
+      "name": "WFPDeregister  Asynchronous  WFSAsyncDeregister  Asynchronous",
+      "type": "spi_function",
+      "start_line": 2937,
+      "end_line": 2940
+    },
+    {
+      "id": "6.4",
+      "name": "WFPExecute  Asynchronous  WFSAsyncExecute  Asynchronous",
+      "type": "spi_function",
+      "start_line": 2941,
+      "end_line": 2944
+    },
+    {
+      "id": "6.5",
+      "name": "WFPGetInfo  Asynchronous  WFSAsyncGetInfo  Asynchronous",
+      "type": "spi_function",
+      "start_line": 2945,
+      "end_line": 2952
+    },
+    {
+      "id": "6.8",
+      "name": "WFPRegister  Asynchronous  WFSAsyncRegister  Asynchronous",
+      "type": "spi_function",
+      "start_line": 2953,
+      "end_line": 2970
+    },
+    {
+      "id": "6.1",
+      "name": "WFPCancelAsyncRequest",
+      "type": "spi_function",
+      "start_line": 2971,
+      "end_line": 3004
+    },
+    {
+      "id": "6.2",
+      "name": "WFPClose",
+      "type": "spi_function",
+      "start_line": 3005,
+      "end_line": 3041
+    },
+    {
+      "id": "6.3",
+      "name": "WFPDeregister",
+      "type": "spi_function",
+      "start_line": 3042,
+      "end_line": 3095
+    },
+    {
+      "id": "6.4",
+      "name": "WFPExecute",
+      "type": "spi_function",
+      "start_line": 3096,
+      "end_line": 3167
+    },
+    {
+      "id": "6.5",
+      "name": "WFPGetInfo",
+      "type": "spi_function",
+      "start_line": 3168,
+      "end_line": 3244
+    },
+    {
+      "id": "6.6",
+      "name": "WFPLock",
+      "type": "spi_function",
+      "start_line": 3245,
+      "end_line": 3289
+    },
+    {
+      "id": "6.7",
+      "name": "WFPOpen",
+      "type": "spi_function",
+      "start_line": 3290,
+      "end_line": 3457
+    },
+    {
+      "id": "6.8",
+      "name": "WFPRegister",
+      "type": "spi_function",
+      "start_line": 3458,
+      "end_line": 3500
+    },
+    {
+      "id": "6.9",
+      "name": "WFPSetTraceLevel",
+      "type": "spi_function",
+      "start_line": 3501,
+      "end_line": 3549
+    },
+    {
+      "id": "6.10",
+      "name": "WFPUnloadService",
+      "type": "spi_function",
+      "start_line": 3550,
+      "end_line": 3567
+    },
+    {
+      "id": "6.11",
+      "name": "WFPUnlock",
+      "type": "spi_function",
+      "start_line": 3568,
+      "end_line": 3602
+    },
+    {
+      "id": "7",
+      "name": "Support Functions",
+      "type": "section",
+      "start_line": 3603,
+      "end_line": 3606
+    },
+    {
+      "id": "7.1",
+      "name": "WFMAllocateBuffer",
+      "type": "support_function",
+      "start_line": 3607,
+      "end_line": 3633
+    },
+    {
+      "id": "7.2",
+      "name": "WFMAllocateMore",
+      "type": "support_function",
+      "start_line": 3634,
+      "end_line": 3658
+    },
+    {
+      "id": "7.3",
+      "name": "WFMFreeBuffer",
+      "type": "support_function",
+      "start_line": 3659,
+      "end_line": 3676
+    },
+    {
+      "id": "7.4",
+      "name": "WFMGetTraceLevel",
+      "type": "support_function",
+      "start_line": 3677,
+      "end_line": 3700
+    },
+    {
+      "id": "7.5",
+      "name": "WFMKillTimer",
+      "type": "support_function",
+      "start_line": 3701,
+      "end_line": 3713
+    },
+    {
+      "id": "7.6",
+      "name": "WFMOutputTraceData",
+      "type": "support_function",
+      "start_line": 3714,
+      "end_line": 3728
+    },
+    {
+      "id": "7.7",
+      "name": "WFMReleaseDLL",
+      "type": "support_function",
+      "start_line": 3729,
+      "end_line": 3752
+    },
+    {
+      "id": "7.8",
+      "name": "WFMSetTimer",
+      "type": "support_function",
+      "start_line": 3753,
+      "end_line": 3774
+    },
+    {
+      "id": "7.9",
+      "name": "WFMSetTraceLevel",
+      "type": "support_function",
+      "start_line": 3775,
+      "end_line": 3831
+    },
+    {
+      "id": "8",
+      "name": "Configuration Functions",
+      "type": "section",
+      "start_line": 3832,
+      "end_line": 3834
+    },
+    {
+      "id": "8.1",
+      "name": "WFMCloseKey",
+      "type": "support_function",
+      "start_line": 3835,
+      "end_line": 3849
+    },
+    {
+      "id": "8.2",
+      "name": "WFMCreateKey",
+      "type": "support_function",
+      "start_line": 3850,
+      "end_line": 3884
+    },
+    {
+      "id": "8.3",
+      "name": "WFMDeleteKey",
+      "type": "support_function",
+      "start_line": 3885,
+      "end_line": 3907
+    },
+    {
+      "id": "8.4",
+      "name": "WFMDeleteValue",
+      "type": "support_function",
+      "start_line": 3908,
+      "end_line": 3926
+    },
+    {
+      "id": "8.5",
+      "name": "WFMEnumKey",
+      "type": "support_function",
+      "start_line": 3927,
+      "end_line": 3968
+    },
+    {
+      "id": "8.6",
+      "name": "WFMEnumValue",
+      "type": "support_function",
+      "start_line": 3969,
+      "end_line": 4012
+    },
+    {
+      "id": "8.7",
+      "name": "WFMOpenKey",
+      "type": "support_function",
+      "start_line": 4013,
+      "end_line": 4036
+    },
+    {
+      "id": "8.8",
+      "name": "WFMQueryValue",
+      "type": "support_function",
+      "start_line": 4037,
+      "end_line": 4065
+    },
+    {
+      "id": "8.9",
+      "name": "WFMSetValue",
+      "type": "support_function",
+      "start_line": 4066,
+      "end_line": 4090
+    },
+    {
+      "id": "9",
+      "name": "Data Structures",
+      "type": "section",
+      "start_line": 4091,
+      "end_line": 4091
+    },
+    {
+      "id": "9.1",
+      "name": "WFSRESULT",
+      "type": "api_function",
+      "start_line": 4092,
+      "end_line": 4128
+    },
+    {
+      "id": "9.2",
+      "name": "WFSVERSION",
+      "type": "api_function",
+      "start_line": 4129,
+      "end_line": 4153
+    },
+    {
+      "id": "10",
+      "name": "Messages",
+      "type": "section",
+      "start_line": 4154,
+      "end_line": 4155
+    },
+    {
+      "id": "10.1",
+      "name": "Command Completions and Events",
+      "type": "section",
+      "start_line": 4156,
+      "end_line": 4165
+    },
+    {
+      "id": "10.1.1",
+      "name": "Command Completion Messages",
+      "type": "section",
+      "start_line": 4166,
+      "end_line": 4174
+    },
+    {
+      "id": "10.1.2",
+      "name": "Event Messages",
+      "type": "section",
+      "start_line": 4175,
+      "end_line": 4184
+    },
+    {
+      "id": "10.2",
+      "name": "WFS_TIMER_EVENT",
+      "type": "api_function",
+      "start_line": 4185,
+      "end_line": 4193
+    },
+    {
+      "id": "10.3",
+      "name": "WFS_SYSE_DEVICE_STATUS",
+      "type": "api_function",
+      "start_line": 4194,
+      "end_line": 4243
+    },
+    {
+      "id": "10.4",
+      "name": "WFS_SYSE_UNDELIVERABLE_MSG",
+      "type": "api_function",
+      "start_line": 4244,
+      "end_line": 4279
+    },
+    {
+      "id": "10.5",
+      "name": "WFS_SYSE_APP_DISCONNECT",
+      "type": "api_function",
+      "start_line": 4280,
+      "end_line": 4406
+    },
+    {
+      "id": "10.7",
+      "name": "WFS_SYSE_LOCK_REQUESTED",
+      "type": "api_function",
+      "start_line": 4407,
+      "end_line": 4421
+    },
+    {
+      "id": "10.8",
+      "name": "WFS_SYSE_VERSION_ERROR",
+      "type": "api_function",
+      "start_line": 4422,
+      "end_line": 4452
+    },
+    {
+      "id": "11",
+      "name": "Error Codes",
+      "type": "section",
+      "start_line": 4453,
+      "end_line": 4593
+    },
+    {
+      "id": "12",
+      "name": "XFS End to End (E2E) Authentication",
+      "type": "section",
+      "start_line": 4594,
+      "end_line": 4594
+    },
+    {
+      "id": "12.1",
+      "name": "XFS E2E General description",
+      "type": "section",
+      "start_line": 4595,
+      "end_line": 4609
+    },
+    {
+      "id": "12.2",
+      "name": "Determining Specific E2E Authentication Requirements",
+      "type": "section",
+      "start_line": 4610,
+      "end_line": 4618
+    },
+    {
+      "id": "13",
+      "name": "Common GetInfo, Execute Commands and Messages",
+      "type": "section",
+      "start_line": 4619,
+      "end_line": 4619
+    },
+    {
+      "id": "13.1",
+      "name": "Common GetInfo Commands",
+      "type": "section",
+      "start_line": 4620,
+      "end_line": 4620
+    },
+    {
+      "id": "13.1.1",
+      "name": "WFS_INF_API_TRANSACTION_STATE",
+      "type": "info",
+      "start_line": 4621,
+      "end_line": 4663
+    },
+    {
+      "id": "13.1.2",
+      "name": "WFS_INF_API_SERVICE_INFO",
+      "type": "info",
+      "start_line": 4664,
+      "end_line": 4872
+    },
+    {
+      "id": "13.1.3",
+      "name": "WFS_INF_API_SECURE_QUERY",
+      "type": "info",
+      "start_line": 4873,
+      "end_line": 4934
+    },
+    {
+      "id": "13.1.4",
+      "name": "WFS_INF_API_SYNC_PICTURE",
+      "type": "info",
+      "start_line": 4935,
+      "end_line": 5028
+    },
+    {
+      "id": "13.2",
+      "name": "Common Execute Commands",
+      "type": "section",
+      "start_line": 5029,
+      "end_line": 5029
+    },
+    {
+      "id": "13.2.1",
+      "name": "WFS_CMD_API_SET_TRANSACTION_STATE",
+      "type": "command",
+      "start_line": 5030,
+      "end_line": 5048
+    },
+    {
+      "id": "13.2.2",
+      "name": "WFS_CMD_API_GET_COMMAND_NONCE",
+      "type": "command",
+      "start_line": 5049,
+      "end_line": 5093
+    },
+    {
+      "id": "13.2.3",
+      "name": "WFS_CMD_API_SECURE_COMMAND",
+      "type": "command",
+      "start_line": 5094,
+      "end_line": 5192
+    },
+    {
+      "id": "13.2.4",
+      "name": "WFS_CMD_API_CLEAR_COMMAND_NONCE",
+      "type": "command",
+      "start_line": 5193,
+      "end_line": 5213
+    },
+    {
+      "id": "13.2.5",
+      "name": "WFS_CMD_API_SYNC_PICTURE",
+      "type": "command",
+      "start_line": 5214,
+      "end_line": 5256
+    },
+    {
+      "id": "13.2.6",
+      "name": "WFS_CMD_API_START_SECURE_OPERATION",
+      "type": "command",
+      "start_line": 5257,
+      "end_line": 5288
+    },
+    {
+      "id": "13.3",
+      "name": "Common Events",
+      "type": "section",
+      "start_line": 5289,
+      "end_line": 5289
+    },
+    {
+      "id": "13.3.1",
+      "name": "WFS_SRVE_API_STATUS_CHANGED",
+      "type": "event",
+      "start_line": 5290,
+      "end_line": 5311
+    },
+    {
+      "id": "13.3.2",
+      "name": "WFS_EXEE_API_ERROR_INFO",
+      "type": "event",
+      "start_line": 5312,
+      "end_line": 5335
+    },
+    {
+      "id": "13.3.3",
+      "name": "WFS_SRVE_API_NONCE_CLEARED",
+      "type": "event",
+      "start_line": 5336,
+      "end_line": 5358
+    },
+    {
+      "id": "13.3.4",
+      "name": "WFS_SRVE_API_SYNC_PICTURE",
+      "type": "event",
+      "start_line": 5359,
+      "end_line": 5413
+    },
+    {
+      "id": "14",
+      "name": "Appendix A - Planned Enhancements and Extensions",
+      "type": "appendix",
+      "start_line": 5414,
+      "end_line": 5430
+    },
+    {
+      "id": "14.1",
+      "name": "Event and System Management",
+      "type": "section",
+      "start_line": 5431,
+      "end_line": 5441
+    },
+    {
+      "id": "15",
+      "name": "Appendix B - XFS Workshop Contacts",
+      "type": "appendix",
+      "start_line": 5442,
+      "end_line": 5454
+    },
+    {
+      "id": "16",
+      "name": "Appendix C - ATM Devices Synchronization Flow",
+      "type": "appendix",
+      "start_line": 5455,
+      "end_line": 5457
+    },
+    {
+      "id": "16.1",
+      "name": "Synchronized Media Ejection",
+      "type": "section",
+      "start_line": 5458,
+      "end_line": 5490
+    },
+    {
+      "id": "17",
+      "name": "Appendix D – Win64 Migration Considerations",
+      "type": "appendix",
+      "start_line": 5491,
+      "end_line": 5518
+    },
+    {
+      "id": "64",
+      "name": "bits when compiled with a 64-bit compiler, thus ensuring good compatibility when compiled in",
+      "type": "section",
+      "start_line": 5519,
+      "end_line": 5525
+    },
+    {
+      "id": "18",
+      "name": "Appendix E - C-Header files",
+      "type": "header",
+      "start_line": 5526,
+      "end_line": 5526
+    },
+    {
+      "id": "18.1",
+      "name": "XFSAPI.H",
+      "type": "section",
+      "start_line": 5527,
+      "end_line": 5994
+    },
+    {
+      "id": "60000",
+      "name": "and 60999 are reserved.*/",
+      "type": "section",
+      "start_line": 5995,
+      "end_line": 6057
+    },
+    {
+      "id": "18.2",
+      "name": "XFSADMIN.H",
+      "type": "section",
+      "start_line": 6058,
+      "end_line": 6065
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSADMIN__H",
+      "type": "header",
+      "start_line": 6066,
+      "end_line": 6097
+    },
+    {
+      "id": "18.3",
+      "name": "XFSCONF.H",
+      "type": "section",
+      "start_line": 6098,
+      "end_line": 6105
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSCONF__H",
+      "type": "header",
+      "start_line": 6106,
+      "end_line": 6156
+    },
+    {
+      "id": "18.4",
+      "name": "XFSSPI.H",
+      "type": "section",
+      "start_line": 6157,
+      "end_line": 6202
+    }
+  ],
+  "commands": {
+    "WFS_SYSE_HARDWARE_ERROR": {
+      "section_id": "10.6",
+      "start_line": 140,
+      "end_line": 262,
+      "type": "api_function"
+    },
+    "WFSCancelAsyncRequest": {
+      "section_id": "5.1",
+      "start_line": 1539,
+      "end_line": 1582,
+      "type": "api_function"
+    },
+    "WFSCancelBlockingCall": {
+      "section_id": "5.2",
+      "start_line": 1583,
+      "end_line": 1617,
+      "type": "api_function"
+    },
+    "WFSCleanUp": {
+      "section_id": "5.3",
+      "start_line": 1618,
+      "end_line": 1640,
+      "type": "api_function"
+    },
+    "WFSClose": {
+      "section_id": "5.4",
+      "start_line": 1641,
+      "end_line": 1672,
+      "type": "api_function"
+    },
+    "WFSAsyncClose": {
+      "section_id": "5.5",
+      "start_line": 1673,
+      "end_line": 1716,
+      "type": "api_function"
+    },
+    "WFSCreateAppHandle": {
+      "section_id": "5.6",
+      "start_line": 1717,
+      "end_line": 1738,
+      "type": "api_function"
+    },
+    "WFSDeregister": {
+      "section_id": "5.7",
+      "start_line": 1739,
+      "end_line": 1782,
+      "type": "api_function"
+    },
+    "WFSAsyncDeregister": {
+      "section_id": "5.8",
+      "start_line": 1783,
+      "end_line": 1845,
+      "type": "api_function"
+    },
+    "WFSDestroyAppHandle": {
+      "section_id": "5.9",
+      "start_line": 1846,
+      "end_line": 1865,
+      "type": "api_function"
+    },
+    "WFSExecute": {
+      "section_id": "5.10",
+      "start_line": 1866,
+      "end_line": 1946,
+      "type": "api_function"
+    },
+    "WFSAsyncExecute": {
+      "section_id": "5.11",
+      "start_line": 1947,
+      "end_line": 2035,
+      "type": "api_function"
+    },
+    "WFSFreeResult": {
+      "section_id": "5.12",
+      "start_line": 2036,
+      "end_line": 2057,
+      "type": "api_function"
+    },
+    "WFSGetInfo": {
+      "section_id": "5.13",
+      "start_line": 2058,
+      "end_line": 2136,
+      "type": "api_function"
+    },
+    "WFSAsyncGetInfo": {
+      "section_id": "5.14",
+      "start_line": 2137,
+      "end_line": 2214,
+      "type": "api_function"
+    },
+    "WFSIsBlocking": {
+      "section_id": "5.15",
+      "start_line": 2215,
+      "end_line": 2235,
+      "type": "api_function"
+    },
+    "WFSLock": {
+      "section_id": "5.16",
+      "start_line": 2236,
+      "end_line": 2290,
+      "type": "api_function"
+    },
+    "WFSAsyncLock": {
+      "section_id": "5.17",
+      "start_line": 2291,
+      "end_line": 2343,
+      "type": "api_function"
+    },
+    "WFSOpen": {
+      "section_id": "5.18",
+      "start_line": 2344,
+      "end_line": 2499,
+      "type": "api_function"
+    },
+    "WFSAsyncOpen": {
+      "section_id": "5.19",
+      "start_line": 2500,
+      "end_line": 2608,
+      "type": "api_function"
+    },
+    "WFSRegister": {
+      "section_id": "5.20",
+      "start_line": 2609,
+      "end_line": 2658,
+      "type": "api_function"
+    },
+    "WFSAsyncRegister": {
+      "section_id": "5.21",
+      "start_line": 2659,
+      "end_line": 2712,
+      "type": "api_function"
+    },
+    "WFSSetBlockingHook": {
+      "section_id": "5.22",
+      "start_line": 2713,
+      "end_line": 2740,
+      "type": "api_function"
+    },
+    "WFSStartUp": {
+      "section_id": "5.23",
+      "start_line": 2741,
+      "end_line": 2819,
+      "type": "api_function"
+    },
+    "WFSUnhookBlockingHook": {
+      "section_id": "5.24",
+      "start_line": 2820,
+      "end_line": 2840,
+      "type": "api_function"
+    },
+    "WFSUnlock": {
+      "section_id": "5.25",
+      "start_line": 2841,
+      "end_line": 2869,
+      "type": "api_function"
+    },
+    "WFSAsyncUnlock": {
+      "section_id": "5.26",
+      "start_line": 2870,
+      "end_line": 2916,
+      "type": "api_function"
+    },
+    "WFPCancelAsyncRequest": {
+      "section_id": "6.1",
+      "start_line": 2971,
+      "end_line": 3004,
+      "type": "spi_function"
+    },
+    "WFPDeregister": {
+      "section_id": "6.3",
+      "start_line": 3042,
+      "end_line": 3095,
+      "type": "spi_function"
+    },
+    "WFPExecute": {
+      "section_id": "6.4",
+      "start_line": 3096,
+      "end_line": 3167,
+      "type": "spi_function"
+    },
+    "WFPGetInfo": {
+      "section_id": "6.5",
+      "start_line": 3168,
+      "end_line": 3244,
+      "type": "spi_function"
+    },
+    "WFPRegister": {
+      "section_id": "6.8",
+      "start_line": 3458,
+      "end_line": 3500,
+      "type": "spi_function"
+    },
+    "WFPClose": {
+      "section_id": "6.2",
+      "start_line": 3005,
+      "end_line": 3041,
+      "type": "spi_function"
+    },
+    "WFPLock": {
+      "section_id": "6.6",
+      "start_line": 3245,
+      "end_line": 3289,
+      "type": "spi_function"
+    },
+    "WFPOpen": {
+      "section_id": "6.7",
+      "start_line": 3290,
+      "end_line": 3457,
+      "type": "spi_function"
+    },
+    "WFPSetTraceLevel": {
+      "section_id": "6.9",
+      "start_line": 3501,
+      "end_line": 3549,
+      "type": "spi_function"
+    },
+    "WFPUnloadService": {
+      "section_id": "6.10",
+      "start_line": 3550,
+      "end_line": 3567,
+      "type": "spi_function"
+    },
+    "WFPUnlock": {
+      "section_id": "6.11",
+      "start_line": 3568,
+      "end_line": 3602,
+      "type": "spi_function"
+    },
+    "WFMAllocateBuffer": {
+      "section_id": "7.1",
+      "start_line": 3607,
+      "end_line": 3633,
+      "type": "support_function"
+    },
+    "WFMAllocateMore": {
+      "section_id": "7.2",
+      "start_line": 3634,
+      "end_line": 3658,
+      "type": "support_function"
+    },
+    "WFMFreeBuffer": {
+      "section_id": "7.3",
+      "start_line": 3659,
+      "end_line": 3676,
+      "type": "support_function"
+    },
+    "WFMGetTraceLevel": {
+      "section_id": "7.4",
+      "start_line": 3677,
+      "end_line": 3700,
+      "type": "support_function"
+    },
+    "WFMKillTimer": {
+      "section_id": "7.5",
+      "start_line": 3701,
+      "end_line": 3713,
+      "type": "support_function"
+    },
+    "WFMOutputTraceData": {
+      "section_id": "7.6",
+      "start_line": 3714,
+      "end_line": 3728,
+      "type": "support_function"
+    },
+    "WFMReleaseDLL": {
+      "section_id": "7.7",
+      "start_line": 3729,
+      "end_line": 3752,
+      "type": "support_function"
+    },
+    "WFMSetTimer": {
+      "section_id": "7.8",
+      "start_line": 3753,
+      "end_line": 3774,
+      "type": "support_function"
+    },
+    "WFMSetTraceLevel": {
+      "section_id": "7.9",
+      "start_line": 3775,
+      "end_line": 3831,
+      "type": "support_function"
+    },
+    "WFMCloseKey": {
+      "section_id": "8.1",
+      "start_line": 3835,
+      "end_line": 3849,
+      "type": "support_function"
+    },
+    "WFMCreateKey": {
+      "section_id": "8.2",
+      "start_line": 3850,
+      "end_line": 3884,
+      "type": "support_function"
+    },
+    "WFMDeleteKey": {
+      "section_id": "8.3",
+      "start_line": 3885,
+      "end_line": 3907,
+      "type": "support_function"
+    },
+    "WFMDeleteValue": {
+      "section_id": "8.4",
+      "start_line": 3908,
+      "end_line": 3926,
+      "type": "support_function"
+    },
+    "WFMEnumKey": {
+      "section_id": "8.5",
+      "start_line": 3927,
+      "end_line": 3968,
+      "type": "support_function"
+    },
+    "WFMEnumValue": {
+      "section_id": "8.6",
+      "start_line": 3969,
+      "end_line": 4012,
+      "type": "support_function"
+    },
+    "WFMOpenKey": {
+      "section_id": "8.7",
+      "start_line": 4013,
+      "end_line": 4036,
+      "type": "support_function"
+    },
+    "WFMQueryValue": {
+      "section_id": "8.8",
+      "start_line": 4037,
+      "end_line": 4065,
+      "type": "support_function"
+    },
+    "WFMSetValue": {
+      "section_id": "8.9",
+      "start_line": 4066,
+      "end_line": 4090,
+      "type": "support_function"
+    },
+    "WFSRESULT": {
+      "section_id": "9.1",
+      "start_line": 4092,
+      "end_line": 4128,
+      "type": "api_function"
+    },
+    "WFSVERSION": {
+      "section_id": "9.2",
+      "start_line": 4129,
+      "end_line": 4153,
+      "type": "api_function"
+    },
+    "WFS_TIMER_EVENT": {
+      "section_id": "10.2",
+      "start_line": 4185,
+      "end_line": 4193,
+      "type": "api_function"
+    },
+    "WFS_SYSE_DEVICE_STATUS": {
+      "section_id": "10.3",
+      "start_line": 4194,
+      "end_line": 4243,
+      "type": "api_function"
+    },
+    "WFS_SYSE_UNDELIVERABLE_MSG": {
+      "section_id": "10.4",
+      "start_line": 4244,
+      "end_line": 4279,
+      "type": "api_function"
+    },
+    "WFS_SYSE_APP_DISCONNECT": {
+      "section_id": "10.5",
+      "start_line": 4280,
+      "end_line": 4406,
+      "type": "api_function"
+    },
+    "WFS_SYSE_LOCK_REQUESTED": {
+      "section_id": "10.7",
+      "start_line": 4407,
+      "end_line": 4421,
+      "type": "api_function"
+    },
+    "WFS_SYSE_VERSION_ERROR": {
+      "section_id": "10.8",
+      "start_line": 4422,
+      "end_line": 4452,
+      "type": "api_function"
+    },
+    "WFS_INF_API_TRANSACTION_STATE": {
+      "section_id": "13.1.1",
+      "start_line": 4621,
+      "end_line": 4663,
+      "type": "info"
+    },
+    "WFS_INF_API_SERVICE_INFO": {
+      "section_id": "13.1.2",
+      "start_line": 4664,
+      "end_line": 4872,
+      "type": "info"
+    },
+    "WFS_INF_API_SECURE_QUERY": {
+      "section_id": "13.1.3",
+      "start_line": 4873,
+      "end_line": 4934,
+      "type": "info"
+    },
+    "WFS_INF_API_SYNC_PICTURE": {
+      "section_id": "13.1.4",
+      "start_line": 4935,
+      "end_line": 5028,
+      "type": "info"
+    },
+    "WFS_CMD_API_SET_TRANSACTION_STATE": {
+      "section_id": "13.2.1",
+      "start_line": 5030,
+      "end_line": 5048,
+      "type": "command"
+    },
+    "WFS_CMD_API_GET_COMMAND_NONCE": {
+      "section_id": "13.2.2",
+      "start_line": 5049,
+      "end_line": 5093,
+      "type": "command"
+    },
+    "WFS_CMD_API_SECURE_COMMAND": {
+      "section_id": "13.2.3",
+      "start_line": 5094,
+      "end_line": 5192,
+      "type": "command"
+    },
+    "WFS_CMD_API_CLEAR_COMMAND_NONCE": {
+      "section_id": "13.2.4",
+      "start_line": 5193,
+      "end_line": 5213,
+      "type": "command"
+    },
+    "WFS_CMD_API_SYNC_PICTURE": {
+      "section_id": "13.2.5",
+      "start_line": 5214,
+      "end_line": 5256,
+      "type": "command"
+    },
+    "WFS_CMD_API_START_SECURE_OPERATION": {
+      "section_id": "13.2.6",
+      "start_line": 5257,
+      "end_line": 5288,
+      "type": "command"
+    },
+    "WFS_SRVE_API_STATUS_CHANGED": {
+      "section_id": "13.3.1",
+      "start_line": 5290,
+      "end_line": 5311,
+      "type": "event"
+    },
+    "WFS_EXEE_API_ERROR_INFO": {
+      "section_id": "13.3.2",
+      "start_line": 5312,
+      "end_line": 5335,
+      "type": "event"
+    },
+    "WFS_SRVE_API_NONCE_CLEARED": {
+      "section_id": "13.3.3",
+      "start_line": 5336,
+      "end_line": 5358,
+      "type": "event"
+    },
+    "WFS_SRVE_API_SYNC_PICTURE": {
+      "section_id": "13.3.4",
+      "start_line": 5359,
+      "end_line": 5413,
+      "type": "event"
+    }
+  }
+}

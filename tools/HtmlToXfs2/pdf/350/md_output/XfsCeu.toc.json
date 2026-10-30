@@ -1,0 +1,329 @@
+{
+  "file": "XfsCeu.md",
+  "device_class": "CEU",
+  "part": 16,
+  "toc_line_range": [
+    30,
+    75
+  ],
+  "summary": {
+    "total_entries": 40,
+    "info_commands": 7,
+    "execute_commands": 6,
+    "events": 11
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 4
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 8,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.50",
+          "type": "section",
+          "page": 8,
+          "start_line": 226,
+          "end_line": 239
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 8,
+          "start_line": 240,
+          "end_line": 307
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Card Embossing Units",
+      "type": "section",
+      "page": 10
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 11
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 12,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_CEU_STATUS",
+          "type": "info_command",
+          "page": 12,
+          "start_line": 308,
+          "end_line": 493
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_CEU_CAPABILITIES",
+          "type": "info_command",
+          "page": 16,
+          "start_line": 494,
+          "end_line": 583
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_CEU_FORM_LIST",
+          "type": "info_command",
+          "page": 18,
+          "start_line": 584,
+          "end_line": 595
+        },
+        {
+          "section_id": "4.4",
+          "title": "WFS_INF_CEU_MEDIA_LIST",
+          "type": "info_command",
+          "page": 19,
+          "start_line": 596,
+          "end_line": 607
+        },
+        {
+          "section_id": "4.5",
+          "title": "WFS_INF_CEU_QUERY_FORM",
+          "type": "info_command",
+          "page": 20,
+          "start_line": 608,
+          "end_line": 645
+        },
+        {
+          "section_id": "4.6",
+          "title": "WFS_INF_CEU_QUERY_MEDIA",
+          "type": "info_command",
+          "page": 21,
+          "start_line": 646,
+          "end_line": 725
+        },
+        {
+          "section_id": "4.7",
+          "title": "WFS_INF_CEU_QUERY_FIELD",
+          "type": "info_command",
+          "page": 23,
+          "start_line": 726,
+          "end_line": 798
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 25,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_CMD_CEU_EMBOSS_CARD",
+          "type": "execute_command",
+          "page": 25,
+          "start_line": 799,
+          "end_line": 911
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_CMD_CEU_RESET",
+          "type": "execute_command",
+          "page": 27,
+          "start_line": 912,
+          "end_line": 943
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_CMD_CEU_POWER_SAVE_CONTROL",
+          "type": "execute_command",
+          "page": 28,
+          "start_line": 944,
+          "end_line": 980
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_CMD_CEU_EMBOSS_CARD_EX",
+          "type": "execute_command",
+          "page": 29,
+          "start_line": 981,
+          "end_line": 1122
+        },
+        {
+          "section_id": "5.5",
+          "title": "WFS_CMD_CEU_SUPPLY_REPLENISH",
+          "type": "execute_command",
+          "page": 32,
+          "start_line": 1123,
+          "end_line": 1159
+        },
+        {
+          "section_id": "5.6",
+          "title": "WFS_CMD_CEU_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 33,
+          "start_line": 1160,
+          "end_line": 1209
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 34,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_SRVE_CEU_INPUTBINTHRESHOLD",
+          "type": "event",
+          "page": 34,
+          "start_line": 1210,
+          "end_line": 1222
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_SRVE_CEU_OUTPUTBINTHRESHOLD",
+          "type": "event",
+          "page": 35,
+          "start_line": 1223,
+          "end_line": 1235
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_SRVE_CEU_RETAINBINTHRESHOLD",
+          "type": "event",
+          "page": 36,
+          "start_line": 1236,
+          "end_line": 1248
+        },
+        {
+          "section_id": "6.4",
+          "title": "WFS_EXEE_CEU_FIELDERROR",
+          "type": "event",
+          "page": 37,
+          "start_line": 1249,
+          "end_line": 1284
+        },
+        {
+          "section_id": "6.5",
+          "title": "WFS_EXEE_CEU_FIELDWARNING",
+          "type": "event",
+          "page": 38,
+          "start_line": 1285,
+          "end_line": 1292
+        },
+        {
+          "section_id": "6.6",
+          "title": "WFS_SRVE_CEU_MEDIAREMOVED",
+          "type": "event",
+          "page": 39,
+          "start_line": 1293,
+          "end_line": 1299
+        },
+        {
+          "section_id": "6.7",
+          "title": "WFS_SRVE_CEU_MEDIADETECTED",
+          "type": "event",
+          "page": 40,
+          "start_line": 1300,
+          "end_line": 1315
+        },
+        {
+          "section_id": "6.8",
+          "title": "WFS_EXEE_CEU_EMBOSS_FAILURE",
+          "type": "event",
+          "page": 41,
+          "start_line": 1316,
+          "end_line": 1353
+        },
+        {
+          "section_id": "6.9",
+          "title": "WFS_SRVE_CEU_DEVICEPOSITION",
+          "type": "event",
+          "page": 42,
+          "start_line": 1354,
+          "end_line": 1373
+        },
+        {
+          "section_id": "6.10",
+          "title": "WFS_SRVE_CEU_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 43,
+          "start_line": 1374,
+          "end_line": 1388
+        },
+        {
+          "section_id": "6.11",
+          "title": "WFS_USRE_CEU_TONERTHRESHOLD",
+          "type": "event",
+          "page": 44,
+          "start_line": 1389,
+          "end_line": 1413
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. Embossing Form, Field and Media Definitions",
+      "type": "section",
+      "page": 45,
+      "children": [
+        {
+          "section_id": "7.1",
+          "title": "Definition Syntax",
+          "type": "section",
+          "page": 45,
+          "start_line": 1414,
+          "end_line": 1440
+        },
+        {
+          "section_id": "7.2",
+          "title": "Embossing Form and Media Measurements",
+          "type": "section",
+          "page": 46,
+          "start_line": 1441,
+          "end_line": 1461
+        },
+        {
+          "section_id": "7.3",
+          "title": "Embossing Form Definition",
+          "type": "section",
+          "page": 47,
+          "start_line": 1462,
+          "end_line": 1513
+        },
+        {
+          "section_id": "7.4",
+          "title": "Embossing Field Definition",
+          "type": "section",
+          "page": 48,
+          "start_line": 1514,
+          "end_line": 1582
+        },
+        {
+          "section_id": "7.5",
+          "title": "Media Definition",
+          "type": "section",
+          "page": 49,
+          "start_line": 1583,
+          "end_line": 1626
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "8. C-Header file",
+      "type": "header",
+      "page": 50
+    }
+  ]
+}

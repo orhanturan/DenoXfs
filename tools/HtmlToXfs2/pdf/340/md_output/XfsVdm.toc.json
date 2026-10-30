@@ -1,0 +1,251 @@
+{
+  "file": "XfsVdm.md",
+  "device_class": "VDM",
+  "part": 12,
+  "toc_line_range": [
+    48,
+    122
+  ],
+  "summary": {
+    "total_entries": 30,
+    "info_commands": 3,
+    "execute_commands": 5,
+    "events": 3
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 3,
+      "children": [
+        {
+          "section_id": "1",
+          "title": "Introduction",
+          "type": "section",
+          "page": 7,
+          "children": [
+            {
+              "section_id": "1.1",
+              "title": "Background to Release 3.40",
+              "type": "section",
+              "page": 7,
+              "start_line": 374,
+              "end_line": 409
+            },
+            {
+              "section_id": "1.2",
+              "title": "XFS Service-Specific Programming",
+              "type": "section",
+              "page": 7,
+              "start_line": 410,
+              "end_line": 523
+            }
+          ]
+        },
+        {
+          "section_id": "2",
+          "title": "Vendor Dependent Mode",
+          "type": "section",
+          "page": 9,
+          "children": [
+            {
+              "section_id": "2.1",
+              "title": "VDM Entry triggered by XFS Application",
+              "type": "section",
+              "page": 10,
+              "start_line": 524,
+              "end_line": 595
+            },
+            {
+              "section_id": "2.2",
+              "title": "VDM Entry triggered by Vendor Dependent Switch",
+              "type": "section",
+              "page": 11,
+              "start_line": 596,
+              "end_line": 660
+            },
+            {
+              "section_id": "2.3",
+              "title": "VDM Exit triggered by XFS Application",
+              "type": "section",
+              "page": 12,
+              "start_line": 661,
+              "end_line": 726
+            },
+            {
+              "section_id": "2.4",
+              "title": "VDM Exit triggered by Vendor Dependent Switch",
+              "type": "section",
+              "page": 13,
+              "start_line": 727,
+              "end_line": 787
+            },
+            {
+              "section_id": "2.5",
+              "title": "Controlling / Determining the Active Interface",
+              "type": "section",
+              "page": 14,
+              "start_line": 788,
+              "end_line": 793
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "Vendor Dependent Application independent of the VDM Service Provider",
+      "type": "section",
+      "page": 14
+    },
+    {
+      "section_id": "",
+      "title": "Vendor Dependent Application under Control of the VDM Service Provider",
+      "type": "section",
+      "page": 15,
+      "children": [
+        {
+          "section_id": "4",
+          "title": "References",
+          "type": "section",
+          "page": 16
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "Info Commands",
+      "type": "info_commands_section",
+      "page": 17,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_VDM_STATUS",
+          "type": "info_command",
+          "page": 17,
+          "start_line": 913,
+          "end_line": 1063
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_VDM_CAPABILITIES",
+          "type": "info_command",
+          "page": 19,
+          "start_line": 1064,
+          "end_line": 1141
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_VDM_ACTIVE_INTERFACE",
+          "type": "info_command",
+          "page": 20,
+          "start_line": 1142,
+          "end_line": 1186
+        },
+        {
+          "section_id": "5",
+          "title": "Execute Commands",
+          "type": "execute_commands_section",
+          "page": 21,
+          "children": [
+            {
+              "section_id": "5.1",
+              "title": "WFS_CMD_VDM_ENTER_MODE_REQ",
+              "type": "execute_command",
+              "page": 21,
+              "start_line": 1187,
+              "end_line": 1254
+            },
+            {
+              "section_id": "5.2",
+              "title": "WFS_CMD_VDM_ENTER_MODE_ACK",
+              "type": "execute_command",
+              "page": 22,
+              "start_line": 1255,
+              "end_line": 1289
+            },
+            {
+              "section_id": "5.3",
+              "title": "WFS_CMD_VDM_EXIT_MODE_REQ",
+              "type": "execute_command",
+              "page": 23,
+              "start_line": 1290,
+              "end_line": 1337
+            },
+            {
+              "section_id": "5.4",
+              "title": "WFS_CMD_VDM_EXIT_MODE_ACK",
+              "type": "execute_command",
+              "page": 24,
+              "start_line": 1338,
+              "end_line": 1368
+            },
+            {
+              "section_id": "5.5",
+              "title": "WFS_CMD_VDM_SET_ACTIVE_INTERFACE",
+              "type": "execute_command",
+              "page": 25,
+              "start_line": 1369,
+              "end_line": 1421
+            }
+          ]
+        },
+        {
+          "section_id": "6",
+          "title": "Events",
+          "type": "events_section",
+          "page": 26,
+          "children": [
+            {
+              "section_id": "6.1",
+              "title": "WFS_SRVE_VDM_ENTER_MODE_REQ",
+              "type": "event",
+              "page": 26,
+              "start_line": 1422,
+              "end_line": 1438
+            },
+            {
+              "section_id": "6.2",
+              "title": "WFS_SRVE_VDM_EXIT_MODE_REQ",
+              "type": "event",
+              "page": 27,
+              "start_line": 1439,
+              "end_line": 1455
+            },
+            {
+              "section_id": "6.3",
+              "title": "WFS_SYSE_VDM_MODEENTERED",
+              "type": "api_function",
+              "page": 28,
+              "start_line": 1456,
+              "end_line": 1472
+            },
+            {
+              "section_id": "6.4",
+              "title": "WFS_SYSE_VDM_MODEEXITED",
+              "type": "api_function",
+              "page": 29,
+              "start_line": 1473,
+              "end_line": 1489
+            },
+            {
+              "section_id": "6.5",
+              "title": "WFS_SRVE_VDM_INTERFACE_CHANGED",
+              "type": "event",
+              "page": 30,
+              "start_line": 1490,
+              "end_line": 1528
+            }
+          ]
+        },
+        {
+          "section_id": "7",
+          "title": "C-Header file",
+          "type": "header",
+          "page": 31
+        }
+      ]
+    }
+  ]
+}

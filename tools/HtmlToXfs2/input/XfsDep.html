@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>Depository (DEP) Specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div style="page-break-before:always; page-break-after:always"><div><p> <br/></p>
+<p> <br/>EUROPEAN COMMITTEE FOR STANDARDIZATION  <br/>C O M I T &#201;  E U R O P &#201; E N  D E  N O R M A L I S A T I O N  <br/>E U R O P &#196; I S C H E S  K O M I T E E  F &#220; R  N O R M U N G  <br/> <br/></p>
+<p> <br/></p>
+<p><b>CEN-CENELEC</b> <b>Management Centre:  Rue de la Science 23,  B-1040 Brussels <br/></b></p>
+<p>&#169; 2020 CEN All rights of exploitation in any form and by any means reserved worldwide for CEN national Members. <br/> <br/> <br/></p>
+<p>Ref. No.:CWA 16926-8:2020 E <br/></p>
+<p><b>CEN  <br/>WORKSHOP  <br/>AGREEMENT</b> <br/> <br/></p>
+<p><b>  <br/> CWA 16926-8 <br/></b> <br/> February 2020 <br/>  <br/>  <br/></p>
+<p><b>ICS</b> 35.200; 35.240.15; 35.240.40 <br/></p>
+<p>English version <br/> <br/></p>
+<p> Extensions for Financial Services (XFS) interface <br/>specification Release 3.40 - Part 8: Depository Device Class <br/></p>
+<p>Interface - Programmer's Reference<b> <br/></b></p>
+<p> <br/></p>
+<p>This CEN Workshop Agreement has been drafted and approved by a Workshop of representatives of interested parties, the <br/>constitution of which is indicated in the foreword of this Workshop Agreement. <br/> <br/>The formal process followed by the Workshop in the development of this Workshop Agreement has been endorsed by the <br/>National Members of CEN but neither the National Members of CEN nor the CEN-CENELEC Management Centre can be held <br/>accountable for the technical content of this CEN Workshop Agreement or possible conflicts with standards or legislation. <br/> <br/>This CEN Workshop Agreement can in no way be held as being an official standard developed by CEN and its Members. <br/> <br/>This CEN Workshop Agreement is publicly available as a reference document from the CEN Members National Standard Bodies. <br/> <br/>CEN members are the national standards bodies of Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Finland, France, <br/>Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Republic of North <br/>Macedonia, Romania, Serbia, Slovakia, Slovenia, Spain, Sweden, Switzerland, Turkey and United Kingdom. <br/> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>2 <br/></b></p>
+<p><b>Table of Contents <br/>European Foreword ...................................................................................................... 3</b> <br/></p>
+<p><b>1.</b> <b>Introduction .......................................................................................................... 7</b> <br/><b>1.1</b> <b>Background to Release 3.40 ....................................................................................................... 7</b> <br/><b>1.2</b> <b>XFS Service-Specific Programming ........................................................................................... 7</b> <br/></p>
+<p><b>2.</b> <b>Depository Unit .................................................................................................... 9</b> <br/></p>
+<p><b>3.</b> <b>References ......................................................................................................... 10</b> <br/></p>
+<p><b>4.</b> <b>Info Commands ................................................................................................. 11</b> <br/><b>4.1</b> <b>WFS_INF_DEP_STATUS ........................................................................................................... 11</b> <br/><b>4.2</b> <b>WFS_INF_DEP_CAPABILITIES ................................................................................................. 16</b> <br/></p>
+<p><b>5.</b> <b>Execute Commands .......................................................................................... 19</b> <br/><b>5.1</b> <b>WFS_CMD_DEP_ENTRY ........................................................................................................... 19</b> <br/><b>5.2</b> <b>WFS_CMD_DEP_DISPENSE ..................................................................................................... 21</b> <br/><b>5.3</b> <b>WFS_CMD_DEP_RETRACT ...................................................................................................... 22</b> <br/><b>5.4</b> <b>WFS_CMD_DEP_RESET_COUNT ............................................................................................. 24</b> <br/><b>5.5</b> <b>WFS_CMD_DEP_RESET ........................................................................................................... 25</b> <br/><b>5.6</b> <b>WFS_CMD_DEP_SET_GUIDANCE_LIGHT .............................................................................. 26</b> <br/><b>5.7</b> <b>WFS_CMD_DEP_SUPPLY_REPLENISH .................................................................................. 28</b> <br/><b>5.8</b> <b>WFS_CMD_DEP_POWER_SAVE_CONTROL .......................................................................... 29</b> <br/><b>5.9</b> <b>WFS_CMD_DEP_SYNCHRONIZE_COMMAND ........................................................................ 30</b> <br/></p>
+<p><b>6.</b> <b>Events ................................................................................................................. 31</b> <br/><b>6.1</b> <b>WFS_SRVE_DEP_ENVTAKEN .................................................................................................. 31</b> <br/><b>6.2</b> <b>WFS_EXEE_DEP_ENVDEPOSITED .......................................................................................... 32</b> <br/><b>6.3</b> <b>WFS_EXEE_DEP_DEPOSITERROR ......................................................................................... 33</b> <br/><b>6.4</b> <b>WFS_USRE_DEP_DEPTHRESHOLD ........................................................................................ 34</b> <br/><b>6.5</b> <b>WFS_USRE_DEP_TONERTHRESHOLD .................................................................................. 35</b> <br/><b>6.6</b> <b>WFS_USRE_DEP_ENVTHRESHOLD ........................................................................................ 36</b> <br/><b>6.7</b> <b>WFS_SRVE_DEP_CONTINSERTED ......................................................................................... 37</b> <br/><b>6.8</b> <b>WFS_SRVE_DEP_CONTREMOVED ......................................................................................... 38</b> <br/><b>6.9</b> <b>WFS_SRVE_DEP_ENVINSERTED ............................................................................................ 39</b> <br/><b>6.10</b> <b>WFS_SRVE_DEP_MEDIADETECTED ....................................................................................... 40</b> <br/><b>6.11</b> <b>WFS_EXEE_DEP_INSERTDEPOSIT ......................................................................................... 41</b> <br/><b>6.12</b> <b>WFS_SRVE_DEP_DEVICEPOSITION ....................................................................................... 42</b> <br/><b>6.13</b> <b>WFS_SRVE_DEP_POWER_SAVE_CHANGE ........................................................................... 43</b> <br/></p>
+<p><b>7.</b> <b>C - Header file .................................................................................................... 44</b> <br/> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>3 <br/></b></p>
+<p><b>European Foreword <br/></b>This CEN Workshop Agreement has been developed in accordance with the CEN-CENELEC Guide 29 <br/>&#8220;CEN/CENELEC Workshop Agreements &#8211; The way to rapid consensus&#8221; and with the relevant provisions of <br/>CEN/CENELEC Internal Regulations &#8211; Part 2. It was approved by a Workshop of representatives of interested <br/>parties on 2019-10-08, the constitution of which was supported by CEN following several public calls for <br/>participation, the first of which was made on 1998-06-24. However, this CEN Workshop Agreement does not <br/>necessarily include all relevant stakeholders. <br/> <br/>The final text of this CEN Workshop Agreement was provided to CEN for publication on 2019-12-12. <br/> <br/>The following organizations and individuals developed and approved this CEN Workshop Agreement:  <br/> <br/>&#8226; ATM Japan LTD <br/></p>
+<p>&#8226; AURIGA SPA <br/></p>
+<p>&#8226; BANK OF AMERICA <br/></p>
+<p>&#8226; CASHWAY TECHNOLOGY <br/></p>
+<p>&#8226; CHINAL ECTRONIC FINANCIAL EQUIPMENT SYSTEM CO. <br/></p>
+<p>&#8226; CIMA SPA <br/></p>
+<p>&#8226; CLEAR2PAY SCOTLAND LIMITED <br/></p>
+<p>&#8226; DIEBOLD NIXDORF <br/></p>
+<p>&#8226; EASTERN COMMUNICATIONS CO. LTD &#8211; EASTCOM <br/></p>
+<p>&#8226; FINANZ INFORMATIK <br/></p>
+<p>&#8226; FUJITSU FRONTECH LIMITED <br/></p>
+<p>&#8226; FUJITSU TECHNOLOGY <br/></p>
+<p>&#8226; GLORY LTD <br/></p>
+<p>&#8226; GRG BANKING EQUIPMENT HK CO LTD <br/></p>
+<p>&#8226; HESS CASH SYSTEMS GMBH &amp; CO. KG <br/></p>
+<p>&#8226; HITACHI OMRON TS CORP. <br/></p>
+<p>&#8226; HYOSUNG TNS INC <br/></p>
+<p>&#8226; JIANGSU GUOGUANG ELECTRONIC INFORMATION TECHNOLOGY <br/></p>
+<p>&#8226; KAL <br/></p>
+<p>&#8226; KEBA AG <br/></p>
+<p>&#8226; NCR FSG <br/></p>
+<p>&#8226; NEC CORPORATION <br/></p>
+<p>&#8226; OKI ELECTRIC INDUSTRY SHENZHEN </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>4 <br/></b></p>
+<p>&#8226; OKI ELECTRONIC INDUSTRY CO <br/></p>
+<p>&#8226; PERTO S/A <br/></p>
+<p>&#8226; REINER GMBH &amp; CO KG <br/></p>
+<p>&#8226; SALZBURGER BANKEN SOFTWARE <br/></p>
+<p>&#8226; SIGMA SPA <br/></p>
+<p>&#8226; TEB <br/></p>
+<p>&#8226; ZIJIN FULCRUM TECHNOLOGY CO <br/></p>
+<p>It is possible that some elements of this CEN/CWA may be subject to patent rights. The CEN-CENELEC policy on <br/>patent rights is set out in CEN-CENELEC Guide 8 &#8220;Guidelines for Implementation of the Common IPR Policy on <br/>Patents (and other statutory intellectual property rights based on inventions)&#8221;. CEN shall not be held responsible for <br/>identifying any or all such patent rights. <br/> <br/>The Workshop participants have made every effort to ensure the reliability and accuracy of the technical and non-<br/>technical content of CWA 16926-8, but this does not guarantee, either explicitly or implicitly, its correctness. Users <br/>of CWA 16926-8 should be aware that neither the Workshop participants, nor CEN can be held liable for damages <br/>or losses of any kind whatsoever which may arise from its application. Users of CWA 16926-8 do so on their own <br/>responsibility and at their own risk. <br/>The CWA is published as a multi-part document, consisting of: <br/>Part 1: Application Programming Interface (API) - Service Provider Interface (SPI) - Programmer's Reference <br/>Part 2: Service Classes Definition - Programmer's Reference <br/>Part 3: Printer and Scanning Device Class Interface - Programmer's Reference <br/>Part 4: Identification Card Device Class Interface - Programmer's Reference <br/>Part 5: Cash Dispenser Device Class Interface - Programmer's Reference <br/>Part 6: PIN Keypad Device Class Interface - Programmer's Reference <br/>Part 7: Check Reader/Scanner Device Class Interface - Programmer's Reference <br/>Part 8: Depository Device Class Interface - Programmer's Reference <br/>Part 9: Text Terminal Unit Device Class Interface - Programmer's Reference <br/>Part 10: Sensors and Indicators Unit Device Class Interface - Programmer's Reference <br/>Part 11: Vendor Dependent Mode Device Class Interface - Programmer's Reference <br/>Part 12: Camera Device Class Interface - Programmer's Reference <br/>Part 13: Alarm Device Class Interface - Programmer's Reference <br/>Part 14: Card Embossing Unit Device Class Interface - Programmer's Reference <br/>Part 15: Cash-In Module Device Class Interface - Programmer's Reference <br/>Part 16: Card Dispenser Device Class Interface - Programmer's Reference <br/>Part 17: Barcode Reader Device Class Interface - Programmer's Reference <br/>Part 18: Item Processing Module Device Class Interface - Programmer's Reference <br/>Part 19: Biometrics Device Class Interface - Programmer's Reference <br/>Parts 20 - 28: Reserved for future use. <br/>Parts 29 through 47 constitute an optional addendum to this CWA. They define the integration between the SNMP <br/>standard and the set of status and statistical information exported by the Service Providers. <br/>Part 29: XFS MIB Architecture and SNMP Extensions - Programmer&#8217;s Reference <br/>Part 30: XFS MIB Device Specific Definitions - Printer Device Class </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>5 <br/></b></p>
+<p>Part 31: XFS MIB Device Specific Definitions - Identification Card Device Class <br/>Part 32: XFS MIB Device Specific Definitions - Cash Dispenser Device Class <br/>Part 33: XFS MIB Device Specific Definitions - PIN Keypad Device Class <br/>Part 34: XFS MIB Device Specific Definitions - Check Reader/Scanner Device Class <br/>Part 35: XFS MIB Device Specific Definitions - Depository Device Class <br/>Part 36: XFS MIB Device Specific Definitions - Text Terminal Unit Device Class <br/>Part 37: XFS MIB Device Specific Definitions - Sensors and Indicators Unit Device Class <br/>Part 38: XFS MIB Device Specific Definitions - Camera Device Class <br/>Part 39: XFS MIB Device Specific Definitions - Alarm Device Class <br/>Part 40: XFS MIB Device Specific Definitions - Card Embossing Unit Class <br/>Part 41: XFS MIB Device Specific Definitions - Cash-In Module Device Class <br/>Part 42: Reserved for future use. <br/>Part 43: XFS MIB Device Specific Definitions - Vendor Dependent Mode Device Class <br/>Part 44: XFS MIB Application Management <br/>Part 45: XFS MIB Device Specific Definitions - Card Dispenser Device Class <br/>Part 46: XFS MIB Device Specific Definitions - Barcode Reader Device Class <br/>Part 47: XFS MIB Device Specific Definitions - Item Processing Module Device Class <br/>Part 48: XFS MIB Device Specific Definitions - Biometrics Device Class <br/>Parts 49 - 60 are reserved for future use. <br/>Part 61: Application Programming Interface (API) - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Service Provider Interface (SPI) - Programmer's Reference <br/>Part 62: Printer and Scanning Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference <br/>Part 63: Identification Card Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference <br/>Part 64: Cash Dispenser Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 65: PIN Keypad Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 66: Check Reader/Scanner Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version <br/>3.40 (this CWA) - Programmer's Reference <br/>Part 67: Depository Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 68: Text Terminal Unit Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference <br/>Part 69: Sensors and Indicators Unit Device Class Interface - Migration from Version 3.30 (CWA 16926) to <br/>Version 3.40 (this CWA) - Programmer's Reference <br/>Part 70: Vendor Dependent Mode Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version <br/>3.40 (this CWA) - Programmer's Reference <br/>Part 71: Camera Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this CWA) - <br/>Programmer's Reference <br/>Part 72: Alarm Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this CWA) - <br/>Programmer's Reference <br/>Part 73: Card Embossing Unit Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 <br/>(this CWA) - Programmer's Reference </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>6 <br/></b></p>
+<p>Part 74: Cash-In Module Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 75: Card Dispenser Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 76: Barcode Reader Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version 3.40 (this <br/>CWA) - Programmer's Reference <br/>Part 77: Item Processing Module Device Class Interface - Migration from Version 3.30 (CWA 16926) to Version <br/>3.40 (this CWA) - Programmer's Reference <br/>In addition to these Programmer's Reference specifications, the reader of this CWA is also referred to a <br/>complementary document, called Release Notes. The Release Notes contain clarifications and explanations on the <br/>CWA specifications, which are not requiring functional changes. The current version of the Release Notes is <br/>available online from: https://www.cen.eu/work/Sectors/Digital_society/Pages/WSXFS.aspx. <br/>The information in this document represents the Workshop's current views on the issues discussed as of the date of <br/>publication. It is provided for informational purposes only and is subject to change without notice. CEN makes no <br/>warranty, express or implied, with respect to this document. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>7 <br/></b></p>
+<p><b>1. Introduction <br/></b></p>
+<p><b>1.1 Background to Release 3.40 <br/></b>The CEN/XFS Workshop aims to promote a clear and unambiguous specification defining a multi-vendor software <br/>interface to financial peripheral devices. The XFS (eXtensions for Financial Services) specifications are developed <br/>within the CEN (European Committee for Standardization/Information Society Standardization System) Workshop <br/>environment. CEN Workshops aim to arrive at a European consensus on an issue that can be published as a CEN <br/>Workshop Agreement (CWA). <br/>The CEN/XFS Workshop encourages the participation of both banks and vendors in the deliberations required to <br/>create an industry standard. The CEN/XFS Workshop achieves its goals by focused sub-groups working <br/>electronically and meeting quarterly. <br/>Release 3.40 of the XFS specification is based on a C API and is delivered with the continued promise for the <br/>protection of technical investment for existing applications. This release of the specification extends the <br/>functionality and capabilities of the existing devices covered by the specification. Notable enhancements include: <br/></p>
+<p>&#8226; Common API level based &#8216;Service Information&#8217; command to report Service Provider information, <br/>data and versioning. <br/></p>
+<p>&#8226; Common API level based events to report changes in status and invalid parameters. <br/>&#8226; Support for Advanced Encryption Standard (AES) in PIN. <br/>&#8226; VDM Entry Without Closing XFS Service Providers. <br/>&#8226; Addition of a Biometrics device class. <br/>&#8226; CDM/CIM Note Classification List handling. <br/>&#8226; Support for Derived Unique Key Per Transaction (DUKPT) in PIN. <br/>&#8226; Addition of Transaction Start/End commands. <br/>&#8226; Addition of explicit CIM Prepare/Present commands. <br/></p>
+<p> <br/><b>1.2 XFS Service-Specific Programming <br/></b>The service classes are defined by their service-specific commands and the associated data structures, error codes, <br/>messages, etc. These commands are used to request functions that are specific to one or more classes of Service <br/>Providers, but not all of them, and therefore are not included in the common API for basic or administration <br/>functions. <br/>When a service-specific command is common among two or more classes of Service Providers, the syntax of the <br/>command is as similar as possible across all services, since a major objective of XFS is to standardize function <br/>codes and structures for the broadest variety of services. For example, using the <b>WFSExecute </b>function, the <br/>commands to read data from various services are as similar as possible to each other in their syntax and data <br/>structures. <br/>In general, the specific command set for a service class is defined as a superset of the specific capabilities likely to <br/>be provided by the developers of the services of that class; thus any particular device will normally support only a <br/>subset of the defined command set. <br/>There are three cases in which a Service Provider may receive a service-specific command that it does not support: <br/>The requested capability is defined for the class of Service Providers by the XFS specification, the particular vendor <br/>implementation of that service does not support it, and the unsupported capability is <b><i>not </i></b><i></i>considered to be <br/>fundamental to the service. In this case, the Service Provider returns a successful completion, but does no operation. <br/>An example would be a request from an application to turn on a control indicator on a passbook printer; the Service <br/>Provider recognizes the command, but since the passbook printer it is managing does not include that indicator, the <br/>Service Provider does no operation and returns a successful completion to the application. <br/>The requested capability is defined for the class of Service Providers by the XFS specification, the particular vendor <br/>implementation of that service does not support it, and the unsupported capability <b><i>is</i></b><i></i> considered to be fundamental <br/>to the service. In this case, a WFS_ERR_UNSUPP_COMMAND error for Execute commands or </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>8 <br/></b></p>
+<p>WFS_ERR_UNSUPP_CATEGORY error for Info commands is returned to the calling application. An example <br/>would be a request from an application to a cash dispenser to retract items where the dispenser hardware does not <br/>have that capability; the Service Provider recognizes the command but, since the cash dispenser it is managing is <br/>unable to fulfil the request, returns this error. <br/>The requested capability is <b><i>not</i></b><i></i> defined for the class of Service Providers by the XFS specification. In this case, a <br/>WFS_ERR_INVALID_COMMAND error for Execute commands or WFS_ERR_INVALID_CATEGORY error <br/>for Info commands is returned to the calling application. <br/>This design allows implementation of applications that can be used with a range of services that provide differing <br/>subsets of the functionalities that are defined for their service class. Applications may use the <b>WFSGetInfo</b> and <br/><b>WFSAsyncGetInfo</b> commands to inquire about the capabilities of the service they are about to use, and modify <br/>their behavior accordingly, or they may use functions and then deal with error returns to make decisions as to how <br/>to use the service. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>9 <br/></b></p>
+<p><b>2. Depository Unit <br/></b>This specification describes the functionality of the services provided by the Depository (DEP) services under XFS, <br/>by defining the service-specific commands that can be issued, using the<b> WFSGetInfo,</b> <b>WFSAsyncGetInfo</b>, <br/><b>WFSExecute</b> and <b>WFSAsyncExecute</b> functions. <br/>A Depository is used for the acceptance and deposit of media into the device or terminal. There are two main types <br/>of depository: an envelope depository for the deposit of media in envelopes and a night safe depository for the <br/>deposit of bags containing bulk media. <br/>An envelope depository accepts media, prints on the media and deposits the media into a holding container or bin. <br/>Some envelope depositories offer the capability to dispense an envelope to the customer at the start of a transaction. <br/>The customer takes this envelope, fills in the deposit media, possibly inscribes it and puts it into the deposit slot. <br/>The envelope is then accepted, printed and transported into a deposit container. <br/>The envelope dispense mechanism may be part of the envelope depository device mechanism with the same <br/>entry/exit slot or it may be a separate mechanism with separate entry/exit slot. <br/>Envelopes dispensed and not taken by the customer can be retracted back into the device. When the dispenser is a <br/>separate mechanism the envelope is retracted back into the dispenser container. When the dispenser is a common <br/>mechanism the envelope is retracted into the depository container. <br/>A night safe depository normally only logs the deposit of a bag and does not print on the media. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>10 <br/></b></p>
+<p><b>3. References <br/></b>1. XFS Application Programming Interface (API)/Service Provider Interface (SPI), Programmer&#8217;s Reference <br/>Revision 3.40 </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>11 <br/></b></p>
+<p><b>4. Info Commands <br/></b></p>
+<p><b>4.1 WFS_INF_DEP_STATUS <br/>Description</b> This command reports the full range of information available, including the information that is <br/></p>
+<p>provided by the Service Provider. <br/><b>Input Param</b> None. <br/><b>Output Param</b> LPWFSDEPSTATUS lpStatus; <br/></p>
+<p>typedef struct _wfs_dep_status <br/> { <br/> WORD    fwDevice; <br/> WORD    fwDepContainer; <br/> WORD    fwDepTransport; <br/> WORD    fwEnvSupply; <br/> WORD    fwEnvDispenser; <br/> WORD    fwPrinter; <br/> WORD    fwToner; <br/> WORD    fwShutter; <br/> WORD    wNumOfDeposits; <br/> LPSTR   lpszExtra; <br/> DWORD   dwGuidLights[WFS_DEP_GUIDLIGHTS_SIZE]; <br/> WORD    fwDepositLocation; <br/> WORD    wDevicePosition; <br/> USHORT   usPowerSaveRecoveryTime; <br/> WORD    wAntiFraudModule; <br/> } WFSDEPSTATUS, *LPWFSDEPSTATUS; <br/><i>fwDevice</i> <br/>Specifies the state of the Depository device as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_DEVONLINE The device is online (i.e. powered on and <br/></p>
+<p>operable). <br/>WFS_DEP_DEVOFFLINE The device is off-line (e.g. the operator has <br/></p>
+<p>taken the device offline by turning a switch). <br/>WFS_DEP_DEVPOWEROFF The device is powered off or physically not <br/></p>
+<p>connected. <br/>WFS_DEP_DEVNODEVICE There is no device intended to be there; e.g. <br/></p>
+<p>this type of self service machine does not <br/>contain such a device or it is internally not <br/>configured. <br/></p>
+<p>WFS_DEP_DEVHWERROR The device is inoperable due to a hardware <br/>error. The device is present but a hardware <br/>fault prevents it from being used. <br/></p>
+<p>WFS_DEP_DEVUSERERROR The device is present but a person is <br/>preventing proper operation. The application <br/>should suspend the device operation or <br/>remove the device from service until the <br/>Service Provider generates a device state <br/>change event indicating the condition of the <br/>device has changed, i.e. the error is removed <br/>or a permanent error condition has occurred. <br/></p>
+<p>WFS_DEP_DEVBUSY The device is busy and not able to process an <br/>Execute command at this time. <br/></p>
+<p>WFS_DEP_DEVFRAUDATTEMPT The device is present but is inoperable <br/>because it has detected a fraud attempt. <br/></p>
+<p>WFS_DEP_DEVPOTENTIALFRAUD The device has detected a potential fraud <br/>attempt and is capable of remaining in <br/>service. In this case the application should <br/>make the decision as to whether to take the <br/>device offline. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>12 <br/></b></p>
+<p><i>fwDepContainer</i> <br/>Specifies the state of the deposit container that contains the deposited envelopes or bags as one of <br/>the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_DEPOK The deposit container is in a good state. <br/>WFS_DEP_DEPHIGH The deposit container is almost full <br/></p>
+<p>(threshold). <br/>WFS_DEP_DEPFULL The deposit container is full. <br/>WFS_DEP_DEPINOP The deposit container is inoperable. <br/>WFS_DEP_DEPMISSING The deposit container is missing. <br/>WFS_DEP_DEPUNKNOWN Due to a hardware error or other condition, <br/></p>
+<p>the state of the deposit container cannot be <br/>determined. <br/></p>
+<p>WFS_DEP_DEPNOTSUPP The physical device is not able to determine <br/>the status of the deposit container. <br/></p>
+<p><i>fwDepTransport</i> <br/>Specifies the state of the deposit transport mechanism that transports the envelope into the deposit <br/>container. Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_DEPOK The deposit transport is in a good state. <br/>WFS_DEP_DEPINOP The deposit transport is inoperative due to a <br/></p>
+<p>hardware failure or media jam. <br/>WFS_DEP_DEPUNKNOWN Due to a hardware error or other condition, <br/></p>
+<p>the state of the deposit transport cannot be <br/>determined. <br/></p>
+<p>WFS_DEP_DEPNOTSUPP The physical device has no deposit transport. <br/><i>fwEnvSupply</i> <br/>Specifies the state of the envelope supply unit as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_ENVOK The envelope supply unit is in a good state <br/></p>
+<p>(and locked). <br/>WFS_DEP_ENVLOW The envelope supply unit is present but low. <br/>WFS_DEP_ENVEMPTY The envelope supply unit is present but <br/></p>
+<p>empty. No envelopes can be dispensed. <br/>WFS_DEP_ENVINOP The envelope supply unit is in an inoperable <br/></p>
+<p>state. No envelopes can be dispensed. <br/>WFS_DEP_ENVMISSING The envelope supply unit is missing. <br/>WFS_DEP_ENVNOTSUPP The physical device has no envelope supply. <br/>WFS_DEP_ENVUNLOCKED The envelope supply unit is unlocked. <br/>WFS_DEP_ENVUNKNOWN Due to a hardware error or other condition, <br/></p>
+<p>the state of the envelope supply cannot be <br/>determined. <br/></p>
+<p><i>fwEnvDispenser</i> <br/>Specifies the state of the envelope dispenser. Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_ENVOK The envelope dispenser is present and in a <br/></p>
+<p>good state. <br/>WFS_DEP_ENVINOP The envelope dispenser is present but in an <br/></p>
+<p>inoperable state. No envelopes can be <br/>dispensed. <br/></p>
+<p>WFS_DEP_ENVUNKNOWN Due to a hardware error or other condition, <br/>the state of the envelope dispenser cannot be <br/>determined. <br/></p>
+<p>WFS_DEP_ENVNOTSUPP The physical device has no envelope <br/>dispenser. <br/></p>
+<p><i>fwPrinter</i> <br/>Specifies the state of the printer. Specified as one of the following flags: </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>13 <br/></b></p>
+<p>Value Meaning <br/>WFS_DEP_PTROK The printer is present and in a good state. <br/>WFS_DEP_PTRINOP The printer is inoperative. <br/>WFS_DEP_PTRUNKNOWN Due to a hardware error or other condition, <br/></p>
+<p>the state of the printer cannot be determined. <br/>WFS_DEP_PTRNOTSUPP The physical device has no printer. <br/></p>
+<p><i>fwToner</i> <br/>Specifies the state of the toner (or ink) for the printer. Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_TONERFULL The toner cassette is full. <br/>WFS_DEP_TONERLOW The toner in the printer is low. <br/>WFS_DEP_TONEROUT The toner in the printer is empty. <br/>WFS_DEP_TONERUNKNOWN Due to a hardware error or other condition, <br/></p>
+<p>the state of the toner for the printer cannot be <br/>determined. <br/></p>
+<p>WFS_DEP_TONERNOTSUPP The physical device has no toner. <br/><i>fwShutter</i> <br/>Specifies the state of the shutter or door. Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_SHTCLOSED The shutter is closed. <br/>WFS_DEP_SHTOPEN The shutter is open. <br/>WFS_DEP_SHTJAMMED The shutter is jammed. <br/>WFS_DEP_SHTUNKNOWN Due to a hardware error or other condition, <br/></p>
+<p>the state of the shutter cannot be determined. <br/>WFS_DEP_SHTNOTSUPP The physical device has no shutter. <br/></p>
+<p><i>wNumOfDeposits</i> <br/>Specifies the number of envelopes or bags in the deposit container. This value is persistent, i.e. <br/>maintained through power failures, opens, closes and system resets. <br/><i>lpszExtra</i> <br/>Pointer to a list of vendor-specific, or any other extended, information. The information is <br/>returned as a series of <i>&#8220;key=value&#8221;</i> strings so that it is easily extensible by Service Providers. <br/>Each string is null-terminated, with the final string terminating with two null characters. An <br/>empty list may be indicated by either a NULL pointer or a pointer to two consecutive null <br/>characters. <br/><i>dwGuidLights [...]</i> <br/>Specifies the state of the guidance light indicators. A number of guidance light types are defined <br/>below. Vendor specific guidance lights are defined starting from the end of the array. The <br/>maximum guidance light index is WFS_DEP_GUIDLIGHTS_MAX. <br/>Specifies the state of the guidance light indicator as <br/>WFS_DEP_GUIDANCE_NOT_AVAILABLE, WFS_DEP_GUIDANCE_OFF or a combination <br/>of the following flags consisting of one type B, optionally one type C and optionally one type D. <br/></p>
+<p>Value Meaning Type <br/>WFS_DEP_GUIDANCE_NOT_AVAILABLE The status is not available. A <br/>WFS_DEP_GUIDANCE_OFF The light is turned off. A <br/>WFS_DEP_GUIDANCE_SLOW_FLASH The light is blinking slowly. B <br/>WFS_DEP_GUIDANCE_MEDIUM_FLASH The light is blinking medium B <br/></p>
+<p>frequency. <br/>WFS_DEP_GUIDANCE_QUICK_FLASH The light is blinking quickly. B <br/>WFS_DEP_GUIDANCE_CONTINUOUS The light is turned on B <br/></p>
+<p>continuous (steady). <br/>WFS_DEP_GUIDANCE_RED The light is red. C <br/>WFS_DEP_GUIDANCE_GREEN The light is green. C <br/>WFS_DEP_GUIDANCE_YELLOW The light is yellow. C <br/>WFS_DEP_GUIDANCE_BLUE The light is blue. C <br/>WFS_DEP_GUIDANCE_CYAN The light is cyan. C <br/>WFS_DEP_GUIDANCE_MAGENTA The light is magenta. C <br/>WFS_DEP_GUIDANCE_WHITE The light is white. C </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>14 <br/></b></p>
+<p>WFS_DEP_GUIDANCE_ENTRY The light is in the entry state. D <br/>WFS_DEP_GUIDANCE_EXIT The light is in the exit state. D <br/></p>
+<p><i>dwGuidLights </i>[<i>WFS_DEP_GUIDANCE_ENVDEPOSITORY</i>] <br/>Specifies the state of the guidance light indicator on the envelope depository unit. <br/><i>dwGuidLights</i> [<i>WFS_DEP_GUIDANCE_ENVDISPENSER</i>] <br/>Specifies the state of the guidance light indicator on the envelope dispenser unit. <br/><i>fwDepositLocation</i> <br/>Specifies the location of the item deposited at the end of the last WFS_CMD_DEP_ENTRY <br/>command. Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_DEPLOCNOTSUPP Reporting the location of the last deposit is <br/></p>
+<p>not supported. <br/>WFS_DEP_DEPLOCUNKNOWN Cannot determine the location of the last <br/></p>
+<p>deposited item. <br/>WFS_DEP_DEPLOCCONTAINER The item is in the container. <br/>WFS_DEP_DEPLOCTRANSPORT The item is in the transport. <br/>WFS_DEP_DEPLOCPRINTER The item is in the printer. <br/>WFS_DEP_DEPLOCSHUTTER The item is at the shutter (available for <br/></p>
+<p>removal). <br/>WFS_DEP_DEPLOCNONE No item was entered on the last <br/></p>
+<p>WFS_CMD_DEP_ENTRY. <br/>WFS_DEP_DEPLOCREMOVED The item was removed. <br/></p>
+<p>For devices capable of identifying item location, WFS_DEP_DEPLOCNONE is returned when <br/>the status is queried before any call to WFS_CMD_DEP_ENTRY. <br/><i>wDevicePosition <br/></i>Specifies the device position. The device position value is independent of the <i>fwDevice</i> value, e.g. <br/>when the device position is reported as WFS_DEP_DEVICENOTINPOSITION, <i>fwDevice</i> can <br/>have any of the values defined above (including WFS_DEP_DEVONLINE or <br/>WFS_DEP_DEVOFFLINE). If the device is not in its normal operating position (i.e. <br/>WFS_DEP_DEVICEINPOSITION) then media may not be presented through the normal <br/>customer interface. This value is one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_DEVICEINPOSITION The device is in its normal operating <br/></p>
+<p>position, or is fixed in place and cannot be <br/>moved. <br/></p>
+<p>WFS_DEP_DEVICENOTINPOSITION The device has been removed from its <br/>normal operating position. <br/></p>
+<p>WFS_DEP_DEVICEPOSUNKNOWN Due to a hardware error or other condition, <br/>the position of the device cannot be <br/>determined. <br/></p>
+<p>WFS_DEP_DEVICEPOSNOTSUPP The physical device does not have the <br/>capability of detecting the position. <br/></p>
+<p><i>usPowerSaveRecoveryTime</i> <br/>Specifies the actual number of seconds required by the device to resume its normal operational <br/>state from the current power saving mode. This value is zero if either the power saving mode has <br/>not been activated or no power save control is supported. <br/><i>wAntiFraudModule</i> <br/>Specifies the state of the anti-fraud module as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_AFMNOTSUPP No anti-fraud module is available. <br/>WFS_DEP_AFMOK Anti-fraud module is in a good state and no <br/></p>
+<p>foreign device is detected. <br/>WFS_DEP_AFMINOP Anti-fraud module is inoperable. <br/>WFS_DEP_AFMDEVICEDETECTED Anti-fraud module detected the presence of a <br/></p>
+<p>foreign device. <br/>WFS_DEP_AFMUNKNOWN The state of the anti-fraud module cannot be <br/></p>
+<p>determined. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>15 <br/></b></p>
+<p><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> Applications which require or expect specific information to be present in the <i>lpszExtra</i> parameter <br/></p>
+<p>may not be device or vendor-independent. <br/>In the case where communications with the device has been lost, the <i>fwDevice</i> field will report <br/>WFS_DEP_DEVPOWEROFF when the device has been removed or <br/>WFS_DEP_DEVHWERROR if the communications are unexpectedly lost. All other fields <br/>should contain a value based on the following rules and priority: <br/></p>
+<p>1. Report the value as unknown. <br/>2. Report the value as a general h/w error. <br/>3. Report the value as the last known value. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>16 <br/></b></p>
+<p><b>4.2 WFS_INF_DEP_CAPABILITIES <br/>Description</b> This command is used to retrieve the capabilities of the Depository. <br/><b>Input Param</b> None. <br/><b>Output Param</b> LPWFSDEPCAPS lpCaps; <br/></p>
+<p>typedef struct _wfs_dep_caps <br/> { <br/> WORD    wClass; <br/> WORD    fwType; <br/> WORD    fwEnvSupply; <br/> BOOL    bDepTransport; <br/> BOOL    bPrinter; <br/> BOOL    bToner; <br/> BOOL    bShutter; <br/> BOOL    bPrintOnRetracts; <br/> WORD    fwRetractEnvelope; <br/> WORD    wMaxNumChars; <br/> WORD    fwCharSupport; <br/> LPSTR   lpszExtra; <br/> DWORD   dwGuidLights[WFS_DEP_GUIDLIGHTS_SIZE]; <br/> BOOL    bPowerSaveControl; <br/> BOOL    bAntiFraudModule; <br/> LPDWORD   lpdwSynchronizableCommands; <br/> } WFSDEPCAPS, *LPWFSDEPCAPS; <br/><i>wClass</i> <br/>Specifies the logical service class as WFS_SERVICE_CLASS_DEP. <br/><i>fwType</i> <br/>Specifies the type of the depository device as a combination of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_TYPEENVELOPE Depository accepts envelopes. <br/>WFS_DEP_TYPEBAGDROP Depository accepts bags. <br/></p>
+<p><i>fwEnvSupply</i> <br/>Defines what type of Envelope Supply Unit exists as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_ENVMOTORIZED Envelope Supply can dispense envelopes. <br/>WFS_DEP_ENVMANUAL Envelope Supply is manual and must be <br/></p>
+<p>unlocked to allow envelopes to be taken. The <br/>Service Event, <br/>WFS_SRVE_DEP_ENVTAKEN, can not be <br/>sent and the Execute Command, <br/>WFS_CMD_DEP_RETRACT can not be <br/>supported. <br/></p>
+<p>WFS_DEP_ENVNONE No Envelope Supply or Envelope Supply is <br/>manual and envelopes can be taken at any <br/>time. The Service Event, <br/>WFS_SRVE_DEP_ENVTAKEN, can not be <br/>sent and the Execute Command, <br/>WFS_CMD_DEP_RETRACT can not be <br/>supported. <br/></p>
+<p><i>bDepTransport</i> <br/>Specifies whether a deposit transport mechanism is available. <br/><i>bPrinter</i> <br/>Specifies whether a printer is available. <br/><i>bToner</i> <br/>Specifies whether the printer has a toner (or ink) cassette. <br/><i>bShutter</i> <br/>Specifies whether a deposit transport shutter is available. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>17 <br/></b></p>
+<p><i>bPrintOnRetracts</i> <br/>Specifies whether the device can print the string specified in the <i>lpszPrintData</i> or <br/><i>lpszUNICODEPrintData</i> field of the WFS_CMD_DEP_RETRACT command on retracted <br/>envelopes. <br/><i>fwRetractEnvelope</i> <br/>Specifies the ability of the envelope dispenser to retract envelopes as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_NORETRACT The envelope dispenser does not have the <br/></p>
+<p>capability to retract envelopes. <br/>WFS_DEP_RETRACTDEP Retracted envelopes are put in the deposit <br/></p>
+<p>container. <br/>WFS_DEP_RETRACTDISP Retracted envelopes are retracted back to the <br/></p>
+<p>envelope dispenser. <br/><i>wMaxNumChars</i> <br/>Specifies the maximum number of characters that can be printed on the envelope. <br/><i>fwCharSupport</i> <br/>One or more flags specifying the Character Sets supported by the Service Provider: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_ASCII ASCII is supported for execute command <br/></p>
+<p>data values. <br/>WFS_DEP_UNICODE UNICODE is supported for execute <br/></p>
+<p>command data values. <br/><i>lpszExtra</i> <br/>Pointer to a list of vendor-specific, or any other extended, information. The information is <br/>returned as a series of <i>&#8220;key=value&#8221;</i> strings so that it is easily extensible by Service Providers. <br/>Each string is null-terminated, with the final string terminating with two null characters. An <br/>empty list may be indicated by either a NULL pointer or a pointer to two consecutive null <br/>characters. <br/><i>dwGuidLights [...]</i> <br/>Specifies which guidance lights are available. A number of guidance light types are defined <br/>below. Vendor specific guidance lights are defined starting from the end of the array. The <br/>maximum guidance light index is WFS_DEP_GUIDLIGHTS_MAX. <br/>In addition to supporting specific flash rates and colors, some guidance lights also have the <br/>capability to show directional movement representing &#8220;entry&#8221; and &#8220;exit&#8221;.  The &#8220;entry&#8221; state gives <br/>the impression of leading a user to place media into the device. The &#8220;exit&#8221; state gives the <br/>impression of ejection from a device to a user and would be used for retrieving media from the <br/>device. The elements of this array are specified as a combination of the following flags and <br/>indicate all of the possible flash rates (type B), colors (type C) and directions (type D) that the <br/>guidance light indicator is capable of handling. If the guidance light indicator only supports one <br/>color then no value of type C is returned. If the guidance light indicator does not support direction <br/>then no value of type D is returned. A value of WFS_DEP_GUIDANCE_NOT_AVAILABLE <br/>indicates that the device has no guidance light indicator or the device controls the light directly <br/>with no application control possible. <br/></p>
+<p>Value Meaning Type <br/>WFS_DEP_GUIDANCE_NOT_AVAILABLE There is no guidance light  A <br/></p>
+<p>control available at this position. <br/>WFS_DEP_GUIDANCE_OFF The light is turned off. A <br/>WFS_DEP_GUIDANCE_SLOW_FLASH The light is blinking slowly. B <br/>WFS_DEP_GUIDANCE_MEDIUM_FLASH The light is blinking medium B <br/></p>
+<p>frequency. <br/>WFS_DEP_GUIDANCE_QUICK_FLASH The light is blinking quickly. B <br/>WFS_DEP_GUIDANCE_CONTINUOUS The light is turned on  B <br/></p>
+<p>continuous (steady). <br/>WFS_DEP_GUIDANCE_RED The light is red. C <br/>WFS_DEP_GUIDANCE_GREEN The light is green. C <br/>WFS_DEP_GUIDANCE_YELLOW The light is yellow. C <br/>WFS_DEP_GUIDANCE_BLUE The light is blue. C </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>18 <br/></b></p>
+<p>WFS_DEP_GUIDANCE_CYAN The light is cyan. C <br/>WFS_DEP_GUIDANCE_MAGENTA The light is magenta. C <br/>WFS_DEP_GUIDANCE_WHITE The light is white. C <br/>WFS_DEP_GUIDANCE_ENTRY The light can be in the entry state. D <br/>WFS_DEP_GUIDANCE_EXIT The light can be in the exit state. D <br/></p>
+<p><i>dwGuidLights</i> [<i>WFS_DEP_GUIDANCE_ENVDEPOSITORY</i>] <br/>Specifies whether the guidance light indicator on the envelope depository unit is available. <br/><i>dwGuidLights</i> [<i>WFS_DEP_GUIDANCE_ENVDISPENSER</i>] <br/>Specifies whether the guidance light indicator on the envelope dispenser unit is available. <br/><i>bPowerSaveControl <br/></i>Specifies whether power saving control is available. This can either be TRUE if available or <br/>FALSE if not available. <br/><i>bAntiFraudModule <br/></i>Specifies whether the anti-fraud module is available. This can either be TRUE if available or <br/>FALSE if not available.  <br/><i>lpdwSynchronizableCommands <br/></i>Pointer to a zero-terminated list of DWORDs which contains the execute command IDs that can <br/>be synchronized. If no execute command can be synchronized then this parameter will be NULL. <br/></p>
+<p><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> Applications which require or expect specific information to be present in the <i>lpszExtra</i> parameter <br/></p>
+<p>may not be device or vendor-independent. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>19 <br/></b></p>
+<p><b>5. Execute Commands <br/></b></p>
+<p><b>5.1 WFS_CMD_DEP_ENTRY <br/>Description</b> This command starts the entry of an envelope and attempts to deposit it into the deposit container. <br/></p>
+<p>The WFS_EXEE_DEP_INSERTDEPOSIT event will be generated when the device is ready to <br/>accept the deposit. <br/>A deposit is considered to be successful if an envelope is inserted and the shutter closes such that <br/>the customer no longer has access to it. This includes cases where the deposited envelope reaches <br/>the deposit container, becomes jammed before reaching the container, or cannot be returned to the <br/>customer. <br/>If a successful deposit takes place, then this command will always complete with <br/>WFS_SUCCESS, and any errors detected during the operation will be returned by the <br/>WFS_EXEE_DEP_DEPOSITERROR event. <br/>If a successful deposit causes the deposit bin to reach a high or full threshold, a <br/>WFS_USRE_DEP_DEPTHRESHOLD event will be sent. <br/>A deposit is considered to be unsuccessful if an envelope is inserted, an error occurs, and the <br/>customer has the ability to access it. This includes cases where an envelope is returned to the user, <br/>or cases where it becomes jammed but the customer is still able to access it. <br/>If an unsuccessful deposit takes place, then the command will always complete with an <br/>appropriate error code, and any errors detected during the operation will be returned by the <br/>WFS_EXEE_DEP_DEPOSITERROR event. <br/>If the envelope is entered and then returned to the exit slot for removal by the customer, if the <br/>deposit device is capable of this operation (either hardware capability or hardware problems such <br/>as a jam may prohibit the envelope from being returned) a WFS_SRVE_DEP_ENVTAKEN will <br/>be sent when it is removed. <br/>For example, if the envelope entered has an incorrect size and the deposit was unsuccessful, the <br/>envelope is returned to the exit slot for removal by the customer. If the envelope is returned to the <br/>customer for removal, the command will complete with WFS_ERR_DEP_ENVSIZE. A <br/>WFS_SRVE_DEP_ENVTAKEN is sent when the envelope is removed. But if returning the <br/>envelope is not possible and the customer cannot access the envelope, the command will complete <br/>with WFS_SUCCESS and a WFS_EXEE_DEP_DEPOSITERROR event is sent reporting a <br/>WFS_ERR_DEP_ENVSIZE. <br/></p>
+<p><b>Input Param</b> LPWFSDEPENVELOPE lpEnvelope; <br/>typedef struct _wfs_dep_envelope <br/> { <br/> LPSTR   lpszPrintData; <br/> LPWSTR   lpszUNICODEPrintData; <br/> } WFSDEPENVELOPE, *LPWFSDEPENVELOPE; <br/><i>lpszPrintData</i> <br/>Specifies the data that will be printed on the envelope that is entered by the customer. <br/><i>lpszUNICODEPrintData</i> <br/>Specifies the UNICODE data that will be printed on the envelope that is entered by the customer. <br/>The <i>lpszUNICODEPrintData</i> field should only be used if the Service Provider supports <br/>UNICODE. The <i>lpszPrintData</i> and <i>lpszUNICODEPrintData</i> fields are mutually exclusive. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_DEP_DEPFULL The deposit container is full. <br/>WFS_ERR_DEP_DEPJAMMED An envelope jam occurred in the deposit <br/></p>
+<p>transport between the entry slot and the <br/>deposit container. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>20 <br/></b></p>
+<p>WFS_ERR_DEP_ENVSIZE The envelope entered has an incorrect size. <br/>WFS_ERR_DEP_PTRFAIL The printer failed. <br/>WFS_ERR_DEP_SHTNOTCLOSED The shutter failed to close. <br/>WFS_ERR_DEP_SHTNOTOPENED The shutter failed to open. <br/>WFS_ERR_DEP_CONTMISSING The deposit container is not present. <br/>WFS_ERR_DEP_DEPUNKNOWN The result of the deposit is not known. <br/>WFS_ERR_DEP_CHARSETNOTSUPP Character set(s) supported by Service <br/></p>
+<p>Provider is inconsistent with use of <br/><i>lpszPrintData</i> or <i>lpszUNICODEPrintData</i> <br/>fields. <br/></p>
+<p>WFS_ERR_DEP_TONEROUT Toner or ink supply is empty or printing <br/>contrast with ribbon is not sufficient. This <br/>error can only occur when a print string was <br/>passed in the input parameter. <br/></p>
+<p><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/>command: <br/></p>
+<p>Value Meaning <br/>WFS_SRVE_DEP_ENVTAKEN The envelope has been taken by the user. <br/>WFS_EXEE_DEP_ENVDEPOSITED The envelope has been deposited in the <br/></p>
+<p>deposit container. <br/>WFS_EXEE_DEP_DEPOSITERROR An error occurred during the deposit <br/></p>
+<p>operation. <br/>WFS_USRE_DEP_DEPTHRESHOLD This user event is used to specify that the <br/></p>
+<p>state of the deposit container reached a <br/>threshold. <br/></p>
+<p>WFS_USRE_DEP_TONERTHRESHOLD This user event is used to specify that the <br/>state of the toner supply reached a threshold. <br/></p>
+<p>WFS_SRVE_DEP_ENVINSERTED An envelope has been inserted by the user. <br/>WFS_EXEE_DEP_INSERTDEPOSIT Device is ready to accept deposit from the <br/></p>
+<p>user. <br/><b>Comments</b> If the data specified in <i>lpszPrintData</i> or <i>lpszUNICODEPrintData</i> is longer than the maximum <br/></p>
+<p>allowed characters, the error code WFS_ERR_INVALID_DATA will be returned. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>21 <br/></b></p>
+<p><b>5.2 WFS_CMD_DEP_DISPENSE <br/>Description</b> This command is used to dispense an envelope from the envelope supply. This command will <br/></p>
+<p>either action the dispensing of an envelope from the envelope supply or will unlock the envelope <br/>supply for manual access. <br/></p>
+<p><b>Input Param</b> None. <br/><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_DEP_ENVEMPTY There is no envelope in the envelope unit. <br/>WFS_ERR_DEP_ENVJAMMED An envelope jam occurred in the dispenser <br/></p>
+<p>transport between the envelope supply and <br/>the output slot. <br/></p>
+<p>WFS_ERR_DEP_SHTNOTOPENED The shutter failed to open. <br/><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/></p>
+<p>command: <br/>Value Meaning <br/>WFS_SRVE_DEP_ENVTAKEN The envelope has been taken by the user. <br/>WFS_USRE_DEP_ENVTHRESHOLD This user event is used to specify that the <br/></p>
+<p>state of the envelope supply reached a <br/>threshold. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>22 <br/></b></p>
+<p><b>5.3 WFS_CMD_DEP_RETRACT <br/>Description</b> This command is used to retract an envelope that was not taken by a customer after an envelope <br/></p>
+<p>dispense operation. The given string is printed on the envelope and the envelope is retracted into <br/>the deposit container or back to the envelope dispenser, depending on the capabilities of the <br/>physical device. If a retract to the deposit bin causes the deposit bin to reach a high or full <br/>threshold, a WFS_USRE_DEP_DEPTHRESHOLD event will be sent. <br/>This command will only return with an error code if the retract has not taken place. The error code <br/>will then describe the reason for the failure. <br/></p>
+<p><b>Input Param</b> LPWFSDEPENVELOPE lpEnvelope; <br/>typedef struct _wfs_dep_envelope <br/> { <br/> LPSTR   lpszPrintData; <br/> LPSTR   lpszUNICODEPrintData; <br/> } WFSDEPENVELOPE, *LPWFSDEPENVELOPE; <br/><i>lpszPrintData</i> <br/>Specifies the data that will be printed on the envelope that is retracted. <br/><i>lpszUNICODEPrintData</i> <br/>Specifies the UNICODE data that will be printed on the envelope that is retracted. <br/>The <i>lpszUNICODEPrintData</i> field should only be used if the Service Provider supports <br/>UNICODE. The <i>lpszPrintData</i> and <i>lpszUNICODEPrintData</i> fields are mutually exclusive. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_DEP_DEPFULL The deposit container is full. <br/>WFS_ERR_DEP_DEPJAMMED An envelope jam occurred in the deposit <br/></p>
+<p>transport between the entry slot and the <br/>deposit container (may only occur with <br/>hardware that retracts to the deposit <br/>container). <br/></p>
+<p>WFS_ERR_DEP_ENVJAMMED An envelope jam occurred between the entry <br/>slot and the envelope container (may only <br/>occur with hardware that retracts to the <br/>envelope container). <br/></p>
+<p>WFS_ERR_DEP_NOENV No envelope to retract. <br/>WFS_ERR_DEP_PTRFAIL The printer failed. <br/>WFS_ERR_DEP_SHTNOTCLOSED The shutter failed to close. <br/>WFS_ERR_DEP_CONTMISSING The deposit container is not present. <br/>WFS_ERR_DEP_CHARSETNOTSUPP Character set(s) supported by Service <br/></p>
+<p>Provider is inconsistent with use of <br/><i>lpszPrintData</i> or <i>lpszUNICODEPrintData</i> <br/>fields. <br/></p>
+<p>WFS_ERR_DEP_TONEROUT Toner or ink supply is empty or printing <br/>contrast with ribbon is not sufficient. <br/></p>
+<p><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/>command: <br/></p>
+<p>Value Meaning <br/>WFS_USRE_DEP_DEPTHRESHOLD This user event is used to specify that the <br/></p>
+<p>state of the deposit container reached a <br/>threshold. <br/></p>
+<p>WFS_USRE_DEP_TONERTHRESHOLD This user event is used to specify that the <br/>state of the toner supply reached a threshold. <br/></p>
+<p>WFS_SRVE_DEP_ENVTAKEN The envelope has been taken by the user. <br/><b>Comments</b> If the data specified in <i>lpszPrintData</i> or <i>lpszUNICODEPrintData</i> is longer than the maximum </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>23 <br/></b></p>
+<p>allowed characters, the error code WFS_ERR_INVALID_DATA will be returned. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>24 <br/></b></p>
+<p><b>5.4 WFS_CMD_DEP_RESET_COUNT <br/>Description</b> This command is used to reset the present value for number of envelopes/bags in the deposit <br/></p>
+<p>container to zero. <br/><b>Input Param</b> None. <br/><b>Output Param</b> None. <br/><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/></p>
+<p>command: <br/>Value Meaning <br/>WFS_USRE_DEP_DEPTHRESHOLD This user event is used to specify that the <br/></p>
+<p>state of the deposit container reached a <br/>threshold. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>25 <br/></b></p>
+<p><b>5.5 WFS_CMD_DEP_RESET <br/>Description</b> Sends a service reset to the Service Provider. The Service Provider may reset the deposit device <br/></p>
+<p>and also the envelope dispenser, if possible. Any media found in the device can be either captured <br/>or completely ejected (depending on hardware). If a capture into the deposit bin causes the deposit <br/>bin to reach a high or full threshold, a WFS_USRE_DEP_DEPTHRESHOLD event will be sent. <br/>If the WFS_CMD_DEP_RESET command is requested to eject the media and the hardware is not <br/>capable of this operation either due to hardware capability or hardware error such as a jam, the <br/>Service Provider will retract the media in order to attempt to make the device operational. The <br/>WFS_SRVE_DEP_MEDIADETECTED event will indicate the position of the detected media <br/>following completion of the command. If the input parameter to the WFS_CMD_DEP_RESET <br/>command is NULL, the Service Provider will go through default actions to clear the deposit <br/>transport. The WFS_SRVE_DEP_MEDIADETECTED event will indicate the position of any <br/>detected media following completion of the command. The envelope dispenser will go through <br/>the most effective means to clear any jammed media. <br/></p>
+<p><b>Input Param</b> LPDWORD lpdwDepMediaControl; <br/>Specifies the action that should be done if deposited media is detected during the reset operation, <br/>as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_CTRLEJECT Any media detected in the device should be <br/></p>
+<p>completed ejected (depending on the <br/>hardware). <br/></p>
+<p>WFS_DEP_CTRLRETRACT Any media detected in the device should be <br/>deposited into the deposit container during <br/>the reset operation. <br/></p>
+<p>If <i>lpdwDepMediaControl</i> is set to NULL, the Service Provider will go through default actions to <br/>clear the deposit transport. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_DEP_DEPFULL The deposit container is full. <br/>WFS_ERR_DEP_DEPJAMMED An envelope jam occurred in the deposit <br/></p>
+<p>transport. <br/>WFS_ERR_DEP_ENVJAMMED An envelope jam occurred in the dispenser <br/></p>
+<p>transport between the envelope supply and <br/>the output slot. <br/></p>
+<p>WFS_ERR_DEP_SHTNOTOPENED The shutter failed to open. <br/>WFS_ERR_DEP_SHTNOTCLOSED The shutter failed to close. <br/>WFS_ERR_DEP_CONTMISSING The deposit container is not present. <br/></p>
+<p><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events may be generated by this <br/>command, if the appropriate situation occurs and the device service has the capability to detect the <br/>situation: <br/></p>
+<p>Value Meaning <br/>WFS_SRVE_DEP_ENVTAKEN The envelope has been taken by the user. <br/>WFS_USRE_DEP_DEPTHRESHOLD This user event is used to specify that the <br/></p>
+<p>state of the deposit container reached a <br/>threshold. <br/></p>
+<p>WFS_SRVE_DEP_MEDIADETECTED Media is detected in the device during a reset <br/>operation. <br/></p>
+<p><b>Comments</b> This command is used by an application control program to cause a device to reset itself to a <br/>known good condition. Persistent values may change, but will not be reset as a result of this <br/>command (i.e. if an envelope is captured, the <i>wNumOfDeposits</i> value in the WFSDEPSTATUS <br/>structure will be incremented, but never reset to zero). </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>26 <br/></b></p>
+<p><b>5.6 WFS_CMD_DEP_SET_GUIDANCE_LIGHT <br/>Description</b> This command is used to set the status of the DEP guidance lights. This includes defining the <br/></p>
+<p>flash rate, the color and the direction. When an application tries to use a color or direction that is <br/>not supported then the Service Provider will return the generic error <br/>WFS_ERR_UNSUPP_DATA. <br/></p>
+<p><b>Input Param</b> LPWFSDEPSETGUIDLIGHT lpSetGuidLight; <br/>typedef struct _wfs_dep_set_guidlight <br/> { <br/> WORD    wGuidLight; <br/> DWORD   dwCommand; <br/> } WFSDEPSETGUIDLIGHT, *LPWFSDEPSETGUIDLIGHT; <br/><i>wGuidLight <br/></i>Specifies the index of the guidance light to set as one of the values defined within the capabilities <br/>section. <br/><i>dwCommand <br/></i>Specifies the state of the guidance light indicator as WFS_DEP_GUIDANCE_OFF or a <br/>combination of the following flags consisting of one type B, optionally one type C and optionally <br/>one type D. If no value of type C is specified then the default color is used. The Service Provider <br/>determines which color is used as the default color. <br/></p>
+<p>Value Meaning Type <br/>WFS_DEP_GUIDANCE_OFF The light indicator is turned off. A <br/>WFS_DEP_GUIDANCE_SLOW_FLASH The light indicator is set to flash B <br/></p>
+<p>slowly. <br/>WFS_DEP_GUIDANCE_MEDIUM_FLASH The light indicator is set to B <br/></p>
+<p>flash medium frequency. <br/>WFS_DEP_GUIDANCE_QUICK_FLASH The light indicator is set to B <br/></p>
+<p>flash quickly. <br/>WFS_DEP_GUIDANCE_CONTINUOUS The light indicator is turned B <br/></p>
+<p>on continuously (steady). <br/>WFS_DEP_GUIDANCE_RED The light indicator C <br/></p>
+<p>color is set to red. <br/>WFS_DEP_GUIDANCE_GREEN The light indicator C <br/></p>
+<p>color is set to green. <br/>WFS_DEP_GUIDANCE_YELLOW The light indicator C <br/></p>
+<p>color is set to yellow. <br/>WFS_DEP_GUIDANCE_BLUE The light indicator C <br/></p>
+<p>color is set to blue. <br/>WFS_DEP_GUIDANCE_CYAN The light indicator C <br/></p>
+<p>color is set to cyan. <br/>WFS_DEP_GUIDANCE_MAGENTA The light indicator C <br/></p>
+<p>color is set to magenta. <br/>WFS_DEP_GUIDANCE_WHITE The light indicator C <br/></p>
+<p>color is set to white. <br/>WFS_DEP_GUIDANCE_ENTRY The light indicator is set D <br/></p>
+<p>to the entry state. <br/>WFS_DEP_GUIDANCE_EXIT The light indicator is set D <br/></p>
+<p>to the exit state. <br/><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_DEP_INVALID_PORT An attempt to set a guidance light to a new <br/></p>
+<p>value was invalid because the guidance light <br/>does not exist. <br/></p>
+<p><b>Events</b> Only the generic events defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> Guidance light support was added into the DEP primarily to support guidance lights for </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>27 <br/></b></p>
+<p>workstations where more than one instance of a DEP is present. The original SIU guidance light <br/>mechanism was not able to manage guidance lights for workstations with multiple DEPs. This <br/>command can also be used to set the status of the DEP guidance lights when only one instance of <br/>a DEP is present. <br/>The slow and medium flash rates must not be greater than 2.0 Hz. It should be noted that in order <br/>to comply with American Disabilities Act guidelines only a slow or medium flash rate must be <br/>used. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>28 <br/></b></p>
+<p><b>5.7 WFS_CMD_DEP_SUPPLY_REPLENISH <br/>Description</b> After the supplies have been replenished, this command is used to indicate that the specified <br/></p>
+<p>supplies have been replenished and are expected to be in a healthy state. <br/>Hardware that cannot detect the level of a supply and reports on the supply&#8217;s status using metrics <br/>(or some other means), must assume the supply has been fully replenished after this command is <br/>issued. The appropriate threshold event must be broadcast. <br/>Hardware that can detect the level of a supply must update its status based on its sensors, generate <br/>a threshold event if appropriate and succeed the command even if the supply has not been <br/>replenished. If it has already detected the level and reported the threshold before this command <br/>was issued, the command must succeed and no threshold event is required. <br/></p>
+<p><b>Input Param</b> LPWFSDEPSUPPLYREPLEN lpSupplyReplen; <br/>typedef struct _wfs_dep_supply_replen <br/> { <br/> WORD    fwSupplyReplen; <br/> } WFSDEPSUPPLYREPLEN, *LPWFSDEPSUPPLYREPLEN; <br/><i>fwSupplyReplen</i> <br/>Specifies the supply that was replenished as a combination of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_REPLEN_ENV The envelope supply was replenished. <br/>WFS_DEP_REPLEN_TONER The toner supply was replenished. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> Only the generic error codes defined in [Ref. 1] can be generated by this command. <br/><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/></p>
+<p>command: <br/>Value Meaning <br/>WFS_USRE_DEP_ENVTHRESHOLD This user event is used to specify that the <br/></p>
+<p>state of the envelope supply threshold has <br/>been cleared. <br/></p>
+<p>WFS_USRE_DEP_TONERTHRESHOLD This user event is used to specify that the <br/>state of the toner (or ink supply or the state <br/>of a ribbon) supply threshold has been <br/>cleared. <br/></p>
+<p><b>Comments</b> If any one of the specified supplies is not supported by a Service Provider, <br/>WFS_ERR_UNSUPP_DATA should be returned, and no replenishment actions will be taken by <br/>the Service Provider. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>29 <br/></b></p>
+<p><b>5.8 WFS_CMD_DEP_POWER_SAVE_CONTROL <br/>Description</b> This command activates or deactivates the power-saving mode. <br/></p>
+<p>If the Service Provider receives another execute command while in power saving mode, the <br/>Service Provider automatically exits the power saving mode, and executes the requested <br/>command. If the Service Provider receives an information command while in power saving mode, <br/>the Service Provider will not exit the power saving mode. <br/></p>
+<p><b>Input Param</b> LPWFSDEPPOWERSAVECONTROL lpPowerSaveControl; <br/>typedef struct _wfs_dep_power_save_control <br/> { <br/> USHORT   usMaxPowerSaveRecoveryTime; <br/> } WFSDEPPOWERSAVECONTROL, *LPWFSDEPPOWERSAVECONTROL; <br/><i>usMaxPowerSaveRecoveryTime</i> <br/>Specifies the maximum number of seconds in which the device must be able to return to its <br/>normal operating state when exiting power save mode. The device will be set to the highest <br/>possible power save mode within this constraint. If <i>usMaxPowerSaveRecoveryTime</i> is set to zero <br/>then the device will exit the power saving mode. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes</b> In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_DEP_POWERSAVETOOSHORT The power saving mode has not been <br/></p>
+<p>activated because the device is not able to <br/>resume from the power saving mode within <br/>the specified <br/><i>usMaxPowerSaveRecoveryTime</i> value. <br/></p>
+<p>WFS_ERR_DEP_POWERSAVEMEDIAPRESENT <br/>The power saving mode has not been <br/>activated because media is present inside the <br/>device. <br/></p>
+<p><b>Events</b> In addition to the generic events defined in [Ref. 1], the following events can be generated by this <br/>command: <br/></p>
+<p>Value Meaning <br/>WFS_SRVE_DEP_POWER_SAVE_CHANGE The power save recovery time has changed. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>30 <br/></b></p>
+<p><b>5.9 WFS_CMD_DEP_SYNCHRONIZE_COMMAND <br/>Description</b> This command is used to reduce response time of a command (e.g. for synchronization with <br/></p>
+<p>display) as well as to synchronize actions of the different device classes. This command is <br/>intended to be used only on hardware which is capable of synchronizing functionality within a <br/>single device class or with other device classes. <br/>The list of execute commands which this command supports for synchronization is retrieved in <br/>the <i>lpdwSynchronizableCommands</i> parameter of the WFS_INF_DEP_CAPABILITIES. <br/>This command is optional, i.e. any other command can be called without having to call it in <br/>advance. Any preparation that occurs by calling this command will not affect any other <br/>subsequent command. However, any subsequent execute command other than the one that was <br/>specified in the <i>dwCommand</i> input parameter will execute normally and may invalidate the <br/>pending synchronization. In this case the application should call the <br/>WFS_CMD_DEP_SYNCHRONIZE_COMMAND again in order to start a synchronization. <br/></p>
+<p><b>Input Param</b> LPWFSDEPSYNCHRONIZECOMMAND lpSynchronizeCommand; <br/>typedef struct _wfs_dep_synchronize_command <br/> { <br/> DWORD    dwCommand; <br/> LPVOID    lpCmdData; <br/> } WFSDEPSYNCHRONIZECOMMAND, *LPWFSDEPSYNCHRONIZECOMMAND; <br/><i>dwCommand</i> <br/>The command ID of the command to be synchronized and executed next. <br/><i>lpCmdData <br/></i>Pointer to data or a data structure that represents the parameter that is normally associated with <br/>the command that is specified in <i>dwCommand</i>. For example, if <i>dwCommand</i> is <br/>WFS_CMD_DEP_ENTRY then <i>lpCmdData</i> will point to a WFSDEPENVELOPE structure. This <br/>parameter can be NULL if no command input parameter is needed or if this detail is not needed to <br/>synchronize for the command. <br/>It will be device-dependent whether the synchronization is effective or not in the case where the <br/>application synchronizes for a command with this command specifying a parameter but <br/>subsequently executes the synchronized command with a different parameter. This case should <br/>not result in an error; however, the preparation effect could be different from what the application <br/>expects. The application should, therefore, make sure to use the same parameter between <br/><i>lpCmdData</i> of this command and the subsequent corresponding execute command. <br/></p>
+<p><b>Output Param</b> None. <br/><b>Error Codes </b>In addition to the generic error codes defined in [Ref. 1], the following error codes can be <br/></p>
+<p>generated by this command: <br/>Value Meaning <br/>WFS_ERR_DEP_COMMANDUNSUPP The command specified in the <i>dwCommand</i> <br/></p>
+<p>field is not supported by the Service <br/>Provider. <br/></p>
+<p>WFS_ERR_DEP_SYNCHRONIZEUNSUPP The preparation for the command specified <br/>in the <i>dwCommand</i> with the parameter <br/>specified in the <i>lpCmdData</i> is not supported <br/>by the Service Provider. <br/></p>
+<p><b>Events</b> Only the generic events defined in [Ref. 1] can be generated by this command. <br/><b>Comments</b> For sample flows of this synchronization see the [Ref 1] Appendix C. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>31 <br/></b></p>
+<p><b>6. Events <br/></b></p>
+<p><b>6.1 WFS_SRVE_DEP_ENVTAKEN <br/>Description</b> This service event is used to specify that the envelope has been taken by the customer. <br/><b>Event Param</b> None. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>32 <br/></b></p>
+<p><b>6.2 WFS_EXEE_DEP_ENVDEPOSITED <br/>Description</b> This execute event is used to specify that the envelope has been deposited in the deposit container. <br/><b>Event Param</b> None. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>33 <br/></b></p>
+<p><b>6.3 WFS_EXEE_DEP_DEPOSITERROR <br/>Description</b> This execute event is used to specify that an error occurred during the deposit operation. For every <br/></p>
+<p>error that occurred a single execute event is generated. <br/><b>Event Param</b> LPLONG lplError; <br/></p>
+<p><i>lplError <br/></i>For a list of possible error conditions see the description of the WFS_CMD_DEP_ENTRY <br/>command. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>34 <br/></b></p>
+<p><b>6.4 WFS_USRE_DEP_DEPTHRESHOLD <br/>Description</b> This user event is used to specify that the state of the deposit container reached a threshold. <br/><b>Event Param</b> LPWORD lpwDepositThreshold; <br/></p>
+<p><i>lpwDepositThreshold <br/></i>Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_DEPOK The deposit container is in a good state. <br/>WFS_DEP_DEPHIGH The deposit container is almost full <br/></p>
+<p>(threshold). <br/>WFS_DEP_DEPFULL The deposit container is full. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>35 <br/></b></p>
+<p><b>6.5 WFS_USRE_DEP_TONERTHRESHOLD <br/>Description</b> This user event is used to specify that the state of the toner (or ink supply or the state of a ribbon) <br/></p>
+<p>reached a threshold. <br/><b>Event Param</b> LPWORD lpwTonerThreshold; <br/></p>
+<p><i>lpwTonerThreshold <br/></i>Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_TONERFULL The toner or ink supply is full or the ribbon <br/></p>
+<p>is OK. <br/>WFS_DEP_TONERLOW The toner or ink supply is low or the print <br/></p>
+<p>contrast with a ribbon is weak. <br/>WFS_DEP_TONEROUT The toner or ink supply is empty or the print <br/></p>
+<p>contrast with a ribbon is not sufficient any <br/>more. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>36 <br/></b></p>
+<p><b>6.6 WFS_USRE_DEP_ENVTHRESHOLD <br/>Description</b> This user event is used to specify that the state of the envelope supply reached a threshold. <br/><b>Event Param</b> LPWORD lpwEnvelopeThreshold; <br/></p>
+<p><i>lpwEnvelopeThreshold <br/></i>Specified as one of the following flags: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_ENVOK The envelope supply is present and in a good <br/></p>
+<p>state. <br/>WFS_DEP_ENVLOW The envelope supply is present but low. <br/>WFS_DEP_ENVEMPTY The envelope supply is present but empty. <br/></p>
+<p>No envelopes can be dispensed. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>37 <br/></b></p>
+<p><b>6.7 WFS_SRVE_DEP_CONTINSERTED <br/>Description</b> This service event is used to specify that the deposit container has been reinserted into the device. <br/><b>Event Param</b> None. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>38 <br/></b></p>
+<p><b>6.8 WFS_SRVE_DEP_CONTREMOVED <br/>Description</b> This service event is used to specify that the deposit container has been removed from the device. <br/><b>Event Param</b> None. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>39 <br/></b></p>
+<p><b>6.9 WFS_SRVE_DEP_ENVINSERTED <br/>Description</b> This service event is used to specify that an envelope has been inserted by the customer. <br/><b>Event Param</b> None. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>40 <br/></b></p>
+<p><b>6.10 WFS_SRVE_DEP_MEDIADETECTED <br/>Description</b> This event is generated when media is detected in the device during a reset operation. The media <br/></p>
+<p>may be detected as a result of the reset operation on the envelope dispenser, the envelope <br/>depositor, or both. <br/></p>
+<p><b>Event Param</b> LPWFSDEPMEDIADETECTED lpMediaDetected; <br/>typedef struct _wfs_dep_media_detected <br/> { <br/> WORD    wDispenseMedia; <br/> WORD    wDepositMedia; <br/> } WFSDEPMEDIADETECTED, *LPWFSDEPMEDIADETECTED; <br/><i>wDispenseMedia</i> <br/>Specifies the dispensed envelope position after the reset operation, as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_NOMEDIA No dispensed media was detected during the <br/></p>
+<p>reset operation. <br/>WFS_DEP_MEDIARETRACTED The media was retracted into the deposit <br/></p>
+<p>container during the reset operation. <br/>WFS_DEP_MEDIADISPENSER The media was retracted into the envelope <br/></p>
+<p>dispenser during the reset operation. <br/>WFS_DEP_MEDIAEJECTED The media is in the exit slot. <br/>WFS_DEP_MEDIAJAMMED The media is jammed in the device. <br/>WFS_DEP_MEDIAUNKNOWN The media is in an unknown position. <br/></p>
+<p><i>wDepositMedia</i> <br/>Specifies the deposited media position after the reset operation, as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_NOMEDIA No deposited media was detected during the <br/></p>
+<p>reset operation. <br/>WFS_DEP_MEDIARETRACTED The media was retracted into the deposit <br/></p>
+<p>container during the reset operation. <br/>WFS_DEP_MEDIAEJECTED The media is in the exit slot. <br/>WFS_DEP_MEDIAJAMMED The media is jammed in the device. <br/>WFS_DEP_MEDIAUNKNOWN The media is in an unknown position. <br/></p>
+<p><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>41 <br/></b></p>
+<p><b>6.11 WFS_EXEE_DEP_INSERTDEPOSIT <br/>Description</b> This event notifies the application when the device is ready for the user to make the deposit. This <br/></p>
+<p>event is mandatory. <br/><b>Event Param</b> None. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>42 <br/></b></p>
+<p><b>6.12 WFS_SRVE_DEP_DEVICEPOSITION <br/>Description</b> This service event reports that the device has changed its position status. <br/><b>Event Param</b> LPWFSDEPDEVICEPOSITION lpDevicePosition; <br/></p>
+<p>typedef struct _wfs_dep_device_position <br/> { <br/> WORD    wPosition; <br/> } WFSDEPDEVICEPOSITION, *LPWFSDEPDEVICEPOSITION; <br/><i>wPosition</i> <br/>Position of the device as one of the following values: <br/></p>
+<p>Value Meaning <br/>WFS_DEP_DEVICEINPOSITION The device is in its normal operating <br/></p>
+<p>position. <br/>WFS_DEP_DEVICENOTINPOSITION The device has been removed from its <br/></p>
+<p>normal operating position. <br/>WFS_DEP_DEVICEPOSUNKNOWN The position of the device cannot be <br/></p>
+<p>determined. <br/><b>Comments</b> None. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>43 <br/></b></p>
+<p><b>6.13 WFS_SRVE_DEP_POWER_SAVE_CHANGE <br/>Description</b> This service event specifies that the power save recovery time has changed. <br/><b>Event Param</b> LPWFSDEPPOWERSAVECHANGE lpPowerSaveChange; <br/></p>
+<p>typedef struct _wfs_dep_power_save_change <br/> { <br/> USHORT   usPowerSaveRecoveryTime; <br/> } WFSDEPPOWERSAVECHANGE, *LPWFSDEPPOWERSAVECHANGE; <br/><i>usPowerSaveRecoveryTime</i> <br/>Specifies the actual number of seconds required by the device to resume its normal operational <br/>state. This value is zero if the device exited the power saving mode. <br/></p>
+<p><b>Comments</b> If another device class compounded with this device enters into a power saving mode, this device <br/>will automatically enter into the same power saving mode and this event will be generated. </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>44 <br/></b></p>
+<p><b>7. C - Header file <br/></b>/****************************************************************************** <br/>*                                                                             * <br/>* xfsdep.h   XFS - Depository (DEP) definitions                               * <br/>*                                                                             * <br/>*             Version 3.40  (December 6 2019)                                 * <br/>*                                                                             * <br/>******************************************************************************/ <br/> <br/>#ifndef __INC_XFSDEP__H <br/>#define __INC_XFSDEP__H <br/> <br/>#ifdef __cplusplus <br/>extern &quot;C&quot; { <br/>#endif <br/> <br/>#include &lt;xfsapi.h&gt; <br/> <br/>/* be aware of alignment */ <br/>#pragma pack(push,1) <br/> <br/>/* values of WFSDEPCAPS.wClass */ <br/> <br/>#define     WFS_SERVICE_CLASS_DEP               (6) <br/>#define     WFS_SERVICE_CLASS_VERSION_DEP       (0x2803) /* Version 3.40 */ <br/>#define     WFS_SERVICE_CLASS_NAME_DEP          &quot;DEP&quot; <br/> <br/>#define     DEP_SERVICE_OFFSET                  (WFS_SERVICE_CLASS_DEP * 100) <br/> <br/>/* DEP Info Commands */ <br/> <br/>#define     WFS_INF_DEP_STATUS                  (DEP_SERVICE_OFFSET + 1) <br/>#define     WFS_INF_DEP_CAPABILITIES            (DEP_SERVICE_OFFSET + 2) <br/> <br/>/* DEP Execute Commands */ <br/> <br/>#define     WFS_CMD_DEP_ENTRY                   (DEP_SERVICE_OFFSET + 1) <br/>#define     WFS_CMD_DEP_DISPENSE                (DEP_SERVICE_OFFSET + 2) <br/>#define     WFS_CMD_DEP_RETRACT                 (DEP_SERVICE_OFFSET + 3) <br/>#define     WFS_CMD_DEP_RESET_COUNT             (DEP_SERVICE_OFFSET + 5) <br/>#define     WFS_CMD_DEP_RESET                   (DEP_SERVICE_OFFSET + 6) <br/>#define     WFS_CMD_DEP_SET_GUIDANCE_LIGHT      (DEP_SERVICE_OFFSET + 7) <br/>#define     WFS_CMD_DEP_SUPPLY_REPLENISH        (DEP_SERVICE_OFFSET + 8) <br/>#define     WFS_CMD_DEP_POWER_SAVE_CONTROL      (DEP_SERVICE_OFFSET + 9) <br/>#define     WFS_CMD_DEP_SYNCHRONIZE_COMMAND     (DEP_SERVICE_OFFSET + 10) <br/> <br/>/* DEP Messages */ <br/> <br/>#define     WFS_SRVE_DEP_ENVTAKEN               (DEP_SERVICE_OFFSET + 1) <br/>#define     WFS_EXEE_DEP_ENVDEPOSITED           (DEP_SERVICE_OFFSET + 2) <br/>#define     WFS_EXEE_DEP_DEPOSITERROR           (DEP_SERVICE_OFFSET + 3) <br/>#define     WFS_USRE_DEP_DEPTHRESHOLD           (DEP_SERVICE_OFFSET + 4) <br/>#define     WFS_USRE_DEP_TONERTHRESHOLD         (DEP_SERVICE_OFFSET + 5) <br/>#define     WFS_USRE_DEP_ENVTHRESHOLD           (DEP_SERVICE_OFFSET + 6) <br/>#define     WFS_SRVE_DEP_CONTINSERTED           (DEP_SERVICE_OFFSET + 7) <br/>#define     WFS_SRVE_DEP_CONTREMOVED            (DEP_SERVICE_OFFSET + 8) <br/>#define     WFS_SRVE_DEP_ENVINSERTED            (DEP_SERVICE_OFFSET + 9) <br/>#define     WFS_SRVE_DEP_MEDIADETECTED          (DEP_SERVICE_OFFSET + 10) <br/>#define     WFS_EXEE_DEP_INSERTDEPOSIT          (DEP_SERVICE_OFFSET + 11) <br/>#define     WFS_SRVE_DEP_DEVICEPOSITION         (DEP_SERVICE_OFFSET + 12) <br/>#define     WFS_SRVE_DEP_POWER_SAVE_CHANGE      (DEP_SERVICE_OFFSET + 13) <br/> <br/>/* values of WFSDEPSTATUS.fwDevice */ <br/> <br/>#define     WFS_DEP_DEVONLINE                   WFS_STAT_DEVONLINE <br/>#define     WFS_DEP_DEVOFFLINE                  WFS_STAT_DEVOFFLINE <br/>#define     WFS_DEP_DEVPOWEROFF                 WFS_STAT_DEVPOWEROFF <br/>#define     WFS_DEP_DEVBUSY                     WFS_STAT_DEVBUSY </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>45 <br/></b></p>
+<p>#define     WFS_DEP_DEVNODEVICE                 WFS_STAT_DEVNODEVICE <br/>#define     WFS_DEP_DEVHWERROR                  WFS_STAT_DEVHWERROR <br/>#define     WFS_DEP_DEVUSERERROR                WFS_STAT_DEVUSERERROR <br/>#define     WFS_DEP_DEVFRAUDATTEMPT             WFS_STAT_DEVFRAUDATTEMPT <br/>#define     WFS_DEP_DEVPOTENTIALFRAUD           WFS_STAT_DEVPOTENTIALFRAUD <br/> <br/>/* values of WFSDEPSTATUS.fwDepContainer, fwDepTransport */ <br/> <br/>#define     WFS_DEP_DEPOK                       (0) <br/>#define     WFS_DEP_DEPHIGH                     (1) <br/>#define     WFS_DEP_DEPFULL                     (2) <br/>#define     WFS_DEP_DEPINOP                     (3) <br/>#define     WFS_DEP_DEPMISSING                  (4) <br/>#define     WFS_DEP_DEPUNKNOWN                  (5) <br/>#define     WFS_DEP_DEPNOTSUPP                  (6) <br/> <br/>/* values of WFSDEPSTATUS.fwEnvSupply, fwEnvDispenser */ <br/> <br/>#define     WFS_DEP_ENVOK                       (0) <br/>#define     WFS_DEP_ENVLOW                      (1) <br/>#define     WFS_DEP_ENVEMPTY                    (2) <br/>#define     WFS_DEP_ENVINOP                     (3) <br/>#define     WFS_DEP_ENVMISSING                  (4) <br/>#define     WFS_DEP_ENVUNKNOWN                  (5) <br/>#define     WFS_DEP_ENVNOTSUPP                  (6) <br/>#define     WFS_DEP_ENVUNLOCKED                 (7) <br/> <br/>/* values of WFSDEPSTATUS.fwPrinter */ <br/> <br/>#define     WFS_DEP_PTROK                       (0) <br/>#define     WFS_DEP_PTRINOP                     (1) <br/>#define     WFS_DEP_PTRUNKNOWN                  (2) <br/>#define     WFS_DEP_PTRNOTSUPP                  (3) <br/> <br/>/* values of WFSDEPSTATUS.fwToner */ <br/> <br/>#define     WFS_DEP_TONERFULL                   (0) <br/>#define     WFS_DEP_TONERLOW                    (1) <br/>#define     WFS_DEP_TONEROUT                    (2) <br/>#define     WFS_DEP_TONERUNKNOWN                (3) <br/>#define     WFS_DEP_TONERNOTSUPP                (4) <br/> <br/>/* values of WFSDEPSTATUS.fwShutter */ <br/> <br/>#define     WFS_DEP_SHTCLOSED                   (0) <br/>#define     WFS_DEP_SHTOPEN                     (1) <br/>#define     WFS_DEP_SHTJAMMED                   (2) <br/>#define     WFS_DEP_SHTUNKNOWN                  (3) <br/>#define     WFS_DEP_SHTNOTSUPP                  (4) <br/> <br/>/* Size and max index of dwGuidLights array */ <br/> <br/>#define     WFS_DEP_GUIDLIGHTS_SIZE             (32) <br/>#define     WFS_DEP_GUIDLIGHTS_MAX              (WFS_DEP_GUIDLIGHTS_SIZE - 1) <br/> <br/>/* Indices of WFSDEPSTATUS.dwGuidLights [...] <br/>              WFSDEPCAPS.dwGuidLights [...] <br/>*/ <br/> <br/>#define     WFS_DEP_GUIDANCE_ENVDEPOSITORY      (0) <br/>#define     WFS_DEP_GUIDANCE_ENVDISPENSER       (1) <br/> <br/>/* Values of WFSDEPSTATUS.dwGuidLights [...] <br/>             WFSDEPCAPS.dwGuidLights [...] */ <br/> <br/>#define     WFS_DEP_GUIDANCE_NOT_AVAILABLE      (0x00000000) <br/>#define     WFS_DEP_GUIDANCE_OFF                (0x00000001) <br/>#define     WFS_DEP_GUIDANCE_SLOW_FLASH         (0x00000004) <br/>#define     WFS_DEP_GUIDANCE_MEDIUM_FLASH       (0x00000008) <br/>#define     WFS_DEP_GUIDANCE_QUICK_FLASH        (0x00000010) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>46 <br/></b></p>
+<p>#define     WFS_DEP_GUIDANCE_CONTINUOUS         (0x00000080) <br/>#define     WFS_DEP_GUIDANCE_RED                (0x00000100) <br/>#define     WFS_DEP_GUIDANCE_GREEN              (0x00000200) <br/>#define     WFS_DEP_GUIDANCE_YELLOW             (0x00000400) <br/>#define     WFS_DEP_GUIDANCE_BLUE               (0x00000800) <br/>#define     WFS_DEP_GUIDANCE_CYAN               (0x00001000) <br/>#define     WFS_DEP_GUIDANCE_MAGENTA            (0x00002000) <br/>#define     WFS_DEP_GUIDANCE_WHITE              (0x00004000) <br/>#define     WFS_DEP_GUIDANCE_ENTRY              (0x00100000) <br/>#define     WFS_DEP_GUIDANCE_EXIT               (0x00200000) <br/> <br/> <br/>/* values of WFSDEPSTATUS.fwDepositLocation */ <br/> <br/>#define WFS_DEP_DEPLOCNOTSUPP                   (0) <br/>#define WFS_DEP_DEPLOCUNKNOWN                   (1) <br/>#define WFS_DEP_DEPLOCCONTAINER                 (2) <br/>#define WFS_DEP_DEPLOCTRANSPORT                 (3) <br/>#define WFS_DEP_DEPLOCPRINTER                   (4) <br/>#define WFS_DEP_DEPLOCSHUTTER                   (5) <br/>#define WFS_DEP_DEPLOCNONE                      (6) <br/>#define WFS_DEP_DEPLOCREMOVED                   (7) <br/> <br/>/* values of WFSDEPSTATUS.wDevicePosition <br/>             WFSDEPDEVICEPOSITION.wPosition */ <br/> <br/>#define     WFS_DEP_DEVICEINPOSITION            (0) <br/>#define     WFS_DEP_DEVICENOTINPOSITION         (1) <br/>#define     WFS_DEP_DEVICEPOSUNKNOWN            (2) <br/>#define     WFS_DEP_DEVICEPOSNOTSUPP            (3) <br/> <br/>/* values of WFSDEPCAPS.fwType */ <br/> <br/>#define     WFS_DEP_TYPEENVELOPE                (0x0001) <br/>#define     WFS_DEP_TYPEBAGDROP                 (0x0002) <br/> <br/>/* values of WFSDEPCAPS.fwEnvSupply */ <br/> <br/>#define     WFS_DEP_ENVMOTORIZED                (1) <br/>#define     WFS_DEP_ENVMANUAL                   (2) <br/>#define     WFS_DEP_ENVNONE                     (3) <br/> <br/>/* values of WFSDEPCAPS.fwRetractEnvelope */ <br/> <br/>#define     WFS_DEP_NORETRACT                   (1) <br/>#define     WFS_DEP_RETRACTDEP                  (2) <br/>#define     WFS_DEP_RETRACTDISP                 (3) <br/> <br/>/* values of WFSDEPCAPS.fwCharSupport, WFSDEPENVELOPE.fwCharSupport */ <br/> <br/>#define     WFS_DEP_ASCII                       (0x0001) <br/>#define     WFS_DEP_UNICODE                     (0x0002) <br/> <br/>/* values of dwDepMediaControl  */ <br/> <br/>#define     WFS_DEP_CTRLEJECT                   (0x0001) <br/>#define     WFS_DEP_CTRLRETRACT                 (0x0002) <br/> <br/> <br/>/* values of WFSDEPMEDIADETECTED.wDispenseMedia, wDepositMedia */ <br/> <br/>#define     WFS_DEP_NOMEDIA                     (1) <br/>#define     WFS_DEP_MEDIARETRACTED              (2) <br/>#define     WFS_DEP_MEDIADISPENSER              (3) <br/>#define     WFS_DEP_MEDIAEJECTED                (4) <br/>#define     WFS_DEP_MEDIAJAMMED                 (5) <br/>#define     WFS_DEP_MEDIAUNKNOWN                (6) <br/> <br/>/* values of WFSDEPSUPPLYREPLEN.fwSupplyReplen */ <br/> </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>47 <br/></b></p>
+<p>#define     WFS_DEP_REPLEN_ENV                  (0x0001) <br/>#define     WFS_DEP_REPLEN_TONER                (0x0002) <br/> <br/>/* values of WFSDEPSTATUS.wAntiFraudModule */ <br/> <br/>#define     WFS_DEP_AFMNOTSUPP                  (0) <br/>#define     WFS_DEP_AFMOK                       (1) <br/>#define     WFS_DEP_AFMINOP                     (2) <br/>#define     WFS_DEP_AFMDEVICEDETECTED           (3) <br/>#define     WFS_DEP_AFMUNKNOWN                  (4) <br/> <br/>#define WFS_ERR_DEP_DEPFULL                     (-(DEP_SERVICE_OFFSET + 0)) <br/>#define WFS_ERR_DEP_DEPJAMMED                   (-(DEP_SERVICE_OFFSET + 1)) <br/>#define WFS_ERR_DEP_ENVEMPTY                    (-(DEP_SERVICE_OFFSET + 2)) <br/>#define WFS_ERR_DEP_ENVJAMMED                   (-(DEP_SERVICE_OFFSET + 3)) <br/>#define WFS_ERR_DEP_ENVSIZE                     (-(DEP_SERVICE_OFFSET + 4)) <br/>#define WFS_ERR_DEP_NOENV                       (-(DEP_SERVICE_OFFSET + 5)) <br/>#define WFS_ERR_DEP_PTRFAIL                     (-(DEP_SERVICE_OFFSET + 6)) <br/>#define WFS_ERR_DEP_SHTNOTCLOSED                (-(DEP_SERVICE_OFFSET + 7)) <br/>#define WFS_ERR_DEP_SHTNOTOPENED                (-(DEP_SERVICE_OFFSET + 8)) <br/>#define WFS_ERR_DEP_CONTMISSING                 (-(DEP_SERVICE_OFFSET + 9)) <br/>#define WFS_ERR_DEP_DEPUNKNOWN                  (-(DEP_SERVICE_OFFSET + 10)) <br/>#define WFS_ERR_DEP_CHARSETNOTSUPP              (-(DEP_SERVICE_OFFSET + 11)) <br/>#define WFS_ERR_DEP_TONEROUT                    (-(DEP_SERVICE_OFFSET + 12)) <br/>#define WFS_ERR_DEP_INVALID_PORT                (-(DEP_SERVICE_OFFSET + 13)) <br/>#define WFS_ERR_DEP_POWERSAVETOOSHORT           (-(DEP_SERVICE_OFFSET + 14)) <br/>#define WFS_ERR_DEP_POWERSAVEMEDIAPRESENT       (-(DEP_SERVICE_OFFSET + 15)) <br/>#define WFS_ERR_DEP_COMMANDUNSUPP               (-(DEP_SERVICE_OFFSET + 16)) <br/>#define WFS_ERR_DEP_SYNCHRONIZEUNSUPP           (-(DEP_SERVICE_OFFSET + 17)) <br/> <br/>/*====================================================================*/ <br/>/* DEP Info Command Structures and variables */ <br/>/*====================================================================*/ <br/> <br/>typedef struct _wfs_dep_status <br/>{ <br/>     WORD            fwDevice; <br/>     WORD            fwDepContainer; <br/>     WORD            fwDepTransport; <br/>     WORD            fwEnvSupply; <br/>     WORD            fwEnvDispenser; <br/>     WORD            fwPrinter; <br/>     WORD            fwToner; <br/>     WORD            fwShutter; <br/>     WORD            wNumOfDeposits; <br/>     LPSTR           lpszExtra; <br/>     DWORD           dwGuidLights[WFS_DEP_GUIDLIGHTS_SIZE]; <br/>     WORD            fwDepositLocation; <br/>     WORD            wDevicePosition; <br/>     USHORT          usPowerSaveRecoveryTime; <br/>     WORD            wAntiFraudModule; <br/>} WFSDEPSTATUS, *LPWFSDEPSTATUS; <br/> <br/>typedef struct _wfs_dep_caps <br/>{ <br/>     WORD            wClass; <br/>     WORD            fwType; <br/>     WORD            fwEnvSupply; <br/>     BOOL            bDepTransport; <br/>     BOOL            bPrinter; <br/>     BOOL            bToner; <br/>     BOOL            bShutter; <br/>     BOOL            bPrintOnRetracts; <br/>     WORD            fwRetractEnvelope; <br/>     WORD            wMaxNumChars; <br/>     WORD            fwCharSupport; <br/>     LPSTR           lpszExtra; <br/>     DWORD           dwGuidLights[WFS_DEP_GUIDLIGHTS_SIZE]; <br/>     BOOL            bPowerSaveControl; <br/>     BOOL            bAntiFraudModule; </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>CWA 16926-8:2020 (E)</b> <br/> <br/></p>
+<p><b>48 <br/></b></p>
+<p>     LPDWORD         lpdwSynchronizableCommands; <br/>} WFSDEPCAPS, *LPWFSDEPCAPS; <br/> <br/>/*====================================================================*/ <br/>/* DEP Execute Command Structures */ <br/>/*====================================================================*/ <br/> <br/>typedef struct _wfs_dep_envelope <br/>{ <br/>     LPSTR           lpszPrintData; <br/>     LPWSTR          lpszUNICODEPrintData; <br/>} WFSDEPENVELOPE, *LPWFSDEPENVELOPE; <br/> <br/>typedef struct _wfs_dep_set_guidlight <br/>{ <br/>     WORD            wGuidLight; <br/>     DWORD           dwCommand; <br/>} WFSDEPSETGUIDLIGHT, *LPWFSDEPSETGUIDLIGHT; <br/> <br/>typedef struct _wfs_dep_supply_replen <br/>{ <br/>     WORD            fwSupplyReplen; <br/>} WFSDEPSUPPLYREPLEN, *LPWFSDEPSUPPLYREPLEN; <br/> <br/>typedef struct _wfs_dep_power_save_control <br/>{ <br/>     USHORT          usMaxPowerSaveRecoveryTime; <br/>} WFSDEPPOWERSAVECONTROL, *LPWFSDEPPOWERSAVECONTROL; <br/> <br/>typedef struct _wfs_dep_synchronize_command <br/>{ <br/>    DWORD            dwCommand; <br/>    LPVOID           lpCmdData; <br/>} WFSDEPSYNCHRONIZECOMMAND, *LPWFSDEPSYNCHRONIZECOMMAND; <br/> <br/>/*====================================================================*/ <br/>/* DEP Message Structures */ <br/>/*====================================================================*/ <br/> <br/>typedef struct _wfs_dep_media_detected <br/>{ <br/>     WORD            wDispenseMedia; <br/>     WORD            wDepositMedia; <br/>} WFSDEPMEDIADETECTED, *LPWFSDEPMEDIADETECTED; <br/> <br/>typedef struct _wfs_dep_device_position <br/>{ <br/>     WORD            wPosition; <br/>} WFSDEPDEVICEPOSITION, *LPWFSDEPDEVICEPOSITION; <br/> <br/>typedef struct _wfs_dep_power_save_change <br/>{ <br/>     USHORT          usPowerSaveRecoveryTime; <br/>} WFSDEPPOWERSAVECHANGE, *LPWFSDEPPOWERSAVECHANGE; <br/> <br/> <br/>/* restore alignment */ <br/>#pragma pack(pop) <br/> <br/>#ifdef __cplusplus <br/>} /*extern &quot;C&quot;*/ <br/>#endif <br/> <br/>#endif /* __INC_XFSDEP__H */ </p>
+
+</div></div>
+</body></html>

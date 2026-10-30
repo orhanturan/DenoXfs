@@ -1,0 +1,402 @@
+{
+  "file": "XfsBio.md",
+  "device_class": "BIO",
+  "part": 18,
+  "description": "Biometric Device Class Interface",
+  "total_lines": 2145,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 186,
+      "end_line": 219
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 220,
+      "end_line": 241
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 242,
+      "end_line": 291
+    },
+    {
+      "id": "2.1",
+      "name": "Enrollment",
+      "type": "section",
+      "start_line": 292,
+      "end_line": 298
+    },
+    {
+      "id": "2.2",
+      "name": "Biometric Matching",
+      "type": "section",
+      "start_line": 299,
+      "end_line": 320
+    },
+    {
+      "id": "2.3",
+      "name": "Biometric Device Types",
+      "type": "section",
+      "start_line": 321,
+      "end_line": 341
+    },
+    {
+      "id": "2.4",
+      "name": "Biometric Data Security",
+      "type": "section",
+      "start_line": 342,
+      "end_line": 378
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_BIO_STATUS",
+      "type": "info",
+      "start_line": 379,
+      "end_line": 545
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_BIO_CAPABILITIES",
+      "type": "info",
+      "start_line": 546,
+      "end_line": 794
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_BIO_STORAGE_INFO",
+      "type": "info",
+      "start_line": 795,
+      "end_line": 848
+    },
+    {
+      "id": "4.4",
+      "name": "WFS_INF_BIO_KEY_INFO",
+      "type": "info",
+      "start_line": 849,
+      "end_line": 892
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_BIO_READ",
+      "type": "command",
+      "start_line": 893,
+      "end_line": 1022
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_BIO_IMPORT",
+      "type": "command",
+      "start_line": 1023,
+      "end_line": 1075
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_BIO_MATCH",
+      "type": "command",
+      "start_line": 1076,
+      "end_line": 1109
+    },
+    {
+      "id": "75",
+      "name": "are returned. The matching candidate list is returned in the lpMatchResult output parameter",
+      "type": "section",
+      "start_line": 1110,
+      "end_line": 1143
+    },
+    {
+      "id": "0",
+      "name": "represents no match.",
+      "type": "section",
+      "start_line": 1144,
+      "end_line": 1168
+    },
+    {
+      "id": "0",
+      "name": "is no match and 100 is an exact match. The minimum value will be that which was set by the",
+      "type": "section",
+      "start_line": 1169,
+      "end_line": 1214
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_BIO_SET_MATCH",
+      "type": "command",
+      "start_line": 1215,
+      "end_line": 1245
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_BIO_CLEAR",
+      "type": "command",
+      "start_line": 1246,
+      "end_line": 1268
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_BIO_RESET",
+      "type": "command",
+      "start_line": 1269,
+      "end_line": 1292
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_BIO_SET_DATA_PERSISTENCE",
+      "type": "command",
+      "start_line": 1293,
+      "end_line": 1318
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_BIO_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 1319,
+      "end_line": 1381
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_CMD_BIO_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 1382,
+      "end_line": 1414
+    },
+    {
+      "id": "5.10",
+      "name": "WFS_CMD_BIO_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 1415,
+      "end_line": 1464
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_EXEE_BIO_PRESENTSUBJECT",
+      "type": "event",
+      "start_line": 1465,
+      "end_line": 1473
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_BIO_SUBJECTDETECTED",
+      "type": "event",
+      "start_line": 1474,
+      "end_line": 1481
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_EXEE_BIO_REMOVESUBJECT",
+      "type": "event",
+      "start_line": 1482,
+      "end_line": 1489
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_SRVE_BIO_SUBJECTREMOVED",
+      "type": "event",
+      "start_line": 1490,
+      "end_line": 1497
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_SRVE_BIO_DATACLEARED",
+      "type": "event",
+      "start_line": 1498,
+      "end_line": 1524
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_EXEE_BIO_ORIENTATION",
+      "type": "event",
+      "start_line": 1525,
+      "end_line": 1532
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_SRVE_BIO_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 1533,
+      "end_line": 1552
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_SRVE_BIO_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 1553,
+      "end_line": 1570
+    },
+    {
+      "id": "7.1",
+      "name": "Biometric Enrollment Command Flow",
+      "type": "section",
+      "start_line": 1571,
+      "end_line": 1630
+    },
+    {
+      "id": "7.2",
+      "name": "Biometric Match Command Flow – Separate Scan and Match",
+      "type": "section",
+      "start_line": 1631,
+      "end_line": 1686
+    },
+    {
+      "id": "7.3",
+      "name": "Biometric Match Command Flow – Combined Scan and Match",
+      "type": "section",
+      "start_line": 1687,
+      "end_line": 1750
+    },
+    {
+      "id": "7.4",
+      "name": "Biometric Scan-Only Command Flow",
+      "type": "section",
+      "start_line": 1751,
+      "end_line": 1799
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSBIO__H",
+      "type": "header",
+      "start_line": 1800,
+      "end_line": 2145
+    }
+  ],
+  "commands": {
+    "WFS_INF_BIO_STATUS": {
+      "section_id": "4.1",
+      "start_line": 379,
+      "end_line": 545,
+      "type": "info"
+    },
+    "WFS_INF_BIO_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 546,
+      "end_line": 794,
+      "type": "info"
+    },
+    "WFS_INF_BIO_STORAGE_INFO": {
+      "section_id": "4.3",
+      "start_line": 795,
+      "end_line": 848,
+      "type": "info"
+    },
+    "WFS_INF_BIO_KEY_INFO": {
+      "section_id": "4.4",
+      "start_line": 849,
+      "end_line": 892,
+      "type": "info"
+    },
+    "WFS_CMD_BIO_READ": {
+      "section_id": "5.1",
+      "start_line": 893,
+      "end_line": 1022,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_IMPORT": {
+      "section_id": "5.2",
+      "start_line": 1023,
+      "end_line": 1075,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_MATCH": {
+      "section_id": "5.3",
+      "start_line": 1076,
+      "end_line": 1109,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_SET_MATCH": {
+      "section_id": "5.4",
+      "start_line": 1215,
+      "end_line": 1245,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_CLEAR": {
+      "section_id": "5.5",
+      "start_line": 1246,
+      "end_line": 1268,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_RESET": {
+      "section_id": "5.6",
+      "start_line": 1269,
+      "end_line": 1292,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_SET_DATA_PERSISTENCE": {
+      "section_id": "5.7",
+      "start_line": 1293,
+      "end_line": 1318,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_SET_GUIDANCE_LIGHT": {
+      "section_id": "5.8",
+      "start_line": 1319,
+      "end_line": 1381,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_POWER_SAVE_CONTROL": {
+      "section_id": "5.9",
+      "start_line": 1382,
+      "end_line": 1414,
+      "type": "command"
+    },
+    "WFS_CMD_BIO_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.10",
+      "start_line": 1415,
+      "end_line": 1464,
+      "type": "command"
+    },
+    "WFS_EXEE_BIO_PRESENTSUBJECT": {
+      "section_id": "6.1",
+      "start_line": 1465,
+      "end_line": 1473,
+      "type": "event"
+    },
+    "WFS_EXEE_BIO_SUBJECTDETECTED": {
+      "section_id": "6.2",
+      "start_line": 1474,
+      "end_line": 1481,
+      "type": "event"
+    },
+    "WFS_EXEE_BIO_REMOVESUBJECT": {
+      "section_id": "6.3",
+      "start_line": 1482,
+      "end_line": 1489,
+      "type": "event"
+    },
+    "WFS_SRVE_BIO_SUBJECTREMOVED": {
+      "section_id": "6.4",
+      "start_line": 1490,
+      "end_line": 1497,
+      "type": "event"
+    },
+    "WFS_SRVE_BIO_DATACLEARED": {
+      "section_id": "6.5",
+      "start_line": 1498,
+      "end_line": 1524,
+      "type": "event"
+    },
+    "WFS_EXEE_BIO_ORIENTATION": {
+      "section_id": "6.6",
+      "start_line": 1525,
+      "end_line": 1532,
+      "type": "event"
+    },
+    "WFS_SRVE_BIO_DEVICEPOSITION": {
+      "section_id": "6.7",
+      "start_line": 1533,
+      "end_line": 1552,
+      "type": "event"
+    },
+    "WFS_SRVE_BIO_POWER_SAVE_CHANGE": {
+      "section_id": "6.8",
+      "start_line": 1553,
+      "end_line": 1570,
+      "type": "event"
+    }
+  }
+}

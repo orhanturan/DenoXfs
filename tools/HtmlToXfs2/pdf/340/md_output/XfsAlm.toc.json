@@ -1,0 +1,155 @@
+{
+  "file": "XfsAlm.md",
+  "device_class": "ALM",
+  "part": 3,
+  "toc_line_range": [
+    48,
+    99
+  ],
+  "summary": {
+    "total_entries": 18,
+    "info_commands": 2,
+    "execute_commands": 4,
+    "events": 2
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 3,
+      "children": [
+        {
+          "section_id": "1",
+          "title": "Introduction",
+          "type": "section",
+          "page": 7,
+          "children": [
+            {
+              "section_id": "1.1",
+              "title": "Background to Release 3.40",
+              "type": "section",
+              "page": 7,
+              "start_line": 351,
+              "end_line": 386
+            },
+            {
+              "section_id": "1.2",
+              "title": "XFS Service-Specific Programming",
+              "type": "section",
+              "page": 7,
+              "start_line": 387,
+              "end_line": 470
+            }
+          ]
+        },
+        {
+          "section_id": "4",
+          "title": "Alarms",
+          "type": "section",
+          "page": 9
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "References",
+      "type": "section",
+      "page": 10
+    },
+    {
+      "section_id": "",
+      "title": "Info Commands",
+      "type": "info_commands_section",
+      "page": 11,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_ALM_STATUS",
+          "type": "info_command",
+          "page": 11,
+          "start_line": 471,
+          "end_line": 613
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_ALM_CAPABILITIES",
+          "type": "info_command",
+          "page": 13,
+          "start_line": 614,
+          "end_line": 677
+        },
+        {
+          "section_id": "5",
+          "title": "Execute Commands",
+          "type": "execute_commands_section",
+          "page": 14,
+          "children": [
+            {
+              "section_id": "5.1",
+              "title": "WFS_CMD_ALM_SET_ALARM",
+              "type": "execute_command",
+              "page": 14,
+              "start_line": 678,
+              "end_line": 711
+            },
+            {
+              "section_id": "5.2",
+              "title": "WFS_CMD_ALM_RESET_ALARM",
+              "type": "execute_command",
+              "page": 15,
+              "start_line": 712,
+              "end_line": 745
+            },
+            {
+              "section_id": "5.3",
+              "title": "WFS_CMD_ALM_RESET",
+              "type": "execute_command",
+              "page": 16,
+              "start_line": 746,
+              "end_line": 773
+            },
+            {
+              "section_id": "5.4",
+              "title": "WFS_CMD_ALM_SYNCHRONIZE_COMMAND",
+              "type": "execute_command",
+              "page": 17,
+              "start_line": 774,
+              "end_line": 857
+            }
+          ]
+        },
+        {
+          "section_id": "6",
+          "title": "Events",
+          "type": "events_section",
+          "page": 18,
+          "children": [
+            {
+              "section_id": "6.1",
+              "title": "WFS_SRVE_ALM_DEVICE_SET",
+              "type": "event",
+              "page": 18,
+              "start_line": 858,
+              "end_line": 875
+            },
+            {
+              "section_id": "6.2",
+              "title": "WFS_SRVE_ALM_DEVICE_RESET",
+              "type": "event",
+              "page": 19,
+              "start_line": 876,
+              "end_line": 902
+            }
+          ]
+        },
+        {
+          "section_id": "7",
+          "title": "C - Header file",
+          "type": "header",
+          "page": 20
+        }
+      ]
+    }
+  ]
+}

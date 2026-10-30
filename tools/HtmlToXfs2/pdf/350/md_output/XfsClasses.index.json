@@ -1,0 +1,234 @@
+{
+  "file": "XfsClasses.md",
+  "device_class": "Device Classes",
+  "part": 2,
+  "description": "Service Classes Definition",
+  "total_lines": 813,
+  "sections": [
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 144,
+      "end_line": 145
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 146,
+      "end_line": 190
+    },
+    {
+      "id": "3.00",
+      "name": "October 18, 2000 Initial Release.",
+      "type": "section",
+      "start_line": 191,
+      "end_line": 191
+    },
+    {
+      "id": "3.10",
+      "name": "November 29, 2007 For a description of changes from version 3.00 to version",
+      "type": "section",
+      "start_line": 192,
+      "end_line": 192
+    },
+    {
+      "id": "3.10",
+      "name": "see the Service Class Definition 3.10 Migration",
+      "type": "section",
+      "start_line": 193,
+      "end_line": 194
+    },
+    {
+      "id": "3.20",
+      "name": "March 2, 2011 For a description of changes from version 3.10 to version",
+      "type": "section",
+      "start_line": 195,
+      "end_line": 195
+    },
+    {
+      "id": "3.20",
+      "name": "see the Service Class Definition 3.20 Migration",
+      "type": "section",
+      "start_line": 196,
+      "end_line": 197
+    },
+    {
+      "id": "3.30",
+      "name": "March 19, 2015 For a description of changes from version 3.20 to version",
+      "type": "section",
+      "start_line": 198,
+      "end_line": 198
+    },
+    {
+      "id": "3.30",
+      "name": "see the Service Class Definition 3.30 Migration",
+      "type": "section",
+      "start_line": 199,
+      "end_line": 200
+    },
+    {
+      "id": "3.40",
+      "name": "December 06, 2019 For a description of changes from version 3.30 to version",
+      "type": "section",
+      "start_line": 201,
+      "end_line": 201
+    },
+    {
+      "id": "3.40",
+      "name": "see the Service Class Definition 3.40 Migration",
+      "type": "section",
+      "start_line": 202,
+      "end_line": 203
+    },
+    {
+      "id": "3.50",
+      "name": "November 18, 2022 For a description of changes from version 3.40 to version",
+      "type": "section",
+      "start_line": 204,
+      "end_line": 204
+    },
+    {
+      "id": "3.50",
+      "name": "see the Service Class Definition 3.50 Migration",
+      "type": "section",
+      "start_line": 205,
+      "end_line": 210
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.50",
+      "type": "section",
+      "start_line": 211,
+      "end_line": 224
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 225,
+      "end_line": 333
+    },
+    {
+      "id": "2.1",
+      "name": "Printers and Scanners (PTR)",
+      "type": "section",
+      "start_line": 334,
+      "end_line": 378
+    },
+    {
+      "id": "2.2",
+      "name": "Identification Card Units (IDC)",
+      "type": "section",
+      "start_line": 379,
+      "end_line": 413
+    },
+    {
+      "id": "2.3",
+      "name": "Cash Dispensers (CDM)",
+      "type": "section",
+      "start_line": 414,
+      "end_line": 449
+    },
+    {
+      "id": "2.4",
+      "name": "Personal Identification Number Keypads (PIN)",
+      "type": "section",
+      "start_line": 450,
+      "end_line": 503
+    },
+    {
+      "id": "2.5",
+      "name": "Check Readers and Scanners (CHK)",
+      "type": "section",
+      "start_line": 504,
+      "end_line": 521
+    },
+    {
+      "id": "2.6",
+      "name": "Depository Units (DEP)",
+      "type": "section",
+      "start_line": 522,
+      "end_line": 541
+    },
+    {
+      "id": "2.7",
+      "name": "Text Terminal Units (TTU)",
+      "type": "section",
+      "start_line": 542,
+      "end_line": 558
+    },
+    {
+      "id": "2.8",
+      "name": "Sensors and Indicators Units (SIU)",
+      "type": "section",
+      "start_line": 559,
+      "end_line": 575
+    },
+    {
+      "id": "2.9",
+      "name": "Vendor Dependent Mode (VDM)",
+      "type": "section",
+      "start_line": 576,
+      "end_line": 615
+    },
+    {
+      "id": "2.10",
+      "name": "Cameras (CAM)",
+      "type": "section",
+      "start_line": 616,
+      "end_line": 628
+    },
+    {
+      "id": "2.11",
+      "name": "Alarms (ALM)",
+      "type": "section",
+      "start_line": 629,
+      "end_line": 639
+    },
+    {
+      "id": "2.12",
+      "name": "Card Embossing Units (CEU)",
+      "type": "section",
+      "start_line": 640,
+      "end_line": 659
+    },
+    {
+      "id": "2.13",
+      "name": "Cash-In Modules (CIM)",
+      "type": "section",
+      "start_line": 660,
+      "end_line": 698
+    },
+    {
+      "id": "2.14",
+      "name": "Card Dispensers (CRD)",
+      "type": "section",
+      "start_line": 699,
+      "end_line": 707
+    },
+    {
+      "id": "2.15",
+      "name": "Barcode Readers (BCR)",
+      "type": "section",
+      "start_line": 708,
+      "end_line": 720
+    },
+    {
+      "id": "2.16",
+      "name": "Item Processing Modules (IPM)",
+      "type": "section",
+      "start_line": 721,
+      "end_line": 760
+    },
+    {
+      "id": "2.17",
+      "name": "Biometric Devices (BIO)",
+      "type": "section",
+      "start_line": 761,
+      "end_line": 813
+    }
+  ],
+  "commands": {}
+}

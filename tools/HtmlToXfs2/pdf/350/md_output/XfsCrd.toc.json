@@ -1,0 +1,233 @@
+{
+  "file": "XfsCrd.md",
+  "device_class": "CRD",
+  "part": 7,
+  "toc_line_range": [
+    30,
+    60
+  ],
+  "summary": {
+    "total_entries": 28,
+    "info_commands": 3,
+    "execute_commands": 8,
+    "events": 7
+  },
+  "toc": [
+    {
+      "section_id": "",
+      "title": "European Foreword",
+      "type": "section",
+      "page": 3
+    },
+    {
+      "section_id": "",
+      "title": "1. Introduction",
+      "type": "section",
+      "page": 7,
+      "children": [
+        {
+          "section_id": "1.1",
+          "title": "Background to Release 3.50",
+          "type": "section",
+          "page": 7,
+          "start_line": 209,
+          "end_line": 222
+        },
+        {
+          "section_id": "1.2",
+          "title": "XFS Service-Specific Programming",
+          "type": "section",
+          "page": 7,
+          "start_line": 223,
+          "end_line": 280
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "2. Card Dispensers",
+      "type": "section",
+      "page": 9
+    },
+    {
+      "section_id": "",
+      "title": "3. References",
+      "type": "section",
+      "page": 10
+    },
+    {
+      "section_id": "",
+      "title": "4. Info Commands",
+      "type": "info_commands_section",
+      "page": 11,
+      "children": [
+        {
+          "section_id": "4.1",
+          "title": "WFS_INF_CRD_STATUS",
+          "type": "info_command",
+          "page": 11,
+          "start_line": 281,
+          "end_line": 463
+        },
+        {
+          "section_id": "4.2",
+          "title": "WFS_INF_CRD_CAPABILITIES",
+          "type": "info_command",
+          "page": 14,
+          "start_line": 464,
+          "end_line": 583
+        },
+        {
+          "section_id": "4.3",
+          "title": "WFS_INF_CRD_CARD_UNIT_INFO",
+          "type": "info_command",
+          "page": 16,
+          "start_line": 584,
+          "end_line": 682
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "5. Execute Commands",
+      "type": "execute_commands_section",
+      "page": 18,
+      "children": [
+        {
+          "section_id": "5.1",
+          "title": "WFS_CMD_CRD_DISPENSE_CARD",
+          "type": "execute_command",
+          "page": 18,
+          "start_line": 683,
+          "end_line": 728
+        },
+        {
+          "section_id": "5.2",
+          "title": "WFS_CMD_CRD_EJECT_CARD",
+          "type": "execute_command",
+          "page": 19,
+          "start_line": 729,
+          "end_line": 755
+        },
+        {
+          "section_id": "5.3",
+          "title": "WFS_CMD_CRD_RETAIN_CARD",
+          "type": "execute_command",
+          "page": 20,
+          "start_line": 756,
+          "end_line": 790
+        },
+        {
+          "section_id": "5.4",
+          "title": "WFS_CMD_CRD_RESET",
+          "type": "execute_command",
+          "page": 21,
+          "start_line": 791,
+          "end_line": 828
+        },
+        {
+          "section_id": "5.5",
+          "title": "WFS_CMD_CRD_SET_CARD_UNIT_INFO",
+          "type": "execute_command",
+          "page": 22,
+          "start_line": 829,
+          "end_line": 861
+        },
+        {
+          "section_id": "5.6",
+          "title": "WFS_CMD_CRD_SET_GUIDANCE_LIGHT",
+          "type": "execute_command",
+          "page": 23,
+          "start_line": 862,
+          "end_line": 937
+        },
+        {
+          "section_id": "5.7",
+          "title": "WFS_CMD_CRD_POWER_SAVE_CONTROL",
+          "type": "execute_command",
+          "page": 25,
+          "start_line": 938,
+          "end_line": 974
+        },
+        {
+          "section_id": "5.8",
+          "title": "WFS_CMD_CRD_SYNCHRONIZE_COMMAND",
+          "type": "execute_command",
+          "page": 26,
+          "start_line": 975,
+          "end_line": 1024
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "6. Events",
+      "type": "events_section",
+      "page": 27,
+      "children": [
+        {
+          "section_id": "6.1",
+          "title": "WFS_SRVE_CRD_MEDIAREMOVED",
+          "type": "event",
+          "page": 27,
+          "start_line": 1025,
+          "end_line": 1032
+        },
+        {
+          "section_id": "6.2",
+          "title": "WFS_SRVE_CRD_MEDIADETECTED",
+          "type": "event",
+          "page": 28,
+          "start_line": 1033,
+          "end_line": 1058
+        },
+        {
+          "section_id": "6.3",
+          "title": "WFS_USRE_CRD_CARDUNITTHRESHOLD",
+          "type": "event",
+          "page": 29,
+          "start_line": 1059,
+          "end_line": 1070
+        },
+        {
+          "section_id": "6.4",
+          "title": "WFS_SRVE_CRD_CARDUNITINFOCHANGED",
+          "type": "event",
+          "page": 30,
+          "start_line": 1071,
+          "end_line": 1082
+        },
+        {
+          "section_id": "6.5",
+          "title": "WFS_EXEE_CRD_CARDUNITERROR",
+          "type": "event",
+          "page": 31,
+          "start_line": 1083,
+          "end_line": 1105
+        },
+        {
+          "section_id": "6.6",
+          "title": "WFS_SRVE_CRD_DEVICEPOSITION",
+          "type": "event",
+          "page": 32,
+          "start_line": 1106,
+          "end_line": 1125
+        },
+        {
+          "section_id": "6.7",
+          "title": "WFS_SRVE_CRD_POWER_SAVE_CHANGE",
+          "type": "event",
+          "page": 33,
+          "start_line": 1126,
+          "end_line": 1148
+        }
+      ]
+    },
+    {
+      "section_id": "",
+      "title": "7. C-Header File",
+      "type": "header",
+      "page": 34
+    }
+  ]
+}

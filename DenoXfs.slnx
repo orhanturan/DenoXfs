@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DenoXfsCore/DenoXfsCore.csproj" />
+    <Project Path="src/DenoXfsIdc/DenoXfsIdc.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/HtmlToXfs2.Tests/HtmlToXfs2.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/HtmlToXfs2/HtmlToXfs2.csproj" />
+  </Folder>
+</Solution>

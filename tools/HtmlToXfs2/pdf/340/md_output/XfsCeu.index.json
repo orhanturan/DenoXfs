@@ -1,0 +1,386 @@
+{
+  "file": "XfsCeu.md",
+  "device_class": "CEU",
+  "part": 16,
+  "description": "Card Embossing Unit Device Class Interface",
+  "total_lines": 1978,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 185,
+      "end_line": 221
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 222,
+      "end_line": 243
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 244,
+      "end_line": 311
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_CEU_STATUS",
+      "type": "info",
+      "start_line": 312,
+      "end_line": 497
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_CEU_CAPABILITIES",
+      "type": "info",
+      "start_line": 498,
+      "end_line": 587
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_CEU_FORM_LIST",
+      "type": "info",
+      "start_line": 588,
+      "end_line": 599
+    },
+    {
+      "id": "4.4",
+      "name": "WFS_INF_CEU_MEDIA_LIST",
+      "type": "info",
+      "start_line": 600,
+      "end_line": 611
+    },
+    {
+      "id": "4.5",
+      "name": "WFS_INF_CEU_QUERY_FORM",
+      "type": "info",
+      "start_line": 612,
+      "end_line": 649
+    },
+    {
+      "id": "4.6",
+      "name": "WFS_INF_CEU_QUERY_MEDIA",
+      "type": "info",
+      "start_line": 650,
+      "end_line": 729
+    },
+    {
+      "id": "4.7",
+      "name": "WFS_INF_CEU_QUERY_FIELD",
+      "type": "info",
+      "start_line": 730,
+      "end_line": 802
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_CEU_EMBOSS_CARD",
+      "type": "command",
+      "start_line": 803,
+      "end_line": 915
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_CEU_RESET",
+      "type": "command",
+      "start_line": 916,
+      "end_line": 947
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_CEU_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 948,
+      "end_line": 984
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_CEU_EMBOSS_CARD_EX",
+      "type": "command",
+      "start_line": 985,
+      "end_line": 1126
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_CEU_SUPPLY_REPLENISH",
+      "type": "command",
+      "start_line": 1127,
+      "end_line": 1163
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_CEU_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 1164,
+      "end_line": 1213
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_SRVE_CEU_INPUTBINTHRESHOLD",
+      "type": "event",
+      "start_line": 1214,
+      "end_line": 1226
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_SRVE_CEU_OUTPUTBINTHRESHOLD",
+      "type": "event",
+      "start_line": 1227,
+      "end_line": 1239
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_SRVE_CEU_RETAINBINTHRESHOLD",
+      "type": "event",
+      "start_line": 1240,
+      "end_line": 1252
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_EXEE_CEU_FIELDERROR",
+      "type": "event",
+      "start_line": 1253,
+      "end_line": 1288
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_EXEE_CEU_FIELDWARNING",
+      "type": "event",
+      "start_line": 1289,
+      "end_line": 1296
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_SRVE_CEU_MEDIAREMOVED",
+      "type": "event",
+      "start_line": 1297,
+      "end_line": 1303
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_SRVE_CEU_MEDIADETECTED",
+      "type": "event",
+      "start_line": 1304,
+      "end_line": 1319
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_EXEE_CEU_EMBOSS_FAILURE",
+      "type": "event",
+      "start_line": 1320,
+      "end_line": 1357
+    },
+    {
+      "id": "6.9",
+      "name": "WFS_SRVE_CEU_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 1358,
+      "end_line": 1377
+    },
+    {
+      "id": "6.10",
+      "name": "WFS_SRVE_CEU_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 1378,
+      "end_line": 1392
+    },
+    {
+      "id": "6.11",
+      "name": "WFS_USRE_CEU_TONERTHRESHOLD",
+      "type": "event",
+      "start_line": 1393,
+      "end_line": 1417
+    },
+    {
+      "id": "7.1",
+      "name": "Definition Syntax",
+      "type": "section",
+      "start_line": 1418,
+      "end_line": 1444
+    },
+    {
+      "id": "7.2",
+      "name": "Embossing Form and Media Measurements",
+      "type": "section",
+      "start_line": 1445,
+      "end_line": 1465
+    },
+    {
+      "id": "7.3",
+      "name": "Embossing Form Definition",
+      "type": "section",
+      "start_line": 1466,
+      "end_line": 1519
+    },
+    {
+      "id": "7.4",
+      "name": "Embossing Field Definition",
+      "type": "section",
+      "start_line": 1520,
+      "end_line": 1588
+    },
+    {
+      "id": "7.5",
+      "name": "Media Definition",
+      "type": "section",
+      "start_line": 1589,
+      "end_line": 1634
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSCEU__H",
+      "type": "header",
+      "start_line": 1635,
+      "end_line": 1978
+    }
+  ],
+  "commands": {
+    "WFS_INF_CEU_STATUS": {
+      "section_id": "4.1",
+      "start_line": 312,
+      "end_line": 497,
+      "type": "info"
+    },
+    "WFS_INF_CEU_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 498,
+      "end_line": 587,
+      "type": "info"
+    },
+    "WFS_INF_CEU_FORM_LIST": {
+      "section_id": "4.3",
+      "start_line": 588,
+      "end_line": 599,
+      "type": "info"
+    },
+    "WFS_INF_CEU_MEDIA_LIST": {
+      "section_id": "4.4",
+      "start_line": 600,
+      "end_line": 611,
+      "type": "info"
+    },
+    "WFS_INF_CEU_QUERY_FORM": {
+      "section_id": "4.5",
+      "start_line": 612,
+      "end_line": 649,
+      "type": "info"
+    },
+    "WFS_INF_CEU_QUERY_MEDIA": {
+      "section_id": "4.6",
+      "start_line": 650,
+      "end_line": 729,
+      "type": "info"
+    },
+    "WFS_INF_CEU_QUERY_FIELD": {
+      "section_id": "4.7",
+      "start_line": 730,
+      "end_line": 802,
+      "type": "info"
+    },
+    "WFS_CMD_CEU_EMBOSS_CARD": {
+      "section_id": "5.1",
+      "start_line": 803,
+      "end_line": 915,
+      "type": "command"
+    },
+    "WFS_CMD_CEU_RESET": {
+      "section_id": "5.2",
+      "start_line": 916,
+      "end_line": 947,
+      "type": "command"
+    },
+    "WFS_CMD_CEU_POWER_SAVE_CONTROL": {
+      "section_id": "5.3",
+      "start_line": 948,
+      "end_line": 984,
+      "type": "command"
+    },
+    "WFS_CMD_CEU_EMBOSS_CARD_EX": {
+      "section_id": "5.4",
+      "start_line": 985,
+      "end_line": 1126,
+      "type": "command"
+    },
+    "WFS_CMD_CEU_SUPPLY_REPLENISH": {
+      "section_id": "5.5",
+      "start_line": 1127,
+      "end_line": 1163,
+      "type": "command"
+    },
+    "WFS_CMD_CEU_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.6",
+      "start_line": 1164,
+      "end_line": 1213,
+      "type": "command"
+    },
+    "WFS_SRVE_CEU_INPUTBINTHRESHOLD": {
+      "section_id": "6.1",
+      "start_line": 1214,
+      "end_line": 1226,
+      "type": "event"
+    },
+    "WFS_SRVE_CEU_OUTPUTBINTHRESHOLD": {
+      "section_id": "6.2",
+      "start_line": 1227,
+      "end_line": 1239,
+      "type": "event"
+    },
+    "WFS_SRVE_CEU_RETAINBINTHRESHOLD": {
+      "section_id": "6.3",
+      "start_line": 1240,
+      "end_line": 1252,
+      "type": "event"
+    },
+    "WFS_EXEE_CEU_FIELDERROR": {
+      "section_id": "6.4",
+      "start_line": 1253,
+      "end_line": 1288,
+      "type": "event"
+    },
+    "WFS_EXEE_CEU_FIELDWARNING": {
+      "section_id": "6.5",
+      "start_line": 1289,
+      "end_line": 1296,
+      "type": "event"
+    },
+    "WFS_SRVE_CEU_MEDIAREMOVED": {
+      "section_id": "6.6",
+      "start_line": 1297,
+      "end_line": 1303,
+      "type": "event"
+    },
+    "WFS_SRVE_CEU_MEDIADETECTED": {
+      "section_id": "6.7",
+      "start_line": 1304,
+      "end_line": 1319,
+      "type": "event"
+    },
+    "WFS_EXEE_CEU_EMBOSS_FAILURE": {
+      "section_id": "6.8",
+      "start_line": 1320,
+      "end_line": 1357,
+      "type": "event"
+    },
+    "WFS_SRVE_CEU_DEVICEPOSITION": {
+      "section_id": "6.9",
+      "start_line": 1358,
+      "end_line": 1377,
+      "type": "event"
+    },
+    "WFS_SRVE_CEU_POWER_SAVE_CHANGE": {
+      "section_id": "6.10",
+      "start_line": 1378,
+      "end_line": 1392,
+      "type": "event"
+    },
+    "WFS_USRE_CEU_TONERTHRESHOLD": {
+      "section_id": "6.11",
+      "start_line": 1393,
+      "end_line": 1417,
+      "type": "event"
+    }
+  }
+}

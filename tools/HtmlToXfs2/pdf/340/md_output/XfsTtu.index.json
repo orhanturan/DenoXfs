@@ -1,0 +1,406 @@
+{
+  "file": "XfsTtu.md",
+  "device_class": "TTU",
+  "part": 10,
+  "description": "Text Terminal Unit Device Class Interface",
+  "total_lines": 2268,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 184,
+      "end_line": 220
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 221,
+      "end_line": 242
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 243,
+      "end_line": 308
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_TTU_STATUS",
+      "type": "info",
+      "start_line": 309,
+      "end_line": 478
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_TTU_CAPABILITIES",
+      "type": "info",
+      "start_line": 479,
+      "end_line": 608
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_TTU_FORM_LIST",
+      "type": "info",
+      "start_line": 609,
+      "end_line": 620
+    },
+    {
+      "id": "4.4",
+      "name": "WFS_INF_TTU_QUERY_FORM",
+      "type": "info",
+      "start_line": 621,
+      "end_line": 666
+    },
+    {
+      "id": "4.5",
+      "name": "WFS_INF_TTU_QUERY_FIELD",
+      "type": "info",
+      "start_line": 667,
+      "end_line": 742
+    },
+    {
+      "id": "4.6",
+      "name": "WFS_INF_TTU_KEY_DETAIL",
+      "type": "info",
+      "start_line": 743,
+      "end_line": 830
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_TTU_BEEP",
+      "type": "command",
+      "start_line": 831,
+      "end_line": 864
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_TTU_CLEARSCREEN",
+      "type": "command",
+      "start_line": 865,
+      "end_line": 890
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_TTU_DISPLIGHT",
+      "type": "command",
+      "start_line": 891,
+      "end_line": 906
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_TTU_SET_LED",
+      "type": "command",
+      "start_line": 907,
+      "end_line": 935
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_TTU_SET_RESOLUTION",
+      "type": "command",
+      "start_line": 936,
+      "end_line": 961
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_TTU_WRITE_FORM",
+      "type": "command",
+      "start_line": 962,
+      "end_line": 1016
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_TTU_READ_FORM",
+      "type": "command",
+      "start_line": 1017,
+      "end_line": 1123
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_TTU_WRITE",
+      "type": "command",
+      "start_line": 1124,
+      "end_line": 1183
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_CMD_TTU_READ",
+      "type": "command",
+      "start_line": 1184,
+      "end_line": 1351
+    },
+    {
+      "id": "5.10",
+      "name": "WFS_CMD_TTU_RESET",
+      "type": "command",
+      "start_line": 1352,
+      "end_line": 1363
+    },
+    {
+      "id": "5.11",
+      "name": "WFS_CMD_TTU_DEFINE_KEYS",
+      "type": "command",
+      "start_line": 1364,
+      "end_line": 1428
+    },
+    {
+      "id": "5.12",
+      "name": "WFS_CMD_TTU_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 1429,
+      "end_line": 1461
+    },
+    {
+      "id": "5.13",
+      "name": "WFS_CMD_TTU_SET_LED_EX",
+      "type": "command",
+      "start_line": 1462,
+      "end_line": 1525
+    },
+    {
+      "id": "5.14",
+      "name": "WFS_CMD_TTU_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 1526,
+      "end_line": 1575
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_EXEE_TTU_FIELDERROR",
+      "type": "event",
+      "start_line": 1576,
+      "end_line": 1609
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_TTU_FIELDWARNING",
+      "type": "event",
+      "start_line": 1610,
+      "end_line": 1617
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_EXEE_TTU_KEY",
+      "type": "event",
+      "start_line": 1618,
+      "end_line": 1646
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_SRVE_TTU_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 1647,
+      "end_line": 1666
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_SRVE_TTU_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 1667,
+      "end_line": 1684
+    },
+    {
+      "id": "7.1",
+      "name": "Definition Syntax",
+      "type": "section",
+      "start_line": 1685,
+      "end_line": 1720
+    },
+    {
+      "id": "7.2",
+      "name": "XFS form/media definition files in multi-vendor environments",
+      "type": "section",
+      "start_line": 1721,
+      "end_line": 1733
+    },
+    {
+      "id": "7.3",
+      "name": "Form Definition 1",
+      "type": "section",
+      "start_line": 1734,
+      "end_line": 1761
+    },
+    {
+      "id": "1",
+      "name": "Attributes are not required in any mandatory order within a Form Definition.",
+      "type": "section",
+      "start_line": 1762,
+      "end_line": 1765
+    },
+    {
+      "id": "7.4",
+      "name": "Field Definition 2",
+      "type": "section",
+      "start_line": 1766,
+      "end_line": 1818
+    },
+    {
+      "id": "2",
+      "name": "Attributes are not required in any mandatory order within a Field Definition.",
+      "type": "section",
+      "start_line": 1819,
+      "end_line": 1844
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSTTU__H",
+      "type": "header",
+      "start_line": 1845,
+      "end_line": 2268
+    }
+  ],
+  "commands": {
+    "WFS_INF_TTU_STATUS": {
+      "section_id": "4.1",
+      "start_line": 309,
+      "end_line": 478,
+      "type": "info"
+    },
+    "WFS_INF_TTU_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 479,
+      "end_line": 608,
+      "type": "info"
+    },
+    "WFS_INF_TTU_FORM_LIST": {
+      "section_id": "4.3",
+      "start_line": 609,
+      "end_line": 620,
+      "type": "info"
+    },
+    "WFS_INF_TTU_QUERY_FORM": {
+      "section_id": "4.4",
+      "start_line": 621,
+      "end_line": 666,
+      "type": "info"
+    },
+    "WFS_INF_TTU_QUERY_FIELD": {
+      "section_id": "4.5",
+      "start_line": 667,
+      "end_line": 742,
+      "type": "info"
+    },
+    "WFS_INF_TTU_KEY_DETAIL": {
+      "section_id": "4.6",
+      "start_line": 743,
+      "end_line": 830,
+      "type": "info"
+    },
+    "WFS_CMD_TTU_BEEP": {
+      "section_id": "5.1",
+      "start_line": 831,
+      "end_line": 864,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_CLEARSCREEN": {
+      "section_id": "5.2",
+      "start_line": 865,
+      "end_line": 890,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_DISPLIGHT": {
+      "section_id": "5.3",
+      "start_line": 891,
+      "end_line": 906,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_SET_LED": {
+      "section_id": "5.4",
+      "start_line": 907,
+      "end_line": 935,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_SET_RESOLUTION": {
+      "section_id": "5.5",
+      "start_line": 936,
+      "end_line": 961,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_WRITE_FORM": {
+      "section_id": "5.6",
+      "start_line": 962,
+      "end_line": 1016,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_READ_FORM": {
+      "section_id": "5.7",
+      "start_line": 1017,
+      "end_line": 1123,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_WRITE": {
+      "section_id": "5.8",
+      "start_line": 1124,
+      "end_line": 1183,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_READ": {
+      "section_id": "5.9",
+      "start_line": 1184,
+      "end_line": 1351,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_RESET": {
+      "section_id": "5.10",
+      "start_line": 1352,
+      "end_line": 1363,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_DEFINE_KEYS": {
+      "section_id": "5.11",
+      "start_line": 1364,
+      "end_line": 1428,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_POWER_SAVE_CONTROL": {
+      "section_id": "5.12",
+      "start_line": 1429,
+      "end_line": 1461,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_SET_LED_EX": {
+      "section_id": "5.13",
+      "start_line": 1462,
+      "end_line": 1525,
+      "type": "command"
+    },
+    "WFS_CMD_TTU_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.14",
+      "start_line": 1526,
+      "end_line": 1575,
+      "type": "command"
+    },
+    "WFS_EXEE_TTU_FIELDERROR": {
+      "section_id": "6.1",
+      "start_line": 1576,
+      "end_line": 1609,
+      "type": "event"
+    },
+    "WFS_EXEE_TTU_FIELDWARNING": {
+      "section_id": "6.2",
+      "start_line": 1610,
+      "end_line": 1617,
+      "type": "event"
+    },
+    "WFS_EXEE_TTU_KEY": {
+      "section_id": "6.3",
+      "start_line": 1618,
+      "end_line": 1646,
+      "type": "event"
+    },
+    "WFS_SRVE_TTU_DEVICEPOSITION": {
+      "section_id": "6.4",
+      "start_line": 1647,
+      "end_line": 1666,
+      "type": "event"
+    },
+    "WFS_SRVE_TTU_POWER_SAVE_CHANGE": {
+      "section_id": "6.5",
+      "start_line": 1667,
+      "end_line": 1684,
+      "type": "event"
+    }
+  }
+}

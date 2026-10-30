@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Tools/HtmlToXfs2"
+		},
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../CenXfs"
+		}
+	],
+	"settings": {
+		"dotnet.defaultSolution": "All"
+	}
+}

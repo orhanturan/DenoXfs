@@ -1,0 +1,150 @@
+{
+  "file": "XfsClass.md",
+  "device_class": "Device Classes",
+  "part": 2,
+  "description": "Service Classes Definition",
+  "total_lines": 818,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 164,
+      "end_line": 200
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 201,
+      "end_line": 222
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 223,
+      "end_line": 338
+    },
+    {
+      "id": "2.1",
+      "name": "Printers and Scanners (PTR)",
+      "type": "section",
+      "start_line": 339,
+      "end_line": 383
+    },
+    {
+      "id": "2.2",
+      "name": "Identification Card Units (IDC)",
+      "type": "section",
+      "start_line": 384,
+      "end_line": 418
+    },
+    {
+      "id": "2.3",
+      "name": "Cash Dispensers (CDM)",
+      "type": "section",
+      "start_line": 419,
+      "end_line": 454
+    },
+    {
+      "id": "2.4",
+      "name": "Personal Identification Number Keypads (PIN)",
+      "type": "section",
+      "start_line": 455,
+      "end_line": 508
+    },
+    {
+      "id": "2.5",
+      "name": "Check Readers and Scanners (CHK)",
+      "type": "section",
+      "start_line": 509,
+      "end_line": 526
+    },
+    {
+      "id": "2.6",
+      "name": "Depository Units (DEP)",
+      "type": "section",
+      "start_line": 527,
+      "end_line": 546
+    },
+    {
+      "id": "2.7",
+      "name": "Text Terminal Units (TTU)",
+      "type": "section",
+      "start_line": 547,
+      "end_line": 563
+    },
+    {
+      "id": "2.8",
+      "name": "Sensors and Indicators Units (SIU)",
+      "type": "section",
+      "start_line": 564,
+      "end_line": 580
+    },
+    {
+      "id": "2.9",
+      "name": "Vendor Dependent Mode (VDM)",
+      "type": "section",
+      "start_line": 581,
+      "end_line": 620
+    },
+    {
+      "id": "2.10",
+      "name": "Cameras (CAM)",
+      "type": "section",
+      "start_line": 621,
+      "end_line": 633
+    },
+    {
+      "id": "2.11",
+      "name": "Alarms (ALM)",
+      "type": "section",
+      "start_line": 634,
+      "end_line": 644
+    },
+    {
+      "id": "2.12",
+      "name": "Card Embossing Units (CEU)",
+      "type": "section",
+      "start_line": 645,
+      "end_line": 664
+    },
+    {
+      "id": "2.13",
+      "name": "Cash-In Modules (CIM)",
+      "type": "section",
+      "start_line": 665,
+      "end_line": 703
+    },
+    {
+      "id": "2.14",
+      "name": "Card Dispensers (CRD)",
+      "type": "section",
+      "start_line": 704,
+      "end_line": 712
+    },
+    {
+      "id": "2.15",
+      "name": "Barcode Readers (BCR)",
+      "type": "section",
+      "start_line": 713,
+      "end_line": 725
+    },
+    {
+      "id": "2.16",
+      "name": "Item Processing Modules (IPM)",
+      "type": "section",
+      "start_line": 726,
+      "end_line": 765
+    },
+    {
+      "id": "2.17",
+      "name": "Biometric Devices (BIO)",
+      "type": "section",
+      "start_line": 766,
+      "end_line": 818
+    }
+  ],
+  "commands": {}
+}

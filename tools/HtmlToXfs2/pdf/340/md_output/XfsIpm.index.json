@@ -1,0 +1,737 @@
+{
+  "file": "XfsIpm.md",
+  "device_class": "IPM",
+  "part": 19,
+  "description": "Item Processing Module Device Class Interface",
+  "total_lines": 5426,
+  "sections": [
+    {
+      "id": "3.40",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 219,
+      "end_line": 255
+    },
+    {
+      "id": "1.1",
+      "name": "Background to Release 3.40",
+      "type": "section",
+      "start_line": 256,
+      "end_line": 277
+    },
+    {
+      "id": "1.2",
+      "name": "XFS Service-Specific Programming",
+      "type": "section",
+      "start_line": 278,
+      "end_line": 364
+    },
+    {
+      "id": "2.1",
+      "name": "Devices with a Stacker",
+      "type": "section",
+      "start_line": 365,
+      "end_line": 369
+    },
+    {
+      "id": "2.1.1",
+      "name": "Automatic Accept/Refuse",
+      "type": "section",
+      "start_line": 370,
+      "end_line": 391
+    },
+    {
+      "id": "2.1.2",
+      "name": "Application Controlled Accept/Refuse",
+      "type": "section",
+      "start_line": 392,
+      "end_line": 426
+    },
+    {
+      "id": "2.2",
+      "name": "Device without a Stacker",
+      "type": "section",
+      "start_line": 427,
+      "end_line": 429
+    },
+    {
+      "id": "2.2.1",
+      "name": "Multi-Feed Devices without a Stacker",
+      "type": "section",
+      "start_line": 430,
+      "end_line": 448
+    },
+    {
+      "id": "2.2.2",
+      "name": "Single-Feed Devices",
+      "type": "section",
+      "start_line": 449,
+      "end_line": 478
+    },
+    {
+      "id": "4.1",
+      "name": "WFS_INF_IPM_STATUS",
+      "type": "info",
+      "start_line": 479,
+      "end_line": 876
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_IPM_CAPABILITIES",
+      "type": "info",
+      "start_line": 877,
+      "end_line": 1316
+    },
+    {
+      "id": "4.3",
+      "name": "WFS_INF_IPM_CODELINE_MAPPING",
+      "type": "info",
+      "start_line": 1317,
+      "end_line": 1378
+    },
+    {
+      "id": "4.4",
+      "name": "WFS_INF_IPM_MEDIA_BIN_INFO",
+      "type": "info",
+      "start_line": 1379,
+      "end_line": 1508
+    },
+    {
+      "id": "4.5",
+      "name": "WFS_INF_IPM_TRANSACTION_STATUS",
+      "type": "info",
+      "start_line": 1509,
+      "end_line": 1744
+    },
+    {
+      "id": "4.6",
+      "name": "WFS_INF_IPM_MEDIA_BIN_CAPABILITIES",
+      "type": "info",
+      "start_line": 1745,
+      "end_line": 1809
+    },
+    {
+      "id": "5.1",
+      "name": "WFS_CMD_IPM_MEDIA_IN",
+      "type": "command",
+      "start_line": 1810,
+      "end_line": 2084
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_IPM_MEDIA_IN_END",
+      "type": "command",
+      "start_line": 2085,
+      "end_line": 2219
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_IPM_MEDIA_IN_ROLLBACK",
+      "type": "command",
+      "start_line": 2220,
+      "end_line": 2288
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_IPM_READ_IMAGE",
+      "type": "command",
+      "start_line": 2289,
+      "end_line": 2583
+    },
+    {
+      "id": "5.5",
+      "name": "WFS_CMD_IPM_SET_DESTINATION",
+      "type": "command",
+      "start_line": 2584,
+      "end_line": 2622
+    },
+    {
+      "id": "5.6",
+      "name": "WFS_CMD_IPM_PRESENT_MEDIA",
+      "type": "command",
+      "start_line": 2623,
+      "end_line": 2684
+    },
+    {
+      "id": "5.7",
+      "name": "WFS_CMD_IPM_RETRACT_MEDIA",
+      "type": "command",
+      "start_line": 2685,
+      "end_line": 2785
+    },
+    {
+      "id": "5.8",
+      "name": "WFS_CMD_IPM_PRINT_TEXT",
+      "type": "command",
+      "start_line": 2786,
+      "end_line": 2841
+    },
+    {
+      "id": "5.9",
+      "name": "WFS_CMD_IPM_SET_MEDIA_BIN_INFO",
+      "type": "command",
+      "start_line": 2842,
+      "end_line": 2889
+    },
+    {
+      "id": "5.10",
+      "name": "WFS_CMD_IPM_RESET",
+      "type": "command",
+      "start_line": 2890,
+      "end_line": 2963
+    },
+    {
+      "id": "5.11",
+      "name": "WFS_CMD_IPM_SET_GUIDANCE_LIGHT",
+      "type": "command",
+      "start_line": 2964,
+      "end_line": 3033
+    },
+    {
+      "id": "5.12",
+      "name": "WFS_CMD_IPM_GET_NEXT_ITEM",
+      "type": "command",
+      "start_line": 3034,
+      "end_line": 3103
+    },
+    {
+      "id": "5.13",
+      "name": "WFS_CMD_IPM_ACTION_ITEM",
+      "type": "command",
+      "start_line": 3104,
+      "end_line": 3174
+    },
+    {
+      "id": "5.14",
+      "name": "WFS_CMD_IPM_EXPEL_MEDIA",
+      "type": "command",
+      "start_line": 3175,
+      "end_line": 3197
+    },
+    {
+      "id": "5.15",
+      "name": "WFS_CMD_IPM_GET_IMAGE_AFTER_PRINT",
+      "type": "command",
+      "start_line": 3198,
+      "end_line": 3299
+    },
+    {
+      "id": "5.16",
+      "name": "WFS_CMD_IPM_ACCEPT_ITEM",
+      "type": "command",
+      "start_line": 3300,
+      "end_line": 3335
+    },
+    {
+      "id": "5.17",
+      "name": "WFS_CMD_IPM_SUPPLY_REPLENISH",
+      "type": "command",
+      "start_line": 3336,
+      "end_line": 3372
+    },
+    {
+      "id": "5.18",
+      "name": "WFS_CMD_IPM_POWER_SAVE_CONTROL",
+      "type": "command",
+      "start_line": 3373,
+      "end_line": 3409
+    },
+    {
+      "id": "5.19",
+      "name": "WFS_CMD_IPM_SET_MODE",
+      "type": "command",
+      "start_line": 3410,
+      "end_line": 3443
+    },
+    {
+      "id": "5.20",
+      "name": "WFS_CMD_IPM_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 3444,
+      "end_line": 3493
+    },
+    {
+      "id": "6.1",
+      "name": "WFS_EXEE_IPM_NOMEDIA",
+      "type": "event",
+      "start_line": 3494,
+      "end_line": 3501
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_EXEE_IPM_MEDIAINSERTED",
+      "type": "event",
+      "start_line": 3502,
+      "end_line": 3509
+    },
+    {
+      "id": "6.3",
+      "name": "WFS_USRE_IPM_MEDIABINTHRESHOLD",
+      "type": "event",
+      "start_line": 3510,
+      "end_line": 3522
+    },
+    {
+      "id": "6.4",
+      "name": "WFS_SRVE_IPM_MEDIABININFOCHANGED",
+      "type": "event",
+      "start_line": 3523,
+      "end_line": 3542
+    },
+    {
+      "id": "6.5",
+      "name": "WFS_EXEE_IPM_MEDIABINERROR",
+      "type": "event",
+      "start_line": 3543,
+      "end_line": 3573
+    },
+    {
+      "id": "6.6",
+      "name": "WFS_SRVE_IPM_MEDIATAKEN",
+      "type": "event",
+      "start_line": 3574,
+      "end_line": 3592
+    },
+    {
+      "id": "6.7",
+      "name": "WFS_USRE_IPM_TONERTHRESHOLD",
+      "type": "event",
+      "start_line": 3593,
+      "end_line": 3610
+    },
+    {
+      "id": "6.8",
+      "name": "WFS_USRE_IPM_SCANNERTHRESHOLD",
+      "type": "event",
+      "start_line": 3611,
+      "end_line": 3635
+    },
+    {
+      "id": "6.9",
+      "name": "WFS_USRE_IPM_INKTHRESHOLD",
+      "type": "event",
+      "start_line": 3636,
+      "end_line": 3653
+    },
+    {
+      "id": "6.10",
+      "name": "WFS_SRVE_IPM_MEDIADETECTED",
+      "type": "event",
+      "start_line": 3654,
+      "end_line": 3681
+    },
+    {
+      "id": "6.11",
+      "name": "WFS_EXEE_IPM_MEDIAPRESENTED",
+      "type": "event",
+      "start_line": 3682,
+      "end_line": 3709
+    },
+    {
+      "id": "6.12",
+      "name": "WFS_EXEE_IPM_MEDIAREFUSED",
+      "type": "event",
+      "start_line": 3710,
+      "end_line": 3812
+    },
+    {
+      "id": "6.13",
+      "name": "WFS_EXEE_IPM_MEDIADATA",
+      "type": "event",
+      "start_line": 3813,
+      "end_line": 3983
+    },
+    {
+      "id": "6.14",
+      "name": "WFS_USRE_IPM_MICRTHRESHOLD",
+      "type": "event",
+      "start_line": 3984,
+      "end_line": 4000
+    },
+    {
+      "id": "6.15",
+      "name": "WFS_EXEE_IPM_MEDIAREJECTED",
+      "type": "event",
+      "start_line": 4001,
+      "end_line": 4037
+    },
+    {
+      "id": "6.16",
+      "name": "WFS_SRVE_IPM_DEVICEPOSITION",
+      "type": "event",
+      "start_line": 4038,
+      "end_line": 4057
+    },
+    {
+      "id": "6.17",
+      "name": "WFS_SRVE_IPM_POWER_SAVE_CHANGE",
+      "type": "event",
+      "start_line": 4058,
+      "end_line": 4072
+    },
+    {
+      "id": "6.18",
+      "name": "WFS_SRVE_IPM_SHUTTERSTATUSCHANGED",
+      "type": "event",
+      "start_line": 4073,
+      "end_line": 4102
+    },
+    {
+      "id": "7.1",
+      "name": "Devices with Stacker",
+      "type": "section",
+      "start_line": 4103,
+      "end_line": 4103
+    },
+    {
+      "id": "7.1.1",
+      "name": "Bunch Media Processing (OK flow)",
+      "type": "section",
+      "start_line": 4104,
+      "end_line": 4140
+    },
+    {
+      "id": "7.1.2",
+      "name": "Bunch Media Processing (Some Media Items Returned)",
+      "type": "section",
+      "start_line": 4141,
+      "end_line": 4193
+    },
+    {
+      "id": "7.1.3",
+      "name": "Bunch Media Processing with Errors",
+      "type": "section",
+      "start_line": 4194,
+      "end_line": 4248
+    },
+    {
+      "id": "7.1.4",
+      "name": "Bunch media processing with Rollback",
+      "type": "section",
+      "start_line": 4249,
+      "end_line": 4272
+    },
+    {
+      "id": "7.1.5",
+      "name": "Bunch media processing with Retract",
+      "type": "section",
+      "start_line": 4273,
+      "end_line": 4280
+    },
+    {
+      "id": "7.1.6",
+      "name": "Bunch Media Processing - Application Refuse Decision (All OK flow)",
+      "type": "section",
+      "start_line": 4281,
+      "end_line": 4325
+    },
+    {
+      "id": "7.1.7",
+      "name": "Bunch Media Processing - Application Refuse Decision (Some items",
+      "type": "section",
+      "start_line": 4326,
+      "end_line": 4397
+    },
+    {
+      "id": "7.2",
+      "name": "Devices without Stacker",
+      "type": "section",
+      "start_line": 4398,
+      "end_line": 4401
+    },
+    {
+      "id": "7.2.1",
+      "name": "Bunch Media Processing (OK flow)",
+      "type": "section",
+      "start_line": 4402,
+      "end_line": 4442
+    },
+    {
+      "id": "7.2.2",
+      "name": "Bunch Media Processing (Some Media Items Returned)",
+      "type": "section",
+      "start_line": 4443,
+      "end_line": 4498
+    },
+    {
+      "id": "7.2.3",
+      "name": "Bunch Media Processing with Errors",
+      "type": "section",
+      "start_line": 4499,
+      "end_line": 4583
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSIPM__H",
+      "type": "header",
+      "start_line": 4584,
+      "end_line": 5426
+    }
+  ],
+  "commands": {
+    "WFS_INF_IPM_STATUS": {
+      "section_id": "4.1",
+      "start_line": 479,
+      "end_line": 876,
+      "type": "info"
+    },
+    "WFS_INF_IPM_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 877,
+      "end_line": 1316,
+      "type": "info"
+    },
+    "WFS_INF_IPM_CODELINE_MAPPING": {
+      "section_id": "4.3",
+      "start_line": 1317,
+      "end_line": 1378,
+      "type": "info"
+    },
+    "WFS_INF_IPM_MEDIA_BIN_INFO": {
+      "section_id": "4.4",
+      "start_line": 1379,
+      "end_line": 1508,
+      "type": "info"
+    },
+    "WFS_INF_IPM_TRANSACTION_STATUS": {
+      "section_id": "4.5",
+      "start_line": 1509,
+      "end_line": 1744,
+      "type": "info"
+    },
+    "WFS_INF_IPM_MEDIA_BIN_CAPABILITIES": {
+      "section_id": "4.6",
+      "start_line": 1745,
+      "end_line": 1809,
+      "type": "info"
+    },
+    "WFS_CMD_IPM_MEDIA_IN": {
+      "section_id": "5.1",
+      "start_line": 1810,
+      "end_line": 2084,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_MEDIA_IN_END": {
+      "section_id": "5.2",
+      "start_line": 2085,
+      "end_line": 2219,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_MEDIA_IN_ROLLBACK": {
+      "section_id": "5.3",
+      "start_line": 2220,
+      "end_line": 2288,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_READ_IMAGE": {
+      "section_id": "5.4",
+      "start_line": 2289,
+      "end_line": 2583,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_SET_DESTINATION": {
+      "section_id": "5.5",
+      "start_line": 2584,
+      "end_line": 2622,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_PRESENT_MEDIA": {
+      "section_id": "5.6",
+      "start_line": 2623,
+      "end_line": 2684,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_RETRACT_MEDIA": {
+      "section_id": "5.7",
+      "start_line": 2685,
+      "end_line": 2785,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_PRINT_TEXT": {
+      "section_id": "5.8",
+      "start_line": 2786,
+      "end_line": 2841,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_SET_MEDIA_BIN_INFO": {
+      "section_id": "5.9",
+      "start_line": 2842,
+      "end_line": 2889,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_RESET": {
+      "section_id": "5.10",
+      "start_line": 2890,
+      "end_line": 2963,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_SET_GUIDANCE_LIGHT": {
+      "section_id": "5.11",
+      "start_line": 2964,
+      "end_line": 3033,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_GET_NEXT_ITEM": {
+      "section_id": "5.12",
+      "start_line": 3034,
+      "end_line": 3103,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_ACTION_ITEM": {
+      "section_id": "5.13",
+      "start_line": 3104,
+      "end_line": 3174,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_EXPEL_MEDIA": {
+      "section_id": "5.14",
+      "start_line": 3175,
+      "end_line": 3197,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_GET_IMAGE_AFTER_PRINT": {
+      "section_id": "5.15",
+      "start_line": 3198,
+      "end_line": 3299,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_ACCEPT_ITEM": {
+      "section_id": "5.16",
+      "start_line": 3300,
+      "end_line": 3335,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_SUPPLY_REPLENISH": {
+      "section_id": "5.17",
+      "start_line": 3336,
+      "end_line": 3372,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_POWER_SAVE_CONTROL": {
+      "section_id": "5.18",
+      "start_line": 3373,
+      "end_line": 3409,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_SET_MODE": {
+      "section_id": "5.19",
+      "start_line": 3410,
+      "end_line": 3443,
+      "type": "command"
+    },
+    "WFS_CMD_IPM_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.20",
+      "start_line": 3444,
+      "end_line": 3493,
+      "type": "command"
+    },
+    "WFS_EXEE_IPM_NOMEDIA": {
+      "section_id": "6.1",
+      "start_line": 3494,
+      "end_line": 3501,
+      "type": "event"
+    },
+    "WFS_EXEE_IPM_MEDIAINSERTED": {
+      "section_id": "6.2",
+      "start_line": 3502,
+      "end_line": 3509,
+      "type": "event"
+    },
+    "WFS_USRE_IPM_MEDIABINTHRESHOLD": {
+      "section_id": "6.3",
+      "start_line": 3510,
+      "end_line": 3522,
+      "type": "event"
+    },
+    "WFS_SRVE_IPM_MEDIABININFOCHANGED": {
+      "section_id": "6.4",
+      "start_line": 3523,
+      "end_line": 3542,
+      "type": "event"
+    },
+    "WFS_EXEE_IPM_MEDIABINERROR": {
+      "section_id": "6.5",
+      "start_line": 3543,
+      "end_line": 3573,
+      "type": "event"
+    },
+    "WFS_SRVE_IPM_MEDIATAKEN": {
+      "section_id": "6.6",
+      "start_line": 3574,
+      "end_line": 3592,
+      "type": "event"
+    },
+    "WFS_USRE_IPM_TONERTHRESHOLD": {
+      "section_id": "6.7",
+      "start_line": 3593,
+      "end_line": 3610,
+      "type": "event"
+    },
+    "WFS_USRE_IPM_SCANNERTHRESHOLD": {
+      "section_id": "6.8",
+      "start_line": 3611,
+      "end_line": 3635,
+      "type": "event"
+    },
+    "WFS_USRE_IPM_INKTHRESHOLD": {
+      "section_id": "6.9",
+      "start_line": 3636,
+      "end_line": 3653,
+      "type": "event"
+    },
+    "WFS_SRVE_IPM_MEDIADETECTED": {
+      "section_id": "6.10",
+      "start_line": 3654,
+      "end_line": 3681,
+      "type": "event"
+    },
+    "WFS_EXEE_IPM_MEDIAPRESENTED": {
+      "section_id": "6.11",
+      "start_line": 3682,
+      "end_line": 3709,
+      "type": "event"
+    },
+    "WFS_EXEE_IPM_MEDIAREFUSED": {
+      "section_id": "6.12",
+      "start_line": 3710,
+      "end_line": 3812,
+      "type": "event"
+    },
+    "WFS_EXEE_IPM_MEDIADATA": {
+      "section_id": "6.13",
+      "start_line": 3813,
+      "end_line": 3983,
+      "type": "event"
+    },
+    "WFS_USRE_IPM_MICRTHRESHOLD": {
+      "section_id": "6.14",
+      "start_line": 3984,
+      "end_line": 4000,
+      "type": "event"
+    },
+    "WFS_EXEE_IPM_MEDIAREJECTED": {
+      "section_id": "6.15",
+      "start_line": 4001,
+      "end_line": 4037,
+      "type": "event"
+    },
+    "WFS_SRVE_IPM_DEVICEPOSITION": {
+      "section_id": "6.16",
+      "start_line": 4038,
+      "end_line": 4057,
+      "type": "event"
+    },
+    "WFS_SRVE_IPM_POWER_SAVE_CHANGE": {
+      "section_id": "6.17",
+      "start_line": 4058,
+      "end_line": 4072,
+      "type": "event"
+    },
+    "WFS_SRVE_IPM_SHUTTERSTATUSCHANGED": {
+      "section_id": "6.18",
+      "start_line": 4073,
+      "end_line": 4102,
+      "type": "event"
+    }
+  }
+}

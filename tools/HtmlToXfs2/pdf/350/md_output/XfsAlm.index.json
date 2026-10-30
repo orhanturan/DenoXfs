@@ -1,0 +1,132 @@
+{
+  "file": "XfsAlm.md",
+  "device_class": "ALM",
+  "part": 3,
+  "description": "Alarm Device Class Interface",
+  "total_lines": 1030,
+  "sections": [
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Service Provider Interface (SPI) - Programmer's Reference",
+      "type": "section",
+      "start_line": 263,
+      "end_line": 265
+    },
+    {
+      "id": "3.50",
+      "name": "(this CWA) - Programmer's Reference",
+      "type": "section",
+      "start_line": 266,
+      "end_line": 351
+    },
+    {
+      "id": "3.10",
+      "name": "see the ALM 3.10 Migration document.",
+      "type": "section",
+      "start_line": 352,
+      "end_line": 358
+    },
+    {
+      "id": "3.20",
+      "name": "see the ALM 3.20 Migration document.",
+      "type": "section",
+      "start_line": 359,
+      "end_line": 361
+    },
+    {
+      "id": "3.30",
+      "name": "see the ALM 3.30 Migration document.",
+      "type": "section",
+      "start_line": 362,
+      "end_line": 366
+    },
+    {
+      "id": "3.40",
+      "name": "see the ALM 3.40 Migration document.",
+      "type": "section",
+      "start_line": 367,
+      "end_line": 371
+    },
+    {
+      "id": "3.50",
+      "name": "see the ALM 3.50 Migration document.",
+      "type": "section",
+      "start_line": 372,
+      "end_line": 633
+    },
+    {
+      "id": "4.2",
+      "name": "WFS_INF_ALM_CAPABILITIES",
+      "type": "info",
+      "start_line": 634,
+      "end_line": 733
+    },
+    {
+      "id": "5.2",
+      "name": "WFS_CMD_ALM_RESET_ALARM",
+      "type": "command",
+      "start_line": 734,
+      "end_line": 767
+    },
+    {
+      "id": "5.3",
+      "name": "WFS_CMD_ALM_RESET",
+      "type": "command",
+      "start_line": 768,
+      "end_line": 795
+    },
+    {
+      "id": "5.4",
+      "name": "WFS_CMD_ALM_SYNCHRONIZE_COMMAND",
+      "type": "command",
+      "start_line": 796,
+      "end_line": 899
+    },
+    {
+      "id": "6.2",
+      "name": "WFS_SRVE_ALM_DEVICE_RESET",
+      "type": "event",
+      "start_line": 900,
+      "end_line": 926
+    },
+    {
+      "id": "header",
+      "name": "__INC_XFSALM__H",
+      "type": "header",
+      "start_line": 927,
+      "end_line": 1030
+    }
+  ],
+  "commands": {
+    "WFS_INF_ALM_CAPABILITIES": {
+      "section_id": "4.2",
+      "start_line": 634,
+      "end_line": 733,
+      "type": "info"
+    },
+    "WFS_CMD_ALM_RESET_ALARM": {
+      "section_id": "5.2",
+      "start_line": 734,
+      "end_line": 767,
+      "type": "command"
+    },
+    "WFS_CMD_ALM_RESET": {
+      "section_id": "5.3",
+      "start_line": 768,
+      "end_line": 795,
+      "type": "command"
+    },
+    "WFS_CMD_ALM_SYNCHRONIZE_COMMAND": {
+      "section_id": "5.4",
+      "start_line": 796,
+      "end_line": 899,
+      "type": "command"
+    },
+    "WFS_SRVE_ALM_DEVICE_RESET": {
+      "section_id": "6.2",
+      "start_line": 900,
+      "end_line": 926,
+      "type": "event"
+    }
+  }
+}
