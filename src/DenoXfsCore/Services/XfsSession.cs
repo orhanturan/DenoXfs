@@ -1,5 +1,5 @@
 using DenoXfs.Core.Abstractions;
-using DenoXfs.Core.Api;
+using DenoXfs.Api;
 using DenoXfs.Core.Models.Requests;
 
 namespace DenoXfs.Core.Services;

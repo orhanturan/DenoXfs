@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_EXEE_IDC_INVALIDTRACKDATA",
+  "Description": "This execute event specifies that a track contained invalid or no data.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_INF_IDC_EMVCLESS_QUERY_APPLICATIONS",
+  "Description": "This command is used to retrieve the supported payment system applications available within an intelligent contactless card unit. The payment system application can either be identified by an AID or by the AID in combination with a Kernel Identifier. The Kernel Identifier has been introduced by the EMVCo specifications; see Reference [3].",
+  "Comments": "",
+  "InputParam": {
+    "Value": "None.",
+    "OriginalParamType": null,
+    "ParamType": "None",
+    "OriginalName": null,
+    "Name": "None",
+    "OriginalStructureName": null,
+    "StructureName": null,
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCAPPDATA *lppAppData; lppAppData Pointer to a NULL terminated array of pointers to the following data structure, each of which specifies a supported application identifier (AID) and the associated Kernel Identifier.",
+    "OriginalParamType": "LPWFSIDCAPPDATA",
+    "ParamType": "",
+    "OriginalName": "*lppAppData;\r\nlppAppData\r\nPointer to a NULL terminated array of pointers to the following data structure, each of which\r\nspecifies a supported application identifier (AID) and the associated Kernel Identifier.",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_app_data",
+    "StructureName": "XfsIdcAppData",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

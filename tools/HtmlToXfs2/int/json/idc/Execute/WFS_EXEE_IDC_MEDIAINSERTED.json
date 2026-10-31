@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_EXEE_IDC_MEDIAINSERTED",
+  "Description": "This execute event specifies that a card was inserted into the device.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

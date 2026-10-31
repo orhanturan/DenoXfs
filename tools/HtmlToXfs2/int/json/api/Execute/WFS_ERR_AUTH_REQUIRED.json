@@ -1,0 +1,42 @@
+{
+  "CommandName": "WFS_ERR_AUTH_REQUIRED",
+  "Description": "| This command can be used to get the transaction state. | | | | | | ------------- | ------------------------------------------------------- | --- | --- | --- | -------------------- | |",
+  "Comments": "",
+  "InputParam": {
+    "Value": "| None. | | | | | | Output Param | LPWFSAPITRANSACTIONSTATE | | | | lpTransactionState; |",
+    "OriginalParamType": "|",
+    "ParamType": "",
+    "OriginalName": "None.                                                   |     |     |     |                      |\r\n| Output Param  | LPWFSAPITRANSACTIONSTATE                                |     |     |     | lpTransactionState;  |",
+    "Name": "",
+    "OriginalStructureName": "wfs_api_transaction_state",
+    "StructureName": "XfsApiTransactionState",
+    "Fields": {
+      "*lppDeviceInformation": "LPWFSDEVICEINFO",
+      "lpVendorModeInformation": "LPWFSVENDORMODEINFO",
+      "lpServiceInterface": "LPWFSSERVICEINTERFACE",
+      "*lppCompoundDevices": "LPWFSCOMPOUNDDEVICE",
+      "lpszServiceProviderVersion": "LPWSTR",
+      "lpszExtra": "LPSTR"
+    },
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "| LPWFSAPITRANSACTIONSTATE | | | | lpTransactionState; |",
+    "OriginalParamType": "|",
+    "ParamType": "",
+    "OriginalName": "LPWFSAPITRANSACTIONSTATE                                |     |     |     | lpTransactionState;  |",
+    "Name": "",
+    "OriginalStructureName": "wfs_api_transaction_state",
+    "StructureName": "XfsApiTransactionState",
+    "Fields": {
+      "*lppDeviceInformation": "LPWFSDEVICEINFO",
+      "lpVendorModeInformation": "LPWFSVENDORMODEINFO",
+      "lpServiceInterface": "LPWFSSERVICEINTERFACE",
+      "*lppCompoundDevices": "LPWFSCOMPOUNDDEVICE",
+      "lpszServiceProviderVersion": "LPWSTR",
+      "lpszExtra": "LPSTR"
+    },
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

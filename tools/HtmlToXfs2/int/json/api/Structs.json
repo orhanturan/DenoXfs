@@ -1,0 +1,106 @@
+{
+  "XfsApiTransactionState": {
+    "*lppDeviceInformation": "LPWFSDEVICEINFO",
+    "lpVendorModeInformation": "LPWFSVENDORMODEINFO",
+    "lpServiceInterface": "LPWFSSERVICEINTERFACE",
+    "*lppCompoundDevices": "LPWFSCOMPOUNDDEVICE",
+    "lpszServiceProviderVersion": "LPWSTR",
+    "lpszExtra": "LPSTR"
+  },
+  "XfsResult": {
+    "RequestID": "REQUESTID",
+    "hService": "HSERVICE",
+    "tsTimestamp": "SYSTEMTIME",
+    "hResult": "HRESULT",
+    "dwCommandCode": "DWORD",
+    "dwEventID": "DWORD",
+    "lpBuffer": "LPVOID"
+  },
+  "XfsVersion": {
+    "wVersion": "WORD",
+    "wLowVersion": "WORD",
+    "wHighVersion": "WORD"
+  },
+  "XfsFirmware": {
+    "lpszFirmwareName": "LPWSTR",
+    "lpszFirmwareVersion": "LPWSTR",
+    "lpszHardwareRevision": "LPWSTR"
+  },
+  "XfsSoftware": {
+    "lpszSoftwareName": "LPWSTR",
+    "lpszSoftwareVersion": "LPWSTR"
+  },
+  "XfsDeviceInfo": {
+    "lpszModelName": "LPWSTR",
+    "lpszSerialNumber": "LPWSTR",
+    "lpszRevisionNumber": "LPWSTR",
+    "lpszModelDescription": "LPWSTR"
+  },
+  "XfsVendorModeInfo": {
+    "bAllowOpenSessions": "BOOL",
+    "lpdwAllowedExecuteCommands": "LPDWORD"
+  },
+  "XfsServiceInterface": {
+    "lpdwExecuteCommands": "LPDWORD",
+    "lpdwGetInfoCategories": "LPDWORD",
+    "lpdwEvents": "LPDWORD",
+    "dwMaximumRequests": "DWORD",
+    "lpdwAuthenticationRequired": "LPDWORD"
+  },
+  "XfsCompoundDevice": {
+    "lpszLogicalServiceName": "LPWSTR",
+    "lpszProviderName": "LPWSTR",
+    "lpszPhysicalServiceName": "LPWSTR",
+    "lpszDeviceClass": "LPWSTR"
+  },
+  "XfsServiceInfo": {
+    "lpVendorModeInformation": "LPWFSVENDORMODEINFO",
+    "lpServiceInterface": "LPWFSSERVICEINTERFACE",
+    "lpszServiceProviderVersion": "LPWSTR",
+    "lpszExtra": "LPSTR"
+  },
+  "XfsApiTransactionInfo": {
+    "lpszTransactionID": "LPWSTR",
+    "lpszExtra": "LPSTR"
+  },
+  "XfsDevStatus": {
+    "lpszPhysicalName": "LPSTR",
+    "lpszWorkstationName": "LPSTR",
+    "dwState": "DWORD"
+  },
+  "XfsUndevMsg": {
+    "lpszLogicalName": "LPSTR",
+    "lpszWorkstationName": "LPSTR",
+    "lpszAppID": "LPSTR",
+    "dwSize": "DWORD",
+    "lpbDescription": "LPBYTE",
+    "dwMsg": "DWORD",
+    "lpWFSResult": "LPWFSRESULT"
+  },
+  "XfsAppDisc": {
+    "lpszLogicalName": "LPSTR",
+    "lpszWorkstationName": "LPSTR",
+    "lpszAppID": "LPSTR"
+  },
+  "XfsHwError": {
+    "lpszLogicalName": "LPSTR",
+    "lpszPhysicalName": "LPSTR",
+    "lpszWorkstationName": "LPSTR",
+    "lpszAppID": "LPSTR",
+    "dwAction": "DWORD",
+    "dwSize": "DWORD",
+    "lpbDescription": "LPBYTE"
+  },
+  "XfsVrsnError": {
+    "lpszLogicalName": "LPSTR",
+    "lpszWorkstationName": "LPSTR",
+    "lpszAppID": "LPSTR",
+    "dwSize": "DWORD",
+    "lpbDescription": "LPBYTE",
+    "lpWFSVersion": "LPWFSVERSION"
+  },
+  "XfsApiStatusChanged": {
+    "lpvOldStatus": "LPVOID",
+    "lpvNewStatus": "LPVOID"
+  }
+}

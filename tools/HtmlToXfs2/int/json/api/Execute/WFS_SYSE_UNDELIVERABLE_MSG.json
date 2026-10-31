@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SYSE_UNDELIVERABLE_MSG",
+  "Description": "RequestID (not used) hService Service handle identifying the session that the event is sent to. tsTimestamp Time the event occurred (local time, in a Win32/Win64 SYSTEMTIME structure). hResult (not used) u.dwEventID = WFS_SYSE_UNDELIVERABLE_MSG lpBuffer Pointer to a WFSUNDEVMSG structure:",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

@@ -1,0 +1,52 @@
+{
+  "CommandName": "WFS_INF_IDC_CAPABILITIES",
+  "Description": "This command is used to retrieve the capabilities of the ID card unit.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "None.",
+    "OriginalParamType": null,
+    "ParamType": "None",
+    "OriginalName": null,
+    "Name": "None",
+    "OriginalStructureName": null,
+    "StructureName": null,
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCCAPS lpCaps;",
+    "OriginalParamType": "LPWFSIDCCAPS",
+    "ParamType": "",
+    "OriginalName": "lpCaps",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_caps",
+    "StructureName": "XfsIdcCaps",
+    "Fields": {
+      "wClass": "WORD",
+      "fwType": "WORD",
+      "bCompound": "BOOL",
+      "fwReadTracks": "WORD",
+      "fwWriteTracks": "WORD",
+      "fwChipProtocols": "WORD",
+      "usCards": "USHORT",
+      "fwSecType": "WORD",
+      "fwPowerOnOption": "WORD",
+      "fwPowerOffOption": "WORD",
+      "bFluxSensorProgrammable": "BOOL",
+      "bReadWriteAccessFollowingEject": "BOOL",
+      "fwWriteMode": "WORD",
+      "fwChipPower": "WORD",
+      "lpszExtra": "LPSTR",
+      "fwDIPMode": "WORD",
+      "lpwMemoryChipProtocols": "LPWORD",
+      "dwGuidLights": "DWORD",
+      "fwEjectPosition": "WORD",
+      "bPowerSaveControl": "BOOL",
+      "usParkingStations": "USHORT",
+      "bAntiFraudModule": "BOOL",
+      "lpdwSynchronizableCommands": "LPDWORD"
+    },
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

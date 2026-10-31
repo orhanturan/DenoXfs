@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SYSE_VERSION_ERROR",
+  "Description": "RequestID (not used) hService (not used) tsTimestamp Time the error occurred (local time, in a Win32/Win64 SYSTEMTIME structure). hResult The version error code (e.g. WFS_ERR_SPI_VER_TOO_HIGH). u.dwEventID = WFS_SYSE_VERSION_ERROR lpBuffer Pointer to a WFSVRSNERROR structure:",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

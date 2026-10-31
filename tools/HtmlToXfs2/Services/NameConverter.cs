@@ -14,6 +14,44 @@ public static class NameConverter
     };
 
     /// <summary>
+    /// Property name of a header field: everything before the first uppercase letter is Hungarian notation.
+    /// hService → Service, lpvOldStatus → OldStatus, RequestID → RequestID
+    /// </summary>
+    public static string ToPropertyName(string fieldName)
+    {
+        if (string.IsNullOrEmpty(fieldName))
+            return "";
+
+        if (char.IsUpper(fieldName[0]))
+            return fieldName;
+
+        for (var i = 0; i < fieldName.Length; i++)
+        {
+            if (char.IsUpper(fieldName[i]))
+                return fieldName.Substring(i);
+        }
+
+        return char.ToUpper(fieldName[0]) + fieldName.Substring(1);
+    }
+
+    /// <summary>#define name as it appears on the constants class: WFS_INF_IDC_STATUS → InfIdcStatus.</summary>
+    public static string ConstantName(string defineName, string device)
+    {
+        return ToPascalCase(EnumMemberNamer.StripFamilyPrefix(defineName, device));
+    }
+
+    /// <summary>
+    /// Convert a device struct tag: wfs_idc_emvcless_tx_data_output → IdcEmvclessTxDataOutput.
+    /// Underscores in the tag mark the word boundaries, so no word dictionary is needed.
+    /// </summary>
+    public static string DeviceStructName(string tag)
+    {
+        var parts = tag.Split('_', StringSplitOptions.RemoveEmptyEntries)
+            .Where(p => !p.Equals("wfs", StringComparison.OrdinalIgnoreCase));
+        return string.Concat(parts.Select(Capitalize));
+    }
+
+    /// <summary>
     /// Convert struct name: wfs_idc_status → XfsIdcStatus
     /// </summary>
     public static string ConvertStructName(string originalName)
@@ -236,50 +274,51 @@ public static class NameConverter
         if (string.IsNullOrEmpty(input))
             return "";
 
-        // Bilinen kelime pattern'leri (uzun olandan kısa olana doğru sıralı)
-        // NOT: HWERROR, USERERROR gibi birleşik kelimeler yerine HW, USER, ERROR ayrı ayrı kullanılıyor
-        var knownWords = new[] { 
-            "POTENTIAL", "FRAUD", "ATTEMPT", "DEVICE", "POSITION", "UNKNOWN", "NOTSUPP",
-            "POWERED", "OFFLINE", "ONLINE", "NODEVICE", "USER",
-            "STRIPE", "READ", "WRITE", "CARD", "CHIP", "TRACK", "DATA", "INFO", 
-            "STATUS", "ERROR", "ACTION", "MAGNETIC", "CONTACT", "DIP", "SWIPE",
-            "MOTOR", "POWER", "EJECT", "RETAIN", "PARK", "FORM", "FIELD", "SECURE",
-            "MEDIA", "PRESENT", "BUSY", "MODULE", "MOD", "READY", "NOT", "SUPP", "OPEN",
-            "INSERTED", "REMOVED", "DETECTED", "RETAINED", "THRESHOLD", "INVALID", "EMVCLESS",
-            "POWERSAVE", "CHANGED", "CHANGE", "INSERT", "OK", "INOP", "OFF", "DEV",
-            "UNDEV", "MSG", "APP", "DISCONNECT", "DISC", "HW", "VRSN", "API", "VERSION", "SERVICE",
-            "TRANSACTION", "STATE", "COMPOUND", "VENDOR", "MODE", "INTERFACE", "FIRMWARE",
-            "SOFTWARE", "RESULT", "XFS"
+        // Longest match wins. Prefer XFS fragments that appear alone; keep 2-letter tokens rare.
+        // APPLICATIONS before APP, CONTACTLESS before CONTACT, INACTIVE/INTELLIGENT before IN.
+        var knownWords = new[] {
+            "CONTACTLESS", "APPLICATIONS", "APPLICATION", "CONFIRMATION", "INTELLIGENT",
+            "PROCESSING", "TRANSPORT", "POWERSAVE", "THRESHOLD", "DISCONNECT", "INTERFACE",
+            "TRANSACTION", "SYNCHRONIZE", "CONFIGURED", "INITIATED", "COLLISION", "TERMINAL",
+            "COMPLETION", "PREFERENCE", "APPROVE", "REQUEST", "DECLINE",
+            "MAGNETIC", "INACTIVE", "REQUIRED", "INSERTED", "REMOVED", "DETECTED", "RETAINED",
+            "POSITION", "POTENTIAL", "FIRMWARE", "SOFTWARE", "PROTOCOL", "SECURITY", "SHUTTER",
+            "MISSING", "PRESENT", "UNKNOWN", "INVALID", "OFFLINE", "ONLINE", "POWERED",
+            "ATTEMPT", "OBTAINED", "ANOTHER", "MULTIPLE", "VERIFIED", "READER", "DEVICE",
+            "STATUS", "MODULE", "SECURE", "STRIPE", "TRACK", "WRITE", "READ", "CARD", "CARDS",
+            "CHIP", "DATA", "INFO", "ERROR", "ACTION", "CONTACT", "LATCHED", "SWIPE", "MOTOR",
+            "POWER", "EJECT", "RETAIN", "PARK", "FORM", "FIELD", "MEDIA", "BUSY", "READY",
+            "OPEN", "CHANGE", "CHANGED", "INSERT", "FRAUD", "USER", "COMPOUND", "VENDOR",
+            "VERSION", "SERVICE", "RESULT", "STATE", "MODE", "TYPE", "COMMAND", "BALANCE",
+            "AMOUNT", "IMAGE", "FRONT", "BACK", "SYNTAX", "FOUND", "PORT", "KEY", "DIP",
+            "MOD", "NOT", "SUPP", "UNSUPP", "OK", "INOP", "OFF", "DEV", "UNDEV", "MSG",
+            "APP", "DISC", "HW", "VRSN", "API", "XFS", "NO", "TOO", "LONG", "SHORT", "SRC",
+            "THEN", "EXIT", "FAIL", "FULL", "HIGH", "BIN", "POS", "SEC", "MAG", "IMG", "AFM",
+            "ATR", "CODE", "HOLD", "TRY", "AGAIN", "FLUX", "END", "JAM", "AID", "CVM", "PIN",
+            "SIGN", "IDLE", "RETAP", "IN", "ON", "EMVCLESS"
         };
 
         var upperInput = input.ToUpper();
         var words = new List<string>();
         var remaining = upperInput;
+        var ordered = knownWords.OrderByDescending(w => w.Length).ToArray();
 
-        // Baştan başlayarak bilinen kelimeleri bul
+        // Match longest known fragment. 1-2 letter matches only stick if the rest
+        // is empty or itself starts with a known word (IN+POSITION yes, IN+F no).
         while (remaining.Length > 0)
         {
-            bool found = false;
-            foreach (var knownWord in knownWords.OrderByDescending(w => w.Length))
-            {
-                if (remaining.StartsWith(knownWord, StringComparison.OrdinalIgnoreCase))
-                {
-                    words.Add(knownWord);
-                    remaining = remaining.Substring(knownWord.Length);
-                    found = true;
-                    break;
-                }
-            }
+            var match = ordered.FirstOrDefault(known =>
+                remaining.StartsWith(known, StringComparison.OrdinalIgnoreCase)
+                && (known.Length >= 3 || RestStartsWithKnownWord(remaining.Substring(known.Length), ordered)));
 
-            if (!found)
+            if (match == null)
             {
-                // Bilinen kelime bulunamadı, kalan kısmı tek kelime olarak al
-                if (remaining.Length > 0)
-                {
-                    words.Add(remaining);
-                }
+                words.Add(remaining);
                 break;
             }
+
+            words.Add(match);
+            remaining = remaining.Substring(match.Length);
         }
 
         // Kelimeleri PascalCase'e çevir ve birleştir
@@ -303,6 +342,15 @@ public static class NameConverter
         }
 
         return finalResult;
+    }
+
+    private static bool RestStartsWithKnownWord(string rest, IReadOnlyList<string> orderedKnownWords)
+    {
+        if (rest.Length == 0)
+            return true;
+
+        return orderedKnownWords.Any(known =>
+            known.Length >= 3 && rest.StartsWith(known, StringComparison.OrdinalIgnoreCase));
     }
 }
 

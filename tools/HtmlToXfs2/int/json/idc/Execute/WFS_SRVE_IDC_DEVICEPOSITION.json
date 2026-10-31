@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_DEVICEPOSITION",
+  "Description": "This service event reports that the device has changed its position status.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

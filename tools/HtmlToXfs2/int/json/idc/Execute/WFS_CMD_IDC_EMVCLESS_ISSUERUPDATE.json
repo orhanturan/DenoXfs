@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_CMD_IDC_EMVCLESS_ISSUERUPDATE",
+  "Description": "This command performs the post authorization processing on payment systems contactless cards. Before an online authorized transaction is considered complete, further chip processing may be requested by the issuer. This is only required when the authorization response includes issuer update data; either issuer scripts or issuer authentication data. The command enables the contactless card reader and waits for the customer to re-tap their card. The contactless chip card reader waits for the period of time specified in the WFSExecute call for a card to be tapped.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "LPWFSIDCEMVCLESSTXDATA lpClessTxData;",
+    "OriginalParamType": "LPWFSIDCEMVCLESSTXDATA",
+    "ParamType": "",
+    "OriginalName": "lpClessTxData",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_emvcless_tx_data",
+    "StructureName": "XfsIdcEmvclessTxData",
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCEMVCLESSTXDATAOUTPUT lpClessTxDataOutput; lpClessTxDataOutput Pointer to the contactless card data structure or if no data has been returned lpClessTxDataOutput will be NULL:",
+    "OriginalParamType": "LPWFSIDCEMVCLESSTXDATAOUTPUT",
+    "ParamType": "",
+    "OriginalName": "lpClessTxDataOutput;\r\nlpClessTxDataOutput\r\nPointer to the contactless card data structure or if no data has been returned lpClessTxDataOutput\r\nwill be NULL:",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_emvcless_tx_data",
+    "StructureName": "XfsIdcEmvclessTxData",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

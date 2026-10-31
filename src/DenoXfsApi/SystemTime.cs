@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DenoXfs.Core.Api
+namespace DenoXfs.Api
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct SystemTime

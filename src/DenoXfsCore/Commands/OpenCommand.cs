@@ -1,6 +1,7 @@
 using System;
 using DenoXfs.Core.Abstractions;
-using DenoXfs.Core.Api;
+using DenoXfs.Api;
+using DenoXfs.Api.Common;
 using DenoXfs.Core.Models;
 using DenoXfs.Core.Models.Responses;
 

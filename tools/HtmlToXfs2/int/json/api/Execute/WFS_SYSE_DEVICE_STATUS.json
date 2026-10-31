@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SYSE_DEVICE_STATUS",
+  "Description": "RequestID (not used) hService Service handle identifying the session that created the result, i.e. the service handle of the session that the event is sent to. tsTimestamp Time the status change occurred (local time, in a Win32/Win64 SYSTEMTIME structure). hResult (not used) u.dwEventID = WFS_SYSE_DEVICE_STATUS lpBuffer Pointer to a WFSDEVSTATUS structure:",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

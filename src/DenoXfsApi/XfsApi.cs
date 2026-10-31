@@ -1,8 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
+using DenoXfs.Api.Common;
 
-
-namespace DenoXfs.Core.Api;
+namespace DenoXfs.Api;
 
 public static class XfsApi
 {

@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_MEDIADETECTED",
+  "Description": "This service event is generated if media is detected during a reset (WFS_CMD_IDC_RESET). The parameter on the event informs the application of the position of the card on the completion of the reset. For devices with parking station capability there will be one event for each card found.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

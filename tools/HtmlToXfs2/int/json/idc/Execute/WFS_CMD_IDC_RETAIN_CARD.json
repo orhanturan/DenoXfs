@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_CMD_IDC_RETAIN_CARD",
+  "Description": "The card is removed from its present position (card inserted into device, card entering, unknown position) and stored in the retain bin; applicable to motor-driven card readers only. The ID card unit sends an event, if the storage capacity of the retain bin is reached. If the storage capacity has already been reached, and the command cannot be executed, an error is returned and the card remains in its present position.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "None.",
+    "OriginalParamType": null,
+    "ParamType": "None",
+    "OriginalName": null,
+    "Name": "None",
+    "OriginalStructureName": null,
+    "StructureName": null,
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCRETAINCARD lpRetainCard;",
+    "OriginalParamType": "LPWFSIDCRETAINCARD",
+    "ParamType": "",
+    "OriginalName": "lpRetainCard",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_retain_card",
+    "StructureName": "XfsIdcRetainCard",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

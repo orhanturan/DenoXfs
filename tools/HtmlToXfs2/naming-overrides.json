@@ -1,0 +1,24 @@
+{
+  "structNames": {
+    "wfs_idc_set_guidlight": "XfsIdcSetGuidLight"
+  },
+  "enumNames": {
+    "DevStatusState": "DeviceStatus",
+    "ApiTransactionStateState": "TransactionState",
+    "IdcBackImageModuleStatus": "IdcImageModuleStatus",
+    "IdcMagReadModuleStatus": "IdcMagModuleStatus",
+    "IdcPowerOffOptionCapability": "IdcPowerOptionCapability",
+    "IdcIFMAuthorityIfmIdentifier": "IdcIfmAuthority",
+    "IdcStatus": "IdcDataStatus",
+    "IdcGuidLights": "IdcGuidLight"
+  },
+  "enumMerges": {
+    "IdcDataSource": [ "IdcReadTracksCapabilities", "IdcDataSourceCardData" ],
+    "IdcWriteMethod": [ "IdcWriteModeCapabilities", "IdcWriteMethod" ]
+  },
+  "ownerRemap": {
+    "WFSIDCEMVCLESSDATA.wTxOutcome": "WFSIDCEMVCLESSTXDATAOUTPUT.wTxOutcome",
+    "WFSIDCEMVCLESSOUTCOME.wCardholderAction": "WFSIDCEMVCLESSTXDATAOUTPUT.wCardholderAction"
+  },
+  "memberNames": {}
+}

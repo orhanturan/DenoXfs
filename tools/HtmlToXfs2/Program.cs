@@ -145,17 +145,8 @@ namespace HtmlToXfs2
             Console.WriteLine("\n=== EKSİK STRUCT'LARI EKLEME İŞLEMİ ===");
             InsertMissingStructsForDevice(deviceName);
 
-            Console.WriteLine("\n=== C# CONSTANTS EXPORT İŞLEMİ ===");
-            var constantsExporter = new ConstantsExporter(deviceName);
-            constantsExporter.Export();
-
-            Console.WriteLine("\n=== C# ENUM EXPORT İŞLEMİ ===");
-            var enumExporter = new EnumExporter(deviceName);
-            enumExporter.Export();
-
-            Console.WriteLine("\n=== C# STRUCT EXPORT İŞLEMİ ===");
-            var structExporter = new StructExporter(deviceName);
-            structExporter.Export();
+            Console.WriteLine("\n=== C# TYPE GENERATION (HEADER-DRIVEN) ===");
+            new TypeGenerator(deviceName, _specVersion).Run();
 
             Console.WriteLine("\n=== DOĞRULAMA İŞLEMİ ===");
             RunValidationForDevice(deviceName);
@@ -281,20 +272,9 @@ namespace HtmlToXfs2
             Console.WriteLine("\n=== EKSİK STRUCT'LARI EKLEME İŞLEMİ ===");
             InsertMissingStructsForDevice(deviceName);
 
-            // C# Constants Export - Constants.json'dan C# dosyası oluştur
-            Console.WriteLine("\n=== C# CONSTANTS EXPORT İŞLEMİ ===");
-            var constantsExporter = new ConstantsExporter(deviceName);
-            constantsExporter.Export();
-
-            // C# Enum Export - Enums.json'dan C# enum dosyaları oluştur
-            Console.WriteLine("\n=== C# ENUM EXPORT İŞLEMİ ===");
-            var enumExporter = new EnumExporter(deviceName);
-            enumExporter.Export();
-
-            // C# Struct Export - Structs.json'dan C# struct dosyaları oluştur
-            Console.WriteLine("\n=== C# STRUCT EXPORT İŞLEMİ ===");
-            var structExporter = new StructExporter(deviceName);
-            structExporter.Export();
+            // C# type generation is header-driven (constants, enums, structs)
+            Console.WriteLine("\n=== C# TYPE GENERATION (HEADER-DRIVEN) ===");
+            new TypeGenerator(deviceName, _specVersion).Run();
 
             // Validation - always at the end
             Console.WriteLine("\n=== DOĞRULAMA İŞLEMİ ===");
@@ -497,12 +477,7 @@ namespace HtmlToXfs2
             foreach (var device in devices)
             {
                 Console.WriteLine($"\nCopying files for {device.ToUpper()}...");
-                
-                Console.WriteLine("  [Constants]");
-                outputCopier.CopyConstants(device);
-                
-                Console.WriteLine("  [Structs]");
-                outputCopier.CopyStructs(device);
+                outputCopier.Copy(device);
             }
             
             Console.WriteLine("\n=== COPY COMPLETED ===");

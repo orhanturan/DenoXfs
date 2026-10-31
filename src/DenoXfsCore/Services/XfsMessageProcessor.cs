@@ -5,7 +5,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using DenoXfs.Core.Abstractions;
-using DenoXfs.Core.Api;
+using DenoXfs.Api;
+using DenoXfs.Api.Common;
 using Microsoft.Extensions.Hosting;
 
 namespace DenoXfs.Core.Services;

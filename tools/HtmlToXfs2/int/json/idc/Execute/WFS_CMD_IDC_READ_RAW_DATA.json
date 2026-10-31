@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_CMD_IDC_READ_RAW_DATA",
+  "Description": "For motor driven card readers, the ID card unit checks whether a card has been inserted. If so, all specified tracks are read immediately. If reading the chip is requested, the chip will be contacted and reset and the ATR (Answer To Reset) data will be read. When this command completes the chip will be in contacted position. This command can also be used for an explicit cold reset of a previously contacted chip. This command should only be used for user cards and should not be used for permanently connected chips. If no card has been inserted, and for all other categories of card readers, the ID card unit waits for the period of time specified in the WFSExecute call for a card to be either inserted or pulled through. The next step is trying to read all tracks specified. The WFS_EXEE_IDC_INSERTCARD event will be generated when there is no card in the card reader and the device is ready to accept a card. If the magnetic stripe track data is not already in 8 bit form, the data is converted from its 5 or 7 bit character form to 8 bit ASCII form. The parity bit from each 5 or 7 bit magnetic stripe character is discarded. Start and end sentinel characters are not returned to the application. Field separator characters are returned to the application, and are also converted to 8 bit ASCII form. In addition to that, a security check via a security module (i.e. MM, CIM86) can be requested. If the security check fails however this should not stop valid data being returned. The error WFS_ERR_IDC_SECURITYFAIL will be returned if the command specifies only security data to be read and the security check could not be executed, in all other cases WFS_SUCCESS will be returned with the lpbData field of the output parameter set to the relevant value including WFS_IDC_SEC_HWERROR. For non-motorized Card Readers which read track data on card exit, the WFS_ERR_INVALID_DATA error code is returned when a call to WFS_CMD_IDC_READ_RAW_DATA is made to read both track data and chip data. If the card unit is a latched dip unit then the device will latch the card when the chip card will be read, i.e. WFS_IDC_CHIP is specified (see below). The card will remain latched until a call to WFS_CMD_IDC_EJECT_CARD is made. For contactless chip card readers a collision of two or more card signals may happen. In this case, if the device is not able to pick the strongest signal, the WFS_ERR_IDC_CARDCOLLISION error code will be returned.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "LPWORD lpwReadData; lpwReadData If lpwReadData points to a zero value any previously ejected card will be moved back inside the device and no data will be returned. Otherwise, lpwReadData specifies the data that should be read as a combination of the following flags: Value Meaning",
+    "OriginalParamType": "LPWORD",
+    "ParamType": "",
+    "OriginalName": "lpwReadData;\r\nlpwReadData\r\nIf lpwReadData points to a zero value any previously ejected card will be moved back inside the\r\ndevice and no data will be returned. Otherwise, lpwReadData specifies the data that should be\r\nread as a combination of the following flags:\r\nValue Meaning",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_card_data",
+    "StructureName": "XfsIdcCardData",
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCCARDDATA *lppCardData; lppCardData Pointer to a NULL terminated array of pointers to card data structures or if no data has been requested lppCardData will be NULL:",
+    "OriginalParamType": "LPWFSIDCCARDDATA",
+    "ParamType": "",
+    "OriginalName": "*lppCardData;\r\nlppCardData\r\nPointer to a NULL terminated array of pointers to card data structures or if no data has been\r\nrequested lppCardData will be NULL:",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_card_data",
+    "StructureName": "XfsIdcCardData",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

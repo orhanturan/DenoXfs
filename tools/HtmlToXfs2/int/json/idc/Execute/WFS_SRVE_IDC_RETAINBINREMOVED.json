@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_RETAINBINREMOVED",
+  "Description": "This event specifies that the retain bin has been removed.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

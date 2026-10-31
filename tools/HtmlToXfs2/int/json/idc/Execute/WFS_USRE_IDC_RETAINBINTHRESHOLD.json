@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_USRE_IDC_RETAINBINTHRESHOLD",
+  "Description": "This user event specifies that the retain bin holding the retained cards has reached a threshold condition or the threshold condition is removed.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

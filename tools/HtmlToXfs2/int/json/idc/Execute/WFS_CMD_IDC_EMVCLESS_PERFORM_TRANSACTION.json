@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_CMD_IDC_EMVCLESS_PERFORM_TRANSACTION",
+  "Description": "This command is used to enable an intelligent contactless card reader. The transaction will start as soon as the card tap is detected. Based on the configuration of the contactless chip card and the reader device, this command could return data formatted either as magnetic stripe information or as a set of BER-TLV encoded EMV tags. This command supports magnetic stripe emulation cards and EMV-like contactless cards but cannot be used on storage contactless cards. The latter must be managed using the WFS_CMD_IDC_READ_RAW_DATA and WFS_CMD_IDC_CHIP_IO commands. For specific payment system\u0027s card profiles an intelligent card reader could return a set of EMV tags along with magnetic stripe formatted data. In this case, two contactless card data structures will be returned, one containing the magnetic stripe like data and one containing BER-TLV encoded tags. If no card has been tapped, the contactless chip card reader waits for the period of time specified in the WFSExecute call for a card to be tapped. For intelligent contactless card readers, any in-built audio/visual feedback such as Beep/LEDs, need to be controlled directly by the reader. These indications should be implemented based on the EMVCo and payment system\u0027s specifications.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "LPWFSIDCEMVCLESSTXDATA lpClessTxData;",
+    "OriginalParamType": "LPWFSIDCEMVCLESSTXDATA",
+    "ParamType": "",
+    "OriginalName": "lpClessTxData",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_emvcless_tx_data",
+    "StructureName": "XfsIdcEmvclessTxData",
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCEMVCLESSTXDATAOUTPUT *lppClessTxDataOutput; lppClessTxDataOutput Pointer to a NULL terminated array of pointers to contactless card data structures.If no data has been returned lppClessTxDataOutput will be NULL:",
+    "OriginalParamType": "LPWFSIDCEMVCLESSTXDATAOUTPUT",
+    "ParamType": "",
+    "OriginalName": "*lppClessTxDataOutput;\r\nlppClessTxDataOutput\r\nPointer to a NULL terminated array of pointers to contactless card data structures.If no data has\r\nbeen returned lppClessTxDataOutput will be NULL:",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_emvcless_tx_data",
+    "StructureName": "XfsIdcEmvclessTxData",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

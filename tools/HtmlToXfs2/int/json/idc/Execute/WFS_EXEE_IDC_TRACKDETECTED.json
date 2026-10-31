@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_EXEE_IDC_TRACKDETECTED",
+  "Description": "This execute event notifies the application what track data the inserted card has, before the reading of the data has completed. This event will be posted once when tracks are detected during card insertion.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

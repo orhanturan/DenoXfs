@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_INF_IDC_QUERY_IFM_IDENTIFIER",
+  "Description": "This command is used to retrieve the complete list of registration authority Interface Module (IFM) identifiers. The primary registration authority is EMVCo but other organizations are also supported for historical or local country requirements. New registration authorities may be added in the future so applications should be able to handle the return of new (as yet undefined) IFM identifiers.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "None.",
+    "OriginalParamType": null,
+    "ParamType": "None",
+    "OriginalName": null,
+    "Name": "None",
+    "OriginalStructureName": null,
+    "StructureName": null,
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCIFMIDENTIFIER *lppIFMIdentifier; Pointer to a NULL terminated array of pointers to data structures. There is one array element for each IFM identifier supported by the Service Provider (in no particular order). If there is no IFM identifier available for one of the defined IFM authorities then no element is returned in the array for that authority. If there are no IFM identifiers for the device then the output parameter lppIFMIdentifier will be NULL.",
+    "OriginalParamType": "LPWFSIDCIFMIDENTIFIER",
+    "ParamType": "",
+    "OriginalName": "*lppIFMIdentifier;\r\nPointer to a NULL terminated array of pointers to data structures. There is one array element for\r\neach IFM identifier supported by the Service Provider (in no particular order). If there is no IFM\r\nidentifier available for one of the defined IFM authorities then no element is returned in the array\r\nfor that authority. If there are no IFM identifiers for the device then the output parameter\r\nlppIFMIdentifier will be NULL.",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_ifm_identifier",
+    "StructureName": "XfsIdcIfmIdentifier",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

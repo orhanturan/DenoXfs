@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_EXEE_IDC_INSERTCARD",
+  "Description": "This mandatory event notifies the application when the device is ready for the user to insert a card.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

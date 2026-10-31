@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace DenoXfs.Core.Convert;
+namespace DenoXfs.Interop.Convert;
 
 public static class StringConvert
 {

@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_EXEE_IDC_MEDIARETAINED",
+  "Description": "This execute event specifies that the card was retained.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

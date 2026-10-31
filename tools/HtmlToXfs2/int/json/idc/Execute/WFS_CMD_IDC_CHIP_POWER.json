@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_CMD_IDC_CHIP_POWER",
+  "Description": "This command handles the power actions that can be done on the chip. For user chips, this command is only used after the chip has been contacted for the first time using the WFS_CMD_IDC_READ_RAW_DATA command. For contactless user chips, this command may be used to deactivate the contactless card communication. For permanently connected chip cards, this command is the only way to control the chip power.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "LPWORD lpwChipPower; lpwChipPower Specifies the action to perform as one of the following flags: Value Meaning",
+    "OriginalParamType": "LPWORD",
+    "ParamType": "",
+    "OriginalName": "lpwChipPower;\r\nlpwChipPower\r\nSpecifies the action to perform as one of the following flags:\r\nValue Meaning",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_chip_power_out",
+    "StructureName": "XfsIdcChipPowerOut",
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "NULL or LPWFSIDCCHIPPOWEROUT lpChipPowerOut;",
+    "OriginalParamType": "NULL",
+    "ParamType": "",
+    "OriginalName": "or LPWFSIDCCHIPPOWEROUT lpChipPowerOut",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_chip_power_out",
+    "StructureName": "XfsIdcChipPowerOut",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

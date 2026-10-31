@@ -1,0 +1,36 @@
+namespace DenoXfs.Idc.Errors;
+
+public enum IdcError : int
+{
+    MediaJam = -200,
+    NoMedia = -201,
+    MediaRetained = -202,
+    RetainBinFull = -203,
+    InvalidData = -204,
+    InvalidMedia = -205,
+    FormNotFound = -206,
+    FormInvalid = -207,
+    DataSyntax = -208,
+    ShutterFail = -209,
+    SecurityFail = -210,
+    ProtocolNotSupp = -211,
+    AtrNotObtained = -212,
+    InvalidKey = -213,
+    WriteMethod = -214,
+    ChipPowerNotSupp = -215,
+    CardTooShort = -216,
+    CardTooLong = -217,
+    InvalidPort = -218,
+    PowersaveTooShort = -219,
+    PowersaveMediaPresent = -220,
+    CardPresent = -221,
+    PositionInvalid = -222,
+    InvalidTerminalData = -223,
+    InvalidAidData = -224,
+    InvalidKeyData = -225,
+    ReaderNotConfigured = -226,
+    TransactionNotInitiated = -227,
+    CommandUnsupp = -228,
+    SynchronizeUnsupp = -229,
+    CardCollision = -230
+}

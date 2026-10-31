@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_DEREGISTER_COMPLETE",
+  "Description": "",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

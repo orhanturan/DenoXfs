@@ -1,0 +1,585 @@
+[
+  {
+    "kind": "enum",
+    "name": "IdcCommandId",
+    "group": "",
+    "folder": "",
+    "reason": "WFS_CMD_IDC_",
+    "owners": []
+  },
+  {
+    "kind": "enum",
+    "name": "IdcEventId",
+    "group": "",
+    "folder": "",
+    "reason": "WFS_EXEE_IDC_, WFS_SRVE_IDC_, WFS_USRE_IDC_",
+    "owners": []
+  },
+  {
+    "kind": "enum",
+    "name": "IdcInfoId",
+    "group": "",
+    "folder": "",
+    "reason": "WFS_INF_IDC_",
+    "owners": []
+  },
+  {
+    "kind": "enum",
+    "name": "IdcDirectionParkCard",
+    "group": "Commands",
+    "folder": "Commands/ParkCard",
+    "reason": "only used by XfsIdcParkCard",
+    "owners": [
+      "XfsIdcParkCard.wDirection"
+    ]
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcAidData",
+    "group": "Commands",
+    "folder": "Commands/EmvclessConfigure",
+    "reason": "only in 031-5.16-WFS-CMD-IDC-EMVCLESS-CONFIGURE.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcChipPowerOut",
+    "group": "Commands",
+    "folder": "Commands/ChipPower",
+    "reason": "only in 026-5.11-WFS-CMD-IDC-CHIP-POWER.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcEjectCard",
+    "group": "Commands",
+    "folder": "Commands/EjectCard",
+    "reason": "only in 018-5.3-WFS-CMD-IDC-EJECT-CARD.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcEmvclessConfigData",
+    "group": "Commands",
+    "folder": "Commands/EmvclessConfigure",
+    "reason": "only in 031-5.16-WFS-CMD-IDC-EMVCLESS-CONFIGURE.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcKeyData",
+    "group": "Commands",
+    "folder": "Commands/EmvclessConfigure",
+    "reason": "only in 031-5.16-WFS-CMD-IDC-EMVCLESS-CONFIGURE.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcParkCard",
+    "group": "Commands",
+    "folder": "Commands/ParkCard",
+    "reason": "only in 030-5.15-WFS-CMD-IDC-PARK-CARD.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcParseData",
+    "group": "Commands",
+    "folder": "Commands/ParseData",
+    "reason": "only in 027-5.12-WFS-CMD-IDC-PARSE-DATA.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcPowerSaveControl",
+    "group": "Commands",
+    "folder": "Commands/PowerSaveControl",
+    "reason": "only in 029-5.14-WFS-CMD-IDC-POWER-SAVE-CONTROL.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcRetainCard",
+    "group": "Commands",
+    "folder": "Commands/RetainCard",
+    "reason": "only in 019-5.4-WFS-CMD-IDC-RETAIN-CARD.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcSetGuidLight",
+    "group": "Commands",
+    "folder": "Commands/SetGuidanceLight",
+    "reason": "only in 028-5.13-WFS-CMD-IDC-SET-GUIDANCE-LIGHT.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcSetkey",
+    "group": "Commands",
+    "folder": "Commands/Setkey",
+    "reason": "only in 021-5.6-WFS-CMD-IDC-SETKEY.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcSynchronizeCommand",
+    "group": "Commands",
+    "folder": "Commands/SynchronizeCommand",
+    "reason": "only in 034-5.19-WFS-CMD-IDC-SYNCHRONIZE-COMMAND.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcWriteTrack",
+    "group": "Commands",
+    "folder": "Commands/WriteTrack",
+    "reason": "only in 017-5.2-WFS-CMD-IDC-WRITE-TRACK.md"
+  },
+  {
+    "kind": "enum",
+    "name": "IdcError",
+    "group": "Errors",
+    "folder": "Errors",
+    "reason": "WFS_ERR_IDC_* values",
+    "owners": []
+  },
+  {
+    "kind": "enum",
+    "name": "IdcActionCardAct",
+    "group": "Events",
+    "folder": "Events/CardAction",
+    "reason": "only used by XfsIdcCardAct",
+    "owners": [
+      "XfsIdcCardAct.wAction"
+    ]
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcCardAct",
+    "group": "Events",
+    "folder": "Events/CardAction",
+    "reason": "only in 041-6.6-WFS-SRVE-IDC-CARDACTION.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcDevicePosition",
+    "group": "Events",
+    "folder": "Events/DevicePosition",
+    "reason": "only in 047-6.12-WFS-SRVE-IDC-DEVICEPOSITION.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcEmvClessReadStatus",
+    "group": "Events",
+    "folder": "Events/EmvclessReadStatus",
+    "reason": "only in 050-6.15-WFS-EXEE-IDC-EMVCLESSREADSTATUS.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcPowerSaveChange",
+    "group": "Events",
+    "folder": "Events/PowerSaveChange",
+    "reason": "only in 048-6.13-WFS-SRVE-IDC-POWER-SAVE-CHANGE.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcTrackDetected",
+    "group": "Events",
+    "folder": "Events/TrackDetected",
+    "reason": "only in 049-6.14-WFS-EXEE-IDC-TRACKDETECTED.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcTrackEvent",
+    "group": "Events",
+    "folder": "Events/InvalidTrackData",
+    "reason": "only in 036-6.1-WFS-EXEE-IDC-INVALIDTRACKDATA.md"
+  },
+  {
+    "kind": "enum",
+    "name": "IdcActionForm",
+    "group": "Infos",
+    "folder": "Infos/QueryForm",
+    "reason": "only used by XfsIdcForm",
+    "owners": [
+      "XfsIdcForm.fwAction"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcAntiFraudModuleStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.wAntiFraudModule"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcChipModuleStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.fwChipModule"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcChipPowerCapabilities",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only used by XfsIdcCaps",
+    "owners": [
+      "XfsIdcCaps.fwChipPower"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcChipPowerStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.fwChipPower"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcChipProtocolsCapabilities",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only used by XfsIdcCaps",
+    "owners": [
+      "XfsIdcCaps.fwChipProtocols"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcDIPModeCapabilities",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only used by XfsIdcCaps",
+    "owners": [
+      "XfsIdcCaps.fwDIPMode"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcDeviceStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.fwDevice"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcIfmAuthority",
+    "group": "Infos",
+    "folder": "Infos/QueryIfmIdentifier",
+    "reason": "only used by XfsIdcIfmIdentifier",
+    "owners": [
+      "XfsIdcIfmIdentifier.wIFMAuthority"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcImageModuleStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus, XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.fwFrontImageModule",
+      "XfsIdcStatus.fwBackImageModule"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcMagModuleStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus, XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.fwMagReadModule",
+      "XfsIdcStatus.fwMagWriteModule"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcMemoryChipProtocolsCapabilities",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only used by XfsIdcCaps",
+    "owners": [
+      "XfsIdcCaps.lpwMemoryChipProtocols"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcPowerOptionCapability",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only used by XfsIdcCaps, XfsIdcCaps",
+    "owners": [
+      "XfsIdcCaps.fwPowerOnOption",
+      "XfsIdcCaps.fwPowerOffOption"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcRetainBinStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.fwRetainBin"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcSecTypeCapability",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only used by XfsIdcCaps",
+    "owners": [
+      "XfsIdcCaps.fwSecType"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcSecurityStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only used by XfsIdcStatus",
+    "owners": [
+      "XfsIdcStatus.fwSecurity"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcTypeCapability",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only used by XfsIdcCaps",
+    "owners": [
+      "XfsIdcCaps.fwType"
+    ]
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcAppData",
+    "group": "Infos",
+    "folder": "Infos/EmvclessQueryApplications",
+    "reason": "only in 014-4.6-WFS-INF-IDC-EMVCLESS-QUERY-APPLICATIONS.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcCaps",
+    "group": "Infos",
+    "folder": "Infos/Capabilities",
+    "reason": "only in 010-4.2-WFS-INF-IDC-CAPABILITIES.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcForm",
+    "group": "Infos",
+    "folder": "Infos/QueryForm",
+    "reason": "only in 012-4.4-WFS-INF-IDC-QUERY-FORM.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcIfmIdentifier",
+    "group": "Infos",
+    "folder": "Infos/QueryIfmIdentifier",
+    "reason": "only in 013-4.5-WFS-INF-IDC-QUERY-IFM-IDENTIFIER.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcStatus",
+    "group": "Infos",
+    "folder": "Infos/Status",
+    "reason": "only in 009-4.1-WFS-INF-IDC-STATUS.md"
+  },
+  {
+    "kind": "enum",
+    "name": "IdcAlternateInterfaceEmvclessOutcome",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcEmvclessOutcome.wAlternateInterface",
+    "owners": [
+      "XfsIdcEmvclessOutcome.wAlternateInterface"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcCVMEmvclessOutcome",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcEmvclessOutcome.wCVM",
+    "owners": [
+      "XfsIdcEmvclessOutcome.wCVM"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcCardholderActionEmvclessTxDataOutput",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcEmvclessTxDataOutput.wCardholderAction",
+    "owners": [
+      "XfsIdcEmvclessTxDataOutput.wCardholderAction"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcDataSource",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcCaps.fwReadTracks, XfsIdcCaps.fwWriteTracks, XfsIdcCardData.wDataSource",
+    "owners": [
+      "XfsIdcCaps.fwReadTracks",
+      "XfsIdcCaps.fwWriteTracks",
+      "XfsIdcCardData.wDataSource"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcDataStatus",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcTrackEvent.fwStatus, XfsIdcCardData.wStatus",
+    "owners": [
+      "XfsIdcTrackEvent.fwStatus",
+      "XfsIdcCardData.wStatus"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcDevicePosition",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcStatus.wDevicePosition, XfsIdcDevicePosition.wPosition",
+    "owners": [
+      "XfsIdcStatus.wDevicePosition",
+      "XfsIdcDevicePosition.wPosition"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcEjectPosition",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcCaps.fwEjectPosition, XfsIdcEjectCard.wEjectPosition",
+    "owners": [
+      "XfsIdcCaps.fwEjectPosition",
+      "XfsIdcEjectCard.wEjectPosition"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcGuidLight",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcStatus.dwGuidLights, XfsIdcCaps.dwGuidLights",
+    "owners": [
+      "XfsIdcStatus.dwGuidLights",
+      "XfsIdcCaps.dwGuidLights"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcMedia",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcStatus.fwMedia, XfsIdcRetainCard.fwPosition, XfsIdcCardAct.wPosition, XfsIdcStatus.lpwParkingStationMedia",
+    "owners": [
+      "XfsIdcStatus.fwMedia",
+      "XfsIdcRetainCard.fwPosition",
+      "XfsIdcCardAct.wPosition",
+      "XfsIdcStatus.lpwParkingStationMedia"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcStatusEmvclessUi",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcEmvclessUi.wStatus",
+    "owners": [
+      "XfsIdcEmvclessUi.wStatus"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcTxOutcomeEmvclessTxDataOutput",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcEmvclessTxDataOutput.wTxOutcome",
+    "owners": [
+      "XfsIdcEmvclessTxDataOutput.wTxOutcome"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcValueQualifierEmvclessUi",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcEmvclessUi.wValueQualifier",
+    "owners": [
+      "XfsIdcEmvclessUi.wValueQualifier"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "IdcWriteMethod",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used by XfsIdcCaps.fwWriteMode, XfsIdcWriteTrack.fwWriteMethod, XfsIdcCardData.fwWriteMethod",
+    "owners": [
+      "XfsIdcCaps.fwWriteMode",
+      "XfsIdcWriteTrack.fwWriteMethod",
+      "XfsIdcCardData.fwWriteMethod"
+    ]
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcCardData",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used in 3 sections: 022-5.7-WFS-CMD-IDC-READ-RAW-DATA.md, 023-5.8-WFS-CMD-IDC-WRITE-RAW-DATA.md, 027-5.12-WFS-CMD-IDC-PARSE-DATA.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcChipIo",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used in 2 sections: 024-5.9-WFS-CMD-IDC-CHIP-IO.md, 034-5.19-WFS-CMD-IDC-SYNCHRONIZE-COMMAND.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcEmvclessOutcome",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used in 2 sections: 032-5.17-WFS-CMD-IDC-EMVCLESS-PERFORM-TRANSACTION.md, 033-5.18-WFS-CMD-IDC-EMVCLESS-ISSUERUPDATE.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcEmvclessTxData",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used in 2 sections: 032-5.17-WFS-CMD-IDC-EMVCLESS-PERFORM-TRANSACTION.md, 033-5.18-WFS-CMD-IDC-EMVCLESS-ISSUERUPDATE.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcEmvclessTxDataOutput",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used in 2 sections: 032-5.17-WFS-CMD-IDC-EMVCLESS-PERFORM-TRANSACTION.md, 033-5.18-WFS-CMD-IDC-EMVCLESS-ISSUERUPDATE.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcEmvclessUi",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used in 2 sections: 032-5.17-WFS-CMD-IDC-EMVCLESS-PERFORM-TRANSACTION.md, 050-6.15-WFS-EXEE-IDC-EMVCLESSREADSTATUS.md"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsIdcHexData",
+    "group": "Shared",
+    "folder": "Shared",
+    "reason": "used in 4 sections: 014-4.6-WFS-INF-IDC-EMVCLESS-QUERY-APPLICATIONS.md, 031-5.16-WFS-CMD-IDC-EMVCLESS-CONFIGURE.md, 032-5.17-WFS-CMD-IDC-EMVCLESS-PERFORM-TRANSACTION.md, 033-5.18-WFS-CMD-IDC-EMVCLESS-ISSUERUPDATE.md"
+  }
+]

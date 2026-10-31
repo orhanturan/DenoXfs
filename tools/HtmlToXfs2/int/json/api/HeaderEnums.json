@@ -1,0 +1,136 @@
+{
+  "XfsMessage": {
+    "Name": "XfsMessage",
+    "Type": "DWORD",
+    "Values": [
+      "WFS_OPEN_COMPLETE",
+      "WFS_CLOSE_COMPLETE",
+      "WFS_LOCK_COMPLETE",
+      "WFS_UNLOCK_COMPLETE",
+      "WFS_REGISTER_COMPLETE",
+      "WFS_DEREGISTER_COMPLETE",
+      "WFS_GETINFO_COMPLETE",
+      "WFS_EXECUTE_COMPLETE",
+      "WFS_EXECUTE_EVENT",
+      "WFS_SERVICE_EVENT",
+      "WFS_USER_EVENT",
+      "WFS_SYSTEM_EVENT",
+      "WFS_TIMER_EVENT"
+    ]
+  },
+  "XfsErrorCode": {
+    "Name": "XfsErrorCode",
+    "Type": "HRESULT",
+    "Values": [
+      "WFS_SUCCESS",
+      "WFS_ERR_ALREADY_STARTED",
+      "WFS_ERR_API_VER_TOO_HIGH",
+      "WFS_ERR_API_VER_TOO_LOW",
+      "WFS_ERR_CANCELED",
+      "WFS_ERR_CFG_INVALID_HKEY",
+      "WFS_ERR_CFG_INVALID_NAME",
+      "WFS_ERR_CFG_INVALID_SUBKEY",
+      "WFS_ERR_CFG_INVALID_VALUE",
+      "WFS_ERR_CFG_KEY_NOT_EMPTY",
+      "WFS_ERR_CFG_NAME_TOO_LONG",
+      "WFS_ERR_CFG_NO_MORE_ITEMS",
+      "WFS_ERR_CFG_VALUE_TOO_LONG",
+      "WFS_ERR_DEV_NOT_READY",
+      "WFS_ERR_HARDWARE_ERROR",
+      "WFS_ERR_INTERNAL_ERROR",
+      "WFS_ERR_INVALID_ADDRESS",
+      "WFS_ERR_INVALID_APP_HANDLE",
+      "WFS_ERR_INVALID_BUFFER",
+      "WFS_ERR_INVALID_CATEGORY",
+      "WFS_ERR_INVALID_COMMAND",
+      "WFS_ERR_INVALID_EVENT_CLASS",
+      "WFS_ERR_INVALID_HSERVICE",
+      "WFS_ERR_INVALID_HPROVIDER",
+      "WFS_ERR_INVALID_HWND",
+      "WFS_ERR_INVALID_HWNDREG",
+      "WFS_ERR_INVALID_POINTER",
+      "WFS_ERR_INVALID_REQ_ID",
+      "WFS_ERR_INVALID_RESULT",
+      "WFS_ERR_INVALID_SERVPROV",
+      "WFS_ERR_INVALID_TIMER",
+      "WFS_ERR_INVALID_TRACELEVEL",
+      "WFS_ERR_LOCKED",
+      "WFS_ERR_NO_BLOCKING_CALL",
+      "WFS_ERR_NO_SERVPROV",
+      "WFS_ERR_NO_SUCH_THREAD",
+      "WFS_ERR_NO_TIMER",
+      "WFS_ERR_NOT_LOCKED",
+      "WFS_ERR_NOT_OK_TO_UNLOAD",
+      "WFS_ERR_NOT_STARTED",
+      "WFS_ERR_NOT_REGISTERED",
+      "WFS_ERR_OP_IN_PROGRESS",
+      "WFS_ERR_OUT_OF_MEMORY",
+      "WFS_ERR_SERVICE_NOT_FOUND",
+      "WFS_ERR_SPI_VER_TOO_HIGH",
+      "WFS_ERR_SPI_VER_TOO_LOW",
+      "WFS_ERR_SRVC_VER_TOO_HIGH",
+      "WFS_ERR_SRVC_VER_TOO_LOW",
+      "WFS_ERR_TIMEOUT",
+      "WFS_ERR_UNSUPP_CATEGORY",
+      "WFS_ERR_UNSUPP_COMMAND",
+      "WFS_ERR_VERSION_ERROR_IN_SRVC",
+      "WFS_ERR_INVALID_DATA",
+      "WFS_ERR_SOFTWARE_ERROR",
+      "WFS_ERR_CONNECTION_LOST",
+      "WFS_ERR_USER_ERROR",
+      "WFS_ERR_UNSUPP_DATA",
+      "WFS_ERR_FRAUD_ATTEMPT",
+      "WFS_ERR_SEQUENCE_ERROR",
+      "WFS_ERR_AUTH_REQUIRED"
+    ]
+  },
+  "XfsEventClasses": {
+    "Name": "XfsEventClasses",
+    "Type": "DWORD",
+    "Values": [
+      "SERVICE_EVENTS",
+      "USER_EVENTS",
+      "SYSTEM_EVENTS",
+      "EXECUTE_EVENTS"
+    ]
+  },
+  "XfsEventId": {
+    "Name": "XfsEventId",
+    "Type": "DWORD",
+    "Values": [
+      "WFS_SYSE_UNDELIVERABLE_MSG",
+      "WFS_SYSE_HARDWARE_ERROR",
+      "WFS_SYSE_VERSION_ERROR",
+      "WFS_SYSE_DEVICE_STATUS",
+      "WFS_SYSE_APP_DISCONNECT",
+      "WFS_SYSE_SOFTWARE_ERROR",
+      "WFS_SYSE_USER_ERROR",
+      "WFS_SYSE_LOCK_REQUESTED",
+      "WFS_SYSE_FRAUD_ATTEMPT"
+    ]
+  },
+  "XfsTraceLevels": {
+    "Name": "XfsTraceLevels",
+    "Type": "DWORD",
+    "Values": [
+      "WFS_TRACE_API",
+      "WFS_TRACE_ALL_API",
+      "WFS_TRACE_SPI",
+      "WFS_TRACE_ALL_SPI",
+      "WFS_TRACE_MGR"
+    ]
+  },
+  "XfsErrorActions": {
+    "Name": "XfsErrorActions",
+    "Type": "DWORD",
+    "Values": [
+      "WFS_ERR_ACT_NOACTION",
+      "WFS_ERR_ACT_RESET",
+      "WFS_ERR_ACT_SWERROR",
+      "WFS_ERR_ACT_CONFIG",
+      "WFS_ERR_ACT_HWCLEAR",
+      "WFS_ERR_ACT_HWMAINT",
+      "WFS_ERR_ACT_SUSPEND"
+    ]
+  }
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "kind": "enum",
+    "name": "DeviceStatus",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type",
+    "owners": [
+      "XfsDevStatus.dwState"
+    ]
+  },
+  {
+    "kind": "enum",
+    "name": "TransactionState",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type",
+    "owners": [
+      "XfsApiTransactionState.fwState"
+    ]
+  },
+  {
+    "kind": "struct",
+    "name": "XfsApiStatusChanged",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsApiTransactionInfo",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsApiTransactionState",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsAppDisc",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsCompoundDevice",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsDevStatus",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsDeviceInfo",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsFirmware",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsHwError",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsResult",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsServiceInfo",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsServiceInterface",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsSoftware",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsUndevMsg",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsVendorModeInfo",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsVersion",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "struct",
+    "name": "XfsVrsnError",
+    "group": "Common",
+    "folder": "Common",
+    "reason": "Api type"
+  },
+  {
+    "kind": "enum",
+    "name": "XfsError",
+    "group": "Errors",
+    "folder": "Errors",
+    "reason": "WFS_ERR_* values",
+    "owners": []
+  }
+]

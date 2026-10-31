@@ -1,0 +1,28 @@
+{
+  "CommandName": "WFS_CMD_IDC_CHIP_IO",
+  "Description": "This command is used to communicate with the chip. Transparent data is sent from the application to the chip and the response of the chip is returned transparently to the application. The identification information e.g. ATR of the chip must be obtained before issuing this command. The identification information for a user card or the Memory Card Identification (when available) must initially be obtained through WFS_CMD_IDC_READ_RAW_DATA. The identification information for subsequent resets of a user card can be obtained either through WFS_CMD_IDC_READ_RAW_DATA command or through WFS_CMD_IDC_CHIP_POWER. The ATR for permanent connected chips is always obtained through WFS_CMD_IDC_CHIP_POWER. For contactless chip card readers, applications need to specify which chip to contact with, as part of lpbChipData, if more than one chip has been detected and multiple identification data has been returned by the WFS_CMD_IDC_READ_RAW_DATA command. For contactless chip card readers a collision of two or more card signals may happen. In this case, if the device is not able to pick the strongest signal, the WFS_ERR_IDC_CARDCOLLISION error code will be returned.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "LPWFSIDCCHIPIO lpChipIoIn;",
+    "OriginalParamType": "LPWFSIDCCHIPIO",
+    "ParamType": "",
+    "OriginalName": "lpChipIoIn",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_chip_io",
+    "StructureName": "XfsIdcChipIo",
+    "Fields": {},
+    "Enums": {}
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCCHIPIO lpChipIoOut;",
+    "OriginalParamType": "LPWFSIDCCHIPIO",
+    "ParamType": "",
+    "OriginalName": "lpChipIoOut",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_chip_io",
+    "StructureName": "XfsIdcChipIo",
+    "Fields": {},
+    "Enums": {}
+  },
+  "AdditionalStructs": null
+}

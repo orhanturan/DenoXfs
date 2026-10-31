@@ -1,6 +1,6 @@
 using System;
 using DenoXfs.Core.Abstractions;
-using DenoXfs.Core.Api;
+using DenoXfs.Api;
 
 namespace DenoXfs.Core.Services;
 

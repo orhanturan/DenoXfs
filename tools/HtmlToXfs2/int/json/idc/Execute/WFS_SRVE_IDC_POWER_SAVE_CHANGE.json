@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_POWER_SAVE_CHANGE",
+  "Description": "This service event specifies that the power save recovery time has changed.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

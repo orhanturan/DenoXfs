@@ -1,7 +1,7 @@
 using System;
-using DenoXfs.Core.Convert;
+using DenoXfs.Interop.Convert;
 
-namespace DenoXfs.Core.Extensions;
+namespace DenoXfs.Interop.Extensions;
 
 public static class XfsStructExtensions
 {

@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_CARDACTION",
+  "Description": "This service event specifies that a card has been retained or ejected by either the automatic power on or power off action of the device.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

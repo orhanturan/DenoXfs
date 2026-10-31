@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_EXEE_IDC_EMVCLESSREADSTATUS",
+  "Description": "This execute event notifies the application that the intelligent contactless card reader is ready for a contactless card tap and the status after the contactless card tap when communication (i.e. the commands exchanged linked to the tap) between the card and the intelligent contactless card reader are complete. The application can use this event to display intermediate messages, progress of card read, audio signals or anything else that might be required. The intelligent contactless card reader will continue the processing and the result of the processing will be returned in the out parameters of the WFS_CMD_IDC_EMVCLESS_PERFORM_TRANSACTION command.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

@@ -1,134 +1,94 @@
-using System;
-using System.IO;
-
 namespace HtmlToXfs2.Services;
 
 /// <summary>
-/// Output dosyalarını hedef projeye kopyalar.
-/// Environment variable: DENO_SRC (örn: C:\src\orhanturan\DenoXfs)
+/// Copies generated output/{device}/ files into the matching library under src/.
+/// Environment variable: DENO_SRC (e.g. C:\src\orhanturan\DenoXfs)
 /// </summary>
 public class OutputCopier
 {
     private readonly string _baseTargetPath;
-    
+
     public OutputCopier()
     {
-        // Get target path from environment variable
         var envPath = Environment.GetEnvironmentVariable("DENO_SRC");
-        
         if (string.IsNullOrEmpty(envPath))
         {
             throw new InvalidOperationException(
                 "DENO_SRC environment variable is not set. " +
                 "Please set it to the DenoXfs project path (e.g., C:\\src\\orhanturan\\DenoXfs)");
         }
-        
+
         _baseTargetPath = envPath;
     }
-    
+
     /// <summary>
-    /// Device için Constants dosyasını hedef projeye kopyalar.
+    /// Constants go to the library root, every group folder (Infos, Commands, ...) is replaced as a whole.
     /// </summary>
-    public void CopyConstants(string deviceName)
+    public void Copy(string deviceName)
     {
-        var className = GetClassName(deviceName);
-        var sourcePath = Path.Combine("output", deviceName, "Constants", $"{className}.txt");
-        var targetPath = GetConstantsTargetPath(deviceName, className);
-        
-        CopyFile(sourcePath, targetPath, "Constants");
-    }
-    
-    /// <summary>
-    /// Device için tüm Struct dosyalarını hedef projeye kopyalar.
-    /// </summary>
-    public void CopyStructs(string deviceName)
-    {
-        var sourceDir = Path.Combine("output", deviceName, "Structs");
-        var targetDir = GetStructsTargetPath(deviceName);
-        
-        if (!Directory.Exists(sourceDir))
+        var sourceRoot = Path.Combine("output", deviceName);
+        if (!Directory.Exists(sourceRoot))
         {
-            Console.WriteLine($"  ⚠️  Structs source directory not found: {sourceDir}");
+            Console.WriteLine($"  Output not found: {sourceRoot}");
             return;
         }
-        
-        var files = Directory.GetFiles(sourceDir, "*.txt");
-        Console.WriteLine($"  Copying {files.Length} struct files...");
-        
-        foreach (var sourceFile in files)
+
+        var targetRoot = Path.Combine(_baseTargetPath, "src", LibraryFolder(deviceName));
+        if (!Directory.Exists(targetRoot))
+            throw new DirectoryNotFoundException($"Library folder not found: {targetRoot}");
+
+        foreach (var file in Directory.GetFiles(sourceRoot, "*.txt"))
+            CopyFile(file, targetRoot);
+
+        foreach (var groupDir in Directory.GetDirectories(sourceRoot))
         {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFile);
-            var targetPath = Path.Combine(targetDir, $"{fileName}.cs");
-            CopyFile(sourceFile, targetPath, "Struct");
+            var name = Path.GetFileName(groupDir);
+            var copied = ReplaceTree(groupDir, Path.Combine(targetRoot, name));
+            Console.WriteLine($"  {name}: {copied} file(s)");
         }
     }
-    
-    private string GetClassName(string deviceName)
+
+    /// <summary>
+    /// Replaces generated files in a group folder, including command subfolders.
+    /// Does not touch the library root, so hand-written files such as XfsApi.cs stay.
+    /// </summary>
+    private static int ReplaceTree(string sourceDir, string targetDir)
     {
-        return deviceName == "api" ? "Xfs" : Capitalize(deviceName);
+        Directory.CreateDirectory(targetDir);
+
+        foreach (var stale in Directory.GetFiles(targetDir, "*.cs"))
+            File.Delete(stale);
+
+        var copied = 0;
+        foreach (var file in Directory.GetFiles(sourceDir, "*.txt"))
+        {
+            CopyFile(file, targetDir);
+            copied++;
+        }
+
+        var sourceSubs = Directory.GetDirectories(sourceDir).Select(Path.GetFileName).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        foreach (var existing in Directory.GetDirectories(targetDir))
+        {
+            if (!sourceSubs.Contains(Path.GetFileName(existing)))
+                Directory.Delete(existing, recursive: true);
+        }
+
+        foreach (var sub in Directory.GetDirectories(sourceDir))
+            copied += ReplaceTree(sub, Path.Combine(targetDir, Path.GetFileName(sub)));
+
+        return copied;
     }
-    
-    private string GetConstantsTargetPath(string deviceName, string className)
+
+    private static string LibraryFolder(string deviceName)
     {
-        if (deviceName == "api")
-        {
-            // DenoXfs/src/DenoXfs.Core/Api/Xfs.cs
-            return Path.Combine(_baseTargetPath, "src", "DenoXfs.Core", "Api", $"{className}.cs");
-        }
-        else
-        {
-            // DenoXfs/src/DenoXfs.{Device}/Api/{Device}.cs
-            return Path.Combine(_baseTargetPath, "src", $"DenoXfs.{className}", "Api", $"{className}.cs");
-        }
+        return deviceName == "api"
+            ? "DenoXfsApi"
+            : "DenoXfs" + char.ToUpperInvariant(deviceName[0]) + deviceName.Substring(1).ToLowerInvariant();
     }
-    
-    private string GetStructsTargetPath(string deviceName)
+
+    private static void CopyFile(string sourceFile, string targetDir)
     {
-        if (deviceName == "api")
-        {
-            // DenoXfs/src/DenoXfs.Core/Api/
-            return Path.Combine(_baseTargetPath, "src", "DenoXfs.Core", "Api");
-        }
-        else
-        {
-            // DenoXfs/src/DenoXfs.{Device}/Models/Structs/
-            var className = Capitalize(deviceName);
-            return Path.Combine(_baseTargetPath, "src", $"DenoXfs.{className}", "Models", "Structs");
-        }
-    }
-    
-    private void CopyFile(string sourcePath, string targetPath, string fileType)
-    {
-        try
-        {
-            if (!File.Exists(sourcePath))
-            {
-                Console.WriteLine($"  ⚠️  {fileType} source not found: {sourcePath}");
-                return;
-            }
-            
-            // Create target directory if it doesn't exist
-            var targetDir = Path.GetDirectoryName(targetPath);
-            if (!string.IsNullOrEmpty(targetDir) && !Directory.Exists(targetDir))
-            {
-                Directory.CreateDirectory(targetDir);
-            }
-            
-            // Copy file
-            File.Copy(sourcePath, targetPath, overwrite: true);
-            Console.WriteLine($"  ✅ Copied {fileType}: {Path.GetFileName(sourcePath)} → {targetPath}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"  ❌ Copy error ({fileType}): {ex.Message}");
-        }
-    }
-    
-    private static string Capitalize(string input)
-    {
-        if (string.IsNullOrEmpty(input))
-            return input;
-        return char.ToUpper(input[0]) + input.Substring(1).ToLower();
+        var target = Path.Combine(targetDir, Path.GetFileNameWithoutExtension(sourceFile) + ".cs");
+        File.Copy(sourceFile, target, overwrite: true);
     }
 }
-

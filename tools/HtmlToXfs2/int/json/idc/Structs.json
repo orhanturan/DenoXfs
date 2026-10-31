@@ -1,0 +1,194 @@
+{
+  "XfsIdcCaps": {
+    "wClass": "WORD",
+    "fwType": "WORD",
+    "bCompound": "BOOL",
+    "fwReadTracks": "WORD",
+    "fwWriteTracks": "WORD",
+    "fwChipProtocols": "WORD",
+    "usCards": "USHORT",
+    "fwSecType": "WORD",
+    "fwPowerOnOption": "WORD",
+    "fwPowerOffOption": "WORD",
+    "bFluxSensorProgrammable": "BOOL",
+    "bReadWriteAccessFollowingEject": "BOOL",
+    "fwWriteMode": "WORD",
+    "fwChipPower": "WORD",
+    "lpszExtra": "LPSTR",
+    "fwDIPMode": "WORD",
+    "lpwMemoryChipProtocols": "LPWORD",
+    "dwGuidLights": "DWORD",
+    "fwEjectPosition": "WORD",
+    "bPowerSaveControl": "BOOL",
+    "usParkingStations": "USHORT",
+    "bAntiFraudModule": "BOOL",
+    "lpdwSynchronizableCommands": "LPDWORD"
+  },
+  "XfsIdcForm": {
+    "lpszFormName": "LPSTR",
+    "cFieldSeparatorTrack1": "char",
+    "cFieldSeparatorTrack2": "char",
+    "cFieldSeparatorTrack3": "char",
+    "fwAction": "WORD",
+    "lpszTracks": "LPSTR",
+    "bSecure": "BOOL",
+    "lpszTrack1Fields": "LPSTR",
+    "lpszTrack2Fields": "LPSTR",
+    "lpszTrack3Fields": "LPSTR",
+    "lpszFrontTrack1Fields": "LPSTR",
+    "cFieldSeparatorFrontTrack1": "char",
+    "lpszJIS1Track1Fields": "LPSTR",
+    "lpszJIS1Track3Fields": "LPSTR",
+    "cFieldSeparatorJIS1Track1": "CHAR",
+    "cFieldSeparatorJIS1Track3": "IdcFieldSeparatorJIS1Track3"
+  },
+  "XfsIdcStatus": {
+    "fwDevice": "WORD",
+    "fwMedia": "WORD",
+    "fwRetainBin": "WORD",
+    "fwSecurity": "WORD",
+    "usCards": "USHORT",
+    "fwChipPower": "WORD",
+    "lpszExtra": "LPSTR",
+    "dwGuidLights": "DWORD",
+    "fwChipModule": "WORD",
+    "fwMagReadModule": "WORD",
+    "fwMagWriteModule": "WORD",
+    "fwFrontImageModule": "WORD",
+    "fwBackImageModule": "WORD",
+    "wDevicePosition": "WORD",
+    "usPowerSaveRecoveryTime": "USHORT",
+    "lpwParkingStationMedia": "LPWORD",
+    "wAntiFraudModule": "IdcAntiFraudModuleStatus"
+  },
+  "XfsIdcIfmIdentifier": {
+    "wIFMAuthority": "WORD",
+    "lpszIFMIdentifier": "LPSTR"
+  },
+  "XfsIdcHexData": {
+    "ulLength": "ULONG",
+    "lpbData": "*BYTE[ulLength]"
+  },
+  "XfsIdcAppData": {
+    "lpAID": "LPWFSIDCHEXDATA",
+    "lpKernelIdentifier": "LPWFSIDCHEXDATA"
+  },
+  "XfsIdcWriteTrack": {
+    "lpstrFormName": "LPSTR",
+    "lpstrTrackData": "LPSTR",
+    "fwWriteMethod": "WORD"
+  },
+  "XfsIdcRetainCard": {
+    "usCount": "USHORT",
+    "fwPosition": "WORD"
+  },
+  "XfsIdcSetkey": {
+    "usKeyLen": "USHORT",
+    "lpbKeyValue": "*BYTE[usKeyLen]"
+  },
+  "XfsIdcCardData": {
+    "wDataSource": "WORD",
+    "wStatus": "WORD",
+    "ulDataLength": "ULONG",
+    "lpbData": "*BYTE[ulDataLength]",
+    "fwWriteMethod": "WORD"
+  },
+  "XfsIdcChipIo": {
+    "wChipProtocol": "WORD",
+    "ulChipDataLength": "ULONG",
+    "lpbChipData": "*BYTE[ulChipDataLength]"
+  },
+  "XfsIdcChipPowerOut": {
+    "ulChipDataLength": "ULONG",
+    "lpbChipData": "*BYTE[ulChipDataLength]"
+  },
+  "XfsIdcParseData": {
+    "lpstrFormName": "LPSTR"
+  },
+  "XfsIdcSetGuidlight": {
+    "wGuidLight": "WORD",
+    "dwCommand": "DWORD"
+  },
+  "XfsIdcEjectCard": {
+    "wEjectPosition": "WORD"
+  },
+  "XfsIdcPowerSaveControl": {
+    "usMaxPowerSaveRecoveryTime": "USHORT"
+  },
+  "XfsIdcParkCard": {
+    "wDirection": "WORD",
+    "usParkingStation": "USHORT"
+  },
+  "XfsIdcAidData": {
+    "lpAID": "LPWFSIDCHEXDATA",
+    "bPartialSelection": "BOOL",
+    "ulTransactionType": "ULONG",
+    "lpKernelIdentifier": "LPWFSIDCHEXDATA",
+    "lpConfigData": "LPWFSIDCHEXDATA"
+  },
+  "XfsIdcKeyData": {
+    "lpRID": "LPWFSIDCHEXDATA",
+    "wCAPublicKeyIndex": "WORD",
+    "wAPublicKeyAlgorithmIndicator": "WORD",
+    "lpCAPublicKeyExponent": "LPWFSIDCHEXDATA",
+    "lpCAPublicKeyModulus": "LPWFSIDCHEXDATA",
+    "lpbCAPublicKeyCheckSum": "LPBYTE"
+  },
+  "XfsIdcEmvclessConfigData": {
+    "lpTerminalData": "LPWFSIDCHEXDATA"
+  },
+  "XfsIdcEmvclessTxData": {
+    "lpData": "LPWFSIDCHEXDATA"
+  },
+  "XfsIdcEmvclessUi": {
+    "wMessageId": "WORD",
+    "wStatus": "WORD",
+    "ulHoldTime": "ULONG",
+    "wValueQualifier": "WORD",
+    "lpszValue": "LPSTR",
+    "lpszCurrencyCode": "LPSTR",
+    "lpszLanguagePreferenceData": "LPSTR"
+  },
+  "XfsIdcEmvclessOutcome": {
+    "wCVM": "WORD",
+    "wAlternateInterface": "WORD",
+    "bReceipt": "BOOL",
+    "lpClessUIOutcome": "LPWFSIDCEMVCLESSUI",
+    "lpClessUIRestart": "LPWFSIDCEMVCLESSUI",
+    "ulClessFieldOffHoldTime": "ULONG",
+    "ulCardRemovalTimeoutValue": "ULONG",
+    "lpDiscretionaryData": "LPWFSIDCHEXDATA"
+  },
+  "XfsIdcEmvclessTxDataOutput": {
+    "wDataSource": "WORD",
+    "wTxOutcome": "WORD",
+    "wCardholderAction": "WORD",
+    "lpDataRead": "LPWFSIDCHEXDATA",
+    "lpClessOutcome": "LPWFSIDCEMVCLESSOUTCOME"
+  },
+  "XfsIdcSynchronizeCommand": {
+    "dwCommand": "DWORD",
+    "lpCmdData": "LPVOID"
+  },
+  "XfsIdcTrackEvent": {
+    "fwStatus": "WORD",
+    "lpstrTrack": "LPSTR",
+    "lpstrData": "LPSTR"
+  },
+  "XfsIdcCardAct": {
+    "wAction": "WORD",
+    "wPosition": "WORD"
+  },
+  "XfsIdcDevicePosition": {
+    "wPosition": "WORD"
+  },
+  "XfsIdcPowerSaveChange": {
+    "usPowerSaveRecoveryTime": "USHORT"
+  },
+  "XfsIdcTrackDetected": {
+    "fwTracks": "WORD"
+  },
+  "XfsIdcEmvClessReadStatus": {
+    "lpClessUI": "LPWFSIDCEMVCLESSUI"
+  }
+}

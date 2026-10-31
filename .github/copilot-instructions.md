@@ -3,10 +3,12 @@
 Goal: generate C# libraries and applications for CEN/XFS (eXtensions for Financial Services) from the XFS C headers and the spec markdown.
 
 ## Solution map
-- `src/DenoXfsCore` (`DenoXfs.Core`): XFS P/Invoke API, session/service/message pump, command builders, DI (`AddDenoXfsCore`).
-- `src/DenoXfsIdc` (`DenoXfs.Idc`): ID card reader device library; references Core. Template for other device classes.
-- `tools/HtmlToXfs2`: generator CLI. Reads spec markdown (originally HTML) plus `INCLUDE/*.H` headers and emits JSON, then C# constants, enums and structs.
-- `tests/HtmlToXfs2.Tests`: tests for the generator (e.g. `MarkdownSpecParser`).
+- `src/DenoXfsInterop` (`DenoXfs.Interop`): hand-written marshalling helpers; no dependencies.
+- `src/DenoXfsApi` (`DenoXfs.Api`): `XfsApi` P/Invoke functions plus types generated from `XFSAPI.H`.
+- `src/DenoXfsCore` (`DenoXfs.Core`): session/service/message pump, command builders, DI (`AddDenoXfsCore`); refs Api and Interop.
+- `src/DenoXfsIdc` (`DenoXfs.Idc`): generated ID card reader types; refs Api and Interop. Template for other device classes.
+- `tools/HtmlToXfs2`: generator CLI. Reads `INCLUDE/*.H` headers (types, constants) and the spec markdown (usage per section) and emits C# into the Api and device libraries.
+- `tests/HtmlToXfs2.Tests`: tests for the generator (e.g. `MarkdownSpecParser`, type planning).
 
 ## Conventions
 - Target `net9.0-windows`, `Nullable` and `ImplicitUsings` enabled.
@@ -20,4 +22,4 @@ Goal: generate C# libraries and applications for CEN/XFS (eXtensions for Financi
 - Device classes: IDC, CDM, CIM, PIN, PTR, CHK, DEP, TTU, SIU, VDM, CAM, ALM, CEU, CRD, BCR, IPM, BIO.
 
 ## Scoped rules
-See `.github/instructions/` (Cursor reads these via `AGENTS.md`): xfs-core, xfs-device-libs, htmltoxfs2, xfs-markdown-pipeline, xfs-markdown-inputs.
+See `.github/instructions/` (Cursor reads these via `AGENTS.md`): xfs-library-layout, xfs-core, xfs-device-libs, htmltoxfs2, xfs-markdown-pipeline, xfs-markdown-inputs.

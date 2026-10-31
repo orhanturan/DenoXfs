@@ -1,0 +1,82 @@
+{
+  "CommandName": "WFS_INF_IDC_QUERY_FORM",
+  "Description": "This command is used to retrieve details of the definition of a specified form.",
+  "Comments": "",
+  "InputParam": {
+    "Value": "LPSTR lpszFormName; lpszFormName Points to the null-terminated form name on which to retrieve details.",
+    "OriginalParamType": "LPSTR",
+    "ParamType": "",
+    "OriginalName": "lpszFormName;\r\nlpszFormName\r\nPoints to the null-terminated form name on which to retrieve details.",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_form",
+    "StructureName": "XfsIdcForm",
+    "Fields": {
+      "lpszFormName": "LPSTR",
+      "cFieldSeparatorTrack1": "char",
+      "cFieldSeparatorTrack2": "char",
+      "cFieldSeparatorTrack3": "char",
+      "fwAction": "WORD",
+      "lpszTracks": "LPSTR",
+      "bSecure": "BOOL",
+      "lpszTrack1Fields": "LPSTR",
+      "lpszTrack2Fields": "LPSTR",
+      "lpszTrack3Fields": "LPSTR",
+      "lpszFrontTrack1Fields": "LPSTR",
+      "cFieldSeparatorFrontTrack1": "char",
+      "lpszJIS1Track1Fields": "LPSTR",
+      "lpszJIS1Track3Fields": "LPSTR",
+      "cFieldSeparatorJIS1Track1": "CHAR",
+      "cFieldSeparatorJIS1Track3": "CHAR"
+    },
+    "Enums": {
+      "idcFieldSeparatorJIS1Track3": {
+        "Name": "idcFieldSeparatorJIS1Track3",
+        "OriginalName": "cFieldSeparatorJIS1Track3",
+        "Type": "CHAR",
+        "Commands": [
+          "WFS_INF_IDC_QUERY_FORM"
+        ],
+        "Values": []
+      }
+    }
+  },
+  "OutputParam": {
+    "Value": "LPWFSIDCFORM lpForm;",
+    "OriginalParamType": "LPWFSIDCFORM",
+    "ParamType": "",
+    "OriginalName": "lpForm",
+    "Name": "",
+    "OriginalStructureName": "wfs_idc_form",
+    "StructureName": "XfsIdcForm",
+    "Fields": {
+      "lpszFormName": "LPSTR",
+      "cFieldSeparatorTrack1": "char",
+      "cFieldSeparatorTrack2": "char",
+      "cFieldSeparatorTrack3": "char",
+      "fwAction": "WORD",
+      "lpszTracks": "LPSTR",
+      "bSecure": "BOOL",
+      "lpszTrack1Fields": "LPSTR",
+      "lpszTrack2Fields": "LPSTR",
+      "lpszTrack3Fields": "LPSTR",
+      "lpszFrontTrack1Fields": "LPSTR",
+      "cFieldSeparatorFrontTrack1": "char",
+      "lpszJIS1Track1Fields": "LPSTR",
+      "lpszJIS1Track3Fields": "LPSTR",
+      "cFieldSeparatorJIS1Track1": "CHAR",
+      "cFieldSeparatorJIS1Track3": "CHAR"
+    },
+    "Enums": {
+      "idcFieldSeparatorJIS1Track3": {
+        "Name": "idcFieldSeparatorJIS1Track3",
+        "OriginalName": "cFieldSeparatorJIS1Track3",
+        "Type": "CHAR",
+        "Commands": [
+          "WFS_INF_IDC_QUERY_FORM"
+        ],
+        "Values": []
+      }
+    }
+  },
+  "AdditionalStructs": null
+}

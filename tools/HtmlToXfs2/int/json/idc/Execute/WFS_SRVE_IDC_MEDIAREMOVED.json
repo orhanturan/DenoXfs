@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_MEDIAREMOVED",
+  "Description": "This service event specifies that the inserted card was manually removed by the user during the processing of a read/write command, during the processing of a chip_io/power command, during or after a retain/reset operation, after an eject operation or after the card is removed by the user in a latched dip card unit.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

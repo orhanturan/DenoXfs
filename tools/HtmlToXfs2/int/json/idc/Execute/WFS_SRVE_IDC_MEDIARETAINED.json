@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_MEDIARETAINED",
+  "Description": "This service event is generated if the device is a compound device and a card has been retained as a result of an operation on another device class. For example, the WFS_CMD_CRD_RETAIN_CARD command on the CRD.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

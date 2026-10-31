@@ -1,0 +1,8 @@
+{
+  "CommandName": "WFS_SRVE_IDC_RETAINBININSERTED",
+  "Description": "This event specifies that the retain bin has been inserted.",
+  "Comments": "",
+  "InputParam": null,
+  "OutputParam": null,
+  "AdditionalStructs": null
+}

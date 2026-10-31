@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DenoXfsCore\DenoXfsCore.csproj" />
+    <ProjectReference Include="..\DenoXfsApi\DenoXfsApi.csproj" />
+    <ProjectReference Include="..\DenoXfsInterop\DenoXfsInterop.csproj" />
   </ItemGroup>
 
 </Project>

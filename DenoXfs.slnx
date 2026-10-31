@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/DenoXfsInterop/DenoXfsInterop.csproj" />
+    <Project Path="src/DenoXfsApi/DenoXfsApi.csproj" />
     <Project Path="src/DenoXfsCore/DenoXfsCore.csproj" />
     <Project Path="src/DenoXfsIdc/DenoXfsIdc.csproj" />
   </Folder>

@@ -1,4 +1,4 @@
-using DenoXfs.Core.Api;
+using DenoXfs.Api.Common;
 
 namespace DenoXfs.Core.Abstractions;
 
