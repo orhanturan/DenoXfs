@@ -37,16 +37,16 @@ public struct XfsDeviceInfo
         set => WStringConvert.ToIntPtr(ref lpszModelDescription, value);
     }
 
-    public IntPtr Firmware
+    public XfsFirmware?[]? Firmware
     {
-        get => lppFirmware;
-        set => lppFirmware = value;
+        get => PointerArray.ToStructs<XfsFirmware>(lppFirmware);
+        set => PointerArray.ToNative(ref lppFirmware, value);
     }
 
-    public IntPtr Software
+    public XfsSoftware?[]? Software
     {
-        get => lppSoftware;
-        set => lppSoftware = value;
+        get => PointerArray.ToStructs<XfsSoftware>(lppSoftware);
+        set => PointerArray.ToNative(ref lppSoftware, value);
     }
 
 }

@@ -24,8 +24,8 @@ public struct XfsIdcChipIo
 
     public byte[]? ChipData
     {
-        get => IntPtrConvert.ToByteArray(lpbChipData, (int)ulChipDataLength);
-        set => DynamicArrayConvert.ToIntPtr(ref lpbChipData, value, out ulChipDataLength);
+        get => PrimitiveArray.ToManaged<byte>(lpbChipData, (int)ulChipDataLength);
+        set => PrimitiveArray.ToNative(ref lpbChipData, value, out ulChipDataLength);
     }
 
 }

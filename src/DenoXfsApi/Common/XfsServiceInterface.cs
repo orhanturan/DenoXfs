@@ -14,20 +14,20 @@ public struct XfsServiceInterface
 
     public uint[]? ExecuteCommands
     {
-        get => IntPtrConvert.ToUInt32Array(lpdwExecuteCommands);
-        set => UInt32ArrayConvert.ToIntPtr(ref lpdwExecuteCommands, value);
+        get => PrimitiveArray.ToManaged<uint>(lpdwExecuteCommands);
+        set => PrimitiveArray.ToNative(ref lpdwExecuteCommands, value);
     }
 
     public uint[]? GetInfoCategories
     {
-        get => IntPtrConvert.ToUInt32Array(lpdwGetInfoCategories);
-        set => UInt32ArrayConvert.ToIntPtr(ref lpdwGetInfoCategories, value);
+        get => PrimitiveArray.ToManaged<uint>(lpdwGetInfoCategories);
+        set => PrimitiveArray.ToNative(ref lpdwGetInfoCategories, value);
     }
 
     public uint[]? Events
     {
-        get => IntPtrConvert.ToUInt32Array(lpdwEvents);
-        set => UInt32ArrayConvert.ToIntPtr(ref lpdwEvents, value);
+        get => PrimitiveArray.ToManaged<uint>(lpdwEvents);
+        set => PrimitiveArray.ToNative(ref lpdwEvents, value);
     }
 
     public uint MaximumRequests
@@ -38,8 +38,8 @@ public struct XfsServiceInterface
 
     public uint[]? AuthenticationRequired
     {
-        get => IntPtrConvert.ToUInt32Array(lpdwAuthenticationRequired);
-        set => UInt32ArrayConvert.ToIntPtr(ref lpdwAuthenticationRequired, value);
+        get => PrimitiveArray.ToManaged<uint>(lpdwAuthenticationRequired);
+        set => PrimitiveArray.ToNative(ref lpdwAuthenticationRequired, value);
     }
 
 }

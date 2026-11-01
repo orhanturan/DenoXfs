@@ -419,7 +419,16 @@ public static class TypePlanner
 
                 if (header.IsDoublePointer)
                 {
-                    field.Type = "LPVOID";
+                    // LPWFSxxx *lppList: pointer to a null-terminated array of struct pointers
+                    if (pointerMap.TryGetValue(header.CType, out var element))
+                    {
+                        field.Type = $"[@{element.s.Name}]";
+                        field.Namespaces.Add(element.owner.Namespace(element.s.Group));
+                    }
+                    else
+                    {
+                        field.Type = "LPVOID";
+                    }
                 }
                 else if (bindings.TryGetValue($"{s.Name}.{header.Name}", out var bound))
                 {

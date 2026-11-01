@@ -18,8 +18,8 @@ public struct XfsVendorModeInfo
 
     public uint[]? AllowedExecuteCommands
     {
-        get => IntPtrConvert.ToUInt32Array(lpdwAllowedExecuteCommands);
-        set => UInt32ArrayConvert.ToIntPtr(ref lpdwAllowedExecuteCommands, value);
+        get => PrimitiveArray.ToManaged<uint>(lpdwAllowedExecuteCommands);
+        set => PrimitiveArray.ToNative(ref lpdwAllowedExecuteCommands, value);
     }
 
 }

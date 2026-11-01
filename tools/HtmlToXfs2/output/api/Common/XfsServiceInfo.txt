@@ -14,10 +14,10 @@ public struct XfsServiceInfo
     private IntPtr lpszServiceProviderVersion;
     private IntPtr lpszExtra;
 
-    public IntPtr DeviceInformation
+    public XfsDeviceInfo?[]? DeviceInformation
     {
-        get => lppDeviceInformation;
-        set => lppDeviceInformation = value;
+        get => PointerArray.ToStructs<XfsDeviceInfo>(lppDeviceInformation);
+        set => PointerArray.ToNative(ref lppDeviceInformation, value);
     }
 
     public XfsVendorModeInfo? VendorModeInformation
@@ -32,10 +32,10 @@ public struct XfsServiceInfo
         set => StructureConvert.ToIntPtr(ref lpServiceInterface, value);
     }
 
-    public IntPtr CompoundDevices
+    public XfsCompoundDevice?[]? CompoundDevices
     {
-        get => lppCompoundDevices;
-        set => lppCompoundDevices = value;
+        get => PointerArray.ToStructs<XfsCompoundDevice>(lppCompoundDevices);
+        set => PointerArray.ToNative(ref lppCompoundDevices, value);
     }
 
     public string? ServiceProviderVersion

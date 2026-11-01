@@ -65,6 +65,16 @@ public sealed class TypeGenerator
         File.WriteAllText(Path.Combine(dir, "Placement.json"), JsonSerializer.Serialize(entries, options));
     }
 
+    /// <summary>Plans the types of one device the same way <see cref="Run"/> does; paths are relative to the tool folder.</summary>
+    public static (HeaderModel model, TypePlan plan, ConstantResolver resolver) BuildPlan(string device, string version)
+    {
+        device = device.ToLowerInvariant();
+        var overrides = NamingOverrides.Load("naming-overrides.json");
+        var (model, plan) = device == "api" ? GetApi(version, overrides) : Build(device, version, overrides);
+        var resolver = device == "api" ? new ConstantResolver(model) : new ConstantResolver(model, GetApi(version, overrides).model);
+        return (model, plan, resolver);
+    }
+
     private static (HeaderModel model, TypePlan plan) GetApi(string version, NamingOverrides overrides)
     {
         if (!ApiCache.TryGetValue(version, out var cached))

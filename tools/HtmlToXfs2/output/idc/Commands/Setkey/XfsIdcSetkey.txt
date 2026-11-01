@@ -17,8 +17,8 @@ public struct XfsIdcSetkey
 
     public byte[]? KeyValue
     {
-        get => IntPtrConvert.ToByteArray(lpbKeyValue, (int)usKeyLen);
-        set => DynamicArrayConvert.ToIntPtr(ref lpbKeyValue, value, out usKeyLen);
+        get => PrimitiveArray.ToManaged<byte>(lpbKeyValue, (int)usKeyLen);
+        set => PrimitiveArray.ToNative(ref lpbKeyValue, value, out usKeyLen);
     }
 
 }

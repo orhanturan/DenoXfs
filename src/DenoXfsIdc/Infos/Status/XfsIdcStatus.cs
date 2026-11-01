@@ -116,10 +116,10 @@ public struct XfsIdcStatus
         set => usPowerSaveRecoveryTime = value;
     }
 
-    public IdcMedia?[]? ParkingStationMedia
+    public IdcMedia[]? ParkingStationMedia
     {
-        get => IntPtrConvert.ToZeroTerminatedArray<IdcMedia>(lpwParkingStationMedia);
-        set => ZeroTerminatedArrayConvert.ToIntPtr(ref lpwParkingStationMedia, value);
+        get => PrimitiveArray.ToManaged<IdcMedia>(lpwParkingStationMedia);
+        set => PrimitiveArray.ToNative(ref lpwParkingStationMedia, value);
     }
 
     public IdcAntiFraudModuleStatus AntiFraudModule

@@ -144,6 +144,18 @@ public static class PlanWriter
         if (dynamic.Success)
             return ParseDynamicBytes(name, dynamic.Groups[2].Value, owner);
 
+        if (type.StartsWith("[@", StringComparison.Ordinal))
+        {
+            var element = type.Substring(2, type.Length - 3);
+            return new Parsed
+            {
+                PrivateType = "IntPtr",
+                PublicType = $"{element}?[]?",
+                Getter = $"PointerArray.ToStructs<{element}>({name})",
+                Setter = $"PointerArray.ToNative(ref {name}, value)"
+            };
+        }
+
         if (type.StartsWith('@'))
         {
             var target = type.Substring(1);
@@ -185,9 +197,9 @@ public static class PlanWriter
             return new Parsed
             {
                 PrivateType = "IntPtr",
-                PublicType = $"{enumName}?[]?",
-                Getter = $"IntPtrConvert.ToZeroTerminatedArray<{enumName}>({name})",
-                Setter = $"ZeroTerminatedArrayConvert.ToIntPtr(ref {name}, value)"
+                PublicType = $"{enumName}[]?",
+                Getter = $"PrimitiveArray.ToManaged<{enumName}>({name})",
+                Setter = $"PrimitiveArray.ToNative(ref {name}, value)"
             };
         }
 
@@ -218,8 +230,8 @@ public static class PlanWriter
         {
             PrivateType = "IntPtr",
             PublicType = "byte[]?",
-            Getter = $"IntPtrConvert.ToByteArray({name}, (int){countName})",
-            Setter = $"DynamicArrayConvert.ToIntPtr(ref {name}, value, out {countName})"
+            Getter = $"PrimitiveArray.ToManaged<byte>({name}, (int){countName})",
+            Setter = $"PrimitiveArray.ToNative(ref {name}, value, out {countName})"
         };
     }
 
@@ -241,13 +253,18 @@ public static class PlanWriter
                 break;
             case "LPBYTE":
                 result.PublicType = "byte[]?";
-                result.Getter = $"IntPtrConvert.ToByteArray({name})";
-                result.Setter = $"ByteArrayConvert.ToIntPtr(ref {name}, value)";
+                result.Getter = $"PrimitiveArray.ToManaged<byte>({name})";
+                result.Setter = $"PrimitiveArray.ToNative(ref {name}, value)";
+                break;
+            case "LPWORD":
+                result.PublicType = "ushort[]?";
+                result.Getter = $"PrimitiveArray.ToManaged<ushort>({name})";
+                result.Setter = $"PrimitiveArray.ToNative(ref {name}, value)";
                 break;
             case "LPDWORD":
                 result.PublicType = "uint[]?";
-                result.Getter = $"IntPtrConvert.ToUInt32Array({name})";
-                result.Setter = $"UInt32ArrayConvert.ToIntPtr(ref {name}, value)";
+                result.Getter = $"PrimitiveArray.ToManaged<uint>({name})";
+                result.Setter = $"PrimitiveArray.ToNative(ref {name}, value)";
                 break;
             default:
                 if (type.StartsWith("LP", StringComparison.Ordinal))
@@ -267,7 +284,7 @@ public static class PlanWriter
         return result;
     }
 
-    private static string ConvertBaseType(string type)
+    public static string ConvertBaseType(string type)
     {
         return type.ToUpperInvariant() switch
         {
@@ -283,7 +300,7 @@ public static class PlanWriter
         };
     }
 
-    private static string PrivateName(string fieldName)
+    public static string PrivateName(string fieldName)
     {
         return fieldName.Length > 0 && char.IsUpper(fieldName[0])
             ? char.ToLowerInvariant(fieldName[0]) + fieldName.Substring(1)

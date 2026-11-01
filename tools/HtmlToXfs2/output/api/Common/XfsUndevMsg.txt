@@ -41,8 +41,8 @@ public struct XfsUndevMsg
 
     public byte[]? Description
     {
-        get => IntPtrConvert.ToByteArray(lpbDescription);
-        set => ByteArrayConvert.ToIntPtr(ref lpbDescription, value);
+        get => PrimitiveArray.ToManaged<byte>(lpbDescription);
+        set => PrimitiveArray.ToNative(ref lpbDescription, value);
     }
 
     public uint Msg

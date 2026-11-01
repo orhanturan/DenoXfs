@@ -11,4 +11,4 @@ applyTo: "src/DenoXfsIdc/**"
 - Do not hand-edit generated files; change the generator, `naming-overrides.json` or its inputs instead.
 - Hand-written device code (typed builders, DI extensions) belongs in a separate library that references Core and the device library.
 
-New device library: create a csproj referencing Api and Interop (folder `src/DenoXfs{Class}`), add the device to the generator's device list, run the generator with `--copy-output`, add the project to `DenoXfs.slnx`.
+New device library: create a csproj referencing Api and Interop (folder `src/DenoXfs{Class}`), add the device to the generator's device list, run the generator with `--copy-output`, add the project to `DenoXfs.slnx`. Then add a test project `tests/DenoXfs{Class}Tests` (copy `DenoXfsIdcTests.csproj`), run `XfsTestGen --devices {device}` and rebuild the native test DLL; see `xfs-tests`.

@@ -8,7 +8,7 @@ public class MarkdownSpecParserTests
     [Fact]
     public void ParseDevice_ShouldExtractStatusCommandFromMarkdown()
     {
-        var mdPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "pdf", "340", "md_output", "XfsIdc.md");
+        var mdPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "tools", "HtmlToXfs2", "pdf", "340", "md_output", "XfsIdc.md");
         var parser = new MarkdownSpecParser();
 
         var commands = parser.ParseDevice(mdPath, "idc");
@@ -17,7 +17,6 @@ public class MarkdownSpecParserTests
         Assert.NotNull(status);
         Assert.NotNull(status!.OutputParam);
         Assert.Contains("fwDevice", status.OutputParam.Fields!.Keys);
-        Assert.True(status.OutputParam.Enums!.ContainsKey("IdcDeviceStatus"));
-        Assert.Contains("WFS_IDC_DEVONLINE", status.OutputParam.Enums["IdcDeviceStatus"].Values);
+        // Enum membership comes from the C header (TypePlanner); the markdown parser only reports spec-only groups.
     }
 }

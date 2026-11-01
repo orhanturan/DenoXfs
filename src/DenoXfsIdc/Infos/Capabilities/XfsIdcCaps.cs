@@ -133,10 +133,10 @@ public struct XfsIdcCaps
         set => fwDIPMode = value;
     }
 
-    public IdcMemoryChipProtocolsCapabilities?[]? MemoryChipProtocols
+    public IdcMemoryChipProtocolsCapabilities[]? MemoryChipProtocols
     {
-        get => IntPtrConvert.ToZeroTerminatedArray<IdcMemoryChipProtocolsCapabilities>(lpwMemoryChipProtocols);
-        set => ZeroTerminatedArrayConvert.ToIntPtr(ref lpwMemoryChipProtocols, value);
+        get => PrimitiveArray.ToManaged<IdcMemoryChipProtocolsCapabilities>(lpwMemoryChipProtocols);
+        set => PrimitiveArray.ToNative(ref lpwMemoryChipProtocols, value);
     }
 
     public IdcGuidLight[] GuidLights
@@ -171,8 +171,8 @@ public struct XfsIdcCaps
 
     public uint[]? SynchronizableCommands
     {
-        get => IntPtrConvert.ToUInt32Array(lpdwSynchronizableCommands);
-        set => UInt32ArrayConvert.ToIntPtr(ref lpdwSynchronizableCommands, value);
+        get => PrimitiveArray.ToManaged<uint>(lpdwSynchronizableCommands);
+        set => PrimitiveArray.ToNative(ref lpdwSynchronizableCommands, value);
     }
 
 }

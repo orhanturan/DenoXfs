@@ -47,8 +47,8 @@ public struct XfsIdcKeyData
 
     public byte[]? CAPublicKeyCheckSum
     {
-        get => IntPtrConvert.ToByteArray(lpbCAPublicKeyCheckSum);
-        set => ByteArrayConvert.ToIntPtr(ref lpbCAPublicKeyCheckSum, value);
+        get => PrimitiveArray.ToManaged<byte>(lpbCAPublicKeyCheckSum);
+        set => PrimitiveArray.ToNative(ref lpbCAPublicKeyCheckSum, value);
     }
 
 }

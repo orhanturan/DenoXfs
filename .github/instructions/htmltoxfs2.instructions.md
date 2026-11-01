@@ -17,6 +17,10 @@ Run from `tools/HtmlToXfs2` (paths are relative to it).
 - `--version <ver>` (default 340), `--parse-md [path] [device]`, `--validate`, `--insert-missing`, `--copy-output` (needs `DENO_SRC`).
 - Default run processes devices `api` then `idc`; `idc` planning depends on the `api` plan (alias enums).
 
+## Consumers of the type plan
+- `TypeGenerator.BuildPlan(device, version)` returns the same plan `Run` writes. `tools/XfsTestGen` builds its tests from it. When `TypePlanner` or `PlanWriter` gain a new field marker (`#Enum`, `@Struct`, `[@Struct]`, `*BYTE[len]`, ...), add the matching `Kind` in `tools/XfsTestGen/FieldModel.cs`, regenerate the tests and rebuild the native DLL (see `xfs-tests`).
+- Generated property converters come from `PlanWriter.ParseField` and use `PrimitiveArray` / `PointerArray` from `DenoXfsInterop`.
+
 ## Rules
 - Names are converted only through `NameConverter` and `naming-overrides.json` (struct tags, enum renames/merges, owner remaps, member names).
 - Headers in `INCLUDE/*.H` win over spec text for constants, enum membership and struct layouts.

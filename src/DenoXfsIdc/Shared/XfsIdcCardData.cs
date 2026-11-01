@@ -32,8 +32,8 @@ public struct XfsIdcCardData
 
     public byte[]? Data
     {
-        get => IntPtrConvert.ToByteArray(lpbData, (int)ulDataLength);
-        set => DynamicArrayConvert.ToIntPtr(ref lpbData, value, out ulDataLength);
+        get => PrimitiveArray.ToManaged<byte>(lpbData, (int)ulDataLength);
+        set => PrimitiveArray.ToNative(ref lpbData, value, out ulDataLength);
     }
 
     public IdcWriteMethod WriteMethod

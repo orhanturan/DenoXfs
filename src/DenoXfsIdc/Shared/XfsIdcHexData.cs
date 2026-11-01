@@ -17,8 +17,8 @@ public struct XfsIdcHexData
 
     public byte[]? Data
     {
-        get => IntPtrConvert.ToByteArray(lpbData, (int)ulLength);
-        set => DynamicArrayConvert.ToIntPtr(ref lpbData, value, out ulLength);
+        get => PrimitiveArray.ToManaged<byte>(lpbData, (int)ulLength);
+        set => PrimitiveArray.ToNative(ref lpbData, value, out ulLength);
     }
 
 }

@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using DenoXfs.Interop.Convert;
+using DenoXfs.Idc.Shared;
 
 namespace DenoXfs.Idc.Commands;
 
@@ -15,10 +16,10 @@ public struct XfsIdcParseData
         set => StringConvert.ToIntPtr(ref lpstrFormName, value);
     }
 
-    public IntPtr CardData
+    public XfsIdcCardData?[]? CardData
     {
-        get => lppCardData;
-        set => lppCardData = value;
+        get => PointerArray.ToStructs<XfsIdcCardData>(lppCardData);
+        set => PointerArray.ToNative(ref lppCardData, value);
     }
 
 }

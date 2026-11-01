@@ -18,16 +18,16 @@ public struct XfsIdcEmvclessConfigData
         set => StructureConvert.ToIntPtr(ref lpTerminalData, value);
     }
 
-    public IntPtr AIDData
+    public XfsIdcAidData?[]? AIDData
     {
-        get => lppAIDData;
-        set => lppAIDData = value;
+        get => PointerArray.ToStructs<XfsIdcAidData>(lppAIDData);
+        set => PointerArray.ToNative(ref lppAIDData, value);
     }
 
-    public IntPtr KeyData
+    public XfsIdcKeyData?[]? KeyData
     {
-        get => lppKeyData;
-        set => lppKeyData = value;
+        get => PointerArray.ToStructs<XfsIdcKeyData>(lppKeyData);
+        set => PointerArray.ToNative(ref lppKeyData, value);
     }
 
 }
