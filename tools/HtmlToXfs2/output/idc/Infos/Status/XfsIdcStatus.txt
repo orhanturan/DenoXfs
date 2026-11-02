@@ -62,10 +62,10 @@ public struct XfsIdcStatus
         set => fwChipPower = value;
     }
 
-    public string? Extra
+    public IReadOnlyList<string>? Extra
     {
-        get => IntPtrConvert.ToString(lpszExtra);
-        set => StringConvert.ToIntPtr(ref lpszExtra, value);
+        get => MultiStringConvert.ToManaged(lpszExtra);
+        set => MultiStringConvert.ToIntPtr(ref lpszExtra, value);
     }
 
     public IdcGuidLight[] GuidLights

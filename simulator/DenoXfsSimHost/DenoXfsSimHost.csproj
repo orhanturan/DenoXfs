@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>DenoXfs.Sim.Host</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DenoXfsSimCore\DenoXfsSimCore.csproj" />
+    <ProjectReference Include="..\DenoXfsSimData\DenoXfsSimData.csproj" />
+    <ProjectReference Include="..\DenoXfsSimIdc\DenoXfsSimIdc.csproj" />
+  </ItemGroup>
+
+</Project>

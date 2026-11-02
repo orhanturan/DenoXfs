@@ -128,6 +128,9 @@ public static class CsWriter
                 case Kind.String:
                     sb.AppendLine($"        {p} = \"s{field.Index}\";");
                     break;
+                case Kind.MultiString:
+                    sb.AppendLine($"        {p} = new[] {{ \"a{field.Index}\", \"b{field.Index}\" }};");
+                    break;
                 case Kind.WString:
                     sb.AppendLine($"        {p} = \"w{field.Index}\";");
                     break;
@@ -182,6 +185,7 @@ public static class CsWriter
                     sb.AppendLine($"            Assert.All({p}, x => Assert.Equal(default({field.CsType}), x));");
                     break;
                 case Kind.String:
+                case Kind.MultiString:
                 case Kind.WString:
                 case Kind.BytesTerminated:
                 case Kind.BytesCounted:
@@ -215,6 +219,9 @@ public static class CsWriter
                     break;
                 case Kind.String:
                     sb.AppendLine($"        Assert.Equal(\"s{field.Index}\", {p});");
+                    break;
+                case Kind.MultiString:
+                    sb.AppendLine($"        Assert.Equal(new[] {{ \"a{field.Index}\", \"b{field.Index}\" }}, {p});");
                     break;
                 case Kind.WString:
                     sb.AppendLine($"        Assert.Equal(\"w{field.Index}\", {p});");

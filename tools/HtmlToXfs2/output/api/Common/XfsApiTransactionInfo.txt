@@ -15,10 +15,10 @@ public struct XfsApiTransactionInfo
         set => WStringConvert.ToIntPtr(ref lpszTransactionID, value);
     }
 
-    public string? Extra
+    public IReadOnlyList<string>? Extra
     {
-        get => IntPtrConvert.ToString(lpszExtra);
-        set => StringConvert.ToIntPtr(ref lpszExtra, value);
+        get => MultiStringConvert.ToManaged(lpszExtra);
+        set => MultiStringConvert.ToIntPtr(ref lpszExtra, value);
     }
 
 }

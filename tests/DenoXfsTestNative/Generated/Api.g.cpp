@@ -293,7 +293,7 @@ void Fill_XfsServiceInfo(WFSSERVICEINFO& s, int sc)
     s.lppCompoundDevices = (decltype(s.lppCompoundDevices))calloc(3, sizeof(*s.lppCompoundDevices));
     for (int j = 0; j < 2; j++) { s.lppCompoundDevices[j] = (std::remove_reference_t<decltype(*s.lppCompoundDevices)>)calloc(1, sizeof(**s.lppCompoundDevices)); Fill_XfsCompoundDevice(*s.lppCompoundDevices[j], 0); }
     s.lpszServiceProviderVersion = _wcsdup(L"w4");
-    s.lpszExtra = _strdup("s5");
+    { static const char v[] = "a5\0b5\0"; s.lpszExtra = (decltype(s.lpszExtra))malloc(sizeof v); memcpy(s.lpszExtra, v, sizeof v); }
 }
 
 void Free_XfsServiceInfo(WFSSERVICEINFO& s)
@@ -317,7 +317,7 @@ int Verify_XfsServiceInfo(const WFSSERVICEINFO& e, const WFSSERVICEINFO& g)
     if ((e.lppCompoundDevices == nullptr) != (g.lppCompoundDevices == nullptr)) return 4;
     if (e.lppCompoundDevices) { int j = 0; for (; e.lppCompoundDevices[j]; j++) if (!g.lppCompoundDevices[j] || Verify_XfsCompoundDevice(*e.lppCompoundDevices[j], *g.lppCompoundDevices[j])) return 4; if (g.lppCompoundDevices[j]) return 4; }
     if (!SameWStr(e.lpszServiceProviderVersion, g.lpszServiceProviderVersion)) return 5;
-    if (!SameStr(e.lpszExtra, g.lpszExtra)) return 6;
+    if (!SameMultiStr(e.lpszExtra, g.lpszExtra)) return 6;
     return 0;
 }
 
@@ -342,7 +342,7 @@ void Fill_XfsApiTransactionInfo(WFSAPITRANSACTIONINFO& s, int sc)
     memset(&s, 0, sizeof(s));
     if (sc == 1) return;
     s.lpszTransactionID = _wcsdup(L"w0");
-    s.lpszExtra = _strdup("s1");
+    { static const char v[] = "a1\0b1\0"; s.lpszExtra = (decltype(s.lpszExtra))malloc(sizeof v); memcpy(s.lpszExtra, v, sizeof v); }
 }
 
 void Free_XfsApiTransactionInfo(WFSAPITRANSACTIONINFO& s)
@@ -354,7 +354,7 @@ void Free_XfsApiTransactionInfo(WFSAPITRANSACTIONINFO& s)
 int Verify_XfsApiTransactionInfo(const WFSAPITRANSACTIONINFO& e, const WFSAPITRANSACTIONINFO& g)
 {
     if (!SameWStr(e.lpszTransactionID, g.lpszTransactionID)) return 1;
-    if (!SameStr(e.lpszExtra, g.lpszExtra)) return 2;
+    if (!SameMultiStr(e.lpszExtra, g.lpszExtra)) return 2;
     return 0;
 }
 

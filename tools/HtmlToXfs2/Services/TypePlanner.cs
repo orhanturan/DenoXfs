@@ -95,7 +95,7 @@ public static class TypePlanner
         var bindings = PlanEnums(plan, model, apiModel, apiPlan, resolver, overrides);
         PlanErrors(plan, model, resolver, overrides);
         PlanCommandIds(plan, model);
-        PlanFields(plan, model, apiPlan, bindings);
+        PlanFields(plan, model, apiPlan, bindings, overrides);
         CheckUniqueNames(plan, apiPlan);
         return plan;
     }
@@ -397,7 +397,8 @@ public static class TypePlanner
         TypePlan plan,
         HeaderModel model,
         TypePlan? apiPlan,
-        Dictionary<string, (string enumName, string ns)> bindings)
+        Dictionary<string, (string enumName, string ns)> bindings,
+        NamingOverrides overrides)
     {
         var pointerMap = new Dictionary<string, (PlannedStruct s, TypePlan owner)>(StringComparer.Ordinal);
         foreach (var s in plan.Structs)
@@ -417,7 +418,11 @@ public static class TypePlanner
                 var header = fields[i];
                 var field = new PlannedField { Name = header.Name };
 
-                if (header.IsDoublePointer)
+                if (overrides.FieldTypes.TryGetValue($"{s.Source.TypedefName}.{header.Name}", out var forced))
+                {
+                    field.Type = forced;
+                }
+                else if (header.IsDoublePointer)
                 {
                     // LPWFSxxx *lppList: pointer to a null-terminated array of struct pointers
                     if (pointerMap.TryGetValue(header.CType, out var element))

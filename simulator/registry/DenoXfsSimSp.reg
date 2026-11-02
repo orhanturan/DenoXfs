@@ -1,0 +1,19 @@
+Windows Registry Editor Version 5.00
+
+; DenoXfs simulator Service Provider (32 bit). Import with the registry editor or "reg import" (needs admin for HKLM).
+; The provider key has its own name (DENOXFS_IDC); the logical service "IDC" points to it. An existing
+; SERVICE_PROVIDERS\IDC key of another project is not touched.
+; Adjust dllname to the build output of DenoXfsSimSp (Win32).
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\XFS\SERVICE_PROVIDERS\DENOXFS_IDC]
+"dllname"="C:\\src\\orhanturan\\DenoXfs\\simulator\\bin\\Win32\\Debug\\DenoXfsSimSp.dll"
+"vendor_name"="DenoXfs"
+"version"="3.40.0"
+
+[HKEY_USERS\.DEFAULT\XFS\LOGICAL_SERVICES\IDC]
+"class"="IDC"
+"provider"="DENOXFS_IDC"
+
+; Address of the simulator host, read by the DLL (this 32 bit DLL sees HKLM\SOFTWARE as WOW6432Node).
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\DenoXfs\Simulator]
+"Host"="ws://127.0.0.1:5080/ws"

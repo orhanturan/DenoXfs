@@ -20,6 +20,17 @@ public static class CppWriter
         #define EXPORT extern "C" __declspec(dllexport)
 
         inline bool SameStr(const char* a, const char* b) { return (a == nullptr || b == nullptr) ? a == b : strcmp(a, b) == 0; }
+        inline bool SameMultiStr(const char* a, const char* b)
+        {
+            if (a == nullptr || b == nullptr) return a == b;
+            for (;;)
+            {
+                if (strcmp(a, b) != 0) return false;
+                if (*a == 0) return true;
+                a += strlen(a) + 1;
+                b += strlen(b) + 1;
+            }
+        }
         inline bool SameWStr(const wchar_t* a, const wchar_t* b) { return (a == nullptr || b == nullptr) ? a == b : wcscmp(a, b) == 0; }
         inline bool SameBytes(const void* a, const void* b, size_t n) { return (a == nullptr || b == nullptr) ? a == b : memcmp(a, b, n) == 0; }
 
@@ -117,6 +128,9 @@ public static class CppWriter
             case Kind.String:
                 sb.AppendLine($"    {s} = _strdup(\"s{f.Index}\");");
                 break;
+            case Kind.MultiString:
+                sb.AppendLine($"    {{ static const char v[] = \"a{f.Index}\\0b{f.Index}\\0\"; {s} = (decltype({s}))malloc(sizeof v); memcpy({s}, v, sizeof v); }}");
+                break;
             case Kind.WString:
                 sb.AppendLine($"    {s} = _wcsdup(L\"w{f.Index}\");");
                 break;
@@ -149,6 +163,7 @@ public static class CppWriter
         switch (f.Kind)
         {
             case Kind.String:
+            case Kind.MultiString:
             case Kind.WString:
             case Kind.BytesTerminated:
             case Kind.BytesCounted:
@@ -181,6 +196,9 @@ public static class CppWriter
                 break;
             case Kind.String:
                 sb.AppendLine($"    if (!SameStr({e}, {g})) return {rc};");
+                break;
+            case Kind.MultiString:
+                sb.AppendLine($"    if (!SameMultiStr({e}, {g})) return {rc};");
                 break;
             case Kind.WString:
                 sb.AppendLine($"    if (!SameWStr({e}, {g})) return {rc};");

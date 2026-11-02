@@ -12,7 +12,7 @@ void Fill_XfsIdcStatus(WFSIDCSTATUS& s, int sc)
     s.fwSecurity = (decltype(s.fwSecurity))4;
     s.usCards = (decltype(s.usCards))5;
     s.fwChipPower = (decltype(s.fwChipPower))6;
-    s.lpszExtra = _strdup("s6");
+    { static const char v[] = "a6\0b6\0"; s.lpszExtra = (decltype(s.lpszExtra))malloc(sizeof v); memcpy(s.lpszExtra, v, sizeof v); }
     for (int j = 0; j < 32; j++) s.dwGuidLights[j] = (std::decay_t<decltype(s.dwGuidLights[0])>)(((7 * 7 + j) % 250) + 1);
     s.fwChipModule = (decltype(s.fwChipModule))9;
     s.fwMagReadModule = (decltype(s.fwMagReadModule))10;
@@ -39,7 +39,7 @@ int Verify_XfsIdcStatus(const WFSIDCSTATUS& e, const WFSIDCSTATUS& g)
     if (e.fwSecurity != g.fwSecurity) return 4;
     if (e.usCards != g.usCards) return 5;
     if (e.fwChipPower != g.fwChipPower) return 6;
-    if (!SameStr(e.lpszExtra, g.lpszExtra)) return 7;
+    if (!SameMultiStr(e.lpszExtra, g.lpszExtra)) return 7;
     if (memcmp(e.dwGuidLights, g.dwGuidLights, sizeof e.dwGuidLights)) return 8;
     if (e.fwChipModule != g.fwChipModule) return 9;
     if (e.fwMagReadModule != g.fwMagReadModule) return 10;
@@ -98,7 +98,7 @@ void Fill_XfsIdcCaps(WFSIDCCAPS& s, int sc)
     s.bReadWriteAccessFollowingEject = TRUE;
     s.fwWriteMode = (decltype(s.fwWriteMode))13;
     s.fwChipPower = (decltype(s.fwChipPower))14;
-    s.lpszExtra = _strdup("s14");
+    { static const char v[] = "a14\0b14\0"; s.lpszExtra = (decltype(s.lpszExtra))malloc(sizeof v); memcpy(s.lpszExtra, v, sizeof v); }
     s.fwDIPMode = (decltype(s.fwDIPMode))16;
     { static const std::remove_pointer_t<decltype(s.lpwMemoryChipProtocols)> v[] = { 1, 2, 0 }; s.lpwMemoryChipProtocols = (decltype(s.lpwMemoryChipProtocols))malloc(sizeof v); memcpy(s.lpwMemoryChipProtocols, v, sizeof v); }
     for (int j = 0; j < 32; j++) s.dwGuidLights[j] = (std::decay_t<decltype(s.dwGuidLights[0])>)(((17 * 7 + j) % 250) + 1);
@@ -132,7 +132,7 @@ int Verify_XfsIdcCaps(const WFSIDCCAPS& e, const WFSIDCCAPS& g)
     if (e.bReadWriteAccessFollowingEject != g.bReadWriteAccessFollowingEject) return 12;
     if (e.fwWriteMode != g.fwWriteMode) return 13;
     if (e.fwChipPower != g.fwChipPower) return 14;
-    if (!SameStr(e.lpszExtra, g.lpszExtra)) return 15;
+    if (!SameMultiStr(e.lpszExtra, g.lpszExtra)) return 15;
     if (e.fwDIPMode != g.fwDIPMode) return 16;
     if (!SameBytes(e.lpwMemoryChipProtocols, g.lpwMemoryChipProtocols, sizeof(*e.lpwMemoryChipProtocols) * 3)) return 17;
     if (memcmp(e.dwGuidLights, g.dwGuidLights, sizeof e.dwGuidLights)) return 18;
@@ -188,13 +188,13 @@ void Fill_XfsIdcForm(WFSIDCFORM& s, int sc)
     s.fwAction = (decltype(s.fwAction))5;
     s.lpszTracks = _strdup("s5");
     s.bSecure = TRUE;
-    s.lpszTrack1Fields = _strdup("s7");
-    s.lpszTrack2Fields = _strdup("s8");
-    s.lpszTrack3Fields = _strdup("s9");
-    s.lpszFrontTrack1Fields = _strdup("s10");
+    { static const char v[] = "a7\0b7\0"; s.lpszTrack1Fields = (decltype(s.lpszTrack1Fields))malloc(sizeof v); memcpy(s.lpszTrack1Fields, v, sizeof v); }
+    { static const char v[] = "a8\0b8\0"; s.lpszTrack2Fields = (decltype(s.lpszTrack2Fields))malloc(sizeof v); memcpy(s.lpszTrack2Fields, v, sizeof v); }
+    { static const char v[] = "a9\0b9\0"; s.lpszTrack3Fields = (decltype(s.lpszTrack3Fields))malloc(sizeof v); memcpy(s.lpszTrack3Fields, v, sizeof v); }
+    { static const char v[] = "a10\0b10\0"; s.lpszFrontTrack1Fields = (decltype(s.lpszFrontTrack1Fields))malloc(sizeof v); memcpy(s.lpszFrontTrack1Fields, v, sizeof v); }
     s.cFieldSeparatorFrontTrack1 = (decltype(s.cFieldSeparatorFrontTrack1))12;
-    s.lpszJIS1Track1Fields = _strdup("s12");
-    s.lpszJIS1Track3Fields = _strdup("s13");
+    { static const char v[] = "a12\0b12\0"; s.lpszJIS1Track1Fields = (decltype(s.lpszJIS1Track1Fields))malloc(sizeof v); memcpy(s.lpszJIS1Track1Fields, v, sizeof v); }
+    { static const char v[] = "a13\0b13\0"; s.lpszJIS1Track3Fields = (decltype(s.lpszJIS1Track3Fields))malloc(sizeof v); memcpy(s.lpszJIS1Track3Fields, v, sizeof v); }
     s.cFieldSeparatorJIS1Track1 = (decltype(s.cFieldSeparatorJIS1Track1))15;
     s.cFieldSeparatorJIS1Track3 = (decltype(s.cFieldSeparatorJIS1Track3))16;
 }
@@ -220,13 +220,13 @@ int Verify_XfsIdcForm(const WFSIDCFORM& e, const WFSIDCFORM& g)
     if (e.fwAction != g.fwAction) return 5;
     if (!SameStr(e.lpszTracks, g.lpszTracks)) return 6;
     if (e.bSecure != g.bSecure) return 7;
-    if (!SameStr(e.lpszTrack1Fields, g.lpszTrack1Fields)) return 8;
-    if (!SameStr(e.lpszTrack2Fields, g.lpszTrack2Fields)) return 9;
-    if (!SameStr(e.lpszTrack3Fields, g.lpszTrack3Fields)) return 10;
-    if (!SameStr(e.lpszFrontTrack1Fields, g.lpszFrontTrack1Fields)) return 11;
+    if (!SameMultiStr(e.lpszTrack1Fields, g.lpszTrack1Fields)) return 8;
+    if (!SameMultiStr(e.lpszTrack2Fields, g.lpszTrack2Fields)) return 9;
+    if (!SameMultiStr(e.lpszTrack3Fields, g.lpszTrack3Fields)) return 10;
+    if (!SameMultiStr(e.lpszFrontTrack1Fields, g.lpszFrontTrack1Fields)) return 11;
     if (e.cFieldSeparatorFrontTrack1 != g.cFieldSeparatorFrontTrack1) return 12;
-    if (!SameStr(e.lpszJIS1Track1Fields, g.lpszJIS1Track1Fields)) return 13;
-    if (!SameStr(e.lpszJIS1Track3Fields, g.lpszJIS1Track3Fields)) return 14;
+    if (!SameMultiStr(e.lpszJIS1Track1Fields, g.lpszJIS1Track1Fields)) return 13;
+    if (!SameMultiStr(e.lpszJIS1Track3Fields, g.lpszJIS1Track3Fields)) return 14;
     if (e.cFieldSeparatorJIS1Track1 != g.cFieldSeparatorJIS1Track1) return 15;
     if (e.cFieldSeparatorJIS1Track3 != g.cFieldSeparatorJIS1Track3) return 16;
     return 0;

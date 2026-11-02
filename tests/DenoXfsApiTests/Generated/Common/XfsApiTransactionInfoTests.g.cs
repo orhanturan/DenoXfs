@@ -56,7 +56,7 @@ public class XfsApiTransactionInfoTests
         var s = new XfsApiTransactionInfo();
         if (sc == 1) return s;
         s.TransactionID = "w0";
-        s.Extra = "s1";
+        s.Extra = new[] { "a1", "b1" };
         return s;
     }
 
@@ -70,6 +70,6 @@ public class XfsApiTransactionInfoTests
         }
 
         Assert.Equal("w0", s.TransactionID);
-        Assert.Equal("s1", s.Extra);
+        Assert.Equal(new[] { "a1", "b1" }, s.Extra);
     }
 }

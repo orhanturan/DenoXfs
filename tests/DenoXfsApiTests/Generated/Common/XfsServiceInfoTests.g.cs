@@ -64,7 +64,7 @@ public class XfsServiceInfoTests
         s.ServiceInterface = XfsServiceInterfaceTests.Build(0);
         s.CompoundDevices = new XfsCompoundDevice?[] { XfsCompoundDeviceTests.Build(0), XfsCompoundDeviceTests.Build(0) };
         s.ServiceProviderVersion = "w4";
-        s.Extra = "s5";
+        s.Extra = new[] { "a5", "b5" };
         return s;
     }
 
@@ -92,6 +92,6 @@ public class XfsServiceInfoTests
         Assert.Equal(2, s.CompoundDevices!.Length);
         foreach (var item in s.CompoundDevices) XfsCompoundDeviceTests.Check(item!.Value, 0);
         Assert.Equal("w4", s.ServiceProviderVersion);
-        Assert.Equal("s5", s.Extra);
+        Assert.Equal(new[] { "a5", "b5" }, s.Extra);
     }
 }

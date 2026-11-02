@@ -12,20 +12,26 @@ public static class ServiceCollectionExtensions
     {
         services.AddSingleton<IXfsApp>(sp => new XfsApp(appName));
         services.AddSingleton<IXfsSession, XfsSession>();
-        
+        services.AddSingleton<IXfsResultReleaser, XfsResultReleaser>();
+
         // Command builders (Transient - new instance per request)
         services.AddTransient<IOpenCommandBuilder, OpenCommandBuilder>();
+        services.AddTransient<ICloseCommandBuilder, CloseCommandBuilder>();
+        services.AddTransient<IRegisterCommandBuilder, RegisterCommandBuilder>();
         services.AddTransient<IExecuteCommandBuilder, ExecuteCommandBuilder>();
         services.AddTransient<IGetInfoCommandBuilder, GetInfoCommandBuilder>();
-        
+
         // Command builder factory (Singleton)
         services.AddSingleton<ICommandBuilderFactory, CommandBuilderFactory>();
-        
-        services.AddSingleton<IXfsMessageProcessor, XfsMessageProcessor>();
-        services.AddHostedService(sp => (IHostedService)sp.GetRequiredService<IXfsMessageProcessor>());
+
+        // One message processor instance serves as processor, event source and hosted service
+        services.AddSingleton<XfsMessageProcessor>();
+        services.AddSingleton<IXfsMessageProcessor>(sp => sp.GetRequiredService<XfsMessageProcessor>());
+        services.AddSingleton<IXfsEventSource>(sp => sp.GetRequiredService<XfsMessageProcessor>());
+        services.AddHostedService(sp => sp.GetRequiredService<XfsMessageProcessor>());
         services.AddSingleton<IXfsService, XfsService>();
+        services.AddSingleton<IXfsSyncService, XfsSyncService>();
 
         return services;
     }
 }
-

@@ -13,12 +13,30 @@
     "IdcGuidLights": "IdcGuidLight"
   },
   "enumMerges": {
-    "IdcDataSource": [ "IdcReadTracksCapabilities", "IdcDataSourceCardData" ],
-    "IdcWriteMethod": [ "IdcWriteModeCapabilities", "IdcWriteMethod" ]
+    "IdcDataSource": [
+      "IdcReadTracksCapabilities",
+      "IdcDataSourceCardData"
+    ],
+    "IdcWriteMethod": [
+      "IdcWriteModeCapabilities",
+      "IdcWriteMethod"
+    ]
   },
   "ownerRemap": {
     "WFSIDCEMVCLESSDATA.wTxOutcome": "WFSIDCEMVCLESSTXDATAOUTPUT.wTxOutcome",
     "WFSIDCEMVCLESSOUTCOME.wCardholderAction": "WFSIDCEMVCLESSTXDATAOUTPUT.wCardholderAction"
   },
-  "memberNames": {}
+  "memberNames": {},
+  "fieldTypes": {
+    "WFSIDCFORM.lpszTrack1Fields": "MULTISZ",
+    "WFSIDCFORM.lpszTrack2Fields": "MULTISZ",
+    "WFSIDCFORM.lpszTrack3Fields": "MULTISZ",
+    "WFSIDCFORM.lpszFrontTrack1Fields": "MULTISZ",
+    "WFSIDCFORM.lpszJIS1Track1Fields": "MULTISZ",
+    "WFSIDCFORM.lpszJIS1Track3Fields": "MULTISZ",
+    "WFSIDCSTATUS.lpszExtra": "MULTISZ",
+    "WFSIDCCAPS.lpszExtra": "MULTISZ",
+    "WFSSERVICEINFO.lpszExtra": "MULTISZ",
+    "WFSAPITRANSACTIONINFO.lpszExtra": "MULTISZ"
+  }
 }

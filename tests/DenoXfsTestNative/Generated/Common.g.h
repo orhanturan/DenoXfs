@@ -9,5 +9,16 @@
 #define EXPORT extern "C" __declspec(dllexport)
 
 inline bool SameStr(const char* a, const char* b) { return (a == nullptr || b == nullptr) ? a == b : strcmp(a, b) == 0; }
+inline bool SameMultiStr(const char* a, const char* b)
+{
+    if (a == nullptr || b == nullptr) return a == b;
+    for (;;)
+    {
+        if (strcmp(a, b) != 0) return false;
+        if (*a == 0) return true;
+        a += strlen(a) + 1;
+        b += strlen(b) + 1;
+    }
+}
 inline bool SameWStr(const wchar_t* a, const wchar_t* b) { return (a == nullptr || b == nullptr) ? a == b : wcscmp(a, b) == 0; }
 inline bool SameBytes(const void* a, const void* b, size_t n) { return (a == nullptr || b == nullptr) ? a == b : memcmp(a, b, n) == 0; }

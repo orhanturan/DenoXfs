@@ -52,7 +52,7 @@ public class OpenCommand : IOpenCommand
         return new CommandResponse(result, requestId);
     }
 
-    public void ProcessResult(XfsResult result)
+    public bool ProcessResult(XfsResult result, IntPtr resultHandle)
     {
         // Note: WFS_OPEN_COMPLETE's result.Buffer is always null, so we use versions
         // which were updated by AsyncOpen via ref parameters
@@ -66,6 +66,7 @@ public class OpenCommand : IOpenCommand
         };
 
         input.TaskCompletionSource.SetResult(response);
+        return false; // nothing of the WFSRESULT is kept: the message processor releases it
     }
 }
 

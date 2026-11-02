@@ -66,28 +66,28 @@ public struct XfsIdcForm
         set => bSecure = value;
     }
 
-    public string? Track1Fields
+    public IReadOnlyList<string>? Track1Fields
     {
-        get => IntPtrConvert.ToString(lpszTrack1Fields);
-        set => StringConvert.ToIntPtr(ref lpszTrack1Fields, value);
+        get => MultiStringConvert.ToManaged(lpszTrack1Fields);
+        set => MultiStringConvert.ToIntPtr(ref lpszTrack1Fields, value);
     }
 
-    public string? Track2Fields
+    public IReadOnlyList<string>? Track2Fields
     {
-        get => IntPtrConvert.ToString(lpszTrack2Fields);
-        set => StringConvert.ToIntPtr(ref lpszTrack2Fields, value);
+        get => MultiStringConvert.ToManaged(lpszTrack2Fields);
+        set => MultiStringConvert.ToIntPtr(ref lpszTrack2Fields, value);
     }
 
-    public string? Track3Fields
+    public IReadOnlyList<string>? Track3Fields
     {
-        get => IntPtrConvert.ToString(lpszTrack3Fields);
-        set => StringConvert.ToIntPtr(ref lpszTrack3Fields, value);
+        get => MultiStringConvert.ToManaged(lpszTrack3Fields);
+        set => MultiStringConvert.ToIntPtr(ref lpszTrack3Fields, value);
     }
 
-    public string? FrontTrack1Fields
+    public IReadOnlyList<string>? FrontTrack1Fields
     {
-        get => IntPtrConvert.ToString(lpszFrontTrack1Fields);
-        set => StringConvert.ToIntPtr(ref lpszFrontTrack1Fields, value);
+        get => MultiStringConvert.ToManaged(lpszFrontTrack1Fields);
+        set => MultiStringConvert.ToIntPtr(ref lpszFrontTrack1Fields, value);
     }
 
     public byte FieldSeparatorFrontTrack1
@@ -96,16 +96,16 @@ public struct XfsIdcForm
         set => cFieldSeparatorFrontTrack1 = value;
     }
 
-    public string? JIS1Track1Fields
+    public IReadOnlyList<string>? JIS1Track1Fields
     {
-        get => IntPtrConvert.ToString(lpszJIS1Track1Fields);
-        set => StringConvert.ToIntPtr(ref lpszJIS1Track1Fields, value);
+        get => MultiStringConvert.ToManaged(lpszJIS1Track1Fields);
+        set => MultiStringConvert.ToIntPtr(ref lpszJIS1Track1Fields, value);
     }
 
-    public string? JIS1Track3Fields
+    public IReadOnlyList<string>? JIS1Track3Fields
     {
-        get => IntPtrConvert.ToString(lpszJIS1Track3Fields);
-        set => StringConvert.ToIntPtr(ref lpszJIS1Track3Fields, value);
+        get => MultiStringConvert.ToManaged(lpszJIS1Track3Fields);
+        set => MultiStringConvert.ToIntPtr(ref lpszJIS1Track3Fields, value);
     }
 
     public byte FieldSeparatorJIS1Track1

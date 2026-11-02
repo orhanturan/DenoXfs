@@ -20,6 +20,12 @@ public sealed class NamingOverrides
     /// <summary>#define name to enum member name.</summary>
     public Dictionary<string, string> MemberNames { get; set; } = new();
 
+    /// <summary>
+    /// Struct field (WFSIDCFORM.lpszTrack1Fields) to a planned type code that replaces the one taken from the header,
+    /// e.g. MULTISZ for LPSTR fields that hold a double null terminated list.
+    /// </summary>
+    public Dictionary<string, string> FieldTypes { get; set; } = new();
+
     public static NamingOverrides Load(string path)
     {
         if (!File.Exists(path))

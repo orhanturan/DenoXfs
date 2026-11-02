@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{8D4A2F17-5B3E-4C9A-A1D6-3E7F0B9C2A54}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DenoXfsSimSp</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='17.0'">v143</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='18.0'">v145</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseDebugLibraries Condition="'$(Configuration)'=='Debug'">true</UseDebugLibraries>
+    <UseDebugLibraries Condition="'$(Configuration)'=='Release'">false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <OutDir>$(MSBuildThisFileDirectory)..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(MSBuildThisFileDirectory)obj\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>DenoXfsSimSp</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_WINDOWS;_USRDLL;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)third_party;$(MSBuildThisFileDirectory)..\..\tools\HtmlToXfs2\INCLUDE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary Condition="'$(Configuration)'=='Debug'">MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary Condition="'$(Configuration)'=='Release'">MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>DenoXfsSimSp.def</ModuleDefinitionFile>
+      <AdditionalDependencies>winhttp.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Base64.cpp" />
+    <ClCompile Include="src\CompositionRoot.cpp" />
+    <ClCompile Include="src\DynamicXfsManager.cpp" />
+    <ClCompile Include="src\Exports.cpp" />
+    <ClCompile Include="src\RegistryHostEndpointProvider.cpp" />
+    <ClCompile Include="src\ResultMaterializer.cpp" />
+    <ClCompile Include="src\ServiceProvider.cpp" />
+    <ClCompile Include="src\SpSession.cpp" />
+    <ClCompile Include="src\WinHttpWebSocket.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Base64.h" />
+    <ClInclude Include="src\CompositionRoot.h" />
+    <ClInclude Include="src\DynamicXfsManager.h" />
+    <ClInclude Include="src\EventRegistrations.h" />
+    <ClInclude Include="src\Interfaces.h" />
+    <ClInclude Include="src\PendingRequests.h" />
+    <ClInclude Include="src\RegistryHostEndpointProvider.h" />
+    <ClInclude Include="src\ResultMaterializer.h" />
+    <ClInclude Include="src\ServiceProvider.h" />
+    <ClInclude Include="src\SpSession.h" />
+    <ClInclude Include="src\WindowMessagePoster.h" />
+    <ClInclude Include="src\WinHttpWebSocket.h" />
+    <ClInclude Include="src\XfsPlatform.h" />
+    <ClInclude Include="src\idc\IdcInputDecoders.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DenoXfsSimSp.def" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\Ponta.spdlog.1.14.1\build\native\Ponta.spdlog.targets" Condition="Exists('..\packages\Ponta.spdlog.1.14.1\build\native\Ponta.spdlog.targets')" />
+  </ImportGroup>
+</Project>

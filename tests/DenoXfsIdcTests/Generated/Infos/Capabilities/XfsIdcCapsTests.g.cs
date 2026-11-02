@@ -94,7 +94,7 @@ public class XfsIdcCapsTests
         s.ReadWriteAccessFollowingEject = true;
         s.WriteMode = (IdcWriteMethod)13;
         s.ChipPower = (IdcChipPowerCapabilities)14;
-        s.Extra = "s14";
+        s.Extra = new[] { "a14", "b14" };
         s.DIPMode = (IdcDIPModeCapabilities)16;
         s.MemoryChipProtocols = new IdcMemoryChipProtocolsCapabilities[] { (IdcMemoryChipProtocolsCapabilities)1, (IdcMemoryChipProtocolsCapabilities)2 };
         for (var j = 0; j < 32; j++) s.GuidLights[j] = (IdcGuidLight)(((17 * 7 + j) % 250) + 1);
@@ -151,7 +151,7 @@ public class XfsIdcCapsTests
         Assert.True(s.ReadWriteAccessFollowingEject);
         Assert.Equal((IdcWriteMethod)13, s.WriteMode);
         Assert.Equal((IdcChipPowerCapabilities)14, s.ChipPower);
-        Assert.Equal("s14", s.Extra);
+        Assert.Equal(new[] { "a14", "b14" }, s.Extra);
         Assert.Equal((IdcDIPModeCapabilities)16, s.DIPMode);
         Assert.Equal(new IdcMemoryChipProtocolsCapabilities[] { (IdcMemoryChipProtocolsCapabilities)1, (IdcMemoryChipProtocolsCapabilities)2 }, s.MemoryChipProtocols);
         for (var j = 0; j < 32; j++) Assert.Equal((IdcGuidLight)(((17 * 7 + j) % 250) + 1), s.GuidLights[j]);

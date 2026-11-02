@@ -80,7 +80,7 @@ public class XfsIdcStatusTests
         s.Security = (IdcSecurityStatus)4;
         s.Cards = (ushort)5;
         s.ChipPower = (IdcChipPowerStatus)6;
-        s.Extra = "s6";
+        s.Extra = new[] { "a6", "b6" };
         for (var j = 0; j < 32; j++) s.GuidLights[j] = (IdcGuidLight)(((7 * 7 + j) % 250) + 1);
         s.ChipModule = (IdcChipModuleStatus)9;
         s.MagReadModule = (IdcMagModuleStatus)10;
@@ -125,7 +125,7 @@ public class XfsIdcStatusTests
         Assert.Equal((IdcSecurityStatus)4, s.Security);
         Assert.Equal((ushort)5, s.Cards);
         Assert.Equal((IdcChipPowerStatus)6, s.ChipPower);
-        Assert.Equal("s6", s.Extra);
+        Assert.Equal(new[] { "a6", "b6" }, s.Extra);
         for (var j = 0; j < 32; j++) Assert.Equal((IdcGuidLight)(((7 * 7 + j) % 250) + 1), s.GuidLights[j]);
         Assert.Equal((IdcChipModuleStatus)9, s.ChipModule);
         Assert.Equal((IdcMagModuleStatus)10, s.MagReadModule);

@@ -22,6 +22,8 @@ Pipeline (spec version 3.40 for now): spec PDF -> markdown (markitdown) -> JSON 
 - Target `net9.0-windows`, `Nullable` and `ImplicitUsings` enabled.
 - Generated C# files are produced by HtmlToXfs2; fix the generator, not the output, unless told otherwise.
 - Spec version comes from `--version` (default 340); never hardcode it.
+- Follow SOLID and dependency injection in all hand-written C# and C++ (see `coding-principles`). Project and folder names have no dots.
+- Planned simulator and test tool (see `simulator-and-test-tool`): one device-agnostic core per tool, device classes as modules; the XFS Manager on this machine is 32 bit, so the Service Provider DLL and the test tool are x86.
 
 ## XFS glossary
 - Prefixes: `WFS` = API (apps call), `WFP` = SPI (Manager calls providers), `WFM` = support/config functions.
@@ -30,4 +32,4 @@ Pipeline (spec version 3.40 for now): spec PDF -> markdown (markitdown) -> JSON 
 - Device classes: IDC, CDM, CIM, PIN, PTR, CHK, DEP, TTU, SIU, VDM, CAM, ALM, CEU, CRD, BCR, IPM, BIO.
 
 ## Scoped rules
-See `.github/instructions/` (Cursor reads these via `AGENTS.md`): xfs-library-layout, xfs-core, xfs-device-libs, htmltoxfs2, xfs-markdown-pipeline, xfs-markdown-inputs, xfs-tests.
+See `.github/instructions/` (Cursor reads these via `AGENTS.md`): coding-principles, xfs-library-layout, xfs-core, xfs-device-libs, htmltoxfs2, xfs-markdown-pipeline, xfs-markdown-inputs, xfs-tests, simulator-and-test-tool.

@@ -5,14 +5,19 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using DenoXfs.Core.Abstractions;
+using DenoXfs.Core.Models;
 using DenoXfs.Api;
 using DenoXfs.Api.Common;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace DenoXfs.Core.Services;
 
-public class XfsMessageProcessor : IXfsMessageProcessor, IHostedService
+public class XfsMessageProcessor : IXfsMessageProcessor, IXfsEventSource, IHostedService
 {
+    private readonly IXfsResultReleaser resultReleaser;
+    private readonly ILogger<XfsMessageProcessor> logger;
+
     private readonly Queue<IXfsCommand> commandQueue = new Queue<IXfsCommand>();
     private readonly object queueLock = new object();
     private readonly ConcurrentDictionary<uint, IXfsCommand> pendingCommands = new ConcurrentDictionary<uint, IXfsCommand>();
@@ -21,7 +26,15 @@ public class XfsMessageProcessor : IXfsMessageProcessor, IHostedService
     private IntPtr windowHandle = IntPtr.Zero;
     private bool isRunning = false;
 
+    public XfsMessageProcessor(IXfsResultReleaser resultReleaser, ILogger<XfsMessageProcessor> logger)
+    {
+        this.resultReleaser = resultReleaser ?? throw new ArgumentNullException(nameof(resultReleaser));
+        this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+
     public IntPtr WindowHandle => windowHandle;
+
+    public event Action<XfsEventMessage>? EventReceived;
 
     public void EnqueueCommand(IXfsCommand command)
     {
@@ -74,9 +87,12 @@ public class XfsMessageProcessor : IXfsMessageProcessor, IHostedService
         windowHandle = messageWindow.Create();
         if (windowHandle == IntPtr.Zero)
         {
+            logger.LogError("message window could not be created win32Error={Error}", Marshal.GetLastPInvokeError());
             isRunning = false;
             return;
         }
+
+        logger.LogInformation("message window created handle=0x{Handle:X}", windowHandle.ToInt64());
 
         while (isRunning)
         {
@@ -127,38 +143,64 @@ public class XfsMessageProcessor : IXfsMessageProcessor, IHostedService
                 pendingCommands.TryAdd(response.RequestId, command);
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            // Log error
+            logger.LogError(ex, "command failed type={Type}", command.GetType().Name);
         }
     }
 
     private void ProcessXfsMessage(MSG msg)
     {
-        // Parse WFSRESULT from msg.lParam (wParam is not used for completion messages)
+        // The WFSRESULT is in msg.lParam (wParam is not used). Whoever ends up with it releases it with WFSFreeResult.
         if (msg.lParam == IntPtr.Zero)
             return;
 
+        bool released = false;
         try
         {
             var wfsResult = Marshal.PtrToStructure<XfsResult>(msg.lParam);
-            
-            // Handle all completion messages
+
             if (IsCompletionMessage(msg.message))
             {
                 if (pendingCommands.TryRemove(wfsResult.RequestID, out var command))
                 {
-                    command.ProcessResult(wfsResult);
+                    released = command.ProcessResult(wfsResult, msg.lParam);
+                }
+                else
+                {
+                    logger.LogWarning("completion without pending command message={Message} reqId={ReqId}", msg.message, wfsResult.RequestID);
                 }
             }
-            
-            // Free the WFSRESULT structure if needed
-            // Note: XFS Manager may free this, check documentation
+            else if (TryGetEventKind(msg.message, out var kind))
+            {
+                var xfsEvent = new XfsEventMessage(kind, wfsResult.EventID, wfsResult.Service, wfsResult.RequestID, wfsResult.Result, wfsResult.Buffer);
+                logger.LogInformation("event kind={Kind} eventId={EventId} hService={HService} reqId={ReqId} hResult={HResult}",
+                    kind, xfsEvent.EventId, xfsEvent.HService, xfsEvent.RequestId, xfsEvent.Result);
+                EventReceived?.Invoke(xfsEvent);
+            }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            // Log error
+            logger.LogError(ex, "message handling failed message={Message}", msg.message);
         }
+        finally
+        {
+            if (!released)
+                resultReleaser.Free(msg.lParam);
+        }
+    }
+
+    private static bool TryGetEventKind(uint message, out XfsEventKind kind)
+    {
+        kind = message switch
+        {
+            Xfs.ExecuteEvent => XfsEventKind.Execute,
+            Xfs.ServiceEvent => XfsEventKind.Service,
+            Xfs.UserEvent => XfsEventKind.User,
+            Xfs.SystemEvent => XfsEventKind.System,
+            _ => default
+        };
+        return message is Xfs.ExecuteEvent or Xfs.ServiceEvent or Xfs.UserEvent or Xfs.SystemEvent;
     }
 
     private static bool IsCompletionMessage(uint message)

@@ -1,3 +1,4 @@
+using System;
 using DenoXfs.Api.Common;
 
 namespace DenoXfs.Core.Abstractions;
@@ -13,10 +14,11 @@ public interface IXfsCommand
     CommandResponse Execute();
 
     /// <summary>
-    /// Processes the completion result from XFS message
+    /// Processes the completion result from XFS message.
     /// </summary>
-    void ProcessResult(XfsResult result);
+    /// <param name="result">The WFSRESULT content.</param>
+    /// <param name="resultHandle">Address of the WFSRESULT; it must be released with WFSFreeResult.</param>
+    /// <returns>True when the command passed <paramref name="resultHandle"/> on to its caller, who now releases it;
+    /// false when the message processor must release it.</returns>
+    bool ProcessResult(XfsResult result, IntPtr resultHandle);
 }
-
-
-

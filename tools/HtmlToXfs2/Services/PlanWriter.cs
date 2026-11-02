@@ -246,6 +246,12 @@ public static class PlanWriter
                 result.Getter = $"IntPtrConvert.ToString({name})";
                 result.Setter = $"StringConvert.ToIntPtr(ref {name}, value)";
                 break;
+            case "MULTISZ":
+                // LPSTR holding "a b  " (see fieldTypes in naming-overrides.json).
+                result.PublicType = "IReadOnlyList<string>?";
+                result.Getter = $"MultiStringConvert.ToManaged({name})";
+                result.Setter = $"MultiStringConvert.ToIntPtr(ref {name}, value)";
+                break;
             case "LPWSTR":
                 result.PublicType = "string?";
                 result.Getter = $"IntPtrConvert.ToWString({name})";

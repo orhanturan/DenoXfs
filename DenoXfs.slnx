@@ -5,14 +5,23 @@
     <Project Path="src/DenoXfsIdc/DenoXfsIdc.csproj" />
     <Project Path="src/DenoXfsInterop/DenoXfsInterop.csproj" />
   </Folder>
+  <Folder Name="/simulator/">
+    <Project Path="simulator/DenoXfsSimCore/DenoXfsSimCore.csproj" />
+    <Project Path="simulator/DenoXfsSimData/DenoXfsSimData.csproj" />
+    <Project Path="simulator/DenoXfsSimHost/DenoXfsSimHost.csproj" />
+    <Project Path="simulator/DenoXfsSimIdc/DenoXfsSimIdc.csproj" />
+    <Project Path="simulator/DenoXfsSimSp/DenoXfsSimSp.vcxproj" Id="8d4a2f17-5b3e-4c9a-a1d6-3e7f0b9c2a54" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/DenoXfsApiTests/DenoXfsApiTests.csproj" />
     <Project Path="tests/DenoXfsIdcTests/DenoXfsIdcTests.csproj" />
     <Project Path="tests/DenoXfsInteropTests/DenoXfsInteropTests.csproj" />
+    <Project Path="tests/DenoXfsSimTests/DenoXfsSimTests.csproj" />
     <Project Path="tests/DenoXfsTestNative/DenoXfsTestNative.vcxproj" Id="6b5c1e0a-3f0d-4c58-9c3e-5a1d7b2f9e41" />
     <Project Path="tests/HtmlToXfs2.Tests/HtmlToXfs2.Tests.csproj" />
   </Folder>
   <Folder Name="/tools/">
+    <Project Path="tools/DenoXfsTestTool/DenoXfsTestTool.csproj" />
     <Project Path="tools/HtmlToXfs2/HtmlToXfs2.csproj" />
     <Project Path="tools/XfsTestGen/XfsTestGen.csproj" />
   </Folder>

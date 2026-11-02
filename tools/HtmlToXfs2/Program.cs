@@ -48,6 +48,14 @@ namespace HtmlToXfs2
                 return;
             }
             
+            // Check for --generate-types flag (only the C# types from the headers and section docs, no HTML processing)
+            if (args.Contains("--generate-types"))
+            {
+                foreach (var device in new[] { "api", "idc" })
+                    new TypeGenerator(device, _specVersion).Run();
+                return;
+            }
+
             // Check for --copy-output flag (only copy, no processing)
             if (args.Contains("--copy-output"))
             {

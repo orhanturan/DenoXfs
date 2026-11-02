@@ -1,6 +1,8 @@
 using DenoXfs.Core.Abstractions;
 using DenoXfs.Api;
+using DenoXfs.Api.Common;
 using DenoXfs.Core.Models.Requests;
+using DenoXfs.Core.Models.Responses;
 
 namespace DenoXfs.Core.Services;
 
@@ -10,7 +12,7 @@ public class XfsSession : IXfsSession
     private bool isStarted = false;
     private bool disposed = false;
 
-    public void Startup(StartUpRequest request)
+    public StartUpResponse Startup(StartUpRequest request)
     {
         lock (lockObject)
         {
@@ -18,14 +20,20 @@ public class XfsSession : IXfsSession
                 throw new ObjectDisposedException(nameof(XfsSession));
 
             if (isStarted)
-                return;
+                return new StartUpResponse { Result = 0, XfsVersion = request.XfsVersion };
 
-            var version = request.XfsVersion;
+            var version = new XfsVersion
+            {
+                Description = new byte[Xfs.WfsddescriptionLen + 1],
+                SystemStatus = new byte[Xfs.WfsdsysstatusLen + 1]
+            };
             int result = XfsApi.StartUp(request.VersionsRequired, ref version);
             if (result == 0) // WFS_SUCCESS
             {
                 isStarted = true;
             }
+
+            return new StartUpResponse { Result = result, XfsVersion = version };
         }
     }
 
@@ -56,9 +64,3 @@ public class XfsSession : IXfsSession
         }
     }
 }
-
-
-
-
-
-

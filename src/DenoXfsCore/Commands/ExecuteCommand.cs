@@ -38,19 +38,26 @@ public class ExecuteCommand : IExecuteCommand
             input.TaskCompletionSource.SetResult(errorResponse);
         }
 
+        else
+        {
+            input.ExecuteRequest.RequestIdAssigned?.Invoke(requestId);
+        }
+
         return new CommandResponse(result, requestId);
     }
 
-    public void ProcessResult(XfsResult result)
+    public bool ProcessResult(XfsResult result, IntPtr resultHandle)
     {
         var response = new ExecuteResponse
         {
             Result = result.Result,
             RequestId = result.RequestID,
-            ResultPtr = result.Buffer
+            ResultPtr = result.Buffer,
+            ResultHandle = resultHandle
         };
 
         input.TaskCompletionSource.SetResult(response);
+        return true;
     }
 }
 

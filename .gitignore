@@ -139,3 +139,8 @@ $RECYCLE.BIN/
 *.orig
 *.rej
 ~$*
+
+# Simulator
+simulator/packages/
+simulator/bin/
+simulator/**/logs/

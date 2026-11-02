@@ -1,0 +1,13 @@
+LIBRARY DenoXfsSimSp
+EXPORTS
+    WFPOpen
+    WFPClose
+    WFPExecute
+    WFPGetInfo
+    WFPRegister
+    WFPDeregister
+    WFPLock
+    WFPUnlock
+    WFPCancelAsyncRequest
+    WFPSetTraceLevel
+    WFPUnloadService

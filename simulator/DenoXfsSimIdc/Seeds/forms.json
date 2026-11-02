@@ -1,0 +1,58 @@
+[
+  {
+    "name": "READTRACK2",
+    "action": 1,
+    "tracks": "TRACK2",
+    "secure": false,
+    "track1Fields": [],
+    "track2Fields": [
+      "PAN",
+      "EXPIRY",
+      "SERVICECODE",
+      "DISCRETIONARY"
+    ],
+    "track3Fields": []
+  },
+  {
+    "name": "READTRACK1ORTRACK2",
+    "action": 1,
+    "tracks": "TRACK1|TRACK2",
+    "secure": false,
+    "track1Fields": [
+      "PAN",
+      "NAME",
+      "EXPIRY"
+    ],
+    "track2Fields": [
+      "PAN",
+      "EXPIRY"
+    ],
+    "track3Fields": []
+  },
+  {
+    "name": "READALLTRACKS",
+    "action": 1,
+    "tracks": "TRACK1&TRACK2&TRACK3",
+    "secure": false,
+    "track1Fields": [
+      "ALL"
+    ],
+    "track2Fields": [
+      "ALL"
+    ],
+    "track3Fields": [
+      "ALL"
+    ]
+  },
+  {
+    "name": "WRITETRACK3",
+    "action": 2,
+    "tracks": "TRACK3",
+    "secure": false,
+    "track1Fields": [],
+    "track2Fields": [],
+    "track3Fields": [
+      "ALL"
+    ]
+  }
+]

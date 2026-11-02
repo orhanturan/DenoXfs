@@ -6,21 +6,32 @@ namespace DenoXfs.Core.Services;
 public class MessageWindow
 {
     private const uint WM_QUIT = 0x0012;
+    private const int ERROR_CLASS_ALREADY_EXISTS = 1410;
     private const uint WS_OVERLAPPED = 0x00000000;
     private const int CW_USEDEFAULT = unchecked((int)0x80000000);
 
+    // Kept in a field: the native window procedure points into this delegate, so it must not be garbage collected.
+    private readonly WndProc windowProc;
+
+    public MessageWindow()
+    {
+        windowProc = WindowProc;
+    }
+
+    /// <summary>Creates the hidden window on the calling thread. Returns zero on failure; see <c>Marshal.GetLastPInvokeError</c>.</summary>
     public IntPtr Create()
     {
         const string className = "XfsMessageWindow";
 
         WNDCLASS wc = new WNDCLASS
         {
-            lpfnWndProc = WindowProc,
+            lpfnWndProc = windowProc,
             hInstance = GetModuleHandle(null),
             lpszClassName = className
         };
 
-        RegisterClass(ref wc);
+        if (RegisterClass(ref wc) == 0 && Marshal.GetLastPInvokeError() != ERROR_CLASS_ALREADY_EXISTS)
+            return IntPtr.Zero;
 
         return CreateWindowEx(
             0,
@@ -59,7 +70,7 @@ public class MessageWindow
         return DefWindowProc(hWnd, msg, wParam, lParam);
     }
 
-    [DllImport("user32.dll", SetLastError = true)]
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
     private static extern IntPtr CreateWindowEx(
         uint dwExStyle,
         string lpClassName,
@@ -84,13 +95,13 @@ public class MessageWindow
     [DllImport("user32.dll")]
     private static extern IntPtr DefWindowProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
 
-    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
     private static extern ushort RegisterClass(ref WNDCLASS lpWndClass);
 
-    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern IntPtr GetModuleHandle(string? lpModuleName);
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     private struct WNDCLASS
     {
         public uint style;
@@ -102,9 +113,9 @@ public class MessageWindow
         public IntPtr hIcon;
         public IntPtr hCursor;
         public IntPtr hbrBackground;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.LPWStr)]
         public string? lpszMenuName;
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.LPWStr)]
         public string lpszClassName;
     }
 
