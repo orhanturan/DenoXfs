@@ -20,7 +20,7 @@ public class OperationPanel : UserControl
         {
             var operationPage = new OperationPage(operation, runner);
             var page = new TabPage(operation.Name) { ToolTipText = operation.Description };
-            page.Controls.Add(new WorkArea(operationPage));
+            page.Controls.Add(new WorkArea(operationPage, WorkAreaLayout.Top));
             tabs.TabPages.Add(page);
             pages.Add(operationPage);
         }
