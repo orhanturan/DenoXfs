@@ -18,6 +18,8 @@ public class OperationPage : UserControl
         _operation = operation;
         _runner = runner;
         _parameterObject = operation.CreateParameters();
+        HasParameters = _parameterObject.GetType().GetProperties().Length > 0;
+        FlagsEnumEditor.RegisterFor(_parameterObject.GetType());
         Dock = DockStyle.Fill;
 
         // Narrow column: Run always at the top, then the description, then the parameters.
@@ -43,6 +45,16 @@ public class OperationPage : UserControl
             _cancel.Enabled = false;
             _running?.Cancel();
         };
+    }
+
+    /// <summary>False for operations without input (e.g. Status, Capabilities): their tab runs them on click.</summary>
+    public bool HasParameters { get; }
+
+    /// <summary>Runs the operation unless it is already running.</summary>
+    public async Task RunIfIdleAsync()
+    {
+        if (_run.Enabled)
+            await RunAsync();
     }
 
     private async Task RunAsync()

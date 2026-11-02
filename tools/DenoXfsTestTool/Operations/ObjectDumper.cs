@@ -75,6 +75,10 @@ public static class ObjectDumper
             {
                 text.AppendLine($"{indent}{property.Name} = {Format(propertyValue)}");
             }
+            else if (SimpleItems(propertyValue) is { } simpleItems)
+            {
+                text.AppendLine($"{indent}{property.Name} = [{simpleItems.Count}] {string.Join("; ", simpleItems.Select(Format))}");
+            }
             else
             {
                 text.AppendLine($"{indent}{property.Name}:");
@@ -85,6 +89,15 @@ public static class ObjectDumper
 
     private static bool IsSimple(object? value) =>
         value is null or string or bool or char or Enum or IntPtr or byte[] || value.GetType().IsPrimitive;
+
+    /// <summary>The items of a collection of simple values (e.g. the 32 guidance lights), written on one line; otherwise null.</summary>
+    private static List<object?>? SimpleItems(object? value)
+    {
+        if (value is not IEnumerable enumerable)
+            return null;
+        var items = enumerable.Cast<object?>().ToList();
+        return items.Count > 0 && items.All(IsSimple) ? items : null;
+    }
 
     private static string Format(object? value) => value switch
     {
