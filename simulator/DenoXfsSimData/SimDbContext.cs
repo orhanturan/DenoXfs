@@ -42,6 +42,8 @@ public class SimDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasCollation(CaseInsensitiveCollation, locale: "und-u-ks-level2", provider: "icu", deterministic: false);
+
         // Hardware catalog: vendor → model → device → service; deleting a parent deletes what is under it.
         modelBuilder.Entity<Vendor>().HasIndex(v => v.Name).IsUnique();
         modelBuilder.Entity<Vendor>().HasMany(v => v.Models).WithOne().HasForeignKey(m => m.VendorId).OnDelete(DeleteBehavior.Cascade);
@@ -64,7 +66,6 @@ public class SimDbContext : DbContext
         TerminalIdColumn(modelBuilder.Entity<DeviceState>().Property(s => s.TerminalId));
         modelBuilder.Entity<DeviceState>().HasIndex(s => new { s.TerminalId, s.ModelDeviceId, s.XfsClass }).IsUnique();
         modelBuilder.Entity<DeviceState>().HasOne<ModelDevice>().WithMany().HasForeignKey(s => s.ModelDeviceId).OnDelete(DeleteBehavior.Cascade);
-        // SQL Server would reject these two SET NULL paths to deno_profile (multiple cascade paths): make one NO ACTION there.
         modelBuilder.Entity<Terminal>().HasOne<Profile>().WithMany().HasForeignKey(t => t.ScenarioId).OnDelete(DeleteBehavior.SetNull);
         modelBuilder.Entity<Terminal>().HasOne<Profile>().WithMany().HasForeignKey(t => t.DeviceProfileId).OnDelete(DeleteBehavior.SetNull);
 
@@ -82,14 +83,15 @@ public class SimDbContext : DbContext
         ApplyNamingConvention(modelBuilder.Model);
     }
 
-    /// <summary>NOCASE exists only in SQLite; SQL Server compares case insensitive by default, PostgreSQL needs citext or a collation.</summary>
-    private void CaseInsensitive(PropertyBuilder<string> property)
-    {
-        if (Database.IsSqlite())
-            property.UseCollation("NOCASE");
-    }
+    /// <summary>
+    /// Names compared and kept unique without regard to case. A nondeterministic ICU collation: PostgreSQL cannot run LIKE
+    /// (Contains, StartsWith) on these columns, so filter such text in memory.
+    /// </summary>
+    private static void CaseInsensitive(PropertyBuilder<string> property) => property.UseCollation(CaseInsensitiveCollation);
 
-    /// <summary>char(8), not unicode. SQLite compares exactly (BINARY); on SQL Server add a case sensitive collation here.</summary>
+    private const string CaseInsensitiveCollation = "deno_ci";
+
+    /// <summary>char(8), not unicode, compared exactly (the default collation of PostgreSQL).</summary>
     private static void TerminalIdColumn(PropertyBuilder<string> property) =>
         property.HasMaxLength(8).IsFixedLength().IsUnicode(false);
 
@@ -137,11 +139,11 @@ public class SimDbContext : DbContext
     }
 }
 
-/// <summary>Used by <c>dotnet ef migrations</c> only; the host configures the real connection.</summary>
+/// <summary>Used by <c>dotnet ef migrations</c> only, which needs no connection; the host configures the real one.</summary>
 public sealed class SimDbContextDesignFactory : IDesignTimeDbContextFactory<SimDbContext>
 {
     public SimDbContext CreateDbContext(string[] args) =>
-        new(new DbContextOptionsBuilder<SimDbContext>().UseSqlite("Data Source=design.db").Options);
+        new(new DbContextOptionsBuilder<SimDbContext>().UseNpgsql().Options);
 }
 
 /// <summary>Terminal lookups by the IP of a DLL connection or a browser.</summary>

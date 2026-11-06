@@ -10,14 +10,9 @@ Windows Registry Editor Version 5.00
 "vendor_name"="DenoXfs"
 "version"="3.40.0"
 
-; The host opens a logical service by its name among the services of the terminal's model (web page /hardware):
-; the seeded model Deno26 has the service Idc340. "IDC" is rejected (WFS_ERR_SERVICE_NOT_FOUND) unless a service with
-; that name is added on the web page.
+; The logical service name has to match a service of the terminal's model in the simulator DB (web page /hardware):
+; the seeded model Deno26 has the service Idc340. A name added on the web page needs a key of the same name here.
 [HKEY_USERS\.DEFAULT\XFS\LOGICAL_SERVICES\Idc340]
-"class"="IDC"
-"provider"="DENOXFS_IDC"
-
-[HKEY_USERS\.DEFAULT\XFS\LOGICAL_SERVICES\IDC]
 "class"="IDC"
 "provider"="DENOXFS_IDC"
 

@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, services, logger) => logger
     .ReadFrom.Configuration(context.Configuration)
     .ReadFrom.Services(services));
-builder.Services.AddDenoXfsSimHost(builder.Configuration, builder.Environment.ContentRootPath);
+builder.Services.AddDenoXfsSimHost(builder.Configuration);
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 var app = builder.Build();

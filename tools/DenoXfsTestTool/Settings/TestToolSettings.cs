@@ -5,11 +5,8 @@ namespace DenoXfs.TestTool.Settings;
 /// <summary>Editable settings of the test tool. Defaults follow the spec; edit them in the Session tab.</summary>
 public class TestToolSettings
 {
-    [Category("Service"), DisplayName("Logical name"), Description("Logical service to open; a service of the terminal's model (e.g. Idc340).")]
+    [Category("Service"), DisplayName("Logical name"), Description("Logical service to open, one of HKEY_USERS\\.DEFAULT\\XFS\\LOGICAL_SERVICES. The simulator accepts it only if the terminal's model has a service of that name (e.g. Idc340).")]
     public string LogicalName { get; set; } = string.Empty;
-
-    [Category("Service"), DisplayName("Application id"), Description("Application id passed to open.")]
-    public string AppId { get; set; } = "DenoXfsTestTool";
 
     [Category("Versions"), DisplayName("StartUp versions required"), Description("WFSStartUp dwVersionsRequired: low word = highest, high word = lowest (3.00 - 3.40 = 0x00032803).")]
     public uint StartUpVersionsRequired { get; set; } = 0x00032803;

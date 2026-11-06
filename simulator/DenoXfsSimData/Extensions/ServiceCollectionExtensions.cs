@@ -8,12 +8,12 @@ namespace DenoXfs.Sim.Data.Extensions;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// SQLite database of the simulator (EF Core). Device class modules read it through <see cref="IDbContextFactory{TContext}"/>
+    /// PostgreSQL database of the simulator (EF Core). Device class modules read it through <see cref="IDbContextFactory{TContext}"/>
     /// and add their seed data as <see cref="IDataSeeder"/>s.
     /// </summary>
     public static IServiceCollection AddDenoXfsSimData(this IServiceCollection services, string connectionString)
     {
-        services.AddDbContextFactory<SimDbContext>(options => options.UseSqlite(connectionString));
+        services.AddDbContextFactory<SimDbContext>(options => options.UseNpgsql(connectionString));
         services.AddHostedService<DatabaseInitializer>();
         services.AddSingleton<IProfileCatalog, EfProfileCatalog>();
         services.AddSingleton<ITerminalSelectionStore, EfTerminalSelectionStore>();

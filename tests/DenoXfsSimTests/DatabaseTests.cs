@@ -13,26 +13,16 @@ using DenoXfs.Sim.Idc.Forms;
 using DenoXfs.Sim.Idc.Infos;
 using DenoXfs.Sim.Idc.Scenarios;
 using DenoXfs.Sim.Idc.Seeds;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace DenoXfs.Sim.Tests;
 
-/// <summary>EF catalogs, seeders and the device state store against an in-memory SQLite database with the real migrations.</summary>
+/// <summary>EF catalogs, seeders and the device state store against a PostgreSQL test database with the real migrations.</summary>
 public sealed class DatabaseTests : IDisposable
 {
-    private readonly SqliteConnection _connection = new("Data Source=:memory:");
-    private readonly TestContextFactory _contexts;
+    private readonly TestDatabase _contexts = new();
 
-    public DatabaseTests()
-    {
-        _connection.Open(); // the in-memory database lives as long as this connection
-        _contexts = new TestContextFactory(new DbContextOptionsBuilder<SimDbContext>().UseSqlite(_connection).Options);
-        using var db = _contexts.CreateDbContext();
-        db.Database.Migrate();
-    }
-
-    public void Dispose() => _connection.Dispose();
+    public void Dispose() => _contexts.Dispose();
 
     [Fact]
     public async Task Seeders_fill_cards_and_forms_and_running_them_again_adds_nothing()
@@ -173,17 +163,5 @@ public sealed class DatabaseTests : IDisposable
         await new IdcCardSeeder().SeedAsync(db, CancellationToken.None);
         await new IdcFormSeeder().SeedAsync(db, CancellationToken.None);
         await new IdcProfileSeeder().SeedAsync(db, CancellationToken.None);
-    }
-
-    internal sealed class TestContextFactory : IDbContextFactory<SimDbContext>
-    {
-        private readonly DbContextOptions<SimDbContext> _options;
-
-        public TestContextFactory(DbContextOptions<SimDbContext> options)
-        {
-            _options = options;
-        }
-
-        public SimDbContext CreateDbContext() => new(_options);
     }
 }

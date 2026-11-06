@@ -1,4 +1,3 @@
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,7 +14,7 @@ public interface IDataSeeder
     Task SeedAsync(SimDbContext db, CancellationToken cancellationToken);
 }
 
-/// <summary>At host start: creates the database folder, applies the migrations, runs every <see cref="IDataSeeder"/>.</summary>
+/// <summary>At host start: applies the migrations (creating the database if it is missing), runs every <see cref="IDataSeeder"/>.</summary>
 public sealed class DatabaseInitializer : IHostedService
 {
     private readonly IDbContextFactory<SimDbContext> _contexts;
@@ -32,7 +31,6 @@ public sealed class DatabaseInitializer : IHostedService
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         await using var db = await _contexts.CreateDbContextAsync(cancellationToken);
-        CreateFolder(db.Database.GetConnectionString());
         await db.Database.MigrateAsync(cancellationToken);
 
         foreach (var seeder in _seeders.OrderBy(s => s.Order))
@@ -43,12 +41,4 @@ public sealed class DatabaseInitializer : IHostedService
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
-
-    private static void CreateFolder(string? connectionString)
-    {
-        var file = new SqliteConnectionStringBuilder(connectionString).DataSource;
-        var folder = Path.GetDirectoryName(Path.GetFullPath(file));
-        if (!string.IsNullOrEmpty(folder) && file != ":memory:")
-            Directory.CreateDirectory(folder);
-    }
 }

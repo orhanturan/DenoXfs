@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>DenoXfs.Sim.Host</RootNamespace>
+    <UserSecretsId>e9b25d39-bac0-4ecd-9c11-03aef2c1279c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

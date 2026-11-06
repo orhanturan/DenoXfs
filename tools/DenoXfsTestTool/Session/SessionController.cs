@@ -14,17 +14,22 @@ public class SessionController : ISessionController
     private readonly IXfsSyncService _sync;
     private readonly IXfsMessageProcessor _messages;
     private readonly TestToolSettings _settings;
+    private readonly IXfsApp _app;
+    private readonly ILogicalServiceCatalog _logicalServices;
     private readonly IXfsTrafficLog _traffic;
     private readonly ILogger<SessionController> _logger;
 
     public SessionController(IXfsSession session, IXfsService asyncService, IXfsSyncService syncService,
-        IXfsMessageProcessor messages, TestToolSettings settings, IXfsTrafficLog traffic, ILogger<SessionController> logger)
+        IXfsMessageProcessor messages, TestToolSettings settings, IXfsApp app, ILogicalServiceCatalog logicalServices, IXfsTrafficLog traffic,
+        ILogger<SessionController> logger)
     {
         _session = session;
         _async = asyncService;
         _sync = syncService;
         _messages = messages;
         _settings = settings;
+        _app = app;
+        _logicalServices = logicalServices;
         _traffic = traffic;
         _logger = logger;
     }
@@ -49,10 +54,16 @@ public class SessionController : ISessionController
             if (startUp.Result != 0)
                 return Fail($"WFSStartUp failed: {ResultNames.Describe(startUp.Result)}");
 
+            var configured = _logicalServices.All().FirstOrDefault(s => string.Equals(s.Name, _settings.LogicalName, StringComparison.OrdinalIgnoreCase));
+            var registry = configured is null ? "not in LOGICAL_SERVICES" : $"class={configured.Class} provider={configured.Provider}";
             var open = await OpenServiceAsync();
-            _logger.LogInformation("open mode={Mode} logical={Logical} hService={HService} result={Result} service=0x{Service:X4} spi=0x{Spi:X4}",
-                _settings.OpenMode, _settings.LogicalName, open.HService, ResultNames.Describe(open.Result), open.SrvcVersion.Version, open.SPIVersion.Version);
-            _traffic.Session($"WFSOpen logical={_settings.LogicalName} hService={open.HService} result={ResultNames.Describe(open.Result)}");
+            _logger.LogInformation(
+                "open mode={Mode} logical={Logical} ({Registry}) appId={AppId} traceLevel=0x{Trace:X8} timeout={Timeout} srvcVersionsRequired=0x{Required:X8} hService={HService} result={Result} service=0x{Service:X4} spi=0x{Spi:X4}",
+                _settings.OpenMode, _settings.LogicalName, registry, _app.Name, _settings.TraceLevel, _settings.TimeoutMs, _settings.ServiceVersionsRequired,
+                open.HService, ResultNames.Describe(open.Result), open.SrvcVersion.Version, open.SPIVersion.Version);
+            _traffic.Session($"WFS{(_settings.OpenMode == CallMode.Async ? "Async" : string.Empty)}Open logical={_settings.LogicalName} ({registry}) appId={_app.Name} " +
+                $"traceLevel=0x{_settings.TraceLevel:X8} timeout={_settings.TimeoutMs} srvcVersionsRequired=0x{_settings.ServiceVersionsRequired:X8} " +
+                $"→ hService={open.HService} service=0x{open.SrvcVersion.Version:X4} spi=0x{open.SPIVersion.Version:X4} result={ResultNames.Describe(open.Result)}");
             if (open.Result != 0)
             {
                 await Task.Run(_session.Stop);

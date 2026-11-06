@@ -8,7 +8,7 @@ Spec version 3.40. First versions are hand written; later HtmlToXfs2 generates t
 
 ## Shape
 - One tool per kind, device classes are modules (not one tool per device). Cores are device agnostic; modules are registered through DI keyed by device class and referenced statically.
-- `simulator/DenoXfsSimCore` (domain, interfaces), `DenoXfsSimData` (EF Core + SQLite), `DenoXfsSimHost` (ASP.NET Core + Blazor Server: WebSocket for the DLL, terminal page, API), `DenoXfsSimSp` (the single C++ Service Provider DLL, class agnostic), `DenoXfsSimIdc` (IDC simulator module, Razor Class Library: seed JSON, card reader panel, API).
+- `simulator/DenoXfsSimCore` (domain, interfaces), `DenoXfsSimData` (EF Core + PostgreSQL), `DenoXfsSimHost` (ASP.NET Core + Blazor Server: WebSocket for the DLL, terminal page, API), `DenoXfsSimSp` (the single C++ Service Provider DLL, class agnostic), `DenoXfsSimIdc` (IDC simulator module, Razor Class Library: seed JSON, card reader panel, API).
 - `tools/DenoXfsTestTool` (WinForms + PropertyGrid, x86): tabs `Settings | Session | Info | Commands`; Info and Commands share one data-driven command panel with one inner tab per operation (multiline tabs). Tabs span the window; under every leaf tab a `WorkArea` holds the inputs and the one XFS log: on operation tabs a low strip above the log (`WorkAreaLayout.Top`: bold Run and Cancel on the left over the full strip height, parameters in `ParameterColumns` (5 rows per column, at most 3 columns, beyond 15 parameters the columns get more rows) with the description under them, height fitted via `IPreferredHeight`), on Settings/Session a narrow left column (`SharedLogPlacement` moves the log panel to the selected tab). Reuses `DenoXfsCore`. Class modules such as `DenoXfsTestToolIdc` only add metadata.
 
 ## Service Provider DLL (`DenoXfsSimSp`)
@@ -54,6 +54,7 @@ Spec version 3.40. First versions are hand written; later HtmlToXfs2 generates t
   - Build `DenoXfsTestNative` with `-p:SolutionDir=<repo>\`.
 - Scenarios: steps 1-3 done (layout writer; profiles and selection; Blazor terminal page). Next: step 4 (command/info rules + ready-made scenarios), then 5 (GUI scenario editor), 6 (card source / card taken). See "Scenarios".
 - Hardware catalog (2026-11-04): vendor/model/device/service tables, terminals defined before use, open by name, routing by class, `/hardware` page; unit tested, owner's check in VS pending.
+- Database moved to PostgreSQL (2026-11-06): 60 tests pass against the local server; owner's check pending (host start → migration + seed in `deno_xfs_sim`, `/hardware` and `/idc` filled, WFSOpen `Idc340`). Then `pg_hba.conf` back to `scram-sha-256` if still `trust`; optional `deno_sim_ro`.
 - Not done: form editing on the web page, DLL memory counters, x86 layout test (`sizeof/offsetof`), device state per device (several IDC services on one terminal).
 - Registry: `simulator/registry/DenoXfsSimSp.reg` (provider `DENOXFS_IDC`, logical services `Idc340` and `IDC`; `IDC` opens only if a service with that name is added on `/hardware`). Another project's `SERVICE_PROVIDERS\IDC` exists on the dev machine; do not overwrite it.
 - Logs: host `simulator/DenoXfsSimHost/logs`, test tool `bin/.../logs`, DLL `%TEMP%\DenoXfsSimSp-<pid>.log`.
@@ -78,18 +79,23 @@ Spec version 3.40. First versions are hand written; later HtmlToXfs2 generates t
 - Device state is still per terminal + class (`deno_device_state`). Several services of one class on a terminal (two card readers) and the shared physical state of a Recycler need state per device: next step when a second module comes.
 
 ## Host
-- SQLite (`DenoXfsSimData`, EF Core 9). Database names (only in the database; C# stays PascalCase): every table `deno_` + singular lower snake_case entity name, columns snake_case, PK `id` (terminal: `terminal_id`), FK `<entity>_id`, booleans `is_`, constraints `pk_<table>`, `fk_<table>_<columns>`, `ix_<table>_<columns>`. One convention in `SimDbContext.OnModelCreating` sets them; new entities need no names. Tables:
+- PostgreSQL (`DenoXfsSimData`, EF Core 9, Npgsql; chosen 2026-11-06 over SQL Server Express for its license: free, no size limit, may ship with the product). Database names (only in the database; C# stays PascalCase): every table `deno_` + singular lower snake_case entity name, columns snake_case, PK `id` (terminal: `terminal_id`), FK `<entity>_id`, booleans `is_`, constraints `pk_<table>`, `fk_<table>_<columns>`, `ix_<table>_<columns>`. One convention in `SimDbContext.OnModelCreating` sets them; new entities need no names. Tables:
   - `deno_vendor(name)`, `deno_terminal_model(vendor_id, name)`, `deno_model_device(model_id, device_type, name)`, `deno_xfs_service(model_device_id, name, xfs_class)`: hardware catalog, deletes cascade downwards;
   - `deno_terminal(terminal_id char(8) PK, address1, address2?, model_id NOT NULL restrict, scenario_id?, device_profile_id?)`;
   - `deno_card`, `deno_card_chip_response`;
   - `deno_device_data(xfs_class, category, json)`: IDC forms are category `Forms`;
   - `deno_device_state(terminal_id, xfs_class, json)`: IDC settings + retain count; not stored for an IP without a terminal;
-  - `deno_profile(kind, name NOCASE, description, based_on)` + `deno_profile_section(profile_id, xfs_class, json)`: scenarios and device profiles; `scenario_id` / `device_profile_id` of the terminal (null = Default, FK set null); a selection needs a terminal;
+  - `deno_profile(kind, name deno_ci, description, based_on)` + `deno_profile_section(profile_id, xfs_class, json)`: scenarios and device profiles; `scenario_id` / `device_profile_id` of the terminal (null = Default, FK set null); a selection needs a terminal;
   - `NoteType` later.
 - `DatabaseInitializer` applies the migrations at start and runs the idempotent `IDataSeeder`s (`HardwareSeeder`; `DenoXfsSimIdc/Seeds/*.json`, embedded). The IDC seeders only add what is missing by name, so edited cards stay.
-- Migrations restarted on 2026-11-04 with one `Initial` (new names); an older `data/DenoXfsSim.db` must be deleted once.
-- Another database later (SQL Server Express, PostgreSQL): the code stays, but (1) migrations are provider specific: a second migrations assembly (e.g. `DenoXfsSimDataSqlServer`) or a new initial migration; (2) `NOCASE` is applied only on SQLite (`Database.IsSqlite()`): SQL Server is case insensitive by default, PostgreSQL needs `citext` or a collation, and the Terminal Id needs a case sensitive collation on SQL Server; (3) SQL Server rejects the two SET NULL FKs of `deno_terminal` to `deno_profile` (multiple cascade paths): make one NO ACTION; (4) the `SqliteConnectionStringBuilder` path logic in the host goes behind a `Database:Provider` setting. Lower snake_case names need no quoting on any provider.
-- Database file `data/DenoXfsSim.db` under the host content root (`ConnectionStrings:Simulator`).
+- Migrations restarted on 2026-11-06 with one PostgreSQL `Initial` (SQLite → PostgreSQL). The old `data/DenoXfsSim.db` is no longer read; its hand-entered rows were not moved (DBeaver Data Transfer if needed).
+- Server: local PostgreSQL 18 (EDB installer, pgAdmin 4 included), user + password (SCRAM), no Windows authentication. Roles: `postgres` (owner's admin only), `deno_sim` (the application: owner of database `deno_xfs_sim`, `CREATEDB` for the test databases), later optionally `deno_sim_ro` (SELECT only, for Claude via `psql`; Claude never writes to the database).
+- `ConnectionStrings:Simulator` holds the password, so it is not in `appsettings.json`: user secrets of `DenoXfsSimHost` (`UserSecretsId` e9b25d39-…, VS: Manage User Secrets), elsewhere the `ConnectionStrings__Simulator` environment variable. Missing → the host stops with a clear error.
+- Provider specific code stays in `SimDbContext` helpers and the `UseNpgsql` call (no raw SQL), so another provider is a package + new `Initial`:
+  - case insensitive names (vendor, model, device, service, profile): nondeterministic ICU collation `deno_ci` (`HasCollation`, `CaseInsensitive`). PostgreSQL cannot run LIKE (`Contains`, `StartsWith`) on these columns: filter in memory;
+  - `terminal_id` `character(8)`, compared exactly by the default collation;
+  - the two SET NULL FKs `deno_terminal` → `deno_profile` are fine on PostgreSQL (SQL Server would reject them).
+- Tests (`DatabaseTests`, `HardwareTests`) use `TestDatabase`: per test class instance a `deno_xfs_sim_test_<guid>` database with the real migrations, dropped at Dispose; server and password from the host's user secrets (same `UserSecretsId` in the test project). `deno_xfs_sim` is never touched.
 - New migration: `dotnet ef migrations add <Name> --project simulator/DenoXfsSimData` (local tool, `dotnet-tools.json`).
 - A pending `READ_RAW_DATA` waits for the user to pick a card on the terminal's web page; the host knows whether a page is connected.
 - The host owns the device: per terminal state (media, chip power, retain count, lights, settings) and decides which event goes out when. The web UI is the simulator's front end, not only a card picker: reader settings (e.g. auto remove after eject), card selection/insert, take card, trigger removal, guidance lights; later scenarios (e.g. status values, READ_RAW_DATA returns invalid media).
@@ -108,7 +114,7 @@ Spec version 3.40. First versions are hand written; later HtmlToXfs2 generates t
 - Work order: phase 1 = infrastructure, Status, Capabilities, ReadRawData, Eject, Retain, ResetCount, Reset, ChipPower, ChipIo, events, web front end; phase 2 = the rest.
 
 ## Scenarios (owner's decisions, 2026-11-02)
-- All in the host; the DLL does not change. Per terminal two selections on the web page, stored in SQLite:
+- All in the host; the DLL does not change. Per terminal two selections on the web page, stored in the database:
   - **Device profile** = hardware (capabilities, forms), e.g. `Motorised`, `Swipe`;
   - **Scenario** = behaviour and health (status, card source, card taken, command/info rules), e.g. `Default`, `Interactive`, `DeviceError`, `SlowDevice`, `NoResponse`.
 - One JSON per device class each; fallback by deep merge onto `Default` (objects merge, arrays/scalars replace), optional `BasedOn`. Web JSON editor, strict (unknown properties rejected). No per-terminal conditional properties yet.

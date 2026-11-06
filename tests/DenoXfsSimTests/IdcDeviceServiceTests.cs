@@ -94,12 +94,12 @@ public class IdcDeviceServiceTests
     }
 
     [Fact]
-    public void Insert_into_a_reader_that_holds_a_card_is_refused()
+    public async Task Insert_into_a_reader_that_holds_a_card_is_refused()
     {
         _rig.Insert(Address, "Chip only");
 
-        Assert.Equal(InsertOutcome.ReaderNotEmpty, _rig.Service.InsertAsync(TestDevices.Of(Address), "Chip only", CancellationToken.None).Result);
-        Assert.Equal(InsertOutcome.UnknownCard, _rig.Service.InsertAsync(TestDevices.Of("other"), "no such card", CancellationToken.None).Result);
+        Assert.Equal(InsertOutcome.ReaderNotEmpty, await _rig.Service.InsertAsync(TestDevices.Of(Address), "Chip only", CancellationToken.None));
+        Assert.Equal(InsertOutcome.UnknownCard, await _rig.Service.InsertAsync(TestDevices.Of("other"), "no such card", CancellationToken.None));
     }
 
     private (XfsEventKind, uint) Single()

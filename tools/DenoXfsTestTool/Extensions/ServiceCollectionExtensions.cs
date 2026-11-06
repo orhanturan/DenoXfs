@@ -18,7 +18,8 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton(logFeed);
         services.AddSingleton<ISettingsStore, JsonSettingsStore>();
-        services.AddSingleton(sp => sp.GetRequiredService<ISettingsStore>().Load());
+        services.AddSingleton<ILogicalServiceCatalog, XfsConfigLogicalServiceCatalog>();
+        services.AddSingleton(sp => WithConfiguredLogicalName(sp.GetRequiredService<ISettingsStore>().Load(), sp.GetRequiredService<ILogicalServiceCatalog>()));
         services.AddSingleton<ISessionController, SessionController>();
         services.AddSingleton<OperationInvoker>();
         services.AddSingleton<IOperationInvoker>(sp => sp.GetRequiredService<OperationInvoker>());
@@ -68,5 +69,14 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<XfsLogPanel>();
         services.AddSingleton<MainForm>();
         return services;
+    }
+
+    /// <summary>A stored logical name that is no longer configured gives way to the first configured one.</summary>
+    private static TestToolSettings WithConfiguredLogicalName(TestToolSettings settings, ILogicalServiceCatalog logicalServices)
+    {
+        var configured = logicalServices.All();
+        if (configured.Count > 0 && !configured.Any(s => string.Equals(s.Name, settings.LogicalName, StringComparison.OrdinalIgnoreCase)))
+            settings.LogicalName = configured[0].Name;
+        return settings;
     }
 }

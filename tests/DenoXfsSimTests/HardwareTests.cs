@@ -12,17 +12,15 @@ using DenoXfs.Sim.Core.Ui;
 using DenoXfs.Sim.Core.Versions;
 using DenoXfs.Sim.Data;
 using DenoXfs.Sim.Idc;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DenoXfs.Sim.Tests;
 
-/// <summary>Hardware catalog, terminals, WFSOpen by name and routing by class, against an in-memory SQLite database.</summary>
+/// <summary>Hardware catalog, terminals, WFSOpen by name and routing by class, against a PostgreSQL test database.</summary>
 public sealed class HardwareTests : IDisposable
 {
-    private readonly SqliteConnection _connection = new("Data Source=:memory:");
-    private readonly DatabaseTests.TestContextFactory _contexts;
+    private readonly TestDatabase _contexts = new();
     private readonly HardwareSnapshots _snapshots;
     private readonly HardwareCatalog _catalog;
     private readonly TerminalCatalog _terminals;
@@ -31,11 +29,8 @@ public sealed class HardwareTests : IDisposable
 
     public HardwareTests()
     {
-        _connection.Open();
-        _contexts = new DatabaseTests.TestContextFactory(new DbContextOptionsBuilder<SimDbContext>().UseSqlite(_connection).Options);
         using (var db = _contexts.CreateDbContext())
         {
-            db.Database.Migrate();
             new HardwareSeeder().SeedAsync(db, CancellationToken.None).GetAwaiter().GetResult();
         }
 
@@ -47,7 +42,7 @@ public sealed class HardwareTests : IDisposable
         _resolver = new ServiceResolver(_snapshots);
     }
 
-    public void Dispose() => _connection.Dispose();
+    public void Dispose() => _contexts.Dispose();
 
     private static CancellationToken None => CancellationToken.None;
 
