@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -8,12 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- The module brings its own web front end (page + minimal API endpoints). -->
+    <!-- The module brings its own web front end: Razor panel for the terminal page and minimal API endpoints. -->
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Web\idc.html" LogicalName="DenoXfs.Sim.Idc.Web.idc.html" />
     <EmbeddedResource Include="Seeds\*.json" LogicalName="DenoXfs.Sim.Idc.Seeds.%(Filename)%(Extension)" />
   </ItemGroup>
 

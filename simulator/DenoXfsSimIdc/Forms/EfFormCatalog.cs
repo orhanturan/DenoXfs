@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DenoXfs.Sim.Idc.Forms;
 
-/// <summary>Forms stored as a JSON array in DeviceData (DeviceClass "IDC", Category "Forms").</summary>
+/// <summary>Forms stored as a JSON array in DeviceData (XfsClass "IDC", Category "Forms").</summary>
 public sealed class EfFormCatalog : IIdcFormCatalog
 {
     public const string DeviceClass = "IDC";
@@ -21,7 +21,7 @@ public sealed class EfFormCatalog : IIdcFormCatalog
     {
         await using var db = await _contexts.CreateDbContextAsync(cancellationToken);
         var json = await db.DeviceData.AsNoTracking()
-            .Where(d => d.DeviceClass == DeviceClass && d.Category == Category)
+            .Where(d => d.XfsClass == DeviceClass && d.Category == Category)
             .Select(d => d.Json)
             .FirstOrDefaultAsync(cancellationToken);
         return json is null ? [] : Parse(json);

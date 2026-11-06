@@ -1,0 +1,168 @@
+@page "/"
+@* The terminal of this web user: header (Terminal Id, IP, model, sessions, scenario, device profile), the ATM, the panel
+   of the selected device and the live XFS log. ?ip=... shows another terminal. Only devices whose class the terminal's
+   model opens are active. An IP without a terminal shows where to define it (its DLL cannot open a service). *@
+@implements IDisposable
+@inject IEnumerable<IDeviceUiModule> Modules
+@inject ITerminalNotifier Notifier
+@inject ISessionRegistry Sessions
+@inject IServiceResolver Resolver
+@inject ITerminalSelections Selections
+@inject IProfileSelectionService SelectionService
+@inject IProfileCatalog Catalog
+@inject ITrafficFeed Traffic
+
+<PageTitle>@Title</PageTitle>
+
+<header class="terminal-header">
+    <div class="identity">
+        <span class="terminal-title">@Title</span>
+        @if (_view is not null)
+        {
+            <span class="pill" title="Model of the terminal">@_view.ModelTitle</span>
+        }
+        <span class="connection @(_sessions > 0 ? "on" : "off")">● @(_sessions > 0 ? $"{_sessions} session(s)" : "no session")</span>
+        <a class="button" href="@HardwareLink">Hardware</a>
+    </div>
+    @if (_view is not null)
+    {
+    <div class="selection">
+        <label>Scenario
+            <select value="@_selection.Scenario" @onchange="e => SelectAsync((string)e.Value!, _selection.DeviceProfile)">
+                @foreach (var scenario in _scenarios)
+                {
+                    <option value="@scenario.Name" title="@scenario.Description">@scenario.Name</option>
+                }
+            </select>
+        </label>
+        <label>Device profile
+            <select value="@_selection.DeviceProfile" @onchange="e => SelectAsync(_selection.Scenario, (string)e.Value!)">
+                @foreach (var profile in _deviceProfiles)
+                {
+                    <option value="@profile.Name" title="@profile.Description">@profile.Name</option>
+                }
+            </select>
+        </label>
+        <a class="button" href="scenarios">Manage scenarios</a>
+    </div>
+    }
+</header>
+@if (!string.IsNullOrEmpty(_error))
+{
+    <div class="message error">@_error</div>
+}
+@if (_view is null)
+{
+    <div class="message attention">
+        No terminal is defined for @Address, so its applications cannot open a service.
+        <a href="@HardwareLink">Define the terminal</a> with its Terminal Id and model.
+    </div>
+}
+else
+{
+<div class="hint scenario-description">@Description(_scenarios, _selection.Scenario)</div>
+
+<div class="terminal-body">
+    <section class="atm-column">
+        <AtmView Areas="_areas" Selected="_selected" OnSelect="area => _selected = area" ScreenText="@ScreenText" />
+    </section>
+    <section class="panel-column">
+        @if (Selected is { } area)
+        {
+            <div class="panel">
+                <h2>@area.Module.Title <span class="status @(area.Visual.Fault ? "fault" : area.Visual.NeedsAttention ? "attention" : "ok")">@area.Visual.StatusText</span></h2>
+                <DynamicComponent Type="area.Module.PanelComponent" Parameters="@(new Dictionary<string, object> { ["Address"] = Address })" />
+            </div>
+        }
+        else
+        {
+            <div class="panel empty">Click a device on the ATM. Grey devices are not in the model @_view.ModelTitle or not simulated yet.</div>
+        }
+    </section>
+</div>
+}
+
+<LiveLog Entries="@Traffic.Recent(Address)" />
+
+@code {
+    [CascadingParameter(Name = "BrowserAddress")] public string BrowserAddress { get; set; } = string.Empty;
+
+    [SupplyParameterFromQuery(Name = "ip")] public string? Ip { get; set; }
+
+    private string Address => string.IsNullOrWhiteSpace(Ip) ? BrowserAddress : Ip.Trim();
+
+    private string Title => _view is null ? Address : $"Terminal {_view.DisplayId} · {Address}";
+
+    private string HardwareLink => _view is null ? $"hardware?tab=terminals&ip={Uri.EscapeDataString(Address)}" : "hardware";
+
+    private Dictionary<AtmArea, AtmAreaState> _areas = new();
+    private AtmArea? _selected;
+    private HashSet<AtmArea> _attention = new();
+    private IReadOnlyList<ProfileDefinition> _scenarios = [];
+    private IReadOnlyList<ProfileDefinition> _deviceProfiles = [];
+    private ProfileSelection _selection = ProfileSelection.Default;
+    private TerminalView? _view;
+    private int _sessions;
+    private string? _error;
+
+    private AtmAreaState? Selected => _selected is { } area && _areas.TryGetValue(area, out var state) ? state : null;
+
+    private string? ScreenText => _areas.Values.Select(a => a.Visual.ScreenHint).FirstOrDefault(h => h is not null);
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _scenarios = await Catalog.AllAsync(ProfileKind.Scenario, CancellationToken.None);
+        _deviceProfiles = await Catalog.AllAsync(ProfileKind.DeviceProfile, CancellationToken.None);
+        await RefreshAsync();
+        _selected ??= _areas.Keys.Cast<AtmArea?>().FirstOrDefault();
+    }
+
+    protected override void OnInitialized() => Notifier.Changed += OnChanged;
+
+    /// <summary>Traffic and selection notify the IP, device state the Terminal Id (it belongs to the terminal, not to one of its IPs).</summary>
+    private void OnChanged(string key)
+    {
+        if (key != Address && key != _view?.Terminal.TerminalId)
+            return;
+        _ = InvokeAsync(async () =>
+        {
+            await RefreshAsync();
+            StateHasChanged();
+        });
+    }
+
+    /// <summary>
+    /// Reads the terminal and the area of every module whose class the model opens; a device that starts to need the user
+    /// (a read waits for a card) opens its panel.
+    /// </summary>
+    private async Task RefreshAsync()
+    {
+        _view = await Resolver.TerminalAsync(Address, CancellationToken.None);
+        var classes = _view?.XfsClasses ?? new HashSet<string>();
+        var areas = new Dictionary<AtmArea, AtmAreaState>();
+        foreach (var module in Modules.Where(m => classes.Contains(m.DeviceClass)))
+            areas[module.Area] = new AtmAreaState(module, await module.VisualAsync(Address, CancellationToken.None));
+        if (_selected is { } selected && !areas.ContainsKey(selected))
+            _selected = null;
+
+        var attention = areas.Where(a => a.Value.Visual.NeedsAttention).Select(a => a.Key).ToHashSet();
+        var newly = attention.Except(_attention).ToList();
+        if (newly.Count > 0)
+            _selected = newly[0];
+        _attention = attention;
+        _areas = areas;
+        _sessions = Sessions.SessionsOf(Address).Count;
+        _selection = await Selections.GetAsync(Address, CancellationToken.None);
+    }
+
+    private async Task SelectAsync(string scenario, string deviceProfile)
+    {
+        _error = await SelectionService.SelectAsync(Address, new ProfileSelection(scenario, deviceProfile), CancellationToken.None);
+        await RefreshAsync();
+    }
+
+    private static string? Description(IReadOnlyList<ProfileDefinition> list, string name) =>
+        list.FirstOrDefault(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase))?.Description;
+
+    public void Dispose() => Notifier.Changed -= OnChanged;
+}

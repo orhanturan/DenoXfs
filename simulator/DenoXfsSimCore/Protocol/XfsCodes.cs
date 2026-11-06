@@ -7,6 +7,7 @@ public static class XfsResultCodes
     public const int Canceled = -4;
     public const int DeviceNotReady = -13;
     public const int InternalError = -15;
+    public const int ServiceNotFound = -43;
     public const int SpiVersionTooHigh = -44;
     public const int SpiVersionTooLow = -45;
     public const int ServiceVersionTooHigh = -46;

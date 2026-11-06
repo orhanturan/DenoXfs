@@ -20,127 +20,376 @@ namespace DenoXfs.Sim.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
 
                     b.Property<byte[]>("Atr")
-                        .HasColumnType("BLOB");
+                        .HasColumnType("BLOB")
+                        .HasColumnName("atr");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name");
 
                     b.Property<string>("Track1")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("track1");
 
                     b.Property<string>("Track2")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("track2");
 
                     b.Property<string>("Track3")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("track3");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_deno_card");
 
                     b.HasIndex("Name")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_card_name");
 
-                    b.ToTable("Cards");
+                    b.ToTable("deno_card");
                 });
 
             modelBuilder.Entity("DenoXfs.Sim.Data.CardChipResponse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
 
                     b.Property<int>("CardId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("card_id");
 
                     b.Property<string>("Command")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("command");
 
                     b.Property<string>("Response")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("response");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_deno_card_chip_response");
 
                     b.HasIndex("CardId", "Command")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_card_chip_response_card_id_command");
 
-                    b.ToTable("CardChipResponses");
+                    b.ToTable("deno_card_chip_response");
                 });
 
             modelBuilder.Entity("DenoXfs.Sim.Data.DeviceData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DeviceClass")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("category");
 
                     b.Property<string>("Json")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("json");
 
-                    b.HasKey("Id");
+                    b.Property<string>("XfsClass")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("xfs_class");
 
-                    b.HasIndex("DeviceClass", "Category")
-                        .IsUnique();
+                    b.HasKey("Id")
+                        .HasName("pk_deno_device_data");
 
-                    b.ToTable("DeviceData");
+                    b.HasIndex("XfsClass", "Category")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_device_data_xfs_class_category");
+
+                    b.ToTable("deno_device_data");
                 });
 
             modelBuilder.Entity("DenoXfs.Sim.Data.DeviceState", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("DeviceClass")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
 
                     b.Property<string>("Json")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("json");
 
-                    b.Property<int>("TerminalId")
-                        .HasColumnType("INTEGER");
+                    b.Property<int>("ModelDeviceId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("model_device_id");
 
-                    b.HasKey("Id");
+                    b.Property<string>("TerminalId")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .IsUnicode(false)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("terminal_id")
+                        .IsFixedLength();
 
-                    b.HasIndex("TerminalId", "DeviceClass")
-                        .IsUnique();
+                    b.Property<string>("XfsClass")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("xfs_class");
 
-                    b.ToTable("DeviceStates");
+                    b.HasKey("Id")
+                        .HasName("pk_deno_device_state");
+
+                    b.HasIndex("ModelDeviceId")
+                        .HasDatabaseName("ix_deno_device_state_model_device_id");
+
+                    b.HasIndex("TerminalId", "ModelDeviceId", "XfsClass")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_device_state_terminal_id_model_device_id_xfs_class");
+
+                    b.ToTable("deno_device_state");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.ModelDevice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<string>("DeviceType")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("device_type");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("model_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name")
+                        .UseCollation("NOCASE");
+
+                    b.HasKey("Id")
+                        .HasName("pk_deno_model_device");
+
+                    b.HasIndex("ModelId", "Name")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_model_device_model_id_name");
+
+                    b.ToTable("deno_model_device");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.Profile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<string>("BasedOn")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("based_on");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("kind");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name")
+                        .UseCollation("NOCASE");
+
+                    b.HasKey("Id")
+                        .HasName("pk_deno_profile");
+
+                    b.HasIndex("Kind", "Name")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_profile_kind_name");
+
+                    b.ToTable("deno_profile");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.ProfileSection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Json")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("json");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("XfsClass")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("xfs_class");
+
+                    b.HasKey("Id")
+                        .HasName("pk_deno_profile_section");
+
+                    b.HasIndex("ProfileId", "XfsClass")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_profile_section_profile_id_xfs_class");
+
+                    b.ToTable("deno_profile_section");
                 });
 
             modelBuilder.Entity("DenoXfs.Sim.Data.Terminal", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("TerminalId")
+                        .HasMaxLength(8)
+                        .IsUnicode(false)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("terminal_id")
+                        .IsFixedLength();
 
                     b.Property<string>("Address1")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("address1");
 
                     b.Property<string>("Address2")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("address2");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("DeviceProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("device_profile_id");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("model_id");
+
+                    b.Property<int?>("ScenarioId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("scenario_id");
+
+                    b.HasKey("TerminalId")
+                        .HasName("pk_deno_terminal");
 
                     b.HasIndex("Address1")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_terminal_address1");
 
-                    b.ToTable("Terminals");
+                    b.HasIndex("Address2")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_terminal_address2");
+
+                    b.HasIndex("DeviceProfileId")
+                        .HasDatabaseName("ix_deno_terminal_device_profile_id");
+
+                    b.HasIndex("ModelId")
+                        .HasDatabaseName("ix_deno_terminal_model_id");
+
+                    b.HasIndex("ScenarioId")
+                        .HasDatabaseName("ix_deno_terminal_scenario_id");
+
+                    b.ToTable("deno_terminal");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.TerminalModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name")
+                        .UseCollation("NOCASE");
+
+                    b.Property<int>("VendorId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("vendor_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_deno_terminal_model");
+
+                    b.HasIndex("VendorId", "Name")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_terminal_model_vendor_id_name");
+
+                    b.ToTable("deno_terminal_model");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.Vendor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name")
+                        .UseCollation("NOCASE");
+
+                    b.HasKey("Id")
+                        .HasName("pk_deno_vendor");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("ix_deno_vendor_name");
+
+                    b.ToTable("deno_vendor");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.XfsService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id");
+
+                    b.Property<int>("ModelDeviceId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("model_device_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name")
+                        .UseCollation("NOCASE");
+
+                    b.Property<string>("XfsClass")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("xfs_class");
+
+                    b.HasKey("Id")
+                        .HasName("pk_deno_xfs_service");
+
+                    b.HasIndex("ModelDeviceId")
+                        .HasDatabaseName("ix_deno_xfs_service_model_device_id");
+
+                    b.ToTable("deno_xfs_service");
                 });
 
             modelBuilder.Entity("DenoXfs.Sim.Data.CardChipResponse", b =>
@@ -149,16 +398,87 @@ namespace DenoXfs.Sim.Data.Migrations
                         .WithMany("ChipResponses")
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_card_chip_response_card_id");
                 });
 
             modelBuilder.Entity("DenoXfs.Sim.Data.DeviceState", b =>
                 {
+                    b.HasOne("DenoXfs.Sim.Data.ModelDevice", null)
+                        .WithMany()
+                        .HasForeignKey("ModelDeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_device_state_model_device_id");
+
                     b.HasOne("DenoXfs.Sim.Data.Terminal", null)
                         .WithMany("DeviceStates")
                         .HasForeignKey("TerminalId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_device_state_terminal_id");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.ModelDevice", b =>
+                {
+                    b.HasOne("DenoXfs.Sim.Data.TerminalModel", null)
+                        .WithMany("Devices")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_model_device_model_id");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.ProfileSection", b =>
+                {
+                    b.HasOne("DenoXfs.Sim.Data.Profile", null)
+                        .WithMany("Sections")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_profile_section_profile_id");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.Terminal", b =>
+                {
+                    b.HasOne("DenoXfs.Sim.Data.Profile", null)
+                        .WithMany()
+                        .HasForeignKey("DeviceProfileId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("fk_deno_terminal_device_profile_id");
+
+                    b.HasOne("DenoXfs.Sim.Data.TerminalModel", null)
+                        .WithMany()
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_terminal_model_id");
+
+                    b.HasOne("DenoXfs.Sim.Data.Profile", null)
+                        .WithMany()
+                        .HasForeignKey("ScenarioId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("fk_deno_terminal_scenario_id");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.TerminalModel", b =>
+                {
+                    b.HasOne("DenoXfs.Sim.Data.Vendor", null)
+                        .WithMany("Models")
+                        .HasForeignKey("VendorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_terminal_model_vendor_id");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.XfsService", b =>
+                {
+                    b.HasOne("DenoXfs.Sim.Data.ModelDevice", null)
+                        .WithMany("Services")
+                        .HasForeignKey("ModelDeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_deno_xfs_service_model_device_id");
                 });
 
             modelBuilder.Entity("DenoXfs.Sim.Data.Card", b =>
@@ -166,9 +486,29 @@ namespace DenoXfs.Sim.Data.Migrations
                     b.Navigation("ChipResponses");
                 });
 
+            modelBuilder.Entity("DenoXfs.Sim.Data.ModelDevice", b =>
+                {
+                    b.Navigation("Services");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.Profile", b =>
+                {
+                    b.Navigation("Sections");
+                });
+
             modelBuilder.Entity("DenoXfs.Sim.Data.Terminal", b =>
                 {
                     b.Navigation("DeviceStates");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.TerminalModel", b =>
+                {
+                    b.Navigation("Devices");
+                });
+
+            modelBuilder.Entity("DenoXfs.Sim.Data.Vendor", b =>
+                {
+                    b.Navigation("Models");
                 });
 #pragma warning restore 612, 618
         }

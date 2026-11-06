@@ -1,27 +1,38 @@
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using DenoXfs.Sim.Core.Abstractions;
+using DenoXfs.Sim.Core.Hardware;
+using DenoXfs.Sim.Core.Marshalling;
+using DenoXfs.Sim.Core.Names;
 using DenoXfs.Sim.Core.Protocol;
+using DenoXfs.Sim.Core.Ui;
 using Microsoft.Extensions.Logging;
 
 namespace DenoXfs.Sim.Core.Messaging;
 
 /// <summary>
-/// Routes WFPExecute to the registered <see cref="IExecuteCommand"/> and sends the completion. Commands of one session
+/// Routes WFPExecute to the <see cref="IExecuteCommand"/> of the session's device class and sends the completion. Commands of one session
 /// run one at a time (like a real device). A request ends with WFS_ERR_CANCELED when WFPCancelAsyncRequest arrives (also
 /// while it still waits in the queue) and with WFS_ERR_TIMEOUT when its timeout (0 = WFS_INDEFINITE_WAIT) passes.
 /// </summary>
 public sealed class ExecuteMessageHandler : IMessageHandler
 {
-    private readonly Dictionary<uint, IExecuteCommand> _commands;
+    private readonly IClassHandlers<IExecuteCommand> _commands;
+    private readonly ISessionRegistry _sessions;
     private readonly IRequestCancellation _cancellation;
+    private readonly INativeLayoutWriter _writer;
+    private readonly ITrafficRecorder _traffic;
     private readonly ConditionalWeakTable<ISessionChannel, SemaphoreSlim> _queues = new();
     private readonly ILogger<ExecuteMessageHandler> _logger;
 
-    public ExecuteMessageHandler(IEnumerable<IExecuteCommand> commands, IRequestCancellation cancellation, ILogger<ExecuteMessageHandler> logger)
+    public ExecuteMessageHandler(IClassHandlers<IExecuteCommand> commands, ISessionRegistry sessions, IRequestCancellation cancellation,
+        INativeLayoutWriter writer, ITrafficRecorder traffic, ILogger<ExecuteMessageHandler> logger)
     {
-        _commands = commands.ToDictionary(c => c.Command);
+        _commands = commands;
+        _sessions = sessions;
         _cancellation = cancellation;
+        _writer = writer;
+        _traffic = traffic;
         _logger = logger;
     }
 
@@ -33,6 +44,7 @@ public sealed class ExecuteMessageHandler : IMessageHandler
         var command = WireJson.GetUInt(message, "command");
         var timeoutMs = WireJson.GetUInt(message, "timeoutMs");
         message.TryGetProperty("input", out var input);
+        _traffic.Request(channel.RemoteAddress, reqId, XfsCodeKind.Command, command);
 
         var cancelled = _cancellation.Register(channel, reqId);
         CommandOutcome outcome;
@@ -45,9 +57,25 @@ public sealed class ExecuteMessageHandler : IMessageHandler
             _cancellation.Complete(channel, reqId);
         }
 
+        var (hResult, result) = Marshal(channel, reqId, command, outcome);
+        _traffic.Completion(channel.RemoteAddress, reqId, XfsCodeKind.Command, command, hResult);
         _logger.LogInformation("execute from={Remote} reqId={ReqId} command={Command} hResult={HResult} hasResult={HasResult}",
-            channel.RemoteAddress, reqId, command, outcome.HResult, outcome.Result is not null);
-        await channel.SendAsync(WireMessageFactory.Completion(reqId, WireTypes.Execute, outcome.HResult, command, outcome.Result), cancellationToken);
+            channel.RemoteAddress, reqId, command, hResult, result is not null);
+        await channel.SendAsync(WireMessageFactory.Completion(reqId, WireTypes.Execute, hResult, command, result), cancellationToken);
+    }
+
+    /// <summary>Writes the output block; an output that does not fit its layout completes the request with WFS_ERR_INTERNAL_ERROR.</summary>
+    private (int HResult, ResultBuffer? Result) Marshal(ISessionChannel channel, uint reqId, uint command, CommandOutcome outcome)
+    {
+        try
+        {
+            return (outcome.HResult, _writer.Write(outcome.Output));
+        }
+        catch (NativeValueException ex)
+        {
+            _logger.LogError("execute output invalid from={Remote} reqId={ReqId} command={Command} reason={Reason}", channel.RemoteAddress, reqId, command, ex.Message);
+            return (XfsResultCodes.InternalError, null);
+        }
     }
 
     private async Task<CommandOutcome> QueueAndRunAsync(ISessionChannel channel, uint reqId, uint command, uint timeoutMs, JsonElement input,
@@ -78,7 +106,7 @@ public sealed class ExecuteMessageHandler : IMessageHandler
     private async Task<CommandOutcome> RunAsync(ISessionChannel channel, uint reqId, uint command, uint timeoutMs, JsonElement input,
         CancellationToken cancelled, CancellationToken sessionToken)
     {
-        if (!_commands.TryGetValue(command, out var handler))
+        if (_sessions.ServiceOf(channel) is not { } service || !_commands.TryGet(service.XfsClass, command, out var handler))
             return new CommandOutcome(XfsResultCodes.UnsupportedCommand, null);
 
         using var timeout = new CancellationTokenSource();
@@ -86,7 +114,7 @@ public sealed class ExecuteMessageHandler : IMessageHandler
             timeout.CancelAfter(TimeSpan.FromMilliseconds(timeoutMs));
         using var linked = CancellationTokenSource.CreateLinkedTokenSource(cancelled, timeout.Token, sessionToken);
 
-        var context = new ExecuteContext(channel.RemoteAddress, command, input, new ChannelExecuteEvents(channel, reqId, _logger));
+        var context = new ExecuteContext(channel.RemoteAddress, new DeviceRef(service.TerminalId, service.DeviceId), service.ServiceName, command, input, new ChannelExecuteEvents(channel, reqId, _writer, _traffic, _logger));
         try
         {
             return await handler.ExecuteAsync(context, linked.Token);

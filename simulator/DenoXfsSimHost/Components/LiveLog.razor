@@ -1,0 +1,33 @@
+@* The terminal's XFS traffic as the host sees it: requests, completions (red when not WFS_SUCCESS), events, sessions. *@
+
+<section class="live-log">
+    <h2>Live log <span class="hint">newest first</span></h2>
+    <div class="log-lines">
+        @if (Entries.Count == 0)
+        {
+            <div class="hint">Nothing yet: open a session (WFSOpen) from the terminal.</div>
+        }
+        @foreach (var entry in Entries.AsEnumerable().Reverse().Take(MaxLines))
+        {
+            <div class="log-line @entry.Direction.ToString().ToLowerInvariant() @(entry.IsError ? "error" : string.Empty)">
+                <span class="time">@entry.Time.ToString("HH:mm:ss.fff")</span>
+                <span class="dir">@Arrow(entry.Direction)</span>
+                <span class="text">@entry.Text</span>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private const int MaxLines = 150;
+
+    [Parameter] public IReadOnlyList<TrafficEntry> Entries { get; set; } = [];
+
+    private static string Arrow(TrafficDirection direction) => direction switch
+    {
+        TrafficDirection.Request => "→",
+        TrafficDirection.Completion => "←",
+        TrafficDirection.Event => "⚡",
+        _ => "•"
+    };
+}

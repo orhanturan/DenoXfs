@@ -1,0 +1,118 @@
+@* The ATM picture. Each area belongs to a device module (IDeviceUiModule); areas without a module are grey. A click on an
+   area with a module selects it; the card reader shows its guidance light, a card at the exit and a pulsing slot while a
+   read waits for a card. *@
+
+<svg class="atm" viewBox="0 0 400 640" role="img" aria-label="ATM">
+    <defs>
+        <linearGradient id="cabinet" x1="0" x2="1">
+            <stop offset="0" stop-color="#cfd5dc" />
+            <stop offset="0.5" stop-color="#eef1f4" />
+            <stop offset="1" stop-color="#c3cad2" />
+        </linearGradient>
+        <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#16406e" />
+            <stop offset="1" stop-color="#0b2140" />
+        </linearGradient>
+    </defs>
+
+    <rect x="10" y="10" width="380" height="620" rx="18" fill="url(#cabinet)" stroke="#9aa3ad" stroke-width="2" />
+    <rect x="30" y="22" width="340" height="34" rx="8" fill="#1d3557" />
+    <text x="200" y="45" class="topper">DenoXfs ATM</text>
+
+    @* Screen *@
+    <g class="@Css(AtmArea.Screen)" @onclick="() => SelectAsync(AtmArea.Screen)">
+        <rect x="45" y="70" width="310" height="200" rx="8" fill="#2b2f36" />
+        <rect x="58" y="82" width="284" height="176" rx="4" fill="url(#screen)" />
+        <text x="200" y="160" class="screen-text">@(ScreenText ?? "Welcome")</text>
+        <text x="200" y="185" class="screen-sub">@(ScreenText is null ? "DenoXfs simulator" : string.Empty)</text>
+    </g>
+
+    @* PIN pad *@
+    <g class="@Css(AtmArea.PinPad)" @onclick="() => SelectAsync(AtmArea.PinPad)">
+        <rect x="45" y="295" width="165" height="185" rx="10" fill="#3a3f47" />
+        @for (var row = 0; row < 4; row++)
+        {
+            @for (var col = 0; col < 3; col++)
+            {
+                var key = row == 3 ? (col == 1 ? "0" : string.Empty) : (row * 3 + col + 1).ToString();
+                <g>
+                    <rect x="@(58 + col * 34)" y="@(308 + row * 40)" width="28" height="32" rx="4" class="key" />
+                    <text x="@(72 + col * 34)" y="@(330 + row * 40)" class="key-text">@key</text>
+                </g>
+            }
+            <rect x="@(162)" y="@(308 + row * 40)" width="38" height="32" rx="4" class="fkey fkey-@row" />
+        }
+        <text x="127" y="497" class="label">PIN pad</text>
+    </g>
+
+    @* Card reader *@
+    @{
+        var reader = Visual(AtmArea.CardReader);
+    }
+    <g class="@Css(AtmArea.CardReader)" @onclick="() => SelectAsync(AtmArea.CardReader)">
+        <rect x="230" y="295" width="125" height="80" rx="10" fill="#3a3f47" class="bezel" />
+        <rect x="245" y="322" width="95" height="10" rx="3" fill="#0d0f12" class="slot" />
+        <rect x="245" y="342" width="95" height="7" rx="3" fill="@(reader?.LightColor ?? "#5b6169")" class="light @(reader?.LightFlash is { } flash ? $"flash-{flash}" : string.Empty)" />
+        @if (reader?.MediaAtExit == true)
+        {
+            <g class="card-out">
+                <rect x="257" y="300" width="70" height="30" rx="4" fill="#1e88e5" stroke="#0d47a1" />
+                <rect x="265" y="306" width="14" height="10" rx="2" fill="#ffd54f" />
+                <text x="300" y="318" class="card-text">CARD</text>
+            </g>
+        }
+        @if (reader?.MediaInside == true)
+        {
+            <circle cx="345" cy="308" r="5" fill="#43a047" />
+        }
+        <text x="292" y="392" class="label">Card reader</text>
+    </g>
+
+    @* Receipt printer *@
+    <g class="@Css(AtmArea.ReceiptPrinter)" @onclick="() => SelectAsync(AtmArea.ReceiptPrinter)">
+        <rect x="230" y="405" width="125" height="50" rx="8" fill="#3a3f47" />
+        <rect x="250" y="425" width="85" height="6" rx="2" fill="#0d0f12" />
+        <text x="292" y="472" class="label">Receipt printer</text>
+    </g>
+
+    @* Cash dispenser *@
+    <g class="@Css(AtmArea.CashDispenser)" @onclick="() => SelectAsync(AtmArea.CashDispenser)">
+        <rect x="60" y="515" width="280" height="45" rx="8" fill="#3a3f47" />
+        <rect x="85" y="532" width="230" height="10" rx="3" fill="#0d0f12" />
+        <text x="200" y="578" class="label">Cash dispenser</text>
+    </g>
+
+    @* Deposit *@
+    <g class="@Css(AtmArea.Deposit)" @onclick="() => SelectAsync(AtmArea.Deposit)">
+        <rect x="60" y="588" width="280" height="28" rx="6" fill="#3a3f47" />
+        <rect x="100" y="599" width="200" height="6" rx="2" fill="#0d0f12" />
+    </g>
+</svg>
+
+@code {
+    [Parameter] public IReadOnlyDictionary<AtmArea, AtmAreaState> Areas { get; set; } = new Dictionary<AtmArea, AtmAreaState>();
+
+    [Parameter] public AtmArea? Selected { get; set; }
+
+    [Parameter] public EventCallback<AtmArea> OnSelect { get; set; }
+
+    [Parameter] public string? ScreenText { get; set; }
+
+    private DeviceVisual? Visual(AtmArea area) => Areas.TryGetValue(area, out var state) ? state.Visual : null;
+
+    private string Css(AtmArea area)
+    {
+        if (!Areas.TryGetValue(area, out var state))
+            return "area off";
+        var css = "area on";
+        if (Selected == area)
+            css += " selected";
+        if (state.Visual.Fault)
+            css += " fault";
+        else if (state.Visual.NeedsAttention)
+            css += " attention";
+        return css;
+    }
+
+    private Task SelectAsync(AtmArea area) => Areas.ContainsKey(area) ? OnSelect.InvokeAsync(area) : Task.CompletedTask;
+}

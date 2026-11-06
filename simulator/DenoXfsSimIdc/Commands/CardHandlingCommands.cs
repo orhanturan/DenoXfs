@@ -1,5 +1,6 @@
+using System.Text.Json.Nodes;
 using DenoXfs.Sim.Core.Abstractions;
-using DenoXfs.Sim.Core.Buffers;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Protocol;
 using DenoXfs.Sim.Idc.Device;
 using DenoXfs.Sim.Idc.Layouts;
@@ -24,7 +25,7 @@ public sealed class EjectCardCommand : IExecuteCommand
         if (position != IdcConstants.ExitPosition)
             return new CommandOutcome(XfsResultCodes.UnsupportedData, null);
 
-        return new CommandOutcome(await _service.EjectAsync(context.RemoteAddress, cancellationToken), null);
+        return new CommandOutcome(await _service.EjectAsync(context.Device, cancellationToken), null);
     }
 }
 
@@ -32,19 +33,17 @@ public sealed class EjectCardCommand : IExecuteCommand
 public sealed class RetainCardCommand : IExecuteCommand
 {
     private readonly IIdcDeviceService _service;
-    private readonly INativeBufferBuilderFactory _builders;
 
-    public RetainCardCommand(IIdcDeviceService service, INativeBufferBuilderFactory builders)
+    public RetainCardCommand(IIdcDeviceService service)
     {
         _service = service;
-        _builders = builders;
     }
 
     public uint Command => IdcConstants.RetainCardCommand;
 
     public async Task<CommandOutcome> ExecuteAsync(ExecuteContext context, CancellationToken cancellationToken)
     {
-        var result = await _service.RetainAsync(context.RemoteAddress, context.Events, cancellationToken);
+        var result = await _service.RetainAsync(context.Device, context.Events, cancellationToken);
         switch (result.Outcome)
         {
             case RetainOutcome.NoMedia:
@@ -53,12 +52,12 @@ public sealed class RetainCardCommand : IExecuteCommand
                 return new CommandOutcome(IdcConstants.ErrRetainBinFull, null);
         }
 
-        var builder = _builders.Create();
-        var root = builder.Reserve(RetainCardLayout.Size);
-        builder.WriteUInt16(root + RetainCardLayout.Count, (ushort)result.Count);
-        builder.WriteUInt16(root + RetainCardLayout.Position,
-            result.Position == MediaPosition.AtExit ? IdcConstants.MediaEntering : IdcConstants.MediaPresent);
-        return new CommandOutcome(XfsResultCodes.Success, builder.Build());
+        var retained = new JsonObject
+        {
+            ["usCount"] = (ushort)result.Count,
+            ["fwPosition"] = result.Position == MediaPosition.AtExit ? IdcConstants.MediaEntering : IdcConstants.MediaPresent
+        };
+        return new CommandOutcome(XfsResultCodes.Success, new NativeValue(IdcResults.RetainCard, retained));
     }
 }
 
@@ -76,7 +75,7 @@ public sealed class ResetCountCommand : IExecuteCommand
 
     public async Task<CommandOutcome> ExecuteAsync(ExecuteContext context, CancellationToken cancellationToken)
     {
-        await _service.ResetCountAsync(context.RemoteAddress, cancellationToken);
+        await _service.ResetCountAsync(context.Device, cancellationToken);
         return new CommandOutcome(XfsResultCodes.Success, null);
     }
 }
@@ -99,6 +98,6 @@ public sealed class ResetCommand : IExecuteCommand
         if (action is not (IdcConstants.ResetNoAction or IdcConstants.ResetEject or IdcConstants.ResetRetain))
             return new CommandOutcome(XfsResultCodes.InvalidData, null);
 
-        return new CommandOutcome(await _service.ResetAsync(context.RemoteAddress, action, cancellationToken), null);
+        return new CommandOutcome(await _service.ResetAsync(context.Device, action, cancellationToken), null);
     }
 }

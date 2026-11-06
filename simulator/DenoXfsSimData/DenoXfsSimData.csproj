@@ -16,4 +16,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Implements the core's stores (scenarios, device profiles, terminal selections). -->
+    <ProjectReference Include="..\DenoXfsSimCore\DenoXfsSimCore.csproj" />
+  </ItemGroup>
+
 </Project>

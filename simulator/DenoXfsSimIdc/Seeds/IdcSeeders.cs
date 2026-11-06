@@ -1,6 +1,10 @@
 using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+using DenoXfs.Sim.Core.Scenarios;
 using DenoXfs.Sim.Data;
 using DenoXfs.Sim.Idc.Forms;
+using DenoXfs.Sim.Idc.Scenarios;
 using Microsoft.EntityFrameworkCore;
 
 namespace DenoXfs.Sim.Idc.Seeds;
@@ -53,7 +57,7 @@ public sealed class IdcFormSeeder : IDataSeeder
     public async Task SeedAsync(SimDbContext db, CancellationToken cancellationToken)
     {
         var row = await db.DeviceData.FirstOrDefaultAsync(
-            d => d.DeviceClass == EfFormCatalog.DeviceClass && d.Category == EfFormCatalog.Category, cancellationToken);
+            d => d.XfsClass == EfFormCatalog.DeviceClass && d.Category == EfFormCatalog.Category, cancellationToken);
         var forms = row is null ? new List<IdcForm>() : EfFormCatalog.Parse(row.Json).ToList();
         var missing = EmbeddedSeed.Read<List<IdcForm>>("forms.json")
             .Where(seed => forms.All(f => !string.Equals(f.Name, seed.Name, StringComparison.OrdinalIgnoreCase)))
@@ -64,10 +68,53 @@ public sealed class IdcFormSeeder : IDataSeeder
         forms.AddRange(missing);
         if (row is null)
         {
-            row = new DeviceData { DeviceClass = EfFormCatalog.DeviceClass, Category = EfFormCatalog.Category };
+            row = new DeviceData { XfsClass = EfFormCatalog.DeviceClass, Category = EfFormCatalog.Category };
             db.DeviceData.Add(row);
         }
         row.Json = JsonSerializer.Serialize(forms, EmbeddedSeed.Options);
+        await db.SaveChangesAsync(cancellationToken);
+    }
+}
+
+/// <summary>One entry of Seeds/profiles.json: a scenario or device profile and its IDC section.</summary>
+public sealed record ProfileSeed(
+    [property: JsonConverter(typeof(JsonStringEnumConverter))] ProfileKind Kind, string Name, string? Description, string? BasedOn, JsonObject? Idc);
+
+/// <summary>
+/// Adds the seed scenarios and device profiles that are missing (by kind and name) and their IDC section. An existing
+/// section only gets the top-level keys it lacks, so edits stay and later seeds still reach old databases.
+/// </summary>
+public sealed class IdcProfileSeeder : IDataSeeder
+{
+    public int Order => 120;
+
+    public async Task SeedAsync(SimDbContext db, CancellationToken cancellationToken)
+    {
+        foreach (var seed in EmbeddedSeed.Read<List<ProfileSeed>>("profiles.json"))
+        {
+            var profile = await db.Profiles.Include(p => p.Sections)
+                .FirstOrDefaultAsync(p => p.Kind == seed.Kind && p.Name == seed.Name, cancellationToken);
+            if (profile is null)
+            {
+                profile = new Profile { Kind = seed.Kind, Name = seed.Name, Description = seed.Description, BasedOn = seed.BasedOn };
+                db.Profiles.Add(profile);
+            }
+
+            var section = profile.Sections.FirstOrDefault(s => s.XfsClass == IdcProfiles.DeviceClass);
+            if (section is null)
+            {
+                section = new ProfileSection { XfsClass = IdcProfiles.DeviceClass, Json = "{}" };
+                profile.Sections.Add(section);
+            }
+
+            var current = JsonNode.Parse(section.Json) as JsonObject ?? new JsonObject();
+            foreach (var (key, value) in seed.Idc ?? new JsonObject())
+            {
+                if (!current.ContainsKey(key))
+                    current[key] = value?.DeepClone();
+            }
+            section.Json = current.ToJsonString();
+        }
         await db.SaveChangesAsync(cancellationToken);
     }
 }

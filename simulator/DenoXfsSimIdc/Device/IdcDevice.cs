@@ -1,3 +1,5 @@
+using DenoXfs.Sim.Core.Hardware;
+using DenoXfs.Sim.Core.Ui;
 using DenoXfs.Sim.Idc.Cards;
 
 namespace DenoXfs.Sim.Idc.Device;
@@ -23,7 +25,7 @@ public enum RetainBinState
     Full
 }
 
-/// <summary>Reader settings of one terminal, changed on the web page.</summary>
+/// <summary>Settings of one card reader, changed on the web page.</summary>
 public sealed class IdcDeviceSettings
 {
     /// <summary>On: the card is taken right after an eject (WFS_SRVE_IDC_MEDIAREMOVED follows). Off: the user takes it on the web page.</summary>
@@ -35,11 +37,11 @@ public sealed class IdcDeviceSettings
 }
 
 public sealed record IdcDeviceSnapshot(
-    string Address, MediaPosition Media, string? CardName, ChipState Chip, int RetainCount, RetainBinState RetainBin,
+    DeviceRef Reader, MediaPosition Media, string? CardName, ChipState Chip, int RetainCount, RetainBinState RetainBin,
     bool WaitingForCard, bool AutoRemoveAfterEject, int RetainCapacity, IReadOnlyList<uint> GuidanceLights, ushort PowerSaveRecoveryTime);
 
 /// <summary>
-/// State of the card reader of one terminal. Only state transitions live here; which XFS result or event follows
+/// State of one card reader of a terminal (a model device). Only state transitions live here; which XFS result or event follows
 /// is decided by <see cref="IdcDeviceService"/>. Thread safe: commands and the web page change it concurrently.
 /// </summary>
 public sealed class IdcDevice
@@ -53,20 +55,26 @@ public sealed class IdcDevice
     private ushort _powerSaveRecoveryTime;
     private TaskCompletionSource<IdcCard>? _waiter;
 
-    public IdcDevice(string address)
+    public IdcDevice(DeviceRef reader)
     {
-        Address = address;
+        Reader = reader;
         _lights[IdcConstants.GuidanceCardUnit] = IdcConstants.GuidanceOff;
     }
 
-    public string Address { get; }
+    public DeviceRef Reader { get; }
 
     public IdcDeviceSettings Settings { get; } = new();
+
+    /// <summary>Raised after every state change (outside the lock), for the web page.</summary>
+    public event Action? Changed;
+
+    /// <summary>Raises <see cref="Changed"/>; for changes made from outside, e.g. the settings.</summary>
+    public void NotifyChanged() => Changed?.Invoke();
 
     public IdcDeviceSnapshot Snapshot()
     {
         lock (_lock)
-            return new IdcDeviceSnapshot(Address, _media, _card?.Name, _chip, _retainCount, BinState(_retainCount),
+            return new IdcDeviceSnapshot(Reader, _media, _card?.Name, _chip, _retainCount, BinState(_retainCount),
                 _waiter is not null, Settings.AutoRemoveAfterEject, Settings.RetainCapacity, _lights.ToArray(), _powerSaveRecoveryTime);
     }
 
@@ -99,6 +107,7 @@ public sealed class IdcDevice
                 return Task.FromResult(_card);
             waiter = _waiter ??= new TaskCompletionSource<IdcCard>(TaskCreationOptions.RunContinuationsAsynchronously);
         }
+        NotifyChanged();
 
         var registration = cancellationToken.Register(() =>
         {
@@ -108,6 +117,7 @@ public sealed class IdcDevice
                     _waiter = null;
             }
             waiter.TrySetCanceled(cancellationToken);
+            NotifyChanged();
         });
         waiter.Task.ContinueWith(_ => registration.Dispose(), TaskScheduler.Default);
         return waiter.Task;
@@ -128,6 +138,7 @@ public sealed class IdcDevice
             _waiter = null;
         }
         waiter?.TrySetResult(card);
+        NotifyChanged();
         return true;
     }
 
@@ -141,8 +152,9 @@ public sealed class IdcDevice
             _media = MediaPosition.NotPresent;
             _card = null;
             _chip = ChipState.NoCard;
-            return true;
         }
+        NotifyChanged();
+        return true;
     }
 
     /// <summary>True when a card inside moved to the exit.</summary>
@@ -154,12 +166,21 @@ public sealed class IdcDevice
                 return false;
             _media = MediaPosition.AtExit;
             _chip = ChipState.NoCard;
-            return true;
         }
+        NotifyChanged();
+        return true;
     }
 
     /// <summary>Moves the card (inside or at the exit) into the retain bin.</summary>
     public RetainResult Retain()
+    {
+        var result = RetainLocked();
+        if (result.Outcome == RetainOutcome.Retained)
+            NotifyChanged();
+        return result;
+    }
+
+    private RetainResult RetainLocked()
     {
         lock (_lock)
         {
@@ -181,12 +202,14 @@ public sealed class IdcDevice
     /// <summary>Empties the retain bin; returns the bin state before and after.</summary>
     public (RetainBinState Before, RetainBinState After) ResetCount()
     {
+        RetainBinState before;
         lock (_lock)
         {
-            var before = BinState(_retainCount);
+            before = BinState(_retainCount);
             _retainCount = 0;
-            return (before, RetainBinState.Ok);
         }
+        NotifyChanged();
+        return (before, RetainBinState.Ok);
     }
 
     /// <summary>Powers the chip of the card inside on or off; false when there is no chip card inside.</summary>
@@ -197,8 +220,9 @@ public sealed class IdcDevice
             if (_media != MediaPosition.Inside || _card is not { HasChip: true })
                 return false;
             _chip = on ? ChipState.Online : ChipState.PoweredOff;
-            return true;
         }
+        NotifyChanged();
+        return true;
     }
 
     /// <summary>Takes over the settings and retain count stored for the terminal.</summary>
@@ -225,6 +249,7 @@ public sealed class IdcDevice
     {
         lock (_lock)
             _lights[index] = command;
+        NotifyChanged();
     }
 
     /// <summary>Sets the power save recovery time; true when it changed.</summary>
@@ -235,8 +260,9 @@ public sealed class IdcDevice
             if (_powerSaveRecoveryTime == seconds)
                 return false;
             _powerSaveRecoveryTime = seconds;
-            return true;
         }
+        NotifyChanged();
+        return true;
     }
 
     private RetainBinState BinState(int count) =>
@@ -254,38 +280,42 @@ public enum RetainOutcome
 
 public sealed record RetainResult(RetainOutcome Outcome, int Count, MediaPosition Position, RetainBinState BinBefore, RetainBinState BinAfter);
 
-/// <summary>The card reader of every terminal, created on first use with the state stored for the terminal.</summary>
+/// <summary>Every card reader of every terminal, created on first use with the state stored for it.</summary>
 public interface IIdcDeviceRegistry
 {
-    IdcDevice Get(string address);
+    IdcDevice Get(DeviceRef reader);
 
     IReadOnlyList<IdcDevice> All { get; }
 
-    /// <summary>Stores the settings and retain count of the terminal's device (after they changed).</summary>
-    void Save(string address);
+    /// <summary>Stores the settings and retain count of the card reader (after they changed).</summary>
+    void Save(DeviceRef reader);
 }
 
 public sealed class IdcDeviceRegistry : IIdcDeviceRegistry
 {
-    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, Lazy<IdcDevice>> _devices = new();
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<DeviceRef, Lazy<IdcDevice>> _devices = new();
     private readonly IIdcDeviceStateStore _store;
+    private readonly ITerminalNotifier _notifier;
 
-    public IdcDeviceRegistry(IIdcDeviceStateStore store)
+    public IdcDeviceRegistry(IIdcDeviceStateStore store, ITerminalNotifier notifier)
     {
         _store = store;
+        _notifier = notifier;
     }
 
-    public IdcDevice Get(string address) => _devices.GetOrAdd(address, a => new Lazy<IdcDevice>(() => Create(a))).Value;
+    public IdcDevice Get(DeviceRef reader) => _devices.GetOrAdd(reader, r => new Lazy<IdcDevice>(() => Create(r))).Value;
 
-    public IReadOnlyList<IdcDevice> All => _devices.Values.Select(d => d.Value).OrderBy(d => d.Address).ToList();
+    public IReadOnlyList<IdcDevice> All =>
+        _devices.Values.Select(d => d.Value).OrderBy(d => d.Reader.TerminalId, StringComparer.Ordinal).ThenBy(d => d.Reader.DeviceId).ToList();
 
-    public void Save(string address) => _store.Save(address, Get(address).PersistentState());
+    public void Save(DeviceRef reader) => _store.Save(reader, Get(reader).PersistentState());
 
-    private IdcDevice Create(string address)
+    private IdcDevice Create(DeviceRef reader)
     {
-        var device = new IdcDevice(address);
-        if (_store.Load(address) is { } state)
+        var device = new IdcDevice(reader);
+        if (_store.Load(reader) is { } state)
             device.Restore(state);
+        device.Changed += () => _notifier.Notify(reader.TerminalId);
         return device;
     }
 }

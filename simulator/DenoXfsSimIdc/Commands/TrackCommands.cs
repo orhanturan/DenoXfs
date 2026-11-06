@@ -1,6 +1,7 @@
 using System.Text;
+using System.Text.Json.Nodes;
 using DenoXfs.Sim.Core.Abstractions;
-using DenoXfs.Sim.Core.Buffers;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Protocol;
 using DenoXfs.Sim.Idc.Device;
 using DenoXfs.Sim.Idc.Forms;
@@ -11,27 +12,15 @@ namespace DenoXfs.Sim.Idc.Commands;
 /// <summary>Builds the LPSTR track data result and the WFS_EXEE_IDC_INVALIDTRACKDATA events of a form read.</summary>
 public sealed class FormReadResult
 {
-    private readonly INativeBufferBuilderFactory _builders;
-
-    public FormReadResult(INativeBufferBuilderFactory builders)
-    {
-        _builders = builders;
-    }
-
     public async Task<CommandOutcome> CompleteAsync(FormattedTracks tracks, IExecuteEvents events, CancellationToken cancellationToken)
     {
         foreach (var track in tracks.MissingTracks)
         {
-            var builder = _builders.Create();
-            var root = builder.Reserve(TrackEventLayout.Size);
-            builder.WriteUInt16(root + TrackEventLayout.Status, IdcConstants.DataMissing);
-            builder.WritePointer(root + TrackEventLayout.Track, builder.AddAnsiString($"TRACK{track}"));
-            await events.SendAsync(IdcConstants.InvalidTrackDataEvent, builder.Build(), cancellationToken);
+            var missing = new JsonObject { ["fwStatus"] = IdcConstants.DataMissing, ["lpstrTrack"] = $"TRACK{track}" };
+            await events.SendAsync(IdcConstants.InvalidTrackDataEvent, new NativeValue(IdcResults.TrackEvent, missing), cancellationToken);
         }
 
-        var result = _builders.Create();
-        result.AddBytes(tracks.TrackData);
-        return new CommandOutcome(tracks.HResult, result.Build());
+        return new CommandOutcome(tracks.HResult, new NativeValue(IdcResults.TrackData, NativeJson.Hex(tracks.TrackData)));
     }
 }
 
@@ -61,7 +50,7 @@ public sealed class ReadTrackCommand : IExecuteCommand
         if (!form.IsValid || form.Action != IdcConstants.ActionRead)
             return new CommandOutcome(IdcConstants.ErrFormInvalid, null);
 
-        var card = await _service.WaitForCardAsync(context.RemoteAddress, context.Events, cancellationToken);
+        var card = await _service.WaitForCardAsync(context.Device, context.Events, cancellationToken);
         var tracks = new Dictionary<int, string?> { [1] = card.Track1, [2] = card.Track2, [3] = card.Track3 };
         return await _result.CompleteAsync(_formatter.Format(form, tracks), context.Events, cancellationToken);
     }
@@ -133,7 +122,7 @@ public sealed class WriteTrackCommand : IExecuteCommand
         if (string.IsNullOrEmpty(IdcInput.GetString(context.Input, "trackData")))
             return new CommandOutcome(XfsResultCodes.InvalidData, null);
 
-        await _service.WaitForCardAsync(context.RemoteAddress, context.Events, cancellationToken);
+        await _service.WaitForCardAsync(context.Device, context.Events, cancellationToken);
         return new CommandOutcome(XfsResultCodes.Success, null);
     }
 }
@@ -159,7 +148,7 @@ public sealed class WriteRawDataCommand : IExecuteCommand
         if (cardData.Any(c => (c.Source & ~WritableTracks) != 0 || c.Source == 0))
             return new CommandOutcome(XfsResultCodes.UnsupportedData, null);
 
-        await _service.WaitForCardAsync(context.RemoteAddress, context.Events, cancellationToken);
+        await _service.WaitForCardAsync(context.Device, context.Events, cancellationToken);
         return new CommandOutcome(XfsResultCodes.Success, null);
     }
 }

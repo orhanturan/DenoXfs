@@ -1,0 +1,360 @@
+@page "/hardware"
+@* Hardware catalog (vendor → model → device → service) and the terminals. Every item is edited in the panel on the
+   right; deletes ask there first. ?tab=terminals&ip=... opens a new terminal for that IP. *@
+@inject IHardwareCatalog Catalog
+@inject ITerminalCatalog Terminals
+@inject ISessionRegistry Sessions
+@inject IEnumerable<IDeviceClassModule> Modules
+
+<PageTitle>Hardware</PageTitle>
+
+<div class="tabs">
+    <button class="@(_tab == Tab.Catalog ? "active" : null)" @onclick="() => Show(Tab.Catalog)">Catalog</button>
+    <button class="@(_tab == Tab.Terminals ? "active" : null)" @onclick="() => Show(Tab.Terminals)">Terminals</button>
+</div>
+
+<div class="hardware-body">
+    <section>
+        @if (_tab == Tab.Catalog)
+        {
+            <div class="form-row">
+                <button class="primary" @onclick="NewVendor">+ Vendor</button>
+                <span class="hint">A model holds devices; a device opens any number of services of the XFS classes its type allows, and they share the device's state. WFSOpen finds a service by its name in the terminal's model.</span>
+            </div>
+            @if (_snapshot.Vendors.Count == 0)
+            {
+                <div class="panel empty">No vendor yet.</div>
+            }
+            @foreach (var vendor in _snapshot.Vendors)
+            {
+                <div class="hw-node vendor">
+                    <div class="hw-line">
+                        <span class="hw-kind">Vendor</span><b>@vendor.Name</b>
+                        <button class="icon" title="Rename" @onclick="() => EditVendor(vendor)">✎</button>
+                        <button class="icon" title="Delete" @onclick="() => AskDelete(HardwareItem.Vendor, vendor.Id, VendorDeleteText(vendor))">🗑</button>
+                        <button @onclick="() => NewModel(vendor)">+ Model</button>
+                    </div>
+                    @foreach (var model in vendor.Models)
+                    {
+                        <div class="hw-node model">
+                            <div class="hw-line">
+                                <span class="hw-kind">Model</span><b>@model.Name</b>
+                                <span class="hint">@TerminalCount(model.Id) terminal(s)</span>
+                                <button class="icon" title="Rename" @onclick="() => EditModel(model)">✎</button>
+                                <button class="icon" title="Delete" @onclick="() => AskDelete(HardwareItem.Model, model.Id, ModelDeleteText(model))">🗑</button>
+                                <button @onclick="() => NewDevice(model)">+ Device</button>
+                            </div>
+                            @foreach (var device in model.Devices)
+                            {
+                                <div class="hw-node device">
+                                    <div class="hw-line">
+                                        <span class="hw-kind">Device</span><b>@device.Name</b>
+                                        <span class="pill">@device.DeviceType</span>
+                                        <button class="icon" title="Edit" @onclick="() => EditDevice(device)">✎</button>
+                                        <button class="icon" title="Delete" @onclick="() => AskDelete(HardwareItem.Device, device.Id, DeviceDeleteText(device))">🗑</button>
+                                        <button disabled="@(ServiceClasses(device).Count == 0)" title="@NoClassHint(device)"
+                                                @onclick="() => NewService(device)">+ Service</button>
+                                    </div>
+                                    @foreach (var service in device.Services)
+                                    {
+                                        <div class="hw-node service">
+                                            <div class="hw-line">
+                                                <span class="hw-kind">Service</span><b class="mono">@service.Name</b>
+                                                <span class="pill">@service.XfsClass</span>
+                                                <button class="icon" title="Edit" @onclick="() => EditService(device, service)">✎</button>
+                                                <button class="icon" title="Delete" @onclick="() => AskDelete(HardwareItem.Service, service.Id, ServiceDeleteText(service))">🗑</button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <div class="form-row">
+                <button class="primary" disabled="@(!_snapshot.Models.Any())" @onclick="() => NewTerminal(null)">+ Terminal</button>
+                <span class="hint">A terminal is found by the IP of its DLL connections (address 1 or 2). An IP without a terminal cannot open a service.</span>
+            </div>
+            <table class="grid">
+                <thead>
+                    <tr><th>Terminal Id</th><th>Address 1</th><th>Address 2</th><th>Model</th><th>Sessions</th><th></th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var terminal in _snapshot.Terminals)
+                    {
+                        <tr>
+                            <td class="mono">@TerminalIds.Display(terminal.TerminalId)</td>
+                            <td class="mono">@terminal.Address1</td>
+                            <td class="mono">@terminal.Address2</td>
+                            <td>@ModelTitle(terminal.ModelId)</td>
+                            <td>@SessionCount(terminal)</td>
+                            <td>
+                                <a class="button" href="@($"/?ip={Uri.EscapeDataString(terminal.Address1)}")">Open</a>
+                                <button class="icon" title="Edit" @onclick="() => EditTerminal(terminal)">✎</button>
+                                <button class="icon" title="Delete" @onclick="() => AskDeleteTerminal(terminal)">🗑</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @if (_snapshot.Terminals.Count == 0)
+            {
+                <div class="panel empty">No terminal yet.</div>
+            }
+        }
+    </section>
+
+    <section class="panel">
+        @if (_error is not null)
+        {
+            <div class="message error">@_error</div>
+        }
+        @switch (_edit)
+        {
+            case null:
+                <div class="hint">Pick an item to add, edit or delete.</div>
+                break;
+            case { Kind: EditKind.Delete }:
+                <h2>Delete</h2>
+                <p>Delete @_edit.DeleteText?</p>
+                <div class="form-row">
+                    <button class="primary danger-fill" @onclick="DeleteAsync">Delete</button>
+                    <button @onclick="Close">Cancel</button>
+                </div>
+                break;
+            default:
+                <h2>@_edit.Title</h2>
+                <div class="editor">
+                    @if (_edit.Kind == EditKind.Terminal)
+                    {
+                        <label>Terminal Id
+                            <input class="mono" maxlength="8" disabled="@(!_edit.IsNew)" placeholder="ATM00001" @bind="_edit.TerminalId" />
+                        </label>
+                        <span class="hint">ISO 8583 field 41: up to 8 printable characters, padded with spaces; it cannot change later.</span>
+                        <label>Address 1 <input class="mono" placeholder="10.0.0.15" @bind="_edit.Address1" /></label>
+                        <label>Address 2 <input class="mono" placeholder="optional" @bind="_edit.Address2" /></label>
+                        <label>Model
+                            <select @bind="_edit.ModelId">
+                                @foreach (var model in _snapshot.Models)
+                                {
+                                    <option value="@model.Id">@ModelTitle(model.Id)</option>
+                                }
+                            </select>
+                        </label>
+                    }
+                    else
+                    {
+                        <label>Name <input @bind="_edit.Name" /></label>
+                    }
+                    @if (_edit.Kind == EditKind.Device)
+                    {
+                        <label>Type
+                            <select @bind="_edit.DeviceType">
+                                @foreach (var type in DeviceTypes.All)
+                                {
+                                    <option value="@type.Name">@type.Name (@string.Join(", ", type.XfsClasses))</option>
+                                }
+                            </select>
+                        </label>
+                        <span class="hint">@DeviceTypes.Find(_edit.DeviceType)?.Description</span>
+                    }
+                    @if (_edit.Kind == EditKind.Service && _snapshot.Device(_edit.ParentId) is { } serviceDevice)
+                    {
+                        <label>XFS class
+                            <select @bind="_edit.XfsClass">
+                                @foreach (var xfsClass in ServiceClasses(serviceDevice))
+                                {
+                                    <option value="@xfsClass">@xfsClass</option>
+                                }
+                            </select>
+                        </label>
+                        <span class="hint">Classes the type @serviceDevice.DeviceType opens and the simulator implements. The application opens the service with WFSOpen("@_edit.Name").</span>
+                    }
+                </div>
+                <div class="form-row">
+                    <button class="primary" @onclick="SaveAsync">Save</button>
+                    <button @onclick="Close">Cancel</button>
+                </div>
+                break;
+        }
+    </section>
+</div>
+
+@code {
+    private enum Tab { Catalog, Terminals }
+
+    private enum EditKind { Vendor, Model, Device, Service, Terminal, Delete }
+
+    /// <summary>What the panel edits; ParentId is the vendor of a model, the model of a device, the device of a service.</summary>
+    private sealed class EditState
+    {
+        public EditKind Kind { get; init; }
+        public int Id { get; init; }
+        public int ParentId { get; init; }
+        public string Title { get; init; } = string.Empty;
+        public bool IsNew => Kind == EditKind.Terminal ? OriginalTerminalId is null : Id == 0;
+        public string Name { get; set; } = string.Empty;
+        public string DeviceType { get; set; } = string.Empty;
+        public string XfsClass { get; set; } = string.Empty;
+        public string? OriginalTerminalId { get; init; }
+        public string TerminalId { get; set; } = string.Empty;
+        public string Address1 { get; set; } = string.Empty;
+        public string? Address2 { get; set; }
+        public int ModelId { get; set; }
+        public HardwareItem DeleteItem { get; init; }
+        public string? DeleteText { get; init; }
+    }
+
+    [SupplyParameterFromQuery(Name = "tab")] public string? TabName { get; set; }
+
+    [SupplyParameterFromQuery(Name = "ip")] public string? Ip { get; set; }
+
+    private Tab _tab = Tab.Catalog;
+    private HardwareSnapshot _snapshot = HardwareSnapshot.Empty;
+    private EditState? _edit;
+    private string? _error;
+
+    private IReadOnlySet<string> Simulated => Modules.Select(m => m.DeviceClass).ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+    protected override async Task OnInitializedAsync()
+    {
+        _tab = string.Equals(TabName, "terminals", StringComparison.OrdinalIgnoreCase) ? Tab.Terminals : Tab.Catalog;
+        await ReloadAsync();
+        if (_tab == Tab.Terminals && !string.IsNullOrWhiteSpace(Ip) && _snapshot.TerminalOf(Ip.Trim()) is null && _snapshot.Models.Any())
+            NewTerminal(Ip.Trim());
+    }
+
+    private async Task ReloadAsync() => _snapshot = await Catalog.SnapshotAsync(CancellationToken.None);
+
+    private void Show(Tab tab)
+    {
+        _tab = tab;
+        Close();
+    }
+
+    private void Close()
+    {
+        _edit = null;
+        _error = null;
+    }
+
+    private void Open(EditState state)
+    {
+        _edit = state;
+        _error = null;
+    }
+
+    private void NewVendor() => Open(new EditState { Kind = EditKind.Vendor, Title = "New vendor" });
+
+    private void EditVendor(VendorInfo vendor) => Open(new EditState { Kind = EditKind.Vendor, Id = vendor.Id, Title = "Vendor", Name = vendor.Name });
+
+    private void NewModel(VendorInfo vendor) =>
+        Open(new EditState { Kind = EditKind.Model, ParentId = vendor.Id, Title = $"New model of {vendor.Name}" });
+
+    private void EditModel(ModelInfo model) =>
+        Open(new EditState { Kind = EditKind.Model, Id = model.Id, ParentId = model.VendorId, Title = "Model", Name = model.Name });
+
+    private void NewDevice(ModelInfo model) => Open(new EditState
+    {
+        Kind = EditKind.Device, ParentId = model.Id, Title = $"New device of {model.Name}", DeviceType = DeviceTypes.All[0].Name
+    });
+
+    private void EditDevice(DeviceInfo device) => Open(new EditState
+    {
+        Kind = EditKind.Device, Id = device.Id, ParentId = device.ModelId, Title = "Device", Name = device.Name, DeviceType = device.DeviceType
+    });
+
+    private void NewService(DeviceInfo device) => Open(new EditState
+    {
+        Kind = EditKind.Service, ParentId = device.Id, Title = $"New service of {device.Name}", XfsClass = ServiceClasses(device).FirstOrDefault() ?? string.Empty
+    });
+
+    private void EditService(DeviceInfo device, ServiceInfo service) => Open(new EditState
+    {
+        Kind = EditKind.Service, Id = service.Id, ParentId = device.Id, Title = "Service", Name = service.Name, XfsClass = service.XfsClass
+    });
+
+    private void NewTerminal(string? address) => Open(new EditState
+    {
+        Kind = EditKind.Terminal, Title = "New terminal", Address1 = address ?? string.Empty, ModelId = _snapshot.Models.First().Id
+    });
+
+    private void EditTerminal(TerminalInfo terminal) => Open(new EditState
+    {
+        Kind = EditKind.Terminal, Title = $"Terminal {TerminalIds.Display(terminal.TerminalId)}", OriginalTerminalId = terminal.TerminalId,
+        TerminalId = TerminalIds.Display(terminal.TerminalId), Address1 = terminal.Address1, Address2 = terminal.Address2, ModelId = terminal.ModelId
+    });
+
+    private void AskDelete(HardwareItem item, int id, string text) =>
+        Open(new EditState { Kind = EditKind.Delete, DeleteItem = item, Id = id, DeleteText = text });
+
+    private void AskDeleteTerminal(TerminalInfo terminal) => Open(new EditState
+    {
+        Kind = EditKind.Delete, OriginalTerminalId = terminal.TerminalId,
+        DeleteText = $"the terminal {TerminalIds.Display(terminal.TerminalId)} with its device states and selections"
+    });
+
+    private async Task SaveAsync()
+    {
+        if (_edit is null)
+            return;
+        var edit = _edit;
+        var cancellationToken = CancellationToken.None;
+        var result = edit.Kind switch
+        {
+            EditKind.Vendor => await Catalog.SaveAsync(new VendorEdit(edit.Id, edit.Name), cancellationToken),
+            EditKind.Model => await Catalog.SaveAsync(new ModelEdit(edit.Id, edit.ParentId, edit.Name), cancellationToken),
+            EditKind.Device => await Catalog.SaveAsync(new DeviceEdit(edit.Id, edit.ParentId, edit.DeviceType, edit.Name), cancellationToken),
+            EditKind.Service => await Catalog.SaveAsync(new ServiceEdit(edit.Id, edit.ParentId, edit.Name, edit.XfsClass), cancellationToken),
+            _ when edit.IsNew => await Terminals.AddAsync(new TerminalInfo(edit.TerminalId, edit.Address1, edit.Address2, edit.ModelId), cancellationToken),
+            _ => await Terminals.UpdateAsync(new TerminalInfo(edit.OriginalTerminalId!, edit.Address1, edit.Address2, edit.ModelId), cancellationToken)
+        };
+        await FinishAsync(result);
+    }
+
+    private async Task DeleteAsync()
+    {
+        if (_edit is null)
+            return;
+        var result = _edit.OriginalTerminalId is { } terminalId
+            ? await Terminals.DeleteAsync(terminalId, CancellationToken.None)
+            : await Catalog.DeleteAsync(_edit.DeleteItem, _edit.Id, CancellationToken.None);
+        await FinishAsync(result);
+    }
+
+    private async Task FinishAsync(HardwareResult result)
+    {
+        await ReloadAsync();
+        if (result.Succeeded)
+            Close();
+        else
+            _error = result.Error;
+    }
+
+    /// <summary>Classes the device's type opens and a module simulates; a device may have any number of services of them.</summary>
+    private IReadOnlyList<string> ServiceClasses(DeviceInfo device) =>
+        (DeviceTypes.Find(device.DeviceType)?.XfsClasses ?? []).Where(c => Simulated.Contains(c)).ToList();
+
+    private string? NoClassHint(DeviceInfo device) =>
+        ServiceClasses(device).Count == 0 ? "The simulator implements none of the classes this device type opens yet" : null;
+
+    private int TerminalCount(int modelId) => _snapshot.Terminals.Count(t => t.ModelId == modelId);
+
+    private string ModelTitle(int modelId) =>
+        _snapshot.Model(modelId) is { } model ? $"{_snapshot.VendorOf(model)?.Name} · {model.Name}" : "?";
+
+    private int SessionCount(TerminalInfo terminal) =>
+        Sessions.SessionsOf(terminal.Address1).Count + (terminal.Address2 is { } address2 ? Sessions.SessionsOf(address2).Count : 0);
+
+    private static string VendorDeleteText(VendorInfo vendor) => $"the vendor {vendor.Name} with {vendor.Models.Count} model(s)";
+
+    private static string ModelDeleteText(ModelInfo model) => $"the model {model.Name} with its devices and services";
+
+    private static string DeviceDeleteText(DeviceInfo device) => $"the device {device.Name} with its services";
+
+    private static string ServiceDeleteText(ServiceInfo service) => $"the service {service.Name}";
+}

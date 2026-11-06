@@ -1,0 +1,12 @@
+<CascadingValue Name="BrowserAddress" Value="BrowserAddress" IsFixed="true">
+    <Router AppAssembly="typeof(Program).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+        </Found>
+    </Router>
+</CascadingValue>
+
+@code {
+    /// <summary>The browser's IP, normalized like the DLL connections (see <see cref="TerminalAddress"/>).</summary>
+    [Parameter] public string BrowserAddress { get; set; } = string.Empty;
+}

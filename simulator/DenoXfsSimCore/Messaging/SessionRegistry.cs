@@ -1,5 +1,8 @@
 using DenoXfs.Sim.Core.Abstractions;
+using DenoXfs.Sim.Core.Hardware;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Protocol;
+using DenoXfs.Sim.Core.Ui;
 using Microsoft.Extensions.Logging;
 
 namespace DenoXfs.Sim.Core.Messaging;
@@ -7,24 +10,58 @@ namespace DenoXfs.Sim.Core.Messaging;
 public sealed class SessionRegistry : ISessionRegistry
 {
     private readonly object _lock = new();
-    private readonly List<ISessionChannel> _sessions = new();
+    private readonly Dictionary<ISessionChannel, ResolvedService?> _sessions = new();
+    private readonly ITrafficRecorder _traffic;
+
+    public SessionRegistry(ITrafficRecorder traffic)
+    {
+        _traffic = traffic;
+    }
 
     public void Add(ISessionChannel channel)
     {
         lock (_lock)
-            _sessions.Add(channel);
+            _sessions[channel] = null;
     }
 
     public void Remove(ISessionChannel channel)
     {
+        ResolvedService? service;
         lock (_lock)
-            _sessions.Remove(channel);
+        {
+            _sessions.Remove(channel, out service);
+        }
+        if (service is not null)
+            _traffic.Session(channel.RemoteAddress, $"session closed {service.ServiceName} ({service.XfsClass})");
+    }
+
+    public void Bind(ISessionChannel channel, ResolvedService service)
+    {
+        lock (_lock)
+            _sessions[channel] = service;
+        _traffic.Session(channel.RemoteAddress, $"session opened {service.ServiceName} ({service.XfsClass}, device {service.DeviceName})");
+    }
+
+    public ResolvedService? ServiceOf(ISessionChannel channel)
+    {
+        lock (_lock)
+            return _sessions.GetValueOrDefault(channel);
     }
 
     public IReadOnlyList<ISessionChannel> SessionsOf(string remoteAddress)
     {
         lock (_lock)
-            return _sessions.Where(s => s.RemoteAddress == remoteAddress).ToList();
+            return _sessions.Where(s => s.Value is not null && s.Key.RemoteAddress == remoteAddress).Select(s => s.Key).ToList();
+    }
+
+    public IReadOnlyList<ISessionChannel> SessionsOf(DeviceRef device, string xfsClass)
+    {
+        lock (_lock)
+            return _sessions
+                .Where(s => s.Value?.TerminalId == device.TerminalId && s.Value.DeviceId == device.DeviceId &&
+                            string.Equals(s.Value.XfsClass, xfsClass, StringComparison.OrdinalIgnoreCase))
+                .Select(s => s.Key)
+                .ToList();
     }
 
     public IReadOnlyList<string> Terminals
@@ -32,7 +69,7 @@ public sealed class SessionRegistry : ISessionRegistry
         get
         {
             lock (_lock)
-                return _sessions.Select(s => s.RemoteAddress).Distinct().ToList();
+                return _sessions.Where(s => s.Value is not null).Select(s => s.Key.RemoteAddress).Distinct().ToList();
         }
     }
 }
@@ -40,28 +77,36 @@ public sealed class SessionRegistry : ISessionRegistry
 public sealed class EventPublisher : IEventPublisher
 {
     private readonly ISessionRegistry _sessions;
+    private readonly INativeLayoutWriter _writer;
+    private readonly ITrafficRecorder _traffic;
     private readonly ILogger<EventPublisher> _logger;
 
-    public EventPublisher(ISessionRegistry sessions, ILogger<EventPublisher> logger)
+    public EventPublisher(ISessionRegistry sessions, INativeLayoutWriter writer, ITrafficRecorder traffic, ILogger<EventPublisher> logger)
     {
         _sessions = sessions;
+        _writer = writer;
+        _traffic = traffic;
         _logger = logger;
     }
 
-    public async Task PublishAsync(string remoteAddress, XfsEventKind kind, uint eventId, ResultBuffer? payload, CancellationToken cancellationToken)
+    public async Task PublishAsync(DeviceRef device, string xfsClass, XfsEventKind kind, uint eventId, NativeValue? payload,
+        CancellationToken cancellationToken)
     {
-        var sessions = _sessions.SessionsOf(remoteAddress);
-        _logger.LogInformation("event terminal={Terminal} kind={Kind} eventId={EventId} sessions={Sessions} hasPayload={HasPayload}",
-            remoteAddress, kind, eventId, sessions.Count, payload is not null);
+        var sessions = _sessions.SessionsOf(device, xfsClass);
+        _logger.LogInformation("event device={Device} class={Class} kind={Kind} eventId={EventId} sessions={Sessions} hasPayload={HasPayload}",
+            device, xfsClass, kind, eventId, sessions.Count, payload?.Value is not null);
+        var buffer = _writer.Write(payload);
+        foreach (var address in sessions.Select(s => s.RemoteAddress).Distinct())
+            _traffic.Event(address, 0, kind.ToString().ToLowerInvariant(), eventId);
         foreach (var session in sessions)
         {
             try
             {
-                await session.SendAsync(WireMessageFactory.Event(kind, 0, eventId, payload), cancellationToken);
+                await session.SendAsync(WireMessageFactory.Event(kind, 0, eventId, buffer), cancellationToken);
             }
             catch (Exception ex)
             {
-                _logger.LogWarning("event send failed terminal={Terminal} eventId={EventId} reason={Reason}", remoteAddress, eventId, ex.Message);
+                _logger.LogWarning("event send failed device={Device} eventId={EventId} reason={Reason}", device, eventId, ex.Message);
             }
         }
     }
@@ -72,19 +117,24 @@ public sealed class ChannelExecuteEvents : IExecuteEvents
 {
     private readonly ISessionChannel _channel;
     private readonly uint _requestId;
+    private readonly INativeLayoutWriter _writer;
+    private readonly ITrafficRecorder _traffic;
     private readonly ILogger _logger;
 
-    public ChannelExecuteEvents(ISessionChannel channel, uint requestId, ILogger logger)
+    public ChannelExecuteEvents(ISessionChannel channel, uint requestId, INativeLayoutWriter writer, ITrafficRecorder traffic, ILogger logger)
     {
         _channel = channel;
         _requestId = requestId;
+        _writer = writer;
+        _traffic = traffic;
         _logger = logger;
     }
 
-    public Task SendAsync(uint eventId, ResultBuffer? payload, CancellationToken cancellationToken)
+    public Task SendAsync(uint eventId, NativeValue? payload, CancellationToken cancellationToken)
     {
         _logger.LogInformation("execute event from={Remote} reqId={ReqId} eventId={EventId} hasPayload={HasPayload}",
-            _channel.RemoteAddress, _requestId, eventId, payload is not null);
-        return _channel.SendAsync(WireMessageFactory.Event(XfsEventKind.Execute, _requestId, eventId, payload), cancellationToken);
+            _channel.RemoteAddress, _requestId, eventId, payload?.Value is not null);
+        _traffic.Event(_channel.RemoteAddress, _requestId, "execute", eventId);
+        return _channel.SendAsync(WireMessageFactory.Event(XfsEventKind.Execute, _requestId, eventId, _writer.Write(payload)), cancellationToken);
     }
 }

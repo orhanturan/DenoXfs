@@ -1,0 +1,42 @@
+@page "/scenarios"
+@* Scenarios and device profiles. For now read only; the GUI editor (add, copy, edit, delete) is the next step. *@
+@inject IProfileCatalog Catalog
+
+<PageTitle>Scenarios</PageTitle>
+
+<div class="scenarios">
+    <div class="message info">The scenario editor (add, copy, edit, delete with forms) comes in the next step; this page lists what exists.</div>
+
+    @foreach (var (title, list) in new[] { ("Scenarios", _scenarios), ("Device profiles", _deviceProfiles) })
+    {
+        <h2>@title</h2>
+        <div class="profile-list">
+            @foreach (var profile in list)
+            {
+                <article class="profile">
+                    <h3>@profile.Name @if (profile.BasedOn is not null) { <span class="hint">based on @profile.BasedOn</span> }</h3>
+                    <p>@profile.Description</p>
+                    @foreach (var (deviceClass, section) in profile.Sections)
+                    {
+                        <details>
+                            <summary>@deviceClass</summary>
+                            <pre>@section.ToJsonString(Indented)</pre>
+                        </details>
+                    }
+                </article>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private static readonly System.Text.Json.JsonSerializerOptions Indented = new() { WriteIndented = true };
+    private IReadOnlyList<ProfileDefinition> _scenarios = [];
+    private IReadOnlyList<ProfileDefinition> _deviceProfiles = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        _scenarios = await Catalog.AllAsync(ProfileKind.Scenario, CancellationToken.None);
+        _deviceProfiles = await Catalog.AllAsync(ProfileKind.DeviceProfile, CancellationToken.None);
+    }
+}

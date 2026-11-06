@@ -1,5 +1,6 @@
+using System.Text.Json.Nodes;
 using DenoXfs.Sim.Core.Abstractions;
-using DenoXfs.Sim.Core.Buffers;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Protocol;
 using DenoXfs.Sim.Idc.Device;
 using DenoXfs.Sim.Idc.Layouts;
@@ -10,12 +11,10 @@ namespace DenoXfs.Sim.Idc.Commands;
 public sealed class ChipPowerCommand : IExecuteCommand
 {
     private readonly IIdcDeviceRegistry _devices;
-    private readonly INativeBufferBuilderFactory _builders;
 
-    public ChipPowerCommand(IIdcDeviceRegistry devices, INativeBufferBuilderFactory builders)
+    public ChipPowerCommand(IIdcDeviceRegistry devices)
     {
         _devices = devices;
-        _builders = builders;
     }
 
     public uint Command => IdcConstants.ChipPowerCommand;
@@ -26,7 +25,7 @@ public sealed class ChipPowerCommand : IExecuteCommand
         if (power is not (IdcConstants.ChipPowerCold or IdcConstants.ChipPowerWarm or IdcConstants.ChipPowerOff))
             return Task.FromResult(new CommandOutcome(XfsResultCodes.InvalidData, null));
 
-        var device = _devices.Get(context.RemoteAddress);
+        var device = _devices.Get(context.Device);
         var card = device.CardInside;
         if (card is null)
             return Task.FromResult(new CommandOutcome(IdcConstants.ErrNoMedia, null));
@@ -38,11 +37,8 @@ public sealed class ChipPowerCommand : IExecuteCommand
         if (!on)
             return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, null));
 
-        var builder = _builders.Create();
-        var root = builder.Reserve(ChipPowerOutLayout.Size);
-        builder.WriteUInt32(root + ChipPowerOutLayout.DataLength, (uint)card.Atr!.Length);
-        builder.WritePointer(root + ChipPowerOutLayout.DataPointer, builder.AddBytes(card.Atr));
-        return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, builder.Build()));
+        var output = new JsonObject { ["lpbChipData"] = NativeJson.Hex(card.Atr!) };
+        return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, new NativeValue(IdcResults.ChipPowerOut, output)));
     }
 }
 
@@ -54,12 +50,10 @@ public sealed class ChipIoCommand : IExecuteCommand
 {
     private const ushort SupportedProtocols = IdcConstants.ChipT0 | IdcConstants.ChipT1;
     private readonly IIdcDeviceRegistry _devices;
-    private readonly INativeBufferBuilderFactory _builders;
 
-    public ChipIoCommand(IIdcDeviceRegistry devices, INativeBufferBuilderFactory builders)
+    public ChipIoCommand(IIdcDeviceRegistry devices)
     {
         _devices = devices;
-        _builders = builders;
     }
 
     public uint Command => IdcConstants.ChipIoCommand;
@@ -73,7 +67,7 @@ public sealed class ChipIoCommand : IExecuteCommand
         if (protocol == 0 || (protocol & ~SupportedProtocols) != 0)
             return Task.FromResult(new CommandOutcome(IdcConstants.ErrProtocolNotSupp, null));
 
-        var device = _devices.Get(context.RemoteAddress);
+        var device = _devices.Get(context.Device);
         var card = device.CardInside;
         if (card is null)
             return Task.FromResult(new CommandOutcome(IdcConstants.ErrNoMedia, null));
@@ -83,11 +77,7 @@ public sealed class ChipIoCommand : IExecuteCommand
             return Task.FromResult(new CommandOutcome(IdcConstants.ErrAtrNotObtained, null));
 
         var response = card.RespondTo(apdu);
-        var builder = _builders.Create();
-        var root = builder.Reserve(ChipIoLayout.Size);
-        builder.WriteUInt16(root + ChipIoLayout.Protocol, protocol);
-        builder.WriteUInt32(root + ChipIoLayout.DataLength, (uint)response.Length);
-        builder.WritePointer(root + ChipIoLayout.DataPointer, builder.AddBytes(response));
-        return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, builder.Build()));
+        var output = new JsonObject { ["wChipProtocol"] = protocol, ["lpbChipData"] = NativeJson.Hex(response) };
+        return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, new NativeValue(IdcResults.ChipIo, output)));
     }
 }

@@ -1,6 +1,8 @@
 using System.Text;
+using System.Text.Json.Nodes;
 using DenoXfs.Sim.Core.Abstractions;
-using DenoXfs.Sim.Core.Buffers;
+using DenoXfs.Sim.Core.Hardware;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Protocol;
 using DenoXfs.Sim.Idc.Cards;
 using DenoXfs.Sim.Idc.Device;
@@ -23,13 +25,11 @@ public sealed class ReadRawDataCommand : IExecuteCommand
         IdcConstants.Track1Jis1, IdcConstants.Track3Jis1, IdcConstants.Ddi
     };
 
-    private readonly INativeBufferBuilderFactory _builders;
     private readonly IIdcDeviceService _service;
     private readonly IIdcDeviceRegistry _devices;
 
-    public ReadRawDataCommand(INativeBufferBuilderFactory builders, IIdcDeviceService service, IIdcDeviceRegistry devices)
+    public ReadRawDataCommand(IIdcDeviceService service, IIdcDeviceRegistry devices)
     {
-        _builders = builders;
         _service = service;
         _devices = devices;
     }
@@ -42,12 +42,12 @@ public sealed class ReadRawDataCommand : IExecuteCommand
         if (requested == 0)
             return new CommandOutcome(XfsResultCodes.Success, null);
 
-        var card = await _service.WaitForCardAsync(context.RemoteAddress, context.Events, cancellationToken);
-        var entries = Sources.Where(source => (requested & source) != 0).Select(source => Read(context.RemoteAddress, card, source)).ToList();
+        var card = await _service.WaitForCardAsync(context.Device, context.Events, cancellationToken);
+        var entries = Sources.Where(source => (requested & source) != 0).Select(source => Read(context.Device, card, source)).ToList();
         return new CommandOutcome(XfsResultCodes.Success, Build(entries));
     }
 
-    private (ushort Source, ushort Status, byte[]? Data) Read(string address, IdcCard card, ushort source)
+    private (ushort Source, ushort Status, byte[]? Data) Read(DeviceRef reader, IdcCard card, ushort source)
     {
         switch (source)
         {
@@ -58,7 +58,7 @@ public sealed class ReadRawDataCommand : IExecuteCommand
             case IdcConstants.Track3:
                 return Track(source, card.Track3);
             case IdcConstants.Chip when card.HasChip:
-                _devices.Get(address).SetChipPower(true);
+                _devices.Get(reader).SetChipPower(true);
                 return (source, IdcConstants.DataOk, card.Atr);
             case IdcConstants.Chip:
                 return (source, IdcConstants.DataMissing, null);
@@ -70,28 +70,12 @@ public sealed class ReadRawDataCommand : IExecuteCommand
     private static (ushort, ushort, byte[]?) Track(ushort source, string? text) =>
         text is null ? (source, IdcConstants.DataMissing, null) : (source, IdcConstants.DataOk, Encoding.Latin1.GetBytes(text));
 
-    private ResultBuffer Build(IReadOnlyList<(ushort Source, ushort Status, byte[]? Data)> entries)
-    {
-        var builder = _builders.Create();
-        var ptrSize = NativeBufferBuilderFactory.DefaultPtrSize;
-        var array = builder.Reserve((entries.Count + 1) * ptrSize);
-
-        for (var i = 0; i < entries.Count; i++)
+    private static NativeValue Build(IEnumerable<(ushort Source, ushort Status, byte[]? Data)> entries) =>
+        new(IdcResults.CardData, NativeJson.Array(entries, entry =>
         {
-            var (source, status, data) = entries[i];
-            var item = builder.Reserve(CardDataLayout.Size);
-            builder.WritePointer(array + i * ptrSize, item);
-            builder.WriteUInt16(item + CardDataLayout.DataSourceOffset, source);
-            builder.WriteUInt16(item + CardDataLayout.StatusOffset, status);
-            if (data is null)
-                continue;
-
-            builder.WriteUInt32(item + CardDataLayout.DataLengthOffset, (uint)data.Length);
-            var payload = builder.AddBytes(data);
-            builder.AddBytes(new byte[] { 0 }); // lpbData is terminated with a single null character
-            builder.WritePointer(item + CardDataLayout.DataPointerOffset, payload);
-        }
-
-        return builder.Build();
-    }
+            var item = new JsonObject { ["wDataSource"] = entry.Source, ["wStatus"] = entry.Status };
+            if (entry.Data is not null)
+                item["lpbData"] = NativeJson.Hex(entry.Data);
+            return item;
+        }));
 }

@@ -1,0 +1,40 @@
+[
+  {
+    "kind": "Scenario",
+    "name": "Default",
+    "description": "Healthy reader; every command behaves normally.",
+    "idc": {}
+  },
+  {
+    "kind": "Scenario",
+    "name": "DeviceError",
+    "description": "Reader in hardware error: status reports HWERROR and inoperable modules.",
+    "basedOn": "Default",
+    "idc": {
+      "status": { "fwDevice": "HWERROR", "fwChipModule": "INOP", "fwMagReadModule": "INOP", "fwMagWriteModule": "INOP" }
+    }
+  },
+  {
+    "kind": "DeviceProfile",
+    "name": "Default",
+    "description": "Motorised reader: tracks 1-3 read/write, T=0/T=1 chip, retain bin, card unit light, power save.",
+    "idc": {}
+  },
+  {
+    "kind": "DeviceProfile",
+    "name": "Swipe",
+    "description": "Swipe reader: reads tracks 1-3; no writing, chip, retain bin, light or power save.",
+    "basedOn": "Default",
+    "idc": {
+      "capabilities": {
+        "fwType": "SWIPE", "fwWriteTracks": "NOTSUPP", "fwWriteMode": "NOTSUPP", "fwChipProtocols": "NOTSUPP", "fwChipPower": "NOTSUPP",
+        "usCards": 0, "fwPowerOnOption": "NOTSUPP", "fwPowerOffOption": "NOTSUPP", "dwGuidLights": [], "fwEjectPosition": "NOTSUPP",
+        "bPowerSaveControl": false
+      },
+      "status": {
+        "fwMedia": "NOTSUPP", "fwRetainBin": "NOTSUPP", "usCards": 0, "fwChipPower": "NOTSUPP", "fwChipModule": "NOTSUPP",
+        "fwMagWriteModule": "NOTSUPP", "dwGuidLights": []
+      }
+    }
+  }
+]

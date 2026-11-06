@@ -1,7 +1,10 @@
+using System.Text.Json.Nodes;
 using DenoXfs.Sim.Core.Abstractions;
-using DenoXfs.Sim.Core.Buffers;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Protocol;
 using DenoXfs.Sim.Idc.Device;
+using DenoXfs.Sim.Idc.Scenarios;
+using DenoXfs.Sim.Idc.Layouts;
 
 namespace DenoXfs.Sim.Idc.Commands;
 
@@ -45,7 +48,7 @@ public sealed class SetGuidanceLightCommand : IExecuteCommand
         if (light != IdcConstants.GuidanceCardUnit || (command & ~CardUnitCapabilities) != 0)
             return Task.FromResult(new CommandOutcome(XfsResultCodes.UnsupportedData, null));
 
-        _devices.Get(context.RemoteAddress).SetGuidanceLight(light.Value, command);
+        _devices.Get(context.Device).SetGuidanceLight(light.Value, command);
         return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, null));
     }
 }
@@ -55,13 +58,11 @@ public sealed class PowerSaveControlCommand : IExecuteCommand
 {
     private readonly IIdcDeviceRegistry _devices;
     private readonly IEventPublisher _events;
-    private readonly INativeBufferBuilderFactory _builders;
 
-    public PowerSaveControlCommand(IIdcDeviceRegistry devices, IEventPublisher events, INativeBufferBuilderFactory builders)
+    public PowerSaveControlCommand(IIdcDeviceRegistry devices, IEventPublisher events)
     {
         _devices = devices;
         _events = events;
-        _builders = builders;
     }
 
     public uint Command => IdcConstants.PowerSaveControlCommand;
@@ -72,11 +73,10 @@ public sealed class PowerSaveControlCommand : IExecuteCommand
         if (seconds is null)
             return new CommandOutcome(XfsResultCodes.InvalidData, null);
 
-        if (_devices.Get(context.RemoteAddress).SetPowerSaveRecoveryTime(seconds.Value))
+        if (_devices.Get(context.Device).SetPowerSaveRecoveryTime(seconds.Value))
         {
-            var builder = _builders.Create();
-            builder.WriteUInt16(builder.Reserve(sizeof(ushort)), seconds.Value);
-            await _events.PublishAsync(context.RemoteAddress, XfsEventKind.Service, IdcConstants.PowerSaveChangeEvent, builder.Build(), cancellationToken);
+            var change = new NativeValue(IdcResults.PowerSaveChange, new JsonObject { ["usPowerSaveRecoveryTime"] = seconds.Value });
+            await _events.PublishAsync(context.Device, IdcProfiles.DeviceClass, XfsEventKind.Service, IdcConstants.PowerSaveChangeEvent, change, cancellationToken);
         }
         return new CommandOutcome(XfsResultCodes.Success, null);
     }

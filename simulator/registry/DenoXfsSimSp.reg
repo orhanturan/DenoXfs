@@ -1,7 +1,7 @@
 Windows Registry Editor Version 5.00
 
 ; DenoXfs simulator Service Provider (32 bit). Import with the registry editor or "reg import" (needs admin for HKLM).
-; The provider key has its own name (DENOXFS_IDC); the logical service "IDC" points to it. An existing
+; The provider key has its own name (DENOXFS_IDC); the logical services point to it. An existing
 ; SERVICE_PROVIDERS\IDC key of another project is not touched.
 ; Adjust dllname to the build output of DenoXfsSimSp (Win32).
 
@@ -9,6 +9,13 @@ Windows Registry Editor Version 5.00
 "dllname"="C:\\src\\orhanturan\\DenoXfs\\simulator\\bin\\Win32\\Debug\\DenoXfsSimSp.dll"
 "vendor_name"="DenoXfs"
 "version"="3.40.0"
+
+; The host opens a logical service by its name among the services of the terminal's model (web page /hardware):
+; the seeded model Deno26 has the service Idc340. "IDC" is rejected (WFS_ERR_SERVICE_NOT_FOUND) unless a service with
+; that name is added on the web page.
+[HKEY_USERS\.DEFAULT\XFS\LOGICAL_SERVICES\Idc340]
+"class"="IDC"
+"provider"="DENOXFS_IDC"
 
 [HKEY_USERS\.DEFAULT\XFS\LOGICAL_SERVICES\IDC]
 "class"="IDC"

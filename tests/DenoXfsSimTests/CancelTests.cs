@@ -1,7 +1,10 @@
 using System.Text.Json;
 using DenoXfs.Sim.Core.Abstractions;
 using DenoXfs.Sim.Core.Buffers;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Messaging;
+using DenoXfs.Sim.Core.Names;
+using DenoXfs.Sim.Core.Ui;
 using DenoXfs.Sim.Core.Protocol;
 using DenoXfs.Sim.Idc;
 using DenoXfs.Sim.Idc.Commands;
@@ -15,9 +18,23 @@ public class CancelTests
     private readonly RequestCancellation _cancellation = new();
     private readonly RecordingChannel _channel = new("127.0.0.1");
 
+    public CancelTests()
+    {
+        Traffic = new TrafficRecorder(Feed, new XfsCodeNames([new ApiCodeNames(), new IdcCodeNames()]));
+        Sessions = new SessionRegistry(Traffic);
+        Sessions.Add(_channel);
+        Sessions.Bind(_channel, TestServices.Idc340On("127.0.0.1"));
+    }
+
     private ExecuteMessageHandler Handler() => new(
-        [new ReadRawDataCommand(new NativeBufferBuilderFactory(), _rig.Service, _rig.Devices)], _cancellation,
-        NullLogger<ExecuteMessageHandler>.Instance);
+        new ClassHandlers<IExecuteCommand>([new ClassHandler<IExecuteCommand>("IDC", IdcConstants.ReadRawDataCommand, new ReadRawDataCommand(_rig.Service, _rig.Devices))]),
+        Sessions, _cancellation, new NativeLayoutWriter(new NativeBufferBuilderFactory()), Traffic, NullLogger<ExecuteMessageHandler>.Instance);
+
+    private TrafficFeed Feed { get; } = new(new TerminalNotifier());
+
+    private TrafficRecorder Traffic { get; }
+
+    private SessionRegistry Sessions { get; }
 
     private static JsonElement ReadRawData(uint reqId) => JsonDocument.Parse(
         $"{{\"type\":\"execute\",\"reqId\":{reqId},\"command\":{IdcConstants.ReadRawDataCommand},\"timeoutMs\":0,\"input\":{{\"readData\":2}}}}").RootElement;
@@ -37,7 +54,10 @@ public class CancelTests
         await read;
 
         Assert.Equal(XfsResultCodes.Canceled, _channel.Completion(7).HResult);
-        Assert.False(_rig.Devices.Get("127.0.0.1").Snapshot().WaitingForCard);
+        Assert.False(_rig.Devices.Get(TestDevices.Of("127.0.0.1")).Snapshot().WaitingForCard);
+        Assert.Equal(["session opened Idc340 (IDC, device CardReader)", "#7 WFS_CMD_IDC_READ_RAW_DATA (207)", "#7 execute WFS_EXEE_IDC_INSERTCARD (212)", "#7 WFS_CMD_IDC_READ_RAW_DATA → WFS_ERR_CANCELED"],
+            Feed.Recent("127.0.0.1").Select(e => e.Text));
+        Assert.True(Feed.Recent("127.0.0.1")[^1].IsError);
     }
 
     [Fact]
@@ -92,5 +112,23 @@ internal sealed class RecordingChannel : ISessionChannel
     {
         lock (_sent)
             return _sent.OfType<CompletionMessage>().Single(c => c.ReqId == reqId);
+    }
+
+    public HelloAckMessage HelloAck
+    {
+        get
+        {
+            lock (_sent)
+                return _sent.OfType<HelloAckMessage>().Single();
+        }
+    }
+
+    public IReadOnlyList<EventMessage> Events
+    {
+        get
+        {
+            lock (_sent)
+                return _sent.OfType<EventMessage>().ToList();
+        }
     }
 }

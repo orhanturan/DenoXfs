@@ -1,0 +1,24 @@
+@* Shell of the simulator's web front end. The terminal of a web user is the one with the browser's IP. *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <title>DenoXfs simulator</title>
+    <link rel="stylesheet" href="app.css" />
+    <HeadOutlet @rendermode="InteractiveServer" />
+</head>
+<body>
+    <Routes BrowserAddress="@_address" @rendermode="InteractiveServer" />
+    <script src="_framework/blazor.web.js"></script>
+</body>
+</html>
+
+@code {
+    [CascadingParameter] private HttpContext? HttpContext { get; set; }
+
+    private string _address = "unknown";
+
+    protected override void OnInitialized() => _address = TerminalAddress.Normalize(HttpContext?.Connection.RemoteIpAddress);
+}

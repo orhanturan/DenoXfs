@@ -1,3 +1,5 @@
+using DenoXfs.Sim.Core.Hardware;
+using DenoXfs.Sim.Core.Scenarios;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +15,11 @@ public static class ServiceCollectionExtensions
     {
         services.AddDbContextFactory<SimDbContext>(options => options.UseSqlite(connectionString));
         services.AddHostedService<DatabaseInitializer>();
+        services.AddSingleton<IProfileCatalog, EfProfileCatalog>();
+        services.AddSingleton<ITerminalSelectionStore, EfTerminalSelectionStore>();
+        services.AddSingleton<IHardwareStore, EfHardwareStore>();
+        services.AddSingleton<ITerminalStore, EfTerminalStore>();
+        services.AddSingleton<IDataSeeder, HardwareSeeder>();
         return services;
     }
 }

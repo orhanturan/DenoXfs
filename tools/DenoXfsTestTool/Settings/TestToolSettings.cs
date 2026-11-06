@@ -5,8 +5,8 @@ namespace DenoXfs.TestTool.Settings;
 /// <summary>Editable settings of the test tool. Defaults follow the spec; edit them in the Session tab.</summary>
 public class TestToolSettings
 {
-    [Category("Service"), DisplayName("Logical name"), Description("Logical service to open (default IDC).")]
-    public string LogicalName { get; set; } = "IDC";
+    [Category("Service"), DisplayName("Logical name"), Description("Logical service to open; a service of the terminal's model (e.g. Idc340).")]
+    public string LogicalName { get; set; } = string.Empty;
 
     [Category("Service"), DisplayName("Application id"), Description("Application id passed to open.")]
     public string AppId { get; set; } = "DenoXfsTestTool";

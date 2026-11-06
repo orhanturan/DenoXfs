@@ -1,107 +1,128 @@
+using System.Text.Json.Nodes;
 using DenoXfs.Sim.Core.Abstractions;
-using DenoXfs.Sim.Core.Buffers;
+using DenoXfs.Sim.Core.Marshalling;
 using DenoXfs.Sim.Core.Protocol;
+using DenoXfs.Sim.Core.Scenarios;
 using DenoXfs.Sim.Idc.Device;
 using DenoXfs.Sim.Idc.Layouts;
+using DenoXfs.Sim.Idc.Scenarios;
 
 namespace DenoXfs.Sim.Idc.Infos;
 
-/// <summary>WFS_INF_IDC_STATUS: WFSIDCSTATUS built from the terminal's device state.</summary>
+/// <summary>
+/// WFS_INF_IDC_STATUS: WFSIDCSTATUS built from the terminal's device state, then the <c>status</c> fields of the device
+/// profile and of the scenario on top (e.g. DeviceError pins fwDevice to HWERROR).
+/// </summary>
 public sealed class StatusInfo : IInfoCommand
 {
     private readonly IIdcDeviceRegistry _devices;
-    private readonly INativeBufferBuilderFactory _builders;
+    private readonly IIdcProfiles _profiles;
+    private readonly IJsonMerger _merger;
 
-    public StatusInfo(IIdcDeviceRegistry devices, INativeBufferBuilderFactory builders)
+    public StatusInfo(IIdcDeviceRegistry devices, IIdcProfiles profiles, IJsonMerger merger)
     {
         _devices = devices;
-        _builders = builders;
+        _profiles = profiles;
+        _merger = merger;
     }
 
     public uint Category => IdcConstants.StatusCategory;
 
-    public Task<CommandOutcome> GetInfoAsync(InfoContext context, CancellationToken cancellationToken)
+    public async Task<CommandOutcome> GetInfoAsync(InfoContext context, CancellationToken cancellationToken)
     {
-        var state = _devices.Get(context.RemoteAddress).Snapshot();
-        var builder = _builders.Create();
-        var root = builder.Reserve(StatusLayout.Size);
+        var state = _devices.Get(context.Device).Snapshot();
+        var status = new JsonObject
+        {
+            ["fwDevice"] = IdcConstants.DevOnline,
+            ["fwMedia"] = state.Media switch
+            {
+                MediaPosition.Inside => IdcConstants.MediaPresent,
+                MediaPosition.AtExit => IdcConstants.MediaEntering,
+                _ => IdcConstants.MediaNotPresent
+            },
+            ["fwRetainBin"] = state.RetainBin switch
+            {
+                RetainBinState.Full => IdcConstants.RetainBinFull,
+                RetainBinState.High => IdcConstants.RetainBinHigh,
+                _ => IdcConstants.RetainBinOk
+            },
+            ["fwSecurity"] = IdcConstants.SecNotSupp,
+            ["usCards"] = (ushort)state.RetainCount,
+            ["fwChipPower"] = state.Chip switch
+            {
+                ChipState.Online => IdcConstants.ChipOnline,
+                ChipState.PoweredOff => IdcConstants.ChipPoweredOff,
+                _ => IdcConstants.ChipNoCard
+            },
+            // lpszExtra NULL. dwGuidLights: the lights set by SET_GUIDANCE_LIGHT (0 = not available).
+            ["dwGuidLights"] = NativeJson.Array(state.GuidanceLights.Take(IdcStructs.GuidLightsSize), light => light),
+            ["fwChipModule"] = IdcConstants.ChipModOk,
+            ["fwMagReadModule"] = IdcConstants.MagModOk,
+            ["fwMagWriteModule"] = IdcConstants.MagModOk,
+            ["fwFrontImageModule"] = IdcConstants.ImgModNotSupp,
+            ["fwBackImageModule"] = IdcConstants.ImgModNotSupp,
+            ["wDevicePosition"] = IdcConstants.DevicePosNotSupp,
+            ["usPowerSaveRecoveryTime"] = state.PowerSaveRecoveryTime,
+            // lpwParkingStationMedia NULL (no parking stations).
+            ["wAntiFraudModule"] = IdcConstants.AfmNotSupp
+        };
+        Apply(status, await _profiles.DeviceProfileAsync(context.RemoteAddress, cancellationToken));
+        Apply(status, await _profiles.ScenarioAsync(context.RemoteAddress, cancellationToken));
+        return new CommandOutcome(XfsResultCodes.Success, new NativeValue(IdcResults.Status, status));
+    }
 
-        builder.WriteUInt16(root + StatusLayout.Device, IdcConstants.DevOnline);
-        builder.WriteUInt16(root + StatusLayout.Media, state.Media switch
-        {
-            MediaPosition.Inside => IdcConstants.MediaPresent,
-            MediaPosition.AtExit => IdcConstants.MediaEntering,
-            _ => IdcConstants.MediaNotPresent
-        });
-        builder.WriteUInt16(root + StatusLayout.RetainBin, state.RetainBin switch
-        {
-            RetainBinState.Full => IdcConstants.RetainBinFull,
-            RetainBinState.High => IdcConstants.RetainBinHigh,
-            _ => IdcConstants.RetainBinOk
-        });
-        builder.WriteUInt16(root + StatusLayout.Security, IdcConstants.SecNotSupp);
-        builder.WriteUInt16(root + StatusLayout.Cards, (ushort)state.RetainCount);
-        builder.WriteUInt16(root + StatusLayout.ChipPower, state.Chip switch
-        {
-            ChipState.Online => IdcConstants.ChipOnline,
-            ChipState.PoweredOff => IdcConstants.ChipPoweredOff,
-            _ => IdcConstants.ChipNoCard
-        });
-        // lpszExtra NULL. dwGuidLights: the lights set by SET_GUIDANCE_LIGHT (0 = not available).
-        for (var i = 0; i < StatusLayout.GuidLightsCount; i++)
-            builder.WriteUInt32(root + StatusLayout.GuidLights + i * sizeof(uint), state.GuidanceLights[i]);
-        builder.WriteUInt16(root + StatusLayout.ChipModule, IdcConstants.ChipModOk);
-        builder.WriteUInt16(root + StatusLayout.MagReadModule, IdcConstants.MagModOk);
-        builder.WriteUInt16(root + StatusLayout.MagWriteModule, IdcConstants.MagModOk);
-        builder.WriteUInt16(root + StatusLayout.FrontImageModule, IdcConstants.ImgModNotSupp);
-        builder.WriteUInt16(root + StatusLayout.BackImageModule, IdcConstants.ImgModNotSupp);
-        builder.WriteUInt16(root + StatusLayout.DevicePosition, IdcConstants.DevicePosNotSupp);
-        builder.WriteUInt16(root + StatusLayout.PowerSaveRecoveryTime, state.PowerSaveRecoveryTime);
-        // lpwParkingStationMedia NULL (no parking stations).
-        builder.WriteUInt16(root + StatusLayout.AntiFraudModule, IdcConstants.AfmNotSupp);
-        return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, builder.Build()));
+    private void Apply(JsonObject status, JsonObject section)
+    {
+        if (section[IdcProfiles.StatusKey] is JsonObject fields)
+            _merger.Merge(status, fields);
     }
 }
 
 /// <summary>
-/// WFS_INF_IDC_CAPABILITIES: a motorised reader that reads and writes tracks 1-3, has a T=0/T=1 chip, a retain bin,
-/// a card unit guidance light and power save control.
+/// WFS_INF_IDC_CAPABILITIES: by default a motorised reader that reads and writes tracks 1-3, has a T=0/T=1 chip, a retain
+/// bin, a card unit guidance light and power save control; the <c>capabilities</c> fields of the device profile go on top.
 /// </summary>
 public sealed class CapabilitiesInfo : IInfoCommand
 {
     private readonly IIdcDeviceRegistry _devices;
-    private readonly INativeBufferBuilderFactory _builders;
+    private readonly IIdcProfiles _profiles;
+    private readonly IJsonMerger _merger;
 
-    public CapabilitiesInfo(IIdcDeviceRegistry devices, INativeBufferBuilderFactory builders)
+    public CapabilitiesInfo(IIdcDeviceRegistry devices, IIdcProfiles profiles, IJsonMerger merger)
     {
         _devices = devices;
-        _builders = builders;
+        _profiles = profiles;
+        _merger = merger;
     }
 
     public uint Category => IdcConstants.CapabilitiesCategory;
 
-    public Task<CommandOutcome> GetInfoAsync(InfoContext context, CancellationToken cancellationToken)
+    public async Task<CommandOutcome> GetInfoAsync(InfoContext context, CancellationToken cancellationToken)
     {
-        var settings = _devices.Get(context.RemoteAddress).Settings;
-        var builder = _builders.Create();
-        var root = builder.Reserve(CapsLayout.Size);
-
-        builder.WriteUInt16(root + CapsLayout.Class, IdcConstants.ServiceClassIdc);
-        builder.WriteUInt16(root + CapsLayout.Type, IdcConstants.TypeMotor);
-        builder.WriteUInt16(root + CapsLayout.ReadTracks, IdcConstants.Track1 | IdcConstants.Track2 | IdcConstants.Track3);
-        builder.WriteUInt16(root + CapsLayout.WriteTracks, IdcConstants.Track1 | IdcConstants.Track2 | IdcConstants.Track3);
-        builder.WriteUInt16(root + CapsLayout.WriteMode, IdcConstants.WriteLoco | IdcConstants.WriteHico | IdcConstants.WriteAuto);
-        builder.WriteUInt16(root + CapsLayout.ChipProtocols, IdcConstants.ChipT0 | IdcConstants.ChipT1);
-        builder.WriteUInt16(root + CapsLayout.Cards, (ushort)settings.RetainCapacity);
-        builder.WriteUInt16(root + CapsLayout.SecType, IdcConstants.SecNotSupp);
-        builder.WriteUInt16(root + CapsLayout.PowerOnOption, IdcConstants.ResetNoAction);
-        builder.WriteUInt16(root + CapsLayout.PowerOffOption, IdcConstants.ResetNoAction);
-        builder.WriteUInt16(root + CapsLayout.ChipPower, IdcConstants.ChipPowerCold | IdcConstants.ChipPowerWarm | IdcConstants.ChipPowerOff);
-        builder.WriteUInt32(root + CapsLayout.GuidLights + IdcConstants.GuidanceCardUnit * sizeof(uint), Commands.SetGuidanceLightCommand.CardUnitCapabilities);
-        builder.WriteUInt16(root + CapsLayout.EjectPosition, IdcConstants.ExitPosition);
-        builder.WriteUInt32(root + CapsLayout.PowerSaveControl, 1);
-        // Not supported (0 / FALSE / NULL): compound, flux sensor, read/write after eject, DIP mode, memory chips,
-        // other guidance lights, parking stations, anti fraud, synchronizable commands.
-        return Task.FromResult(new CommandOutcome(XfsResultCodes.Success, builder.Build()));
+        var settings = _devices.Get(context.Device).Settings;
+        var lights = new uint[IdcConstants.GuidanceCardUnit + 1];
+        lights[IdcConstants.GuidanceCardUnit] = Commands.SetGuidanceLightCommand.CardUnitCapabilities;
+        var caps = new JsonObject
+        {
+            ["wClass"] = IdcConstants.ServiceClassIdc,
+            ["fwType"] = IdcConstants.TypeMotor,
+            ["fwReadTracks"] = IdcConstants.Track1 | IdcConstants.Track2 | IdcConstants.Track3,
+            ["fwWriteTracks"] = IdcConstants.Track1 | IdcConstants.Track2 | IdcConstants.Track3,
+            ["fwChipProtocols"] = IdcConstants.ChipT0 | IdcConstants.ChipT1,
+            ["usCards"] = (ushort)settings.RetainCapacity,
+            ["fwSecType"] = IdcConstants.SecNotSupp,
+            ["fwPowerOnOption"] = IdcConstants.ResetNoAction,
+            ["fwPowerOffOption"] = IdcConstants.ResetNoAction,
+            ["fwWriteMode"] = IdcConstants.WriteLoco | IdcConstants.WriteHico | IdcConstants.WriteAuto,
+            ["fwChipPower"] = IdcConstants.ChipPowerCold | IdcConstants.ChipPowerWarm | IdcConstants.ChipPowerOff,
+            ["dwGuidLights"] = NativeJson.Array(lights, light => light),
+            ["fwEjectPosition"] = IdcConstants.ExitPosition,
+            ["bPowerSaveControl"] = true
+            // Not supported (0 / FALSE / NULL): compound, flux sensor, read/write after eject, DIP mode, memory chips,
+            // other guidance lights, parking stations, anti fraud, synchronizable commands.
+        };
+        if ((await _profiles.DeviceProfileAsync(context.RemoteAddress, cancellationToken))[IdcProfiles.CapabilitiesKey] is JsonObject fields)
+            _merger.Merge(caps, fields);
+        return new CommandOutcome(XfsResultCodes.Success, new NativeValue(IdcResults.Caps, caps));
     }
 }

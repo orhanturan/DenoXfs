@@ -61,9 +61,9 @@ internal sealed class FakeFormCatalog : IIdcFormCatalog
 /// <summary>Device state store that keeps everything in a dictionary.</summary>
 internal sealed class FakeDeviceStateStore : IIdcDeviceStateStore
 {
-    public Dictionary<string, IdcDeviceState> States { get; } = new();
+    public Dictionary<DenoXfs.Sim.Core.Hardware.DeviceRef, IdcDeviceState> States { get; } = new();
 
-    public IdcDeviceState? Load(string address) => States.GetValueOrDefault(address);
+    public IdcDeviceState? Load(DenoXfs.Sim.Core.Hardware.DeviceRef reader) => States.GetValueOrDefault(reader);
 
-    public void Save(string address, IdcDeviceState state) => States[address] = state;
+    public void Save(DenoXfs.Sim.Core.Hardware.DeviceRef reader, IdcDeviceState state) => States[reader] = state;
 }

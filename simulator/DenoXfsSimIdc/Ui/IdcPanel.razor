@@ -1,0 +1,324 @@
+@* Card reader panel of the terminal page: state, insert/take, reader settings, card editor, forms. *@
+@implements IDisposable
+@inject IIdcDeviceRegistry Devices
+@inject IIdcReaders Readers
+@inject IIdcDeviceService Service
+@inject ICardCatalog Cards
+@inject IIdcFormCatalog Forms
+@inject ITerminalNotifier Notifier
+
+<div class="idc">
+    <div class="tabs">
+        <button class="@Tab("reader")" @onclick='() => _tab = "reader"'>Reader</button>
+        <button class="@Tab("cards")" @onclick='() => _tab = "cards"'>Test cards</button>
+        <button class="@Tab("forms")" @onclick='() => _tab = "forms"'>Forms</button>
+    </div>
+
+    @if (!string.IsNullOrEmpty(_error))
+    {
+        <div class="message error">@_error</div>
+    }
+
+    @if (_tab == "reader" && Current is null)
+    {
+        <div class="message info">The terminal's model has no card reader with an IDC service.</div>
+    }
+    else if (_tab == "reader" && Current is { } reader)
+    {
+        var state = Devices.Get(reader.Ref).Snapshot();
+        var settings = Devices.Get(reader.Ref).Settings;
+
+        @if (_readers.Count > 1)
+        {
+            <div class="form-row">
+                <label>Card reader
+                    <select value="@reader.Ref.DeviceId" @onchange="e => SelectReader(e.Value)">
+                        @foreach (var item in _readers)
+                        {
+                            <option value="@item.Ref.DeviceId">@item.Name (@item.Services)@(Devices.Get(item.Ref).Snapshot().WaitingForCard ? " · waiting for a card" : null)</option>
+                        }
+                    </select>
+                </label>
+            </div>
+        }
+        else
+        {
+            <div class="hint">@reader.Name · @(reader.ServiceNames.Count > 1 ? "services" : "service") @reader.Services</div>
+        }
+
+        @if (state.WaitingForCard)
+        {
+            <div class="message attention">A read is waiting for a card: pick one below.</div>
+        }
+
+        <dl class="facts">
+            <dt>Media</dt><dd><span class="pill @state.Media">@MediaText(state.Media)</span> @state.CardName</dd>
+            <dt>Chip</dt><dd>@state.Chip</dd>
+            <dt>Retain bin</dt><dd>@state.RetainCount / @state.RetainCapacity (@state.RetainBin)</dd>
+            <dt>Guidance light</dt><dd>@LightText(state.GuidanceLights[IdcConstants.GuidanceCardUnit])</dd>
+            <dt>Power save recovery</dt><dd>@state.PowerSaveRecoveryTime s</dd>
+        </dl>
+
+        @if (state.Media == MediaPosition.AtExit)
+        {
+            <button class="primary big" @onclick="TakeAsync">Take the card</button>
+        }
+
+        <h4>Insert a card</h4>
+        <div class="card-grid">
+            @foreach (var card in _cards)
+            {
+                <button class="card-tile" disabled="@(state.Media != MediaPosition.NotPresent)" @onclick="() => InsertAsync(card.Name)">
+                    <span class="card-name">@card.Name</span>
+                    <span class="card-tags">
+                        @if (card.Track1 is not null) { <span>T1</span> }
+                        @if (card.Track2 is not null) { <span>T2</span> }
+                        @if (card.Track3 is not null) { <span>T3</span> }
+                        @if (card.HasChip) { <span>Chip</span> }
+                    </span>
+                </button>
+            }
+        </div>
+
+        <h4>Reader settings</h4>
+        <div class="form-row">
+            <label><input type="checkbox" checked="@settings.AutoRemoveAfterEject" @onchange="e => SetAutoRemove((bool)e.Value!)" />
+                Auto remove after eject (otherwise "Take the card" sends MEDIAREMOVED)</label>
+        </div>
+        <div class="form-row">
+            Retain bin capacity <input type="number" min="1" @bind="_capacity" />
+            high at <input type="number" min="1" @bind="_high" />
+            <button @onclick="SaveSettings">Save</button>
+        </div>
+    }
+    else if (_tab == "cards")
+    {
+        <table class="grid">
+            <tr><th>Name</th><th>Track 2</th><th>ATR</th><th>APDUs</th><th></th></tr>
+            @foreach (var card in _cards)
+            {
+                <tr>
+                    <td>@card.Name</td>
+                    <td><code>@CardDtos.EscapeTrack(card.Track2)</code></td>
+                    <td><code>@(card.Atr is null ? "-" : Convert.ToHexString(card.Atr))</code></td>
+                    <td>@card.ChipResponses.Count</td>
+                    <td><button @onclick="() => Edit(card)">Edit</button></td>
+                </tr>
+            }
+        </table>
+
+        <h4>@(string.IsNullOrEmpty(_edit.OriginalName) ? "New card" : $"Edit {_edit.OriginalName}")</h4>
+        <div class="editor">
+            <label>Name <input @bind="_edit.Name" /></label>
+            <label>Track 1 <input class="mono" @bind="_edit.Track1" /></label>
+            <label>Track 2 <input class="mono" @bind="_edit.Track2" /></label>
+            <label>Track 3 <input class="mono" @bind="_edit.Track3" /></label>
+            <p class="hint">Tracks are ASCII text; binary bytes as \xNN, a backslash as \\. Empty = no such track.</p>
+            <label>ATR (hex) <input class="mono" @bind="_edit.Atr" /></label>
+            <p class="hint">Chip APDUs: command (hex) → response (hex, ends with SW1 SW2); other commands get 6D00.</p>
+            @foreach (var row in _edit.Apdus)
+            {
+                <div class="apdu">
+                    <input class="mono" @bind="row.Command" /> → <input class="mono" @bind="row.Response" />
+                    <button @onclick="() => _edit.Apdus.Remove(row)">Remove</button>
+                </div>
+            }
+            <div class="form-row">
+                <button @onclick="() => _edit.Apdus.Add(new ApduRow())">Add APDU</button>
+                <button class="primary" @onclick="SaveCardAsync">Save</button>
+                @if (!string.IsNullOrEmpty(_edit.OriginalName))
+                {
+                    <button class="danger" @onclick="DeleteCardAsync">Delete</button>
+                }
+                <button @onclick="() => _edit = new CardEdit()">New card</button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <table class="grid">
+            <tr><th>Name</th><th>Tracks</th><th>Action</th><th>Track 1</th><th>Track 2</th><th>Track 3</th></tr>
+            @foreach (var form in _forms)
+            {
+                <tr>
+                    <td><code>@form.Name</code></td>
+                    <td><code>@form.Tracks</code></td>
+                    <td>@(form.Action == IdcConstants.ActionRead ? "read" : "write")</td>
+                    <td>@string.Join(", ", form.Track1Fields)</td>
+                    <td>@string.Join(", ", form.Track2Fields)</td>
+                    <td>@string.Join(", ", form.Track3Fields)</td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Address { get; set; } = string.Empty;
+
+    private string _tab = "reader";
+    private string? _error;
+    private IReadOnlyList<IdcCard> _cards = [];
+    private IReadOnlyList<IdcForm> _forms = [];
+    private IReadOnlyList<IdcReader> _readers = [];
+    private int? _readerId;
+    private DeviceRef? _settingsOf;
+    private int _capacity;
+    private int _high;
+    private CardEdit _edit = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Notifier.Changed += OnChanged;
+        await LoadAsync();
+    }
+
+    /// <summary>The selected card reader; a reader that waits for a card or has one at the exit is shown first.</summary>
+    private IdcReader? Current =>
+        _readers.FirstOrDefault(r => r.Ref.DeviceId == _readerId)
+        ?? _readers.FirstOrDefault(r => Devices.Get(r.Ref).Snapshot() is { } s && (s.WaitingForCard || s.Media == MediaPosition.AtExit))
+        ?? _readers.FirstOrDefault();
+
+    /// <summary>The page re-renders on every change of the terminal; the settings inputs are filled only when the reader changes.</summary>
+    protected override async Task OnParametersSetAsync()
+    {
+        _readers = await Readers.OfTerminalAsync(Address, CancellationToken.None);
+        FillSettings();
+    }
+
+    private void FillSettings()
+    {
+        if (Current is not { } reader || _settingsOf == reader.Ref)
+            return;
+        var settings = Devices.Get(reader.Ref).Settings;
+        _capacity = settings.RetainCapacity;
+        _high = settings.RetainHighThreshold;
+        _settingsOf = reader.Ref;
+    }
+
+    private void SelectReader(object? value)
+    {
+        _readerId = int.TryParse(value?.ToString(), out var id) ? id : null;
+        FillSettings();
+    }
+
+    private async Task LoadAsync()
+    {
+        _cards = await Cards.AllAsync(CancellationToken.None);
+        _forms = await Forms.AllAsync(CancellationToken.None);
+    }
+
+    private void OnChanged(string key)
+    {
+        if (key == Address || _readers.Any(r => r.Ref.TerminalId == key))
+            _ = InvokeAsync(StateHasChanged);
+    }
+
+    private string Tab(string name) => _tab == name ? "active" : string.Empty;
+
+    private async Task InsertAsync(string card)
+    {
+        if (Current is not { } reader)
+            return;
+        _error = await Service.InsertAsync(reader.Ref, card, CancellationToken.None) switch
+        {
+            InsertOutcome.Inserted => null,
+            InsertOutcome.UnknownCard => "Unknown card.",
+            _ => "The reader is not empty: take the card first."
+        };
+    }
+
+    private async Task TakeAsync()
+    {
+        if (Current is { } reader)
+            _error = await Service.TakeAsync(reader.Ref, CancellationToken.None) ? null : "There is no card at the exit.";
+    }
+
+    private void SaveSettings()
+    {
+        if (Current is not { } reader)
+            return;
+        Service.UpdateSettings(reader.Ref, Devices.Get(reader.Ref).Settings.AutoRemoveAfterEject, _capacity, _high);
+        _error = null;
+    }
+
+    private void SetAutoRemove(bool on)
+    {
+        if (Current is not { } reader)
+            return;
+        var settings = Devices.Get(reader.Ref).Settings;
+        Service.UpdateSettings(reader.Ref, on, settings.RetainCapacity, settings.RetainHighThreshold);
+    }
+
+    private void Edit(IdcCard card) => _edit = CardEdit.From(CardDtos.ToDto(card));
+
+    private async Task SaveCardAsync()
+    {
+        var (card, error) = CardDtos.FromDto(_edit.ToDto());
+        if (card is null)
+        {
+            _error = error;
+            return;
+        }
+        await Cards.SaveAsync(card, string.IsNullOrEmpty(_edit.OriginalName) ? null : _edit.OriginalName, CancellationToken.None);
+        _error = null;
+        await LoadAsync();
+        _edit = CardEdit.From(CardDtos.ToDto(card));
+    }
+
+    private async Task DeleteCardAsync()
+    {
+        await Cards.DeleteAsync(_edit.OriginalName!, CancellationToken.None);
+        _edit = new CardEdit();
+        await LoadAsync();
+    }
+
+    private static string MediaText(MediaPosition media) => media switch
+    {
+        MediaPosition.Inside => "inside",
+        MediaPosition.AtExit => "at the exit",
+        _ => "no card"
+    };
+
+    private static string LightText(uint value)
+    {
+        if (value == 0)
+            return "not available";
+        var (color, flash) = IdcUiModule.Light(value);
+        return color is null ? "off" : $"{(flash is null ? "continuous" : flash + " flash")}";
+    }
+
+    public void Dispose() => Notifier.Changed -= OnChanged;
+
+    private sealed class ApduRow
+    {
+        public string Command { get; set; } = string.Empty;
+        public string Response { get; set; } = string.Empty;
+    }
+
+    /// <summary>The editor's copy of a card: tracks escaped (\xNN) as the user types them.</summary>
+    private sealed class CardEdit
+    {
+        public string Name { get; set; } = string.Empty;
+        public string? OriginalName { get; set; }
+        public string Track1 { get; set; } = string.Empty;
+        public string Track2 { get; set; } = string.Empty;
+        public string Track3 { get; set; } = string.Empty;
+        public string Atr { get; set; } = string.Empty;
+        public List<ApduRow> Apdus { get; } = new();
+
+        public static CardEdit From(CardDto dto)
+        {
+            var edit = new CardEdit
+            {
+                Name = dto.Name, OriginalName = dto.Name, Atr = dto.Atr ?? string.Empty,
+                Track1 = CardDtos.EscapeTrack(dto.Track1), Track2 = CardDtos.EscapeTrack(dto.Track2), Track3 = CardDtos.EscapeTrack(dto.Track3)
+            };
+            edit.Apdus.AddRange(dto.ChipResponses.Select(r => new ApduRow { Command = r.Command, Response = r.Response }));
+            return edit;
+        }
+
+        public CardDto ToDto() => new(Name, CardDtos.UnescapeTrack(Track1), CardDtos.UnescapeTrack(Track2), CardDtos.UnescapeTrack(Track3), Atr,
+            Apdus.Where(r => r.Command.Trim().Length > 0 || r.Response.Trim().Length > 0).Select(r => new ChipResponseDto(r.Command, r.Response)).ToList());
+    }
+}
